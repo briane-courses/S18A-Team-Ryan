@@ -1,6 +1,6 @@
 
 body{
-    background-image: url("glass-background.jpg");
+    background-image: url("../img/glass-background.jpg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
