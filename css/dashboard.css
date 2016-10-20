@@ -14,7 +14,8 @@ body{
         display: block;
         width: 160px;
         text-align: center;
-        background-color: #eee;
+        background-color: rgb(21,70,10);
+        color:white;
     }
     .navbar>.container .navbar-brand-centered, 
     .navbar>.container-fluid .navbar-brand-centered {
