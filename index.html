@@ -15,11 +15,11 @@
 			    <div class="card card-container">
 			        <img id="logo-img" class="logo-img" src="img/dlsu-logo.png"/> 
 			        <br>
-			        <form class="form-signin">
-			            <input type="text" id="inputIDNumber" class="form-control" placeholder="ID Number" required autofocus>
-			            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+			        <form class="form-signin" action="php/log-in.php" method="POST">
+			            <input type="text" id="inputIDNumber" name="username" class="form-control" placeholder="ID Number" required autofocus>
+			            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
 			            <br>
-			            <a href="dashboard.html" class="btn btn-lg btn-success btn-block btn-login" type="submit">Log In</a>
+			            <button class="btn btn-lg btn-success btn-block btn-login" type="submit">Log In</button>
 			        </form><!-- /form -->
 
 			    </div>

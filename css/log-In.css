@@ -1,5 +1,5 @@
 body{
-    background-image: url("glass-background.jpg");
+    background-image: url("../img/glass-background.jpg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -13,7 +13,7 @@ body{
 
 /* CARD */
 .card {
-    background-color: url("glass-background.jpg");
+    background-color: url("../img/glass-background.jpg");
     background-repeat: no-repeat;
     /* just in case there no content*/
     padding: 20px 25px 30px;
