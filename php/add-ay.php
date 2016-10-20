@@ -97,7 +97,7 @@
                     echo $e->getMessage()."</br>";
                 }
                 echo "<script>
-                    window.alert('Term added successfully!');
+                    window.alert('Academic year successfully added!');
                     window.location.replace('../dashboard.html');
                 </script>";
             }
