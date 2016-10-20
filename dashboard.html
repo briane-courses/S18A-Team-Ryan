@@ -22,37 +22,38 @@
 	    <script type="text/javascript">
 
 			$(function() {
-
 			    var start = moment().subtract(29, 'days');
 			    var end = moment();
-
 			    function cb(start, end) {
 			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+			        
+			    }
+			    function cb2(start, end) {			       
 			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+			    }
+			    function cb3(start, end) {
+			        
 			        $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
 			    }
+
 			    $('#reportrange').daterangepicker({
 			        startDate: start,
-			        endDate: end,
-			        ranges: {
-			          
-			        }}, cb);
+			        endDate: end
+			        }, cb);
 			    
 			    $('#reportrange2').daterangepicker({
 			        startDate: start,
-			        endDate: end,
-			        ranges: {
-			          
-			        }}, cb);
+			        endDate: end
+			        }, cb2);
 
 			    $('#reportrange3').daterangepicker({
 			        startDate: start,
-			        endDate: end,
-			        ranges: {
-			          
-			        }}, cb);
+			        endDate: end
+			        }, cb3);
 
 			    cb(start, end);
+			    cb2(start, end);
+			    cb3(start, end);
 			    
 			});
 		</script>
@@ -171,7 +172,7 @@
 		<div class="modal fade" id="adday-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container">
-					<form class ="form-horizontal">
+					<form class = "form-horizontal">
 						<fieldset>
 			            	<legend class="text-center"><h3><b>ADD NEW ACADEMIC YEAR</b></h3></legend>
 				             <div class="form-group">
