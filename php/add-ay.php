@@ -41,12 +41,12 @@
             $i++;
         }
 
-        if (!$isOverlap) {
+        if (!$isOverlap && !$isExistingYear) {
             // Insert academic year and terms.
             try {
                 $stmt = $conn->prepare(
                     "INSERT INTO AcademicYear(name)
-                    VALUES (':academic_year')");
+                    VALUES (:academic_year)");
                 $stmt->execute(["academic_year" => $_POST["academic_year"]]);
             } catch (PDOException $e) {
                 echo $e->getMessage();
@@ -66,26 +66,26 @@
             try {
                 $stmt = $conn->prepare(
                     "INSERT INTO Term (start, end, term_no, year_id)
-                    VALUES (':start, :end, 1, :year_id')");
+                    VALUES (:start, :end, 1, :year_id)");
                 $stmt->execute(["start" => $_POST["term1Start"], "end" => $_POST["term1End"], "year_id" => $yearId]);
             } catch (PDOException $e) {
-                echo $e->getMessage();
+                echo $e->getMessage()."</br>";
             }
             try {
                 $stmt = $conn->prepare(
                     "INSERT INTO Term (start, end, term_no, year_id)
-                    VALUES (':start, :end, 2, :year_id')");
+                    VALUES (:start, :end, 2, :year_id)");
                 $stmt->execute(["start" => $_POST["term2Start"], "end" => $_POST["term2End"], "year_id" => $yearId]);
             } catch (PDOException $e) {
-                echo $e->getMessage();
+                echo $e->getMessage()."</br>";
             }
             try {
                 $stmt = $conn->prepare(
                     "INSERT INTO Term (start, end, term_no, year_id)
-                    VALUES (':start, :end, 3, :year_id')");
+                    VALUES (:start, :end, 3, :year_id)");
                 $stmt->execute(["start" => $_POST["term3Start"], "end" => $_POST["term3End"], "year_id" => $yearId]);
             } catch (PDOException $e) {
-                echo $e->getMessage();
+                echo $e->getMessage()."</br>";
             }
         }
     } else {
