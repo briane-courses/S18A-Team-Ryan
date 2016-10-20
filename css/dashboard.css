@@ -1,0 +1,62 @@
+
+body{
+    background-image: url("glass-background.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+@media screen and (min-width:768px){
+    .navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        display: block;
+        width: 160px;
+        text-align: center;
+        background-color: #eee;
+    }
+    .navbar>.container .navbar-brand-centered, 
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -80px;
+    }
+}
+
+
+
+#reportrange, #reportrange2, #reportrange3{
+    background: #fff;
+    cursor: pointer;
+    padding:10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 34px;
+    width:100%;
+}
+
+input{
+    font-weight: bold;
+}
+
+.thumbnail:hover{
+    opacity:0.8;
+    background-color: white;
+    -webkit-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+}
+
+.thumbnail a{
+    text-decoration: none;
+}
+
+
+.thumbnail h4{
+    text-align: center;
+}
+
+.thumbnail {
+    position:relative;
+    overflow:hidden;
+    background-color: transparent;
+}
+ 
