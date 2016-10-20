@@ -7,6 +7,15 @@
 
     $stmt = $conn->prepare("SELECT * FROM LeadAccount WHERE user_name = :user_name AND password = :password");
     $stmt->execute(["user_name" => $username, "password" => $password]);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    echo "</br>Hello ".$row["user_name"];
+    if($stmt->rowCount() == 1){
+        echo "<script>
+                alert('Logged in');
+                window.location.replace('../dashboard.html');
+            </script>";
+    } else {
+        echo "<script>
+                alert('Incorrect username or password');
+                window.location.replace('../index.html');
+            </script>";
+    }
 ?>
