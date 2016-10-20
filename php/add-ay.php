@@ -1,11 +1,6 @@
 <?php
     include "connector.php";
 
-    echo "Data:</br>".$_POST["academic_year"]."</br>";
-    echo "Term1:</br>".$_POST["term1Start"]." - ".$_POST["term1End"]."</br>";
-    echo "Term2:</br>".$_POST["term2Start"]." - ".$_POST["term2End"]."</br>";
-    echo "Term3:</br>".$_POST["term3Start"]." - ".$_POST["term3End"]."</br>";
-
     // Check if academic year exists.
     $stmt = $conn->prepare(
         "SELECT 1
@@ -25,19 +20,14 @@
         $isOverlapSelf = false;
         if (strcmp($_POST["term1Start"],  $_POST["term1End"]) >= 0) {
             $isOverlapSelf = true;
-            echo "conditon 1";
         } else if (strcmp($_POST["term2Start"],  $_POST["term2End"]) >= 0) {
             $isOverlapSelf = true;
-            echo "conditon 2";
         } else if (strcmp($_POST["term3Start"],  $_POST["term3End"]) >= 0) {
             $isOverlapSelf = true;
-            echo "conditon 3";
         } else if (strcmp($_POST["term1Start"],  $_POST["term2Start"]) >= 0 || strcmp($_POST["term1End"],  $_POST["term2Start"]) >= 0) {
             $isOverlapSelf = true;
-            echo "conditon 4";
         } else if (strcmp($_POST["term2Start"],  $_POST["term3Start"]) >= 0 || strcmp($_POST["term2End"],  $_POST["term3Start"]) >= 0) {
             $isOverlapSelf = true;
-            echo "conditon 5";
         }
         echo "isOverlapSelf: ".$isOverlapSelf;
         if (!$isOverlapSelf) {
@@ -106,6 +96,10 @@
                 } catch (PDOException $e) {
                     echo $e->getMessage()."</br>";
                 }
+                echo "<script>
+                    window.alert('Term added successfully!');
+                    window.location.replace('../dashboard.html');
+                </script>";
             }
         } else {
             // New entry has overlapping terms.
