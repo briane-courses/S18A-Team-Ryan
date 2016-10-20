@@ -26,18 +26,18 @@
 			    var end = moment();
 			    function cb(start, end) {
 			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			        $('#term1Start').val(start.format('MM/DD/YYYY'));
-					$('#term1End').val(end.format('MM/DD/YYYY'));
+			        $('#term1Start').val(start.format('YYYY-MM-DD'));
+					$('#term1End').val(end.format('YYYY-MM-DD'));
 			    }
 			    function cb2(start, end) {			       
 			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-					$('#term2Start').val(start.format('MM/DD/YYYY'));
-					$('#term2End').val(end.format('MM/DD/YYYY'));
+					$('#term2Start').val(start.format('YYYY-MM-DD'));
+					$('#term2End').val(end.format('YYYY-MM-DD'));
 				}
 			    function cb3(start, end) {
 			        $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-					$('#term3Start').val(start.format('MM/DD/YYYY'));
-					$('#term3End').val(end.format('MM/DD/YYYY'));
+					$('#term3Start').val(start.format('YYYY-MM-DD'));
+					$('#term3End').val(end.format('YYYY-MM-DD'));
 				}
 
 			    $('#reportrange').daterangepicker({
