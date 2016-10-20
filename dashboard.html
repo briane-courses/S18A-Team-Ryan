@@ -26,15 +26,19 @@
 			    var end = moment();
 			    function cb(start, end) {
 			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			        
+			        $('#term1Start').val(start.format('MM/DD/YYYY'));
+					$('#term1End').val(end.format('MM/DD/YYYY'));
 			    }
 			    function cb2(start, end) {			       
 			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			    }
+					$('#term2Start').val(start.format('MM/DD/YYYY'));
+					$('#term2End').val(end.format('MM/DD/YYYY'));
+				}
 			    function cb3(start, end) {
-			        
 			        $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			    }
+					$('#term3Start').val(start.format('MM/DD/YYYY'));
+					$('#term3End').val(end.format('MM/DD/YYYY'));
+				}
 
 			    $('#reportrange').daterangepicker({
 			        startDate: start,
@@ -54,7 +58,6 @@
 			    cb(start, end);
 			    cb2(start, end);
 			    cb3(start, end);
-			    
 			});
 		</script>
 
@@ -172,13 +175,13 @@
 		<div class="modal fade" id="adday-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container">
-					<form class = "form-horizontal">
+					<form class ="form-horizontal" action="php/add-ay.php" method="POST">
 						<fieldset>
 			            	<legend class="text-center"><h3><b>ADD NEW ACADEMIC YEAR</b></h3></legend>
 				             <div class="form-group">
 				              	  <label class="col-xs-4 control-label" for="ay">Academic Year:</label>
 					              <div class="col-xs-8">
-									<select class="selectpicker show-tick" data-width = "100%">
+									<select name="academic_year" class="selectpicker show-tick" data-width = "100%">
 										  <option>A.Y. 2015-2016</option>
 										  <option>A.Y. 2014-2015</option>
 										  <option>A.Y. 2013-2014</option>
@@ -192,6 +195,8 @@
 						                <div id="reportrange" class="pull-right">
 										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
 										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
+											<input type="hidden" id="term1Start" name="term1Start" value="">
+											<input type="hidden" id="term1End" name="term1End" value="">
 										</div>
 			              			 
 					    		  </div>
@@ -203,6 +208,8 @@
 						                <div id="reportrange2" class="pull-right">
 										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
 										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
+											<input type="hidden" id="term2Start" name="term2Start" value="">
+											<input type="hidden" id="term2End" name="term2End" value="">
 										</div>
 			              			 
 					    		  </div>
@@ -214,6 +221,8 @@
 						                <div id="reportrange3" class="pull-right">
 										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
 										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
+											<input type="hidden" id="term3Start" name="term3Start" value="">
+											<input type="hidden" id="term3End" name="term3End" value="">
 										</div>
 			              			 
 					    		  </div>
