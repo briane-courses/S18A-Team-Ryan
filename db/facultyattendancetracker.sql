@@ -28,7 +28,7 @@ CREATE TABLE `academicyear` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +37,7 @@ CREATE TABLE `academicyear` (
 
 LOCK TABLES `academicyear` WRITE;
 /*!40000 ALTER TABLE `academicyear` DISABLE KEYS */;
+INSERT INTO `academicyear` VALUES (1,'A.Y. 2015-2016');
 /*!40000 ALTER TABLE `academicyear` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,14 +53,14 @@ CREATE TABLE `attendance` (
   `courseoffering_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL,
   `remarks` varchar(45) NOT NULL,
-  `date` varchar(45) NOT NULL,
+  `date` date NOT NULL,
   `time_set` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `courseoffering_id_idx` (`courseoffering_id`),
   KEY `status_id_idx` (`status_id`),
   CONSTRAINT `courseoffering_id` FOREIGN KEY (`courseoffering_id`) REFERENCES `courseoffering` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `status_id` FOREIGN KEY (`status_id`) REFERENCES `attendancestatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +69,7 @@ CREATE TABLE `attendance` (
 
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
+INSERT INTO `attendance` VALUES (1,1,1,'','2016-09-22','1500'),(2,1,1,'','2016-09-24','1500');
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +86,7 @@ CREATE TABLE `attendancestatus` (
   `name` varchar(45) NOT NULL,
   `description` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,6 +95,7 @@ CREATE TABLE `attendancestatus` (
 
 LOCK TABLES `attendancestatus` WRITE;
 /*!40000 ALTER TABLE `attendancestatus` DISABLE KEYS */;
+INSERT INTO `attendancestatus` VALUES (1,'LA','Late','Faculty is late to class'),(2,'AB','Absent','Faculty did not come to class'),(3,'SB','Substitute','Substitute was present');
 /*!40000 ALTER TABLE `attendancestatus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,7 +110,7 @@ CREATE TABLE `building` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,6 +119,7 @@ CREATE TABLE `building` (
 
 LOCK TABLES `building` WRITE;
 /*!40000 ALTER TABLE `building` DISABLE KEYS */;
+INSERT INTO `building` VALUES (1,'Gokongwei');
 /*!40000 ALTER TABLE `building` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +165,7 @@ CREATE TABLE `course` (
   `code` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,6 +174,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
+INSERT INTO `course` VALUES (1,'HCIFACE','Human Computer Interfaces'),(2,'OPERSYS','Operating Systems');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +203,7 @@ CREATE TABLE `courseoffering` (
   CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES `faculty` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `room_id` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `term_id` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,6 +212,7 @@ CREATE TABLE `courseoffering` (
 
 LOCK TABLES `courseoffering` WRITE;
 /*!40000 ALTER TABLE `courseoffering` DISABLE KEYS */;
+INSERT INTO `courseoffering` VALUES (1,1,'S18',1,3,'1430','1600',1);
 /*!40000 ALTER TABLE `courseoffering` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +235,7 @@ CREATE TABLE `faculty` (
   `department` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,6 +244,7 @@ CREATE TABLE `faculty` (
 
 LOCK TABLES `faculty` WRITE;
 /*!40000 ALTER TABLE `faculty` DISABLE KEYS */;
+INSERT INTO `faculty` VALUES (1,'Patrick Ruffio','Alvero','Arceo','CCS','patrick_arceo@dlsu.edu.ph','sample','09228500313','Math');
 /*!40000 ALTER TABLE `faculty` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +263,7 @@ CREATE TABLE `leadaccount` (
   `password` varchar(45) NOT NULL,
   `user_name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -265,6 +272,7 @@ CREATE TABLE `leadaccount` (
 
 LOCK TABLES `leadaccount` WRITE;
 /*!40000 ALTER TABLE `leadaccount` DISABLE KEYS */;
+INSERT INTO `leadaccount` VALUES (1,'Patrick Ruffio','Alvero','Arceo','123123','pubz');
 /*!40000 ALTER TABLE `leadaccount` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -282,7 +290,7 @@ CREATE TABLE `room` (
   PRIMARY KEY (`id`),
   KEY `building_id_idx` (`building_id`),
   CONSTRAINT `building_id` FOREIGN KEY (`building_id`) REFERENCES `building` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,6 +299,7 @@ CREATE TABLE `room` (
 
 LOCK TABLES `room` WRITE;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
+INSERT INTO `room` VALUES (1,'G205',1);
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -349,14 +358,14 @@ DROP TABLE IF EXISTS `term`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `term` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `start` varchar(45) NOT NULL,
-  `end` varchar(45) NOT NULL,
+  `start` date NOT NULL,
+  `end` date NOT NULL,
   `term_no` varchar(45) NOT NULL,
   `year_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `year_id_idx` (`year_id`),
   CONSTRAINT `year_id` FOREIGN KEY (`year_id`) REFERENCES `academicyear` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -365,6 +374,7 @@ CREATE TABLE `term` (
 
 LOCK TABLES `term` WRITE;
 /*!40000 ALTER TABLE `term` DISABLE KEYS */;
+INSERT INTO `term` VALUES (1,'2016-09-21','2016-10-20','1',1),(2,'2016-11-01','2017-01-04','2',1),(3,'2017-01-09','2017-02-28','3',1);
 /*!40000 ALTER TABLE `term` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -377,4 +387,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-20 13:17:25
+-- Dump completed on 2016-11-01 14:29:01
