@@ -14,13 +14,25 @@ body{
         display: block;
         width: 160px;
         text-align: center;
-        background-color: rgb(21,70,10);
+        background-image: url("../img/header-background.jpg");
         color:white;
     }
     .navbar>.container .navbar-brand-centered, 
     .navbar>.container-fluid .navbar-brand-centered {
         margin-left: -80px;
     }
+}
+
+/* Opaque Header */
+.navbar-default{
+    background-image: url("../img/header-background.jpg");
+    opacity: 0.7; filter: alpha(opacity=70);
+}
+
+/* Hover Elements of Header */
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+    color:white;
+    background-color: rgba(0,0,0,0.5);
 }
 
 
@@ -35,13 +47,13 @@ body{
     width:100%;
 }
 
-input{
-    font-weight: bold;
-}
 
+input[type=text]{
+    width: 220px;
+    height: 34px;
+}
 .thumbnail:hover{
-    opacity:0.8;
-    background-color: white;
+    background-color: rgba(255,255,255,0.4);
     -webkit-transition: all 0.3s ease-in;
     transition: all 0.3s ease-in;
 }
@@ -58,6 +70,16 @@ input{
 .thumbnail {
     position:relative;
     overflow:hidden;
-    background-color: transparent;
+    background-color: white;
 }
- 
+
+.options-heading{
+    font-weight: bold;
+}
+
+#searchrecords-container input[type=text], #daily-container input[type=text]{
+  height: 34px;
+  width: 220px;
+  margin-top: 10px;
+  font-size: 14px;
+}

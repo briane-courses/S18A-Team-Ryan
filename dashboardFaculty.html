@@ -92,26 +92,28 @@
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="navbar-brand-centered">
 			      <ul class="nav navbar-nav">
-			        <li><a href="dashboard.html"><b>Maintenance</b></a></li>
-			        <li><a href="dashboard-reports.html"><b>Reports</b></a></li>		
+			        <li><a href="index.html">Maintenance</a></li>
+			        <li><a href="index.html">Reports</a></li>		
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right">
 			        
-			        <li><a href="index.html"><b>Log Out</b></a></li>		        
+			        <li><a href="index.html">Log Out</a></li>		        
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 
 		<div class="container">
-			<br><br><br>
+			<br><br>
 			<div class = "row">
 				<a href="#" class="" data-toggle="modal" data-target="#accessay-modal">
 			        <div class="col-sm-3">
 			            <div class="thumbnail">
 			              
 			                <div class="caption">
-			                	<h4 class="options-heading"><b>ACCESS AY</b></h4>
+			                	<h4 class="">ACCESS AY</h4>
+			                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+								</p>
 			                </div>
 			                <img src="img/accessAY.png" alt="..." class="">
 			               
@@ -123,7 +125,9 @@
 			        <div class="col-sm-3">
 			            <div class="thumbnail">
 			                <div class="caption">
-			                    <h4 class="options-heading">ADD AY</h4>
+			                    <h4 class="">ADD AY</h4>
+			                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+								</p>
 			                </div>
 			                <img src="img/addAY.png" alt="..." class="">
 			               
@@ -135,7 +139,11 @@
 			            <div class="thumbnail">
 			              
 			                <div class="caption">
-			                    <h4 class="options-heading">EDIT AY</h4>
+			                    <h4 class="">EDIT AY</h4>
+
+			                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+								
+								</p>
 			                </div>
 			                <img src="img/editAY.png" alt="..." class="">
 			               </a>
@@ -146,7 +154,10 @@
 			        <div class="col-sm-3">
 			            <div class="thumbnail">
 			                <div class="caption">
-			                    <h4 class="options-heading">SEARCH ATTENDANCE RECORDS</h4>
+			                    <h4 class="">SEARCH ATTENDANCE RECORDS</h4>
+			                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+								
+								</p>
 			                </div>
 			                <img src="img/searchRecord1.png" alt="..." class="">
 			            </div>
@@ -217,8 +228,7 @@
 			            	 </div>
 			            	<br>
 							<div class="text-center">
-					            <button type="submit" class="btn btn-success btn-lg col-xs-3" style = "margin-left:90px; margin-right:30px;"> ADD </button> 
-					            <button type="button" class="btn btn-success btn-lg col-xs-3" data-dismiss="modal"> CANCEL </button>
+			                	<button type="submit" class="btn btn-success btn-lg col-xs-7" style = "margin-left: 80px"> ADD </button>
 			              	</div>
 
 			        	</fieldset>
@@ -249,11 +259,10 @@
 								<br><br>
 
 								<div class="text-center">
-			                		<button type="submit" class="btn btn-success btn-lg col-xs-3" style = "margin-left: 80px"> <i class="glyphicon glyphicon-circle-arrow-right"></i> </button>
-
-			                		<button type="button" class="btn btn-success btn-lg col-xs-3" style = "margin-left: 30px" data-dismiss="modal"> <i class="glyphicon glyphicon-remove"></i> </button>
+			                		<button type="submit" class="btn btn-success btn-lg col-xs-7" style = "margin-left: 80px"> <i class="glyphicon glyphicon-circle-arrow-right"></i> </button>
 			              		</div>
-
+							
+						
 			        	</fieldset>
 			
 					</form>
@@ -264,53 +273,37 @@
 		<!-- SEARCH ATTENDANCE RECORDS MODAL -->
 		<div class="modal fade" id="searchrecords-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 		 <div class="modal-dialog">
-				<div class="addaymodal-container" id = "searchrecords-container">
-					<form class = "form-inline">
+				<div class="addaymodal-container">
+					<form class = "form-horizontal">
 						<fieldset>
 			            	<legend class="text-center"><h3><b>SEARCH ATTENDANCE RECORDS</b></h3></legend>
-			            	<div class="form-group">
+			            		
 				            	<div class="radio" >
 									<label class="control-label">
 									<input type="radio" name="search-options" id="search1" value="1" checked>
 									    by ID Number:
 									</label>
-									
 								</div>
-							</div>
-							<div class = "form-group">
-								<input type = "text" placeholder = "ID Number"></input>
-							</div>
-							<br>
+								<input></input>
 
-							<div class="form-group">
+
+								<br>
 								<div class="radio">
-								 	<label>
-									<input type="radio" name="search-options" id="search2" value="2">
-									by Course & Section:
-									</label>
-								</div>	
-		
-							</div>
-							<div class = "form-group">
-	    						<input type = "text" placeholder = "Course" style = "width:168px;"></input>
-							</div>
-							<div class = "form-group">
-	    						<input type = "text" placeholder = "Section" style = "width:60px;"></input>
-							</div>
+								  <label>
+								    <input type="radio" name="search-options" id="search2" value="2">
+								   	by Course & Section:
+								  </label>
+								</div>
+
+								<br>
+								<div class="text-center">
+			                		<button type="submit" class="btn btn-success btn-lg col-xs-7" style = "margin-left: 80px"> CONFIRM </button>
+			              		</div>
 							
-
-
-							<br><br>
-							<div class="text-center">
-						        <button type="submit" class="btn btn-success btn-lg col-xs-3" style = "margin-left:90px; margin-right:30px;"> SUBMIT </button> 
-						        <button type="button" class="btn btn-success btn-lg col-xs-3" data-dismiss="modal"> CANCEL </button>
-				            </div>
 						
 			        	</fieldset>
 			
 					</form>
-
-
 				</div>
 		  </div>
 		</div>
