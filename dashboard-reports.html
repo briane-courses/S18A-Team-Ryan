@@ -258,7 +258,7 @@
 		<div class="modal fade" id="daily-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container" id = "daily-container">
-					<form class = "form-inline text-center" action="php/generate-term.php" method="POST">
+					<form class = "form-inline text-center" action="php/generate-daily.php" method="POST">
 						<fieldset>
 			            	 <legend class="text-center"><h3><b>Generate Daily Attendance</b></h3></legend>
 			        		 
@@ -267,15 +267,18 @@
                                 <div class="row">
                                     <label for="dailydate" style="text-align:left">
                                     Date
-                                    <input class="" id="dailydate" type="text" name="dailydate" value="10/31/2016"/>
+                                    <input class="" id="dailydate" type="text" name="dailydate" value="10/31/2016" style = "text-align:left"/>
 			        		 	    </label>
                                 </div>
                                 <div class="row"> 
-                                <label style="text-align:left">Report for: </label> <!-- Label tab -->
+                                <label style = "float:left;">Report for: </label> <!-- Label tab --> <br><br>
 							 		<div class="container">
 										<div class="">
+
 									        <div class="col-xs-2">
-									            <div class=" segmented-control" style="width:149px">
+
+									            <div class=" segmented-control" style="width:149px;margin-left:-28px;">
+
 									                <a id ="facultyButtonDaily" href="#" class="list-group-item active">
 									                    Faculty
 									                    <input type="radio" checked/>
@@ -294,14 +297,18 @@
                                 </div>
                             <br>
 			            	<div id="inputIDNumDaily">
-                                <div class="row">
-                                <label for="" style="text-align:left">ID Number
-                                    <input type = "text" placeholder = "ID Number">
+								<div class="row">
+                                <label style = "text-align:left">Input Type
+                                    <select class="selectpicker show-tick" style = "width: 230px">
+                                    	<option selected>ID Number</option>
+										<option>Name</option>
+									</select>    
                                 </label>
+                                
                                 </div>
                                 <div class="row">
-                                <label style="text-align:left">Name
-                                    <input type = "text" placeholder = "Name">
+                                <label style="text-align:left"> Input
+                                    <input type = "text">
                                 </label>
                                 </div>
                             </div>		
@@ -354,11 +361,11 @@
 				            </div>
 							</div>
 
-			            	<br><br><br>
+			            	<br><br>
 							<div class="text-center">
 						        <button id="btnViewReportDaily" type="submit" class="btn btn-success btn-lg col-xs-3" style = "margin-left:20px; margin-right:30px; width: 150px; font-size: 12px;"> <i class="glyphicon glyphicon-th-list"></i> Generate Report</button> 
 						        
-						        <button type="button" class="btn btn-danger btn-lg col-xs-3" data-dismiss="modal" style="font-size: 12px;
+						        <button type="button" class="btn btn-danger btn-lg col-xs-3" data-dismiss="modal" style="font-size: 14px;
     							margin-left: 20px; width: 150px;"> <i class="glyphicon glyphicon-remove"></i> Close</button>
 				            </div>
 
@@ -372,41 +379,44 @@
 		<!-- MONTHLY ATTENDANCE MODAL -->
 		<div class="modal fade" id="monthly-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
-				<div class="addaymodal-container" id = "monthly-container">
-					<form class = "form-inline text-center">
+				<div class="addaymodal-container" id = "daily-container">
+					<form class = "form-inline text-center" action="php/generate-daily.php" method="POST">
 						<fieldset>
-			            	<legend class="text-center"><h3><b>Generate Monthly Attendance</b></h3></legend>
+			            	 <legend class="text-center"><h3><b>Generate Daily Attendance</b></h3></legend>
+			        		 
 			            	 <div class="form-group" style="max-width:200px">
-                                
-                                <div class="row">
-			            	 	<label style = "text-align:left">Month
-                                        <select class="selectpicker show-tick">
-											  <option selected>January</option>
-											  <option>February</option>
-											  <option>March</option>
-											  <option>April</option>
-											  <option>May</option>
-											  <option>June</option>
-											  <option>July</option>
-											  <option>September</option>
-											  <option>October</option>
-											  <option>November</option>
-											  <option>December</option>
-										  </select>    
-				                </label>
-                                </div>
-                                <br>
-			        		 	<div class="row"> 
-                                <label style="text-align:left">Report for: </label> <!-- Label tab -->
+                                 
+				                 <div class="row">
+							        <label style = "text-align:left">Month
+				                        <select class="selectpicker show-tick">
+											<option selected>January</option>
+											<option>February</option>
+											<option>March</option>
+											<option>April</option>
+											<option>May</option>
+											<option>June</option>
+											<option>July</option>
+											<option>September</option>
+											<option>October</option>
+											<option>November</option>
+											<option>December</option>
+										</select>    
+								    </label>
+				                </div>
+				                                <div class="row"> 
+                                <label style = "float:left;">Report for: </label> <!-- Label tab --> <br><br>
 							 		<div class="container">
 										<div class="">
+
 									        <div class="col-xs-2">
-									            <div class=" segmented-control" style="width:150px">
-									                <a id =" facultyButtonMonthly" href="#" class="list-group-item active">
+
+									            <div class=" segmented-control" style="width:149px;margin-left:-28px;">
+
+									                <a id ="facultyButtonDaily" href="#" class="list-group-item active">
 									                    Faculty
 									                    <input type="radio" checked/>
 									                </a>
-									                <a id="othersButtonMonthly" href="#" class="list-group-item">
+									                <a id="othersButtonDaily" href="#" class="list-group-item">
 									                    Others
 									                    <input type="radio"/>
 									                </a>
@@ -419,20 +429,24 @@
 									</div>
                                 </div>
                             <br>
-			            	<div id="inputIDNumMonthly">
-                                <div class="row">
-                                <label for="" style="text-align:left">ID Number
-                                    <input type = "text" placeholder = "ID Number">
+			            	<div id="inputIDNumDaily">
+								<div class="row">
+                                <label style = "text-align:left">Input Type
+                                    <select class="selectpicker show-tick" style = "width: 230px">
+                                    	<option selected>ID Number</option>
+										<option>Name</option>
+									</select>    
                                 </label>
+                                
                                 </div>
                                 <div class="row">
-                                <label style="text-align:left">Name
-                                    <input type = "text" placeholder = "Name">
+                                <label style="text-align:left"> Input
+                                    <input type = "text">
                                 </label>
                                 </div>
                             </div>		
                             
-							<div id="inputOthersMonthly" style="display:none">
+							<div id="inputOthersDaily" style="display:none">
                                 <div class="row">
                                 <label style = "text-align:left">Options
 								    <select class="selectpicker show-tick">
@@ -480,14 +494,15 @@
 				            </div>
 							</div>
 
-			            	<br><br><br>
-
+			            	<br><br>
 							<div class="text-center">
-						        <button id="btnViewReportMonthly" type="button" class="btn btn-success btn-lg col-xs-3" style = "margin-left:20px; margin-right:30px; width: 150px; font-size: 12px;"> <i class="glyphicon glyphicon-th-list"></i> Generate Report</button> 
+						        <button id="btnViewReportDaily" type="submit" class="btn btn-success btn-lg col-xs-3" style = "margin-left:20px; margin-right:30px; width: 150px; font-size: 14px;"> <i class="glyphicon glyphicon-th-list"></i> Generate Report</button> 
 						        
-						        <button type="button" class="btn btn-danger btn-lg col-xs-3" data-dismiss="modal" style="font-size: 12px;
+						        <button type="button" class="btn btn-danger btn-lg col-xs-3" data-dismiss="modal" style="font-size: 14px;
     							margin-left: 20px; width: 150px;"> <i class="glyphicon glyphicon-remove"></i> Close</button>
 				            </div>
+
+
 			        	</fieldset>
 					</form>
 				</div>
@@ -497,32 +512,37 @@
 		<!-- TERM END ATTENDANCE MODAL -->
 		<div class="modal fade" id="termend-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
-				<div class="addaymodal-container" id = "termly-container">
-					<form class = "form-inline text-center">
+				<div class="addaymodal-container" id = "daily-container">
+					<form class = "form-inline text-center" action="php/generate-daily.php" method="POST">
 						<fieldset>
-			            	<legend class="text-center"><h3><b>Generate Term-End Attendance</b></h3></legend>
+			            	 <legend class="text-center"><h3><b>Generate Daily Attendance</b></h3></legend>
+			        		 
 			            	 <div class="form-group" style="max-width:200px">
-                                
-                                <div class="row">
-			            	 	<label style = "text-align:left">Term
-                                    <select class="selectpicker show-tick">
-										  <option>Term 1</option>
-										  <option>Term 2</option>
-										  <option>Term 3</option>
-									 </select>
-				        		 </label>
-                                 </div>
-			        		 	<div class="row"> 
-                                <label style="text-align:left">Report for: </label> <!-- Label tab -->
+                                 
+				                 <div class="row">
+							        <label style = "text-align:left">Month
+				                        <select class="selectpicker show-tick">
+											<option selected>Term 1</option>
+											<option>Term 2</option>
+											<option>Term 3</option>
+											
+										</select>    
+								    </label>
+				                </div>
+				                                <div class="row"> 
+                                <label style = "float:left;">Report for: </label> <!-- Label tab --> <br><br>
 							 		<div class="container">
 										<div class="">
+
 									        <div class="col-xs-2">
-									            <div class=" segmented-control" style="width:150px">
-									                <a id =" facultyButtonTerm" href="#" class="list-group-item active">
+
+									            <div class=" segmented-control" style="width:149px;margin-left:-28px;">
+
+									                <a id ="facultyButtonDaily" href="#" class="list-group-item active">
 									                    Faculty
 									                    <input type="radio" checked/>
 									                </a>
-									                <a id="othersButtonTerm" href="#" class="list-group-item">
+									                <a id="othersButtonDaily" href="#" class="list-group-item">
 									                    Others
 									                    <input type="radio"/>
 									                </a>
@@ -535,20 +555,24 @@
 									</div>
                                 </div>
                             <br>
-			            	<div id="inputIDNumTerm">
-                                <div class="row">
-                                <label for="" style="text-align:left">ID Number
-                                    <input type = "text" placeholder = "ID Number">
+			            	<div id="inputIDNumDaily">
+								<div class="row">
+                                <label style = "text-align:left">Input Type
+                                    <select class="selectpicker show-tick" style = "width: 230px">
+                                    	<option selected>ID Number</option>
+										<option>Name</option>
+									</select>    
                                 </label>
+                                
                                 </div>
                                 <div class="row">
-                                <label style="text-align:left">Name
-                                    <input type = "text" placeholder = "Name">
+                                <label style="text-align:left"> Input
+                                    <input type = "text">
                                 </label>
                                 </div>
                             </div>		
                             
-							<div id="inputOthersTerm" style="display:none">
+							<div id="inputOthersDaily" style="display:none">
                                 <div class="row">
                                 <label style = "text-align:left">Options
 								    <select class="selectpicker show-tick">
@@ -594,15 +618,16 @@
                                 </label>
                                 </div>	 
 				            </div>
-				            </div>
+							</div>
 
-			            	<br><br><br>
+			            	<br><br>
 							<div class="text-center">
-						        <button id="btnViewReportTermly" type="button" class="btn btn-success btn-lg col-xs-3" style = "margin-left:20px; margin-right:30px; width: 150px; font-size: 12px;"> <i class="glyphicon glyphicon-th-list"></i> Generate Report</button> 
+						        <button id="btnViewReportDaily" type="submit" class="btn btn-success btn-lg col-xs-3" style = "margin-left:20px; margin-right:30px; width: 150px; font-size: 14px;"> <i class="glyphicon glyphicon-th-list"></i> Generate Report</button> 
 						        
-						        <button type="button" class="btn btn-danger btn-lg col-xs-3" data-dismiss="modal" style="font-size: 12px;
+						        <button type="button" class="btn btn-danger btn-lg col-xs-3" data-dismiss="modal" style="font-size: 14px;
     							margin-left: 20px; width: 150px;"> <i class="glyphicon glyphicon-remove"></i> Close</button>
 				            </div>
+
 
 			        	</fieldset>
 					</form>
