@@ -4,6 +4,7 @@
 	include "php/connector.php";
 
 	$date = isset($_POST["dailydate"]) ? $_POST["dailydate"] : false;
+	$dw = isset($_POST["weekdate"]) ? $_POST["weekdate"] : false;
 	$buttonDaily = isset($_POST["ButtonDaily"]) ? $_POST["ButtonDaily"] : false;
 	
    
@@ -137,14 +138,42 @@
 							<br>
 							<p class = "col-xs-1"></p>
 							<p class = "col-xs-1">Term:</p>
-							<p class = "col-xs-4">1st Trimester, AY 2016-2017</p>
+							<p class = "col-xs-4">
+								<?php 
+
+									 $dates = explode("/",$date);
+									 $date = $dates[2]."-".$dates[0]."-".$dates[1]; 
+
+									 //echo $date;
+									 // $result= $conn->query("SELECT name FROM academicyear
+									 // 						WHERE id = (SELECT year_id FROM term
+										// 						WHERE ".$date." BETWEEN term.start AND term.end);");
+									 $stmt= $conn->prepare("SELECT name, term_no
+															FROM academicyear A
+															INNER JOIN term T ON T.year_id = A.id
+															WHERE t.term_no =
+															(SELECT term_no FROM term
+															WHERE :dailydate BETWEEN term.start AND term.end);");
+									 $stmt->execute(["dailydate" => $date]);
+
+									 $result = $stmt->execute();
+									 $rows = $stmt->fetch(PDO::FETCH_ASSOC); // assuming $result == true
+								
+
+									  //if($result->num_rows > 0){
+									  		// $row = $result->fetchAll();
+									        echo "Term ".$rows['term_no']." ".$rows['name'];
+									  //}
+									  //else
+									  	//echo "No Year";
+								?>
+							</p>
 							<p class = "col-xs-2"></p>
 							<p class = "col-xs-1"> </p>
 							<p class = "col-xs-2 text-right"> 
 								<b> 
-									<?php //$dw = date( "w", $date);
-										//if($dw == 0)
-											echo "Sunday";
+									<?php 
+										echo $dw;
 									?> 
 								</b> </p>
  
@@ -176,90 +205,41 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="row-data" data-href="#">
-										<?php
-											$stmt = $conn->prepare("SELECT department,first_name,middle_name,last_name,time_start,time_end,section,remarks, room_id,course_id
-																	FROM (SELECT department,first_name,middle_name,last_name,time_start,time_end,C.section,room_id,C.id as 'offering_id', course_id
-																			  FROM faculty F
-																			  INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
-																	INNER JOIN attendance A on A.courseoffering_id = Y.offering_id;");
+									<?php
+											$stmt = $conn->prepare("SELECT department,first_name,middle_name,last_name,time_start,time_end,section,remarks,room_name,date,code
+																	FROM
+																		(SELECT department,first_name,middle_name,last_name,time_start,time_end,section,remarks,name as 'room_name',date,course_id
+																		FROM
+																			(SELECT department,first_name,middle_name,last_name,time_start,time_end,section,remarks, room_id,course_id, date
+																			 FROM 
+																				(SELECT department,first_name,middle_name,last_name,time_start,time_end,C.section,room_id,C.id as 'offering_id', course_id
+																				 FROM faculty F
+																				 INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
+																			 INNER JOIN attendance A on A.courseoffering_id = Y.offering_id
+																			 WHERE date = :dailydate ) as Z
+																		INNER JOIN room R on R.id = Z.room_id) as A
+																	INNER JOIN course C ON C.id = A.course_id;");
 
-    										$stmt->execute(["user_name" => $username, "password" => $password]);
-										
+    										$stmt->execute(["dailydate" => $date]);
 
+									 		$result = $stmt->execute();
+
+
+									 		while($rows = $stmt->fetch(PDO::FETCH_ASSOC))
+									 		{
+									 				echo "<tr class='row-data' data-href='#'>"."<td>".$rows['department']."</td>
+									 				<td>".$rows['last_name'].", ".$rows['first_name']." ".$rows['middle_name']."</td>
+									 				<td>".$rows['time_start']." - ".$rows['time_end']."</td>
+									 				<td>".$rows['code']."</td>
+									 				<td>".$rows['section']."</td>
+									 				<td>".$rows['room_name']."</td
+									 				<td>".$rows['remarks']."</td></tr>";
+
+									 		}
+
+											
 										?>
-										<td>Sofware Technology</td>
-										<td>SAMSON, BRIANE PAUL V.</td>
-										<td>09:15 - 10:45</td>
-										<td>SOFENGG</td>
-										<td>S17</td>
-										<td>G203</td>
-										<td>VACANT ROOM</td>
-									</tr>
-									<tr class="row-data" data-href="#">
-										<td> </td>
-										<td>ONG, ETHEL</td>
-										<td>12:45 - 14:15</td>
-										<td>INTRODB</td>
-										<td>S18A</td>
-										<td>G209</td>
-										<td>LATE</td>
-									</tr>
-									<tr class="row-data" data-href="#">
-										<td> </td>
-										<td>SAMSON, BRIANE PAUL V.</td>
-										<td>09:15 - 10:45</td>
-										<td>SOFENGG</td>
-										<td>S17</td>
-										<td>G203</td>
-										<td>VACANT ROOM</td>
-									</tr>
-									<tr class="row-data" data-href="#">
-										<td> </td>
-										<td>ONG, ETHEL</td>
-										<td>12:45 - 14:15</td>
-										<td>SOFENGG</td>
-										<td>S18A</td>
-										<td>G209</td>
-										<td>LATE</td>
-									</tr>
-
-									<tr class="row-data" data-href="#">
-										<td>Information Technology</td>
-										<td>SAMSON, BRIANE PAUL V.</td>
-										<td>09:15 - 10:45</td>
-										<td>SOFENGG</td>
-										<td>S17</td>
-										<td>G203</td>
-										<td>VACANT ROOM</td>
-									</tr>
-									<tr class="row-data" data-href="#">
-										<td> </td>
-										<td>ONG, ETHEL</td>
-										<td>12:45 - 14:15</td>
-										<td>INTRODB</td>
-										<td>S18A</td>
-										<td>G209</td>
-										<td>LATE</td>
-									</tr>
-									<tr class="row-data" data-href="#">
-										<td> </td>
-										<td>SAMSON, BRIANE PAUL V.</td>
-										<td>09:15 - 10:45</td>
-										<td>SOFENGG</td>
-										<td>S17</td>
-										<td>G203</td>
-										<td>VACANT ROOM</td>
-									</tr>
-									<tr class="row-data" data-href="#">
-										<td> </td>
-										<td>ONG, ETHEL</td>
-										<td>12:45 - 14:15</td>
-										<td>SOFENGG</td>
-										<td>S18A</td>
-										<td>G209</td>
-										<td>LATE</td>
-									</tr>
+									
 								</tbody>
 							</table>
 						</div>
