@@ -82,11 +82,16 @@ table {
     border-spacing: 0;
 }
 
-.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
-    background-color: #859d81;
+#col-header{
+    background-color: #53754b;
+    color: #e9f5e7;
 }
+
+/*.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: #859d81;
+}*/
 .table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
-    border: 1px solid #b0bdac;
+    border: 2px solid #b0bdac;
 }
 .table-condensed>thead>tr>th, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td {
     padding: 5px;
@@ -95,7 +100,7 @@ table {
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
-    border-top: 1px solid #b0bdac;
+    border-top: 2px solid #b0bdac;
 }
 table td, table th {
     padding: 9px 10px;
