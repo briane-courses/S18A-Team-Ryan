@@ -258,7 +258,7 @@
 		<div class="modal fade" id="daily-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container" id = "daily-container">
-					<form class = "form-inline text-center" action="php/generate-daily.php" method="POST">
+					<form class = "form-inline text-center" action="try.php" method="POST">
 						<fieldset>
 			            	 <legend class="text-center"><h3><b>Generate Daily Attendance</b></h3></legend>
 			        		 
@@ -267,7 +267,8 @@
                                 <div class="row">
                                     <label for="dailydate" style="text-align:left">
                                     Date
-                                    <input class="" id="dailydate" type="text" name="dailydate" value="10/31/2016" style = "text-align:left"/>
+                                    <input class="" id="dailydate" type="text" name="dailydate"  style = "text-align:left"/>
+			        		 	    
 			        		 	    </label>
                                 </div>
                                 <div class="row"> 
@@ -279,13 +280,13 @@
 
 									            <div class=" segmented-control" style="width:149px;margin-left:-28px;">
 
-									                <a id ="facultyButtonDaily" href="#" class="list-group-item active">
+									                <a id ="facultyButtonDaily"  href="#" class="list-group-item active">
 									                    Faculty
-									                    <input type="radio" checked/>
+									                    <input type="radio" name ="ButtonDaily" value ="faculty" checked/>
 									                </a>
 									                <a id="othersButtonDaily" href="#" class="list-group-item">
 									                    Others
-									                    <input type="radio"/>
+									                    <input type="radio" name ="ButtonDaily" value = "others"/>
 									                </a>
 									                
 									            </div>
@@ -299,7 +300,7 @@
 			            	<div id="inputIDNumDaily">
 								<div class="row">
                                 <label style = "text-align:left">Input Type
-                                    <select class="selectpicker show-tick" style = "width: 230px">
+                                    <select class="selectpicker show-tick" name ="picker" style = "width: 230px">
                                     	<option selected>ID Number</option>
 										<option>Name</option>
 									</select>    
@@ -308,7 +309,7 @@
                                 </div>
                                 <div class="row">
                                 <label style="text-align:left"> Input
-                                    <input type = "text">
+                                    <input type = "text" name ="input">
                                 </label>
                                 </div>
                             </div>		
@@ -316,7 +317,7 @@
 							<div id="inputOthersDaily" style="display:none">
                                 <div class="row">
                                 <label style = "text-align:left">Options
-								    <select class="selectpicker show-tick">
+								    <select class="selectpicker show-tick" name = "options">
 									   <option>All Options</option>
 									   <option>Registrar</option>
                                        <option>Chairperson</option>
@@ -329,7 +330,7 @@
 
 								<div class="row">
                                 <label style = "text-align:left">College
-                                    <select class="selectpicker show-tick">
+                                    <select class="selectpicker show-tick" name ="college">
 										<option selected>All Colleges</option>
 										<option>CLA</option>
 										<option>COB</option>
@@ -346,7 +347,7 @@
 								<br>
 								<div class="row">
 				                <label style = "text-align:left">Department
-                                    <select class="selectpicker show-tick">
+                                    <select class="selectpicker show-tick" name ="department">
 	  									<option selected>All Departments</option>
 											<option>CLA</option>
 											<option>COB</option>
