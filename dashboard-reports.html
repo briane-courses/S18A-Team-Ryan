@@ -267,7 +267,22 @@
                                 <div class="row">
                                     <label for="dailydate" style="text-align:left">
                                     Date
-                                    <input class="" id="dailydate" type="text" name="dailydate"  style = "text-align:left"/>
+                                    <input class="" id="dailydate" type="text" name="dailydate" style = "text-align:left"/>
+                                    
+                                    <input type ="hidden" name ="weekdate" id ="weekdate"/> 
+                                    <script>
+
+                                    	function getDayName() {
+                                    		var dateString = document.getElementById("dailydate").value;
+											
+											var days = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+											console.log(days[new Date(dateString).getDay()]);
+											document.getElementById("weekdate").value = days[new Date(dateString).getDay()];
+                                    		
+                                    	}
+										
+                                    </script>
+
 			        		 	    
 			        		 	    </label>
                                 </div>
@@ -364,7 +379,7 @@
 
 			            	<br><br>
 							<div class="text-center">
-						        <button id="btnViewReportDaily" type="submit" class="btn btn-success btn-lg col-xs-3" style = "margin-left:20px; margin-right:30px; width: 150px; font-size: 12px;"> <i class="glyphicon glyphicon-th-list"></i> Generate Report</button> 
+						        <button id="btnViewReportDaily" onclick="getDayName();" type="submit" class="btn btn-success btn-lg col-xs-3" style = "margin-left:20px; margin-right:30px; width: 150px; font-size: 12px;"> <i class="glyphicon glyphicon-th-list"></i> Generate Report</button> 
 						        
 						        <button type="button" class="btn btn-danger btn-lg col-xs-3" data-dismiss="modal" style="font-size: 14px;
     							margin-left: 20px; width: 150px;"> <i class="glyphicon glyphicon-remove"></i> Close</button>
