@@ -1,0 +1,146 @@
+
+.tg  {
+	border-collapse:collapse;
+	border-spacing:0;
+	border:2px solid #b0bdac !important;
+}
+.tg td{
+	font-family:Arial, sans-serif;
+	font-size:16px;
+	padding:10px 5px;
+	border-style:solid;
+	border-width:0px;
+	overflow:hidden;
+	word-break:normal;
+}
+.tg th{
+	font-family:Arial, sans-serif;
+	font-size:16px;
+	font-weight:normal;
+	padding:10px 5px;
+	border-style:solid;
+	border-width:0px;overflow:hidden;
+	word-break:normal;
+}
+.tg .tg-cgdk{
+	font-family:Arial, Helvetica, sans-serif !important;
+}
+.tg .tg-efv9{
+	font-family:Arial, Helvetica, sans-serif !important;
+}
+.tg .tg-uce2{
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif !important;
+}
+
+.table-bordered>tbody>tr>th, .table-bordered .subHeader, .table-bordered .lblHeader{
+	font-family:Arial, sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	border: 2px solid #b0bdac !important;
+	overflow:hidden;
+	text-align: center;
+	border-color:#bbb !important;
+	color:#e9f5e7 !important;
+	background-color:#53754b !important;
+}
+
+.box-inner{
+    border: 2px solid #bfc6bd;
+    background-color: white;
+}
+
+#title-header{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.label{
+    font-size: 14px;
+    color: black;
+    font-weight: normal;
+}
+
+#deptname{
+    font-weight: bold;
+    float: right;
+    margin-top: 10px;
+    margin-right: 750px;
+}
+
+#kind{
+    float: right;
+    margin-top: -25px;
+    margin-right:850px;
+}
+
+#facultylabel{
+    margin-top: 10px;
+}
+
+#termlabel {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+#date{
+    float: right;
+    margin-top: 10px;
+    margin-right: -800px;
+    font-weight: bold;
+}
+
+#day{
+    float: right;
+    margin-top: -25px;
+    margin-right: -755px;
+}
+
+.table-bordered {
+    border: 1px solid #dddddd;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+table {
+    background-color: transparent;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 2px solid #b0bdac;
+    text-align: center;
+}
+
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
+    border: 2px solid #b0bdac;
+}
+.table-condensed>thead>tr>th, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td {
+    padding: 5px;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 2px solid #b0bdac;
+}
+table td, table th {
+    padding: 9px 10px;
+    text-align: left;
+}
+
+.row-data{
+    cursor:pointer;
+}
+
+#name{
+	text-align: left;
+}
