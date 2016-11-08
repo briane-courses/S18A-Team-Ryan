@@ -70,9 +70,7 @@
   text-decoration: none;
   color: #666;
   font-weight: 400;
-  text-align: center;
   display: inline-block;
-  opacity: 0.6;
   transition: opacity ease 0.5s;
 } 
 
