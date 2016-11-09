@@ -115,6 +115,27 @@ input[type=text]{
     background-color:#4c7a34;
 }
 
+            .segmented-control input[type="radio"], .segmented-report-type input[type="radio"]{
+                display: none;
+            }
+
+            .segmented-control .list-group-item, .segmented-report-type .list-group-item{
+                display: inline-block;
+            }
+            .segmented-control .list-group-item, .segmented-report-type .list-group-item{
+                margin-bottom: 0;
+                margin-left:-4px;
+                margin-right: 0;
+            }
+            .segmented-control .list-group-item:first-child, .segmented-report-type .list-group-item:first-child{
+                border-top-right-radius:0;
+                border-bottom-left-radius:4px;
+            }
+            .segmented-control .list-group-item:last-child, .segmented-report-type .list-group-item:last-child{
+                border-top-right-radius:4px;
+                border-bottom-left-radius:0;
+            }
+
 .submit, .cancel{
     font-weight: bold;
 }

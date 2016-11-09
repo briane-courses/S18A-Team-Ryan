@@ -5,8 +5,7 @@
 	border:2px solid #b0bdac !important;
 }
 .tg td{
-	font-family:Arial, sans-serif;
-	font-size:16px;
+	font-size:14 px;
 	padding:10px 5px;
 	border-style:solid;
 	border-width:0px;
@@ -14,8 +13,7 @@
 	word-break:normal;
 }
 .tg th{
-	font-family:Arial, sans-serif;
-	font-size:16px;
+	font-size:14px;
 	font-weight:normal;
 	padding:10px 5px;
 	border-style:solid;
@@ -35,7 +33,7 @@
 
 .table-bordered>tbody>tr>th, .table-bordered .subHeader, .table-bordered .lblHeader{
 	font-family:Arial, sans-serif;
-	font-size:16px;
+	font-size:14px;
 	font-weight:bold;
 	border: 2px solid #b0bdac !important;
 	overflow:hidden;
@@ -137,10 +135,18 @@ table td, table th {
     text-align: left;
 }
 
+td{
+    font-size:14px;
+}
+
 .row-data{
     cursor:pointer;
 }
 
 #name{
 	text-align: left;
+}
+
+.mainHeader{
+    font-size:14px;
 }

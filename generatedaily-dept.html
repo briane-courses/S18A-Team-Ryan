@@ -3,16 +3,17 @@
 		<meta charset = "UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-		<title> Monthly Faculty Report - Department </title>
+		<title> Daily Faculty Report - Department </title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/add-AY.css">
-		<link rel="stylesheet" href="css/generatemonthlyterm.css">
+		<link rel="stylesheet" href="css/generatedaily-all.css">
 		<link rel="stylesheet" href="css/dashboard.css">
 		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
 		<!-- DROPDOWN-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
 		<!-- FONTS -->
 		<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src = "js/jquery-3.0.0.min.js"></script>
@@ -70,6 +71,20 @@
 			    ); 
 		</script>
 
+		<script type="text/javascript">
+				var $table = $('#resulttable');
+
+		$(function () {
+		    $table.on('post-body.bs.table', function () {
+		        $table.bootstrapTable('mergeCells', {
+		            index: 0,
+		            field: 'picture',
+		            rowspan: 7
+		        });
+		    });
+		});
+		</script>
+
     </head>
 
     <body>
@@ -105,162 +120,138 @@
 		</nav>
 
 		<div class = "container">
-
-				<p style = "float:right">
+			<p style = "float:right">
 					<a href = "#" data-toggle="modal" data-target = "#generate-modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
 			      	<span class="glyphicon glyphicon-th-list"></span> <b> GENERATE </b> </a> &nbsp;
 
-					<a href="http://youtu.be/zJahlKPCL9g" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
-				     <span class="glyphicon glyphicon-print"></span> <b> PRINT </b> </a> &nbsp;
+					<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+				     <span class="glyphicon glyphicon-print"></span> <b> PRINT </b> </a>&nbsp;
 
-			      	<a href="http://youtu.be/zJahlKPCL9g" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
-			      	<span class="glyphicon glyphicon-envelope"></span> <b> EMAIL </b> </a>
-			     </p>
+			      	<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+			      	<span class="glyphicon glyphicon-envelope"></span> <b> EMAIL  </b> </a>
+			</p>
 			<br><br>
-			<center>
-			<div class="row">
-				<h4><b>FACULTY ATTENDANCE REPORT</b></h4>
-				<h5>1st TRIMESTER, AY 2016-2017</h5>
-				<h5>October 5, 2016 to November 5, 2016</h5>
-				<h4><b>COLLEGE OF COMPUTER STUDIES</b></h4>
-			</div>
-			</center>
-			<br>
 			<center>
 				<div class="row">
-					<div class ="box col-md-12">
-							<div class="box-content">
-								<table class="tg">
-								  <tr>
-								    <th class="tg-uce2">Reason for Absence:</th>
-								    <th class="tg-efv9"><b>CF</b> - Conference</th>
-								    <th class="tg-efv9"><b>PM</b> - Personal Matters</th>
-								    <th class="tg-efv9"><b>SI</b> - Sickness</th>
-								    <th class="tg-efv9"><b>XX</b> - Reason Uknown</th>
-								  </tr>
-								  <tr>
-								    <td class="tg-cgdk"></td>
-								    <td class="tg-cgdk"><b>OB</b> - Official Business</td>
-								    <td class="tg-cgdk"><b>AC</b> - Alternative Class</td>
-								    <td class="tg-cgdk"><b>FT</b> - Field Trip</td>
-								    <td class="tg-cgdk"><b>OL</b> - Online Class</td>
-								  </tr>
-								  <tr>
-								    <td class="tg-efv9"></td>
-								    <td class="tg-efv9"><b>SW</b> - Seatwork</td>
-								    <td class="tg-efv9"><b>SB</b> - Substitute</td>
-								    <td class="tg-efv9"><b>LA</b> - Late</td>
-								    <td class="tg-efv9"><b>ED</b> - Early Dismissal</td>
-								  </tr>
-								</table>
-							</div>
-					</div>
+					<h4><b>FACULTY ATTENDANCE REPORT</b></h4>
+					<h5>1st TRIMESTER, AY 2016-2017</h5>
+					<h5>November 9 , 2016</h5>
 				</div>
 			</center>
-			<br><br>
+			<br>
 			<div class="row">
 				<div class ="box col-md-12">
 						<div class="box-content">
-							<table class="table table-bordered table-striped table-condensed">
-							  <tr>
-							    <th class="mainHeader" rowspan="3"><br><br>FACULTY NAME</th>
-							    <th class="mainHeader" rowspan="3"><br>LOAD<br>(h/w)</th>
-							    <th class="mainHeader" colspan="5"><br>ABSENCE</th>
-							    <th class="mainHeader" rowspan="3"><br>MAKE-UP<br>HOURS</th>
-							    <th class="mainHeader" colspan="8"><br>OTHERS</th>
-							  </tr>
-							  <tr>
-							  	<td class="lblHeader" colspan="5">in hours</td>
-							    <td class="lblHeader" colspan="6">in hours</td>
-							    <td class="lblHeader" colspan="2">in freq.</td>
-							  </tr>
-							  <tr>
-							    <td class="subHeader">CF</td>
-							    <td class="subHeader">PM</td>
-							    <td class="subHeader">SI</td>
-							    <td class="subHeader">XX</td>
-							    <td class="subHeader">TOTAL</td>
-							    <td class="subHeader">OB</td>
-							    <td class="subHeader">AC</td>
-							    <td class="subHeader">FT</td>
-							    <td class="subHeader">OL</td>
-							    <td class="subHeader">SW</td>
-							    <td class="subHeader">SB</td>
-							    <td class="subHeader">LA</td>
-							    <td class="subHeader">ED</td>
-							  </tr>
-							  <tr>
-							    <td id = "name" class="tg-e1mw">Limoanco, Tessie</td>
-							    <td class="tg-e1mw">10.0</td>
-							    <td class="tg-e1mw">4.5</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">7.5</td>
-							    <td class="tg-e1mw">12.0</td>
-							    <td class="tg-e1mw">4.5</td>
-							    <td class="tg-e1mw">6.0</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							  </tr>
-							  <tr>
-							    <td id = "name" class="tg-ps5t">Ong, Courtney</td>
-							    <td class="tg-ps5t">10.0</td>
-							    <td class="tg-ps5t">3.0</td>
-							    <td class="tg-ps5t">7.0</td>
-							    <td class="tg-ps5t">--</td>
-							    <td class="tg-ps5t">--</td>
-							    <td class="tg-ps5t">10.0</td>
-							    <td class="tg-ps5t">10.0</td>
-							    <td class="tg-ps5t">--</td>
-							    <td class="tg-ps5t">--</td>
-							    <td class="tg-ps5t">--</td>
-							    <td class="tg-ps5t">--</td>
-							    <td class="tg-ps5t">--</td>
-							    <td class="tg-ps5t">9.0</td>
-							    <td class="tg-ps5t">1</td>
-							    <td class="tg-ps5t">--</td>
-							  </tr>
-							  <tr>
-							    <td id = "name" class="tg-e1mw">Ong, Ethel</td>
-							    <td class="tg-e1mw">10.0</td>
-							    <td class="tg-e1mw">4.5</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">7.5</td>
-							    <td class="tg-e1mw">12.0</td>
-							    <td class="tg-e1mw">4.5</td>
-							    <td class="tg-e1mw">6.0</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							    <td class="tg-e1mw">--</td>
-							  </tr>
-								<tr>
-									<td id = "name" class="tg-ps5t">Samson, Briane Paul V.</td>
-									<td class="tg-ps5t">10.0</td>
-								    <td class="tg-ps5t">3.0</td>
-								    <td class="tg-ps5t">7.0</td>
-								    <td class="tg-ps5t">--</td>
-								    <td class="tg-ps5t">--</td>
-								    <td class="tg-ps5t">10.0</td>
-								    <td class="tg-ps5t">10.0</td>
-								    <td class="tg-ps5t">--</td>
-								    <td class="tg-ps5t">--</td>
-								    <td class="tg-ps5t">--</td>
-								    <td class="tg-ps5t">--</td>
-								    <td class="tg-ps5t">--</td>
-								    <td class="tg-ps5t">9.0</td>
-								    <td class="tg-ps5t">1</td>
-								    <td class="tg-ps5t">--</td>
-  								</tr>
+							<table id="resulttable" class="table table-bordered table-striped table-condensed">
+								<thead class="collegelabel">
+									<tr>
+										<th colspan ="7">Software Technology Department</th>	
+									</tr>
+								</thead>
+								<thead id = "col-header">
+									<tr>
+										
+										<th>Faculty</th>
+										<th>Time</th>
+										<th>Course</th>
+										<th>Section</th>
+										<th>Room</th>
+										<th>Remarks</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										
+										<td>SAMSON, BRIANE PAUL V.</td>
+										<td>09:15 - 10:45</td>
+										<td>SOFENGG</td>
+										<td>S17</td>
+										<td>G203</td>
+										<td>VACANT ROOM</td>
+									</tr>
+									<tr>
+										
+										<td>ONG, ETHEL</td>
+										<td>12:45 - 14:15</td>
+										<td>INTRODB</td>
+										<td>S18A</td>
+										<td>G209</td>
+										<td>LATE</td>
+									</tr>
+									<tr>
+										
+										<td>SAMSON, BRIANE PAUL V.</td>
+										<td>09:15 - 10:45</td>
+										<td>SOFENGG</td>
+										<td>S17</td>
+										<td>G203</td>
+										<td>VACANT ROOM</td>
+									</tr>
+									<tr>
+										
+										<td>ONG, ETHEL</td>
+										<td>12:45 - 14:15</td>
+										<td>SOFENGG</td>
+										<td>S18A</td>
+										<td>G209</td>
+										<td>LATE</td>
+									</tr>
+
+									<tr>
+								
+										<td>SAMSON, BRIANE PAUL V.</td>
+										<td>09:15 - 10:45</td>
+										<td>SOFENGG</td>
+										<td>S17</td>
+										<td>G203</td>
+										<td>VACANT ROOM</td>
+									</tr>
+									<tr>
+										
+										<td>ONG, ETHEL</td>
+										<td>12:45 - 14:15</td>
+										<td>INTRODB</td>
+										<td>S18A</td>
+										<td>G209</td>
+										<td>LATE</td>
+									</tr>
+									<tr>
+										
+										<td>SAMSON, BRIANE PAUL V.</td>
+										<td>09:15 - 10:45</td>
+										<td>SOFENGG</td>
+										<td>S17</td>
+										<td>G203</td>
+										<td>VACANT ROOM</td>
+									</tr>
+									<tr>
+										
+										<td>ONG, ETHEL</td>
+										<td>12:45 - 14:15</td>
+										<td>SOFENGG</td>
+										<td>S18A</td>
+										<td>G209</td>
+										<td>LATE</td>
+									</tr>
+									<tr>
+										
+										<td>ONG, ETHEL</td>
+										<td>12:45 - 14:15</td>
+										<td>SOFENGG</td>
+										<td>S18A</td>
+										<td>G209</td>
+										<td>LATE</td>
+									</tr>
+									<tr>
+										
+										<td>ONG, ETHEL</td>
+										<td>12:45 - 14:15</td>
+										<td>SOFENGG</td>
+										<td>S18A</td>
+										<td>G209</td>
+										<td>LATE</td>
+									</tr>
+								</tbody>
 							</table>
 						</div>
 				</div>
@@ -268,7 +259,7 @@
 			<br><br>
     	</div>
 
-   			<!-- GENERATE REPORTS MODAL -->
+    		<!-- GENERATE REPORTS MODAL -->
 		<div class="modal fade" id="generate-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container" id = "daily-container">
@@ -280,7 +271,7 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Type:</label>
 						        <div class="col-xs-5">
-						            <div class=" segmented-control" style="width:500px;margin-left:5px;">
+						            <div class=" segmented-report-type" style="width:500px;margin-left:5px;">
 									    <a id ="dailyButton" href="#" class="list-group-item active">
 									    	Daily
 									    	<input type="radio" checked/>
@@ -316,7 +307,7 @@
 			            	 <div class="form-group">
 						        <label for="inputPassword" class="control-label col-xs-4" style = "text-align:left;">Report for:</label>
 						        <div class="col-xs-5">
-						            <div class=" segmented-report-type" style="width:150px;margin-left:5px;">
+						            <div class=" segmented-control" style="width:150px;margin-left:5px;">
 									    <a id ="facultyButtonDaily" href="#" class="list-group-item active">
 									    	Faculty
 									    	<input type="radio" checked/>
