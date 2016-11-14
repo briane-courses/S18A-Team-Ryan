@@ -315,7 +315,7 @@
 		<div class="modal fade" id="daily-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container" id = "daily-container">
-					<form class = "form form-horizontal" action="php/generate-daily.php" method="POST">
+					<form class = "form form-horizontal" action="try.php" method="POST">
 						<fieldset>
 			            	 <legend class="text-center"><h3><b>Generate Reports</b></h3></legend>
 
@@ -343,7 +343,7 @@
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
 			            	 	
 			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" name="dailydate" value="10/31/2016"/>
+			            	 		<input type="text" class="form-control" id = "dailydate" name="dailydate" value="10/31/2016"/>
 			            	 	</div>
 			            		<!-- when radio button "others" is clicked, this must be SHOWN
 			            		<div class = "col-xs-8">
@@ -362,35 +362,57 @@
 						            <div class=" segmented-control" style="width:150px;margin-left:5px;">
 									    <a id ="facultyButtonDaily" href="#" class="list-group-item active">
 									    	Faculty
-									    	<input type="radio" checked/>
+									    	<input type="radio" name ="ButtonDaily" value ="faculty" checked/>
 									    </a>
 									    <a id="othersButtonDaily" href="#" class="list-group-item">
 									    	Others
-									        <input type="radio"/>
+									        <input type="radio" name ="ButtonDaily" value = "others"/>
 									    </a>
 									                
 									</div>
 						        </div>
 						    </div>
 						    <hr class="style2 col-xs-offset-1 col-xs-9"><br>
+
 						    <div id = "inputIDNumDaily">
-							    <div class="form-group" id = "inputIDNumDaily">
+							    <div class="form-group">
 		                            <div class="form-group">
-					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by ID Number: </label>
+					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
+					            	 		<input type="radio" name="search-options" id="inputID" value="0"checked>&nbsp;&nbsp;by ID Number: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input type="text" class="form-control"	id="generatefaculty"/>
+					            	 		<input type="text" class="form-control"	id="idnumber"/>
 					            	 	</div>
 					            	</div>
 
 				            	 	<div class="form-group">
-					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by Name: </label>
+					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
+					            	 		<input type="radio" name="search-options" id="inputName" value="1">&nbsp;&nbsp;by Name: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input type="text" class="form-control"	id="generatefaculty"/>
+					            	 		<input type="text" class="form-control"	id="name" readonly/>
+
 					            	 	</div>
 					            	</div>
 							    </div>
 
 							</div>
+							<script>
+								$('#inputName').click(function(){
+
+
+		 							var name =$("#name");
+		 							var idnumber =$("#idnumber");
+		 							name.removeAttr("readonly");
+		 							idnumber.prop("readonly", "true");
+
+		 							
+	 							});
+	 							$('#inputID').click(function(){
+	 								var name =$("#name");
+		 							var idnumber =$("#idnumber");
+		 							name.prop("readonly", "true");
+		 							idnumber.removeAttr("readonly");
+	 							});
+							</script>
 
 
 						    <div id = "inputOthersDaily" style = "display:none;">
