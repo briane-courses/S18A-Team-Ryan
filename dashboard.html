@@ -324,13 +324,13 @@
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Type:</label>
 						        <div class="col-xs-5">
 						            <div class="segmented-report-type" style="width:500px;margin-left:5px;">
-									    <a id ="dailyButton" href="#" class="list-group-item active">
+									    <a id ="dailyButton" href="#" class="list-group-item active" value = "daily">
 									    	Daily
-									    	<input type="radio" checked/>
+									    	<input name ="buttons" value ="daily"type="radio" checked/>
 									    </a>
 									    <a id="monthlyOrTermEndButton" href="#" class="list-group-item">
 									    	Monthly / Term-End
-									        <input type="radio"/>
+									        <input name ="buttons" value ="term/monthly" type="radio"/>
 									    </a>
 									                
 									</div>
@@ -362,11 +362,11 @@
 						            <div class=" segmented-control" style="width:150px;margin-left:5px;">
 									    <a id ="facultyButtonDaily" href="#" class="list-group-item active">
 									    	Faculty
-									    	<input type="radio" name ="ButtonDaily" value ="faculty" checked/>
+									    	<input type="radio" name ="options" value ="faculty" checked/>
 									    </a>
 									    <a id="othersButtonDaily" href="#" class="list-group-item">
 									    	Others
-									        <input type="radio" name ="ButtonDaily" value = "others"/>
+									        <input type="radio" name ="options" value = "others"/>
 									    </a>
 									                
 									</div>
@@ -378,7 +378,7 @@
 							    <div class="form-group">
 		                            <div class="form-group">
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
-					            	 		<input type="radio" name="search-options" id="inputID" value="0"checked>&nbsp;&nbsp;by ID Number: </label>
+					            	 		<input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
 					            	 	<div class = "col-xs-3">
 					            	 		<input type="text" class="form-control"	id="idnumber"/>
 					            	 	</div>
@@ -386,7 +386,7 @@
 
 				            	 	<div class="form-group">
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
-					            	 		<input type="radio" name="search-options" id="inputName" value="1">&nbsp;&nbsp;by Name: </label>
+					            	 		<input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
 					            	 	<div class = "col-xs-3">
 					            	 		<input type="text" class="form-control"	id="name" readonly/>
 
@@ -420,7 +420,7 @@
 							    <div class = "form-group">
 				            	 		<label class = "control-label col-xs-4" style = "text-align:left;">Report filter:</label>
 				            	 		<div class = "col-xs-5" style="width:250px">
-											<select class="selectpicker show-tick" style = "text-align:left;">
+											<select class="selectpicker show-tick" style = "text-align:left;" name ="college">
 												<option selected>All Colleges</option>
 												<option>CLA</option>
 												<option>COB</option>
@@ -436,7 +436,7 @@
 							    <div class = "form-group" >
 				            	 		<label class = "control-label col-xs-4" style = "text-align:left;"></label>
 				            	 		<div class = "col-xs-5">
-											<select class="selectpicker show-tick">
+											<select class="selectpicker show-tick" name = "department">
 											<option selected>All Departments</option>
 												<option>Software Technology</option>
 												<option>Information Technology</option>
