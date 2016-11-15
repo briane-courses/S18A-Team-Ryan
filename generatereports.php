@@ -1,12 +1,57 @@
 <html>
+	<?php
+
+	include "php/connector.php";
+
+	$buttons = isset($_POST["buttons"]) ? $_POST["buttons"] : "monthly/term";
+
+   
+	
+    //echo "Data: ".$date."</br>";
+    //echo $buttonDaily."</br>";
+    
+	if($buttons == 'daily') {
+
+		$date = isset($_POST["dailydate"]) ? $_POST["dailydate"] : false;
+	}
+	else
+	{
+
+	}
+	
+	$options = isset($_POST["options"]) ? $_POST["options"] : false;
+	
+	if($options == 'faculty'){
+
+		$inputs = isset($_POST["inputs"]) ? $_POST["inputs"] : false;
+		
+		if($inputs == 'idnumber'){
+
+		}
+		else
+		{
+
+		}
+		
+    }
+    else{
+
+    	$college = isset($_POST["college"]) ? $_POST["college"] : false;
+    	$department = isset($_POST["department"]) ? $_POST["department"] : false;
+
+    	//echo $college." ".$department;
+    }
+
+?>
 	<head>
 		<meta charset = "UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-		<title> FAMS 2.0 </title>
+		<title> Daily Faculty Report - All </title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/dashboard.css">
 		<link rel="stylesheet" href="css/add-AY.css">
+		<link rel="stylesheet" href="css/generatedaily-all.css">
+		<link rel="stylesheet" href="css/dashboard.css">
 		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
 		<!-- DROPDOWN-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
@@ -16,98 +61,10 @@
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src = "js/jquery-3.0.0.min.js"></script>
-	    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script src="js/bootstrap.min.js"></script>
-	    <script type="text/javascript" src="js/moment.js"></script>
-	    <script type="text/javascript" src="js/daterangepicker.js"></script>
-	    <!-- DROPDOWN -->
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
-	    <script type="text/javascript">
-
-			$(function() {
-			    var start = moment().subtract(29, 'days');
-			    var end = moment();
-			    function cb(start, end) {
-			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			        $('#term1Start').val(start.format('YYYY-MM-DD'));
-					$('#term1End').val(end.format('YYYY-MM-DD'));
-			    }
-			    function cb2(start, end) {			       
-			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-					$('#term2Start').val(start.format('YYYY-MM-DD'));
-					$('#term2End').val(end.format('YYYY-MM-DD'));
-				}
-			    function cb3(start, end) {
-			        $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-					$('#term3Start').val(start.format('YYYY-MM-DD'));
-					$('#term3End').val(end.format('YYYY-MM-DD'));
-				}
-
-			    $('#reportrange').daterangepicker({
-			        startDate: start,
-			        endDate: end
-			        }, cb);
-			    
-			    $('#reportrange2').daterangepicker({
-			        startDate: start,
-			        endDate: end
-			        }, cb2);
-
-			    $('#reportrange3').daterangepicker({
-			        startDate: start,
-			        endDate: end
-			        }, cb3);
-
-			    cb(start, end);
-			    cb2(start, end);
-			    cb3(start, end);
-			});
-		</script>
-
-		<script type="text/javascript">
-			$(function() {
-
-				var currDate = moment.currDate;
-
-			    $('input[name="dailydate"]').daterangepicker({
-			        singleDatePicker: true,
-			        showDropdowns: true,
-			        value: currDate
-			    }); 
-
-			});
-		</script>
-
-		<script type="text/javascript">
-			$(function() {
-
-				var currMonth =moment.currDate;
-
-			$('input[name="monthlydate"]').daterangepicker( {
-			    format: "mm-yyyy",
-			    viewMode: "months", 
-			    minViewMode: "months",
-			    enableYearToMonth: true, 
-			    enableMonthToDay : false,
-			    value : currMonth
-			});
-
-			});
-		</script>
-
-		<script type="text/javascript">
-		    $("[rel='tooltip']").tooltip();    
-			    $('.thumbnail').hover(
-			        function(){
-			            $(this).find('.caption').slideDown(500); //.fadeIn(250)
-			        },
-			        function(){
-			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
-			        }
-			    ); 
-		</script>
-
-		<script type="text/javascript">
+    	<!-- Include all compiled plugins (below), or include individual files as needed -->
+    	<script src="js/bootstrap.min.js"></script>
+    	<!-- For Segmented Tabs -->
+    	<script type="text/javascript">
 			$(function(){
     
 		    $('div.segmented-control a').on('click', function(){
@@ -144,44 +101,8 @@
 		});
 
 		</script>
-		<script>
-			$(document).ready(function(){
-				$("#facultyButtonDaily").click(function() {
-			      	$("#inputIDNumDaily").show();
-			        $("#inputOthersDaily").hide();
-			        console.log("ASD");
-			    });
-			    $("#othersButtonDaily").click(function() {
-			      	$("#inputOthersDaily").show();
-			      	$("#inputIDNumDaily").hide();
-			      	console.log("ASD");
-			    });
-			});
 
-			$(document).ready(function(){
-				$("#facultyButtonMonthly").click(function() {
-			      	$("#inputIDNumMonthly").show();
-			        $("#inputOthersMonthly").hide();
-			    });
-			    $("#othersButtonMonthly").click(function() {
-			      	$("#inputOthersMonthly").show();
-			      	$("#inputIDNumMonthly").hide();
-			    });
-			});
-
-			$(document).ready(function(){
-				$("#facultyButtonTerm").click(function() {
-			      	$("#inputIDNumTerm").show();
-			        $("#inputOthersTerm").hide();
-			    });
-			    $("#othersButtonTerm").click(function() {
-			      	$("#inputOthersTerm").show();
-			      	$("#inputIDNumTerm").hide();
-			    });
-			});
-		</script>
-
-		<script type="text/javascript">
+    	<script type="text/javascript">
 		    $("[rel='tooltip']").tooltip();    
 			    $('.thumbnail').hover(
 			        function(){
@@ -193,10 +114,25 @@
 			    ); 
 		</script>
 
-	</head>
 
-	<body>
- 		<nav class="navbar navbar-default" role="navigation">
+		<script type="text/javascript">
+				var $table = $('#resulttable');
+
+		$(function () {
+		    $table.on('post-body.bs.table', function () {
+		        $table.bootstrapTable('mergeCells', {
+		            index: 0,
+		            field: 'picture',
+		            rowspan: 7
+		        });
+		    });
+		});
+		</script>
+
+    </head>
+
+    <body>
+    	<nav class="navbar navbar-default" role="navigation">
     	  <div class="container">
 			    <!-- Brand and toggle get grouped for better mobile display -->
 			    <div class="navbar-header">
@@ -210,6 +146,7 @@
 			    </div>
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="navbar-brand-centered">
 			      <ul class="nav navbar-nav">
 			        <li><a href="dashboard.html"><b>Maintenance</b></a></li>
@@ -219,7 +156,47 @@
 			        
 			        <li>
 
-			        	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id = "dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
+			        	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id = "dashay-button">
+			        		<?php 
+
+
+									 $dates = explode("/",$date);
+									 $date = $dates[2]."-".$dates[0]."-".$dates[1]; 
+									 
+
+									 if (($timestamp = strtotime($date)) !== false)
+									 {
+									   $php_date = getdate($timestamp);
+									   // or if you want to output a date in year/month/day format:
+									   $dateString = date("F d, Y", $timestamp); // see the date manual page for format options      
+									 }
+									 
+
+									 $stmt= $conn->prepare("SELECT name, term_no
+															FROM academicyear A
+															INNER JOIN term T ON T.year_id = A.id
+															WHERE t.term_no =
+															(SELECT term_no FROM term
+															WHERE :dailydate BETWEEN term.start AND term.end);");
+									 $stmt->execute(["dailydate" => $date]);
+
+									 $result = $stmt->execute();
+									 $rows = $stmt->fetch(PDO::FETCH_ASSOC); // assuming $result == true
+								
+
+									 
+									        echo "Current ".$rows['name']." || Term ".$rows['term_no'];
+									 
+									 switch($rows['term_no'] )
+									 {
+									 	case '1': $term_no_string = '1st'; break;
+									 	case '1': $term_no_string = '2nd'; break;
+									 	case '1': $term_no_string = '3rd'; break;
+									 }
+
+								?>
+			        		</button>
+
 					</li>
 				  </ul>
 
@@ -261,96 +238,93 @@
 				</div>
 		  </div>
 		</div>
-		
-		<div class="container">
+
+		<div class = "container">
+			<p style = "float:right">
+
+					<a href = "#" data-toggle="modal" data-target = "#generate-modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+			      	<span class="glyphicon glyphicon-th-list"></span> <b> GENERATE </b> </a> &nbsp;
+
+					<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+				     <span class="glyphicon glyphicon-print"></span> <b> PRINT </b> </a> &nbsp;
+
+			      	<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+			      	<span class="glyphicon glyphicon-envelope"></span> <b> EMAIL </b>  </a>  	
+			</p>
 			<br><br>
-			<div class = "im-centered">
-				<div class = "row text-center">
-					<h4 style = "font-family: 'Bungee' ,cursive;"> Faculty Attendance Monitoring System </h4>
-				</div><br><br>
-				
-				<div class = "row">
-					<a href="#" class="" data-toggle="modal" data-target="#searchrecords-modal">
-				        <div class="col-sm-4">
-				            <div class="thumbnail">
-				                <div class="caption">
-				                    <h4 class="options-heading">Search/Edit Records</h4>
-				                </div>
-				                <img src="img/searchRecord1.png" alt="..." class="">
-				            </div>
-				        </div>
-			    	</a>
-
-			    	<a href="#" class="" data-toggle="modal" data-target="#daily-modal">
-					        <div class="col-sm-4">
-					            <div class="thumbnail">
-					                <div class="caption">
-					                	<h4 class="options-heading">Generate Reports</h4>
-					                </div>
-					                <img src="img/Daily.png" alt="..." class="">
-					               
-					            </div>
-					        </div>
-				    </a>
-
-				    <a href="#" class="" data-toggle="modal" data-target="#email-modal">
-					        <div class="col-sm-4">
-					            <div class="thumbnail">
-					                <div class="caption" style = "">
-					                	<h4 class="options-heading">Email Reports</h4>
-					                </div>
-					                <img src="img/email.png" alt="..." class="">
-					               
-					            </div>
-					        </div>
-				    </a>
-	        
-				</div> <!--row -->
-			</div> <!--im-centered-->
-		</div> <!--container-->
-
-		<!-- SEARCH ATTENDANCE RECORDS MODAL -->
-		<div class="modal fade" id="searchrecords-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-		 <div class="modal-dialog">
-				<div class="addaymodal-container" id = "searchrecords-container">
-					<form class = "form form-horizontal">
-						<fieldset>
-			            	<legend class="text-center"><h3><b>Search Attendance Records</b></h3></legend>
-
-							<div class="form-group">
-			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by ID Number: </label>
-			            	 	<div class = "col-xs-4">
-			            	 		<input type="text" class="form-control" style = "width:213px;" />
-			            	 	</div>
-			            	 </div>
-
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by Name: </label>
-			            	 	<div class = "col-xs-4">
-			            	 		<input type="text" class="form-control"	style = "width:213px;" />
-			            	 	</div>
-			            	 </div>
-							
-							<br>
-							<div class="text-center">
-						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-search"></i> SUBMIT </button> 
-						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
-				            </div>
-						
-			        	</fieldset>
-			
-					</form>
-
-
+			<center>
+				<div class="row">
+					<h4><b>FACULTY ATTENDANCE REPORT</b></h4>
+					<?php echo "<h5>".$term_no_string." TRIMESTER, ".$rows['name']."</h5><h5>".$dateString."</h5>"; ?>
 				</div>
-		  </div>
-		</div>
+			</center>
+			<br>
+			<div class="row">
+				<div class ="box col-md-12">
+						<div class="box-content">
+							<table id="resulttable" class="table table-bordered table-striped table-condensed">
+								<thead class="collegelabel">
+									<tr>
+										<th colspan ="7">College of Computer Studies</th>	
+									</tr>
+								</thead>
+								<thead id = "col-header">
+									<tr>
+										<th>Department</th>
+										<th>Faculty</th>
+										<th>Time</th>
+										<th>Course</th>
+										<th>Section</th>
+										<th>Room</th>
+										<th>Remarks</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+											$stmt = $conn->prepare("SELECT department,first_name,middle_name,last_name,time_start,time_end,section,remarks,room_name,date,code
+																	FROM
+																		(SELECT department,first_name,middle_name,last_name,time_start,time_end,section,remarks,name as 'room_name',date,course_id
+																		FROM
+																			(SELECT department,first_name,middle_name,last_name,time_start,time_end,section,remarks, room_id,course_id, date
+																			 FROM 
+																				(SELECT department,first_name,middle_name,last_name,time_start,time_end,C.section,room_id,C.id as 'offering_id', course_id
+																				 FROM faculty F
+																				 INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
+																			 INNER JOIN attendance A on A.courseoffering_id = Y.offering_id
+																			 WHERE date = :dailydate ) as Z
+																		INNER JOIN room R on R.id = Z.room_id) as A
+																	INNER JOIN course C ON C.id = A.course_id;");
+
+    										$stmt->execute(["dailydate" => $date]);
+
+									 		$result = $stmt->execute();
+
+
+									 		while($rows = $stmt->fetch(PDO::FETCH_ASSOC))
+									 		{
+									 				echo "<tr class='row-data' data-href='#'>"."<td>".$rows['department']."</td>
+									 				<td>".$rows['last_name'].", ".$rows['first_name']." ".$rows['middle_name']."</td>
+									 				<td>".$rows['time_start']." - ".$rows['time_end']."</td>
+									 				<td>".$rows['code']."</td>
+									 				<td>".$rows['section']."</td>
+									 				<td>".$rows['room_name']."</td
+									 				<td>".$rows['remarks']."</td></tr>";
+
+									 		}
+
+											
+										?>
+								</tbody>
+							</table>
+						</div>
+				</div>
+			</div><br><br>
 
 		<!-- GENERATE REPORTS MODAL -->
-		<div class="modal fade" id="daily-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		<div class="modal fade" id="generate-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container" id = "daily-container">
-					<form class = "form form-horizontal" action="try.php" method="POST">
+					<form class = "form form-horizontal">
 						<fieldset>
 			            	 <legend class="text-center"><h3><b>Generate Reports</b></h3></legend>
 
@@ -378,7 +352,7 @@
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
 			            	 	
 			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" id = "dailydate" name="dailydate" value="9/24/2016"/>
+			            	 		<input type="text" class="form-control" id = "dailydate" name="dailydate" value="10/31/2016"/>
 			            	 	</div>
 			            		<!-- when radio button "others" is clicked, this must be SHOWN
 			            		<div class = "col-xs-8">
@@ -415,7 +389,7 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input type="text" class="form-control"	id= "idnumber" name="idnumber"/>
+					            	 		<input type="text" class="form-control"	id="idnumber"/>
 					            	 	</div>
 					            	</div>
 
@@ -423,7 +397,7 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input type="text" class="form-control"	id= "name" name="name" readonly/>
+					            	 		<input type="text" class="form-control"	id="name" readonly/>
 
 					            	 	</div>
 					            	</div>
@@ -488,34 +462,16 @@
     							margin-left: 20px;font-size:14px;"> <i class="glyphicon glyphicon-remove"></i> CANCEL </button>
 				            </div>
 
+
 			        	</fieldset>
 					</form>
 				</div>
 		  </div>
 		</div>
 
-		<!-- EMAIL MODAL -->
-		<div class="modal fade" id="email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-		 <div class="modal-dialog">
-				<div class="addaymodal-container" id = "searchrecords-container">
-						<fieldset>
-			            	<legend class="text-center"><h3><b>Email Daily Attendance Report to all Faculty</b></h3></legend>
 
-							<div class="text-center">
-						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-envelope"></i> EMAIL </button> 
-						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class = "glyphicon glyphicon-remove"></i> CANCEL </button>
-				            </div>
-						
-			        	</fieldset>
+    	</div>
 
-
-				</div>
-		  </div>
-		</div>
-
-
-
-	</body>
-
+    </body>
 
 </html>
