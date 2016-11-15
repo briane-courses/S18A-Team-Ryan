@@ -219,7 +219,7 @@
 			        
 			        <li>
 
-			        	<button type="button" class="btn btn-default" id = "dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
+			        	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id = "dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
 					</li>
 				  </ul>
 
@@ -227,6 +227,41 @@
 		  </div><!-- /.container-fluid -->
 		</nav>
 
+		<!-- Current AY Modal -->    
+        <div class="modal fade" id="ayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		 <div class="modal-dialog">
+				<div class="addaymodal-container" id = "searchrecords-container">
+						<fieldset>
+                            
+                            <div class="">
+                                <label class = "control-label col-xs-5" style = "text-align:left;">Current Academic Year: </label>
+			            	 	<div class = "col-xs-4">
+			            	 		<input type="text" class="form-control" style = "width:213px;" placeholder="2016 - 2017"/>
+			            	 	</div>
+                            </div>
+                            <br>
+                            <div class="">
+                                <label class = "control-label col-xs-5" style = "text-align:left;">Current Term </label>
+			            	 	<div class = "col-xs-4">
+			            	 		<input type="text" class="form-control" style = "width:213px;" placeholder="1 "/>
+			            	 	</div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <a data-dismiss="modal" data-toggle="modal" href="#adday-modal" id="adday" >Academic Year finished? Click to add a new one!</a>
+                            </div>
+                            <br><br>
+							<div class="text-center">
+						        <button type="button" class="cancel btn btn-danger col-xs-offset-4 col-xs-3" data-dismiss="modal" style=""><i class = "glyphicon glyphicon-remove"></i> CLOSE </button>
+				            </div>
+						
+			        	</fieldset>
+
+
+				</div>
+		  </div>
+		</div>
+		
 		<div class="container">
 			<br><br>
 			<div class = "im-centered">
@@ -362,11 +397,11 @@
 						            <div class=" segmented-control" style="width:150px;margin-left:5px;">
 									    <a id ="facultyButtonDaily" href="#" class="list-group-item active">
 									    	Faculty
-									    	<input type="radio" name ="options" value ="faculty" checked/>
+									    	<input type="radio" name ="options" value ="faculty"/>
 									    </a>
 									    <a id="othersButtonDaily" href="#" class="list-group-item">
 									    	Others
-									        <input type="radio" name ="options" value = "others"/>
+									        <input type="radio" name ="options" value = "others" checked/>
 									    </a>
 									                
 									</div>
