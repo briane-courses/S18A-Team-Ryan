@@ -1,4 +1,4 @@
-<html>
+<html> 
 	<?php
 
 	include "php/connector.php";
@@ -20,27 +20,6 @@
 	}
 	
 	$options = isset($_POST["options"]) ? $_POST["options"] : false;
-	
-	if($options == 'faculty'){
-
-		$inputs = isset($_POST["inputs"]) ? $_POST["inputs"] : false;
-		
-		if($inputs == 'idnumber'){
-
-		}
-		else
-		{
-
-		}
-		
-    }
-    else{
-
-    	$college = isset($_POST["college"]) ? $_POST["college"] : false;
-    	$department = isset($_POST["department"]) ? $_POST["department"] : false;
-
-    	//echo $college." ".$department;
-    }
 
 ?>
 	<head>
@@ -156,7 +135,7 @@
 			        
 			        <li>
 
-			        	<button type="button" class="btn btn-default" id = "dashay-button"> 
+			        	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id = "dashay-button"> 
 			        		<?php 
 
 
@@ -203,7 +182,40 @@
 			    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
+		<!-- Current AY Modal -->    
+        <div class="modal fade" id="ayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		 <div class="modal-dialog">
+				<div class="addaymodal-container" id = "searchrecords-container">
+						<fieldset>
+                            
+                            <div class="">
+                                <label class = "control-label col-xs-5" style = "text-align:left;">Current Academic Year: </label>
+			            	 	<div class = "col-xs-4">
+			            	 		<input type="text" class="form-control" style = "width:213px;" placeholder="2016 - 2017"/>
+			            	 	</div>
+                            </div>
+                            <br>
+                            <div class="">
+                                <label class = "control-label col-xs-5" style = "text-align:left;">Current Term </label>
+			            	 	<div class = "col-xs-4">
+			            	 		<input type="text" class="form-control" style = "width:213px;" placeholder="1 "/>
+			            	 	</div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <a data-dismiss="modal" data-toggle="modal" href="#adday-modal" id="adday" >Academic Year finished? Click to add a new one!</a>
+                            </div>
+                            <br><br>
+							<div class="text-center">
+						        <button type="button" class="cancel btn btn-danger col-xs-offset-4 col-xs-3" data-dismiss="modal" style=""><i class = "glyphicon glyphicon-remove"></i> CLOSE </button>
+				            </div>
+						
+			        	</fieldset>
 
+
+				</div>
+		  </div>
+		</div>
 		<div class = "container">
 			<p style = "float:right">
 
@@ -229,50 +241,119 @@
 						<div class="box-content">
 							<table id="resulttable" class="table table-bordered table-striped table-condensed">
 								<thead class="collegelabel">
-									<tr>
-										<th colspan ="7">College of Computer Studies</th>	
-									</tr>
-								</thead>
-								<thead id = "col-header">
-									<tr>
-										<th>Department</th>
-										<th>Faculty</th>
-										<th>Time</th>
-										<th>Course</th>
-										<th>Section</th>
-										<th>Room</th>
-										<th>Remarks</th>
-									</tr>
-								</thead>
-								<tbody>
 									<?php
-											$stmt = $conn->prepare("SELECT department,first_name,middle_name,last_name,time_start,time_end,section,remarks,room_name,date,code
+
+										$filter = "";
+ 		
+											if($options == 'faculty'){
+												$filter = "WHERE ";
+												$inputs = isset($_POST["inputs"]) ? $_POST["inputs"] : false;
+												
+
+												if($inputs == 'idnumber'){
+													$idnumber = isset($_POST["idnumber"]) ? $_POST["idnumber"] : false;
+													
+													$stmt= $conn->prepare("SELECT first_name, middle_name, last_name FROM faculty 
+										    							   WHERE id = :idnumber ;");
+
+													$stmt->execute(["idnumber" => $idnumber]);
+
+													$result = $stmt->execute();
+													$rows = $stmt->fetch(PDO::FETCH_ASSOC);			    		
+													$filter = $filter."last_name ='".$rows['last_name']."' AND  first_name ='".$rows['first_name']."' AND middle_name ='".$rows['middle_name']."'";
+							
+										    	}
+												else
+												{
+													$name = isset($_POST["name"]) ? $_POST["name"] : false;
+													$stmt= $conn->prepare("SELECT first_name, middle_name, last_name FROM faculty 
+										    							   WHERE first_name= :name OR last_name= :name OR middle_name= :name");
+
+													$stmt->execute(["name" => $name]);
+
+													$result = $stmt->execute();
+													$rows = $stmt->fetch(PDO::FETCH_ASSOC);
+											    	$filter = $filter."last_name ='".$rows['last_name']."' AND  first_name ='".$rows['first_name']."' AND middle_name ='".$rows['middle_name']."'";
+													
+												}
+												
+												
+										    }
+										    else
+										    {
+
+										    	$college = isset($_POST["college"]) ? $_POST["college"] : false;
+										    	$department = isset($_POST["department"]) ? $_POST["department"] : false;
+
+
+										    	
+										    	$filter = "WHERE ";
+
+										    	if($department == 'All Departments')
+										    	{
+										    		if ($college == 'All Colleges')	
+										   				$filter = "";
+										   			else
+										   				$filter = $filter."college= '".$college."'";
+										   		}
+										   		else
+										   		{
+										   			$filter = $filter."department= '".$department."' ";
+
+										   			if ($college != 'All Colleges')	
+										   				$filter = $filter."AND college= '".$college."'";
+
+										   		}	
+										    		
+										    											    	
+										    }
+											$stmt = $conn->prepare("SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks,room_name,date,code
 																	FROM
-																		(SELECT department,first_name,middle_name,last_name,time_start,time_end,section,remarks,name as 'room_name',date,course_id
+																		(SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks,name as 'room_name',date,course_id
 																		FROM
-																			(SELECT department,first_name,middle_name,last_name,time_start,time_end,section,remarks, room_id,course_id, date
+																			(SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks, room_id,course_id, date
 																			 FROM 
-																				(SELECT department,first_name,middle_name,last_name,time_start,time_end,C.section,room_id,C.id as 'offering_id', course_id
+																				(SELECT college, department,first_name,middle_name,last_name,time_start,time_end,C.section,room_id,C.id as 'offering_id', course_id
 																				 FROM faculty F
 																				 INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																			 INNER JOIN attendance A on A.courseoffering_id = Y.offering_id
 																			 WHERE date = :dailydate ) as Z
 																		INNER JOIN room R on R.id = Z.room_id) as A
-																	INNER JOIN course C ON C.id = A.course_id;");
+																	INNER JOIN course C ON C.id = A.course_id
+																	".$filter."
+																	;");
 
     										$stmt->execute(["dailydate" => $date]);
 
 									 		$result = $stmt->execute();
 
+									?>
 
+									
+									<?php
+										$prevCollege = "";
 									 		while($rows = $stmt->fetch(PDO::FETCH_ASSOC))
 									 		{
+									 			if($prevCollege != $rows['college'])
+									 				echo "<tr> <th colspan ='7'>".$rows['college']."</th></tr></thead> 
+									 				<thead id = 'col-header'><tr>
+													<th>Department</th>
+													<th>Faculty</th>
+													<th>Time</th>
+													<th>Course</th>
+													<th>Section</th>
+													<th>Room</th>
+													<th>Remarks</th>
+													</tr>
+													</thead>
+													<tbody>";
+
 									 				echo "<tr class='row-data' data-href='#'>"."<td>".$rows['department']."</td>
 									 				<td>".$rows['last_name'].", ".$rows['first_name']." ".$rows['middle_name']."</td>
 									 				<td>".$rows['time_start']." - ".$rows['time_end']."</td>
 									 				<td>".$rows['code']."</td>
 									 				<td>".$rows['section']."</td>
-									 				<td>".$rows['room_name']."</td
+									 				<td>".$rows['room_name']."</td>
 									 				<td>".$rows['remarks']."</td></tr>";
 
 									 		}
