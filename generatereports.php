@@ -169,8 +169,8 @@
 									 switch($rows['term_no'] )
 									 {
 									 	case '1': $term_no_string = '1st'; break;
-									 	case '1': $term_no_string = '2nd'; break;
-									 	case '1': $term_no_string = '3rd'; break;
+									 	case '2': $term_no_string = '2nd'; break;
+									 	case '3': $term_no_string = '3rd'; break;
 									 }
 
 								?>
@@ -244,7 +244,7 @@
 									<?php
 
 										$filter = "";
- 		
+ 										
 											if($options == 'faculty'){
 												$filter = "WHERE ";
 												$inputs = isset($_POST["inputs"]) ? $_POST["inputs"] : false;
