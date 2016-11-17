@@ -179,6 +179,17 @@
 			      	$("#inputIDNumTerm").hide();
 			    });
 			});
+
+			$(document).ready(function(){
+				$("#dailyButton").click(function() {
+			      	$("#inputDaily").show();
+			        $("#inputMonthlyTermEnd").hide();
+			    });
+			    $("#monthlyOrTermEndButton").click(function() {
+			      	$("#inputMonthlyTermEnd").show();
+			      	$("#inputDaily").hide();
+			    });
+			});
 		</script>
 
 		<script type="text/javascript">
@@ -377,18 +388,19 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
 			            	 	
-			            	 	<div class = "col-xs-8">
+			            	 	<div id = "inputDaily" class = "col-xs-8">
 			            	 		<input type="text" class="form-control" id = "dailydate" name="dailydate" value="9/24/2016"/>
 			            	 	</div>
-			            		<!-- when radio button "others" is clicked, this must be SHOWN
-			            		<div class = "col-xs-8">
-						                <div id="reportrange" class="pull-right">
+								
+								<div id = "inputMonthlyTermEnd" class = "col-xs-7" style = "display:none;">
+						                <div id="reportrange" class="pull-right" style = "padding:5px;">
 										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
 										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
 											<input type="hidden" id="term1Start" name="term1Start" value="">
 											<input type="hidden" id="term1End" name="term1End" value="">
 										</div>
-			            		</div>-->
+			            		</div>
+
 			            	 </div>
 
 			            	 <div class="form-group">
@@ -397,11 +409,11 @@
 						            <div class=" segmented-control" style="width:150px;margin-left:5px;">
 									    <a id ="facultyButtonDaily" href="#" class="list-group-item active">
 									    	Faculty
-									    	<input type="radio" name ="options" value ="faculty"checked/>
+									    	<input type="radio" name ="options" value ="faculty" checked/>
 									    </a>
 									    <a id="othersButtonDaily" href="#" class="list-group-item">
 									    	Others
-									        <input type="radio" name ="options" value = "others" />
+									        <input type="radio" name ="options" value = "others"/>
 									    </a>
 									                
 									</div>
