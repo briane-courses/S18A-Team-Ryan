@@ -1,566 +1,485 @@
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset = "UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-		<title> FAMS 2.0 </title>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/dashboard.css">
-		<link rel="stylesheet" href="css/add-AY.css">
-		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
-		<!-- DROPDOWN-->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
-		<!-- FONTS -->
-		<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>FAMS 2.0</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/dashboard.css" rel="stylesheet">
+	<link href="css/add-AY.css" rel="stylesheet">
+	<link href="css/daterangepicker.css" rel="stylesheet" type="text/css"><!-- DROPDOWN-->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css" rel="stylesheet"><!-- FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet"><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
+	<script src="js/jquery-3.0.0.min.js">
+	</script><!-- Include all compiled plugins (below), or include individual files as needed -->
 
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    	<script src = "js/jquery-3.0.0.min.js"></script>
-	    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script src="js/bootstrap.min.js"></script>
-	    <script type="text/javascript" src="js/moment.js"></script>
-	    <script type="text/javascript" src="js/daterangepicker.js"></script>
-	    <!-- DROPDOWN -->
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+	<script src="js/bootstrap.min.js">
+	</script>
+	<script src="js/moment.js" type="text/javascript">
+	</script>
+	<script src="js/daterangepicker.js" type="text/javascript">
+	</script><!-- DROPDOWN -->
 
-		<script type="text/javascript">
-			$(function() {
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js">
+	</script>
+	<script type="text/javascript">
+		$(function() {
+			var currDate = moment.currDate;
 
-				var currDate = moment.currDate;
-
-			    $('input[name="dailydate"]').daterangepicker({
-			        singleDatePicker: true,
-			        showDropdowns: true,
-			        value: currDate
-			    }); 
-
-			});
-		</script>
-
-		
-
-		<script type="text/javascript">
-		    $("[rel='tooltip']").tooltip();    
-			    $('.thumbnail').hover(
-			        function(){
-			            $(this).find('.caption').slideDown(500); //.fadeIn(250)
-			        },
-			        function(){
-			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
-			        }
-			    ); 
-		</script>
-
-		<script type="text/javascript">
-			$(function(){
-    
-		    $('div.segmented-control a').on('click', function(){
-		        
-		        $('div.segmented-control a').each(function(i,e){
-		            $(e).removeClass('active');
-		        });
-		        
-		        $(this).addClass('active');
-		        $(this).find('input').prop('checked',true);
-		        return false;
-		        
-		    });
-		    
+			$('input[name="dailydate"]').daterangepicker({
+				singleDatePicker: true,
+				showDropdowns: true,
+				value: currDate
+			}); 
 		});
-
-		</script>
-
-		<script type="text/javascript">
-			$(function(){
-    
-		    $('div.segmented-report-type a').on('click', function(){
-		        
-		        $('div.segmented-report-type a').each(function(i,e){
-		            $(e).removeClass('active');
-		        });
-		        
-		        $(this).addClass('active');
-		        $(this).find('input').prop('checked',true);
-		        return false;
-		        
-		    });
-		    
+	</script>
+	<script type="text/javascript">
+	$("[rel='tooltip']").tooltip();    
+		$('.thumbnail').hover(
+			function(){
+				$(this).find('.caption').slideDown(500); //.fadeIn(250)
+			},
+			function(){
+				$(this).find('.caption').slideUp(250); //.fadeOut(205)
+			}
+		); 
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			$('div.segmented-control a').on('click', function(){
+				$('div.segmented-control a').each(function(i,e){
+					$(e).removeClass('active');
+				});
+				$(this).addClass('active');
+				$(this).find('input').prop('checked',true);
+				return false;
+			});
 		});
-
-		</script>
-		<script>
-			$(document).ready(function(){
-				$("#facultyButtonDaily").click(function() {
-			      	$("#inputIDNumDaily").show();
-			        $("#inputOthersDaily").hide();
-			        console.log("ASD");
-			    });
-
-			    $("#othersButtonDaily").click(function() {
-			      	$("#inputOthersDaily").show();
-			      	$("#inputIDNumDaily").hide();
-			      	
-			      	console.log("ASD");
-			    });
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			$('div.segmented-report-type a').on('click', function(){
+				$('div.segmented-report-type a').each(function(i,e){
+					$(e).removeClass('active');
+				});
+				$(this).addClass('active');
+				$(this).find('input').prop('checked',true);
+				return false;
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$("#facultyButtonDaily").click(function() {
+				$("#inputIDNumDaily").show();
+				$("#inputOthersDaily").hide();
+				console.log("ASD");
 			});
 
-			$(document).ready(function(){
-				$("#facultyButtonMonthly").click(function() {
-			      	$("#inputIDNumMonthly").show();
-			        $("#inputOthersMonthly").hide();
-			    });
-			    $("#othersButtonMonthly").click(function() {
-			      	$("#inputOthersMonthly").show();
-			      	$("#inputIDNumMonthly").hide();
-			    });
-			});
-
-			$(document).ready(function(){
-				$("#facultyButtonTerm").click(function() {
-			      	$("#inputIDNumTerm").show();
-			        $("#inputOthersTerm").hide();
-			    });
-			    $("#othersButtonTerm").click(function() {
-			      	$("#inputOthersTerm").show();
-			      	$("#inputIDNumTerm").hide();
-			    });
-			});
-			$(document).ready(function(){
-				$('#inputName').click(function(){
-				var name =$("#name");
-		 		var idnumber =$("#idnumber");
-		 		name.removeAttr("readonly");
-		 		idnumber.val("");
-		 		//idnumber.removeAttr("required");
-		 		//name.prop("required", "true");
-		 		idnumber.prop("readonly", "true");
-		 		});
-	 			
-	 			$('#inputID').click(function(){
-	 			var name =$("#name");
-		 		var idnumber =$("#idnumber");
-		 		name.prop("readonly", "true");
-		 		//idnumber.prop("required", "true");
-		 		//name.removeAttr("required");
-		 		idnumber.removeAttr("readonly");
-		 		name.val("");
-
-	 			});
-
-	 			
-			});
-			$(document).ready(function(){
-				$("#dailyButton").click(function() {
-			      	$("#inputDaily").show();
-			        $("#inputMonthly").hide();
-			        $("#inputMonthly2").hide();
-			        $("#inputTerm").hide();
-			    });
-			    $("#monthlyButton").click(function() {
-			      	$("#inputMonthly").show();
-			      	$("#inputMonthly2").show();
-			      	$("#inputDaily").hide();
-			      	$("#inputTerm").hide();
-			    });
-			    $("#termButton").click(function() {
-			      	$("#inputTerm").show();
-			      	$("#inputDaily").hide();
-			        $("#inputMonthly").hide();
-			        $("#inputMonthly2").hide();
-			    });
-
-			});
-
-			$(document).ready(function(){
-				$('#searchByName').click(function(){
-				var name =$("#search-name");
-		 		var idnumber =$("#search-idnumber");
-		 		name.removeAttr("readonly");
-		 		idnumber.val("");
-		 		//idnumber.removeAttr("required");
-		 		//name.prop("required", "true");
-		 		idnumber.prop("readonly", "true");
-		 		});
-	 			
-	 			$('#searchByID').click(function(){
-	 			var name =$("#search-name");
-		 		var idnumber =$("#search-idnumber");
-		 		name.prop("readonly", "true");
-		 		//idnumber.prop("required", "true");
-		 		//name.removeAttr("required");
-		 		idnumber.removeAttr("readonly");
-		 		name.val("");
-
-	 			});
-
-	 			
-			});
-
-
-		</script>
-
-		<script type="text/javascript">
-		    $("[rel='tooltip']").tooltip();    
-			    $('.thumbnail').hover(
-			        function(){
-			            $(this).find('.caption').slideDown(500); //.fadeIn(250)
-			        },
-			        function(){
-			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
-			        }
-			    ); 
-		</script>
-
-	</head>
-
-	<body>
- 		<nav class="navbar navbar-default" role="navigation">
-    	  <div class="container">
-			    <!-- Brand and toggle get grouped for better mobile display -->
-			    <div class="navbar-header">
-			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
-			        <span class="sr-only">Toggle navigation</span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			      </button>
-			      <div class="navbar-brand navbar-brand-centered">FAMS</div>
-			    </div>
-
-			    <!-- Collect the nav links, forms, and other content for toggling -->
-			    <div class="collapse navbar-collapse" id="navbar-brand-centered">
-			      <ul class="nav navbar-nav">
-			        <li><a href="dashboard.html"><b>Maintenance</b></a></li>
-			        <li><a href="dashboard-reports.html"><b>Log Out</b></a></li>		
-			      </ul>
-			      <ul class="nav navbar-nav navbar-right" style = "padding:7px;">
-			        
-			        <li>
-
-			        	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id = "dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
-					</li>
-				  </ul>
-
-			    </div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>
-
-		<!-- Current AY Modal -->    
-        <div class="modal fade" id="ayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-		 <div class="modal-dialog">
-				<div class="addaymodal-container" id = "searchrecords-container">
-						<fieldset>
-                            
-                            <div class="">
-                                <label class = "control-label col-xs-5" style = "text-align:left;">Current Academic Year: </label>
-			            	 	<div class = "col-xs-4">
-			            	 		<input type="text" class="form-control" style = "width:213px;" placeholder="2016 - 2017"/>
-			            	 	</div>
-                            </div>
-                            <br>
-                            <div class="">
-                                <label class = "control-label col-xs-5" style = "text-align:left;">Current Term </label>
-			            	 	<div class = "col-xs-4">
-			            	 		<input type="text" class="form-control" style = "width:213px;" placeholder="1 "/>
-			            	 	</div>
-                            </div>
-                            
-                            <div class="text-center">
-                                <a data-dismiss="modal" data-toggle="modal" href="#adday-modal" id="adday" >Academic Year finished? Click to add a new one!</a>
-                            </div>
-                            <br><br>
-							<div class="text-center">
-						        <button type="button" class="cancel btn btn-danger col-xs-offset-4 col-xs-3" data-dismiss="modal" style=""><i class = "glyphicon glyphicon-remove"></i> CLOSE </button>
-				            </div>
-						
-			        	</fieldset>
-
-
-				</div>
-		  </div>
-		</div>
-		
-		<div class="container">
-			<br><br>
-			<div class = "im-centered">
-				<div class = "row text-center">
-					<h4 style = "font-family: 'Bungee' ,cursive;"> Faculty Attendance Monitoring System </h4>
-				</div><br><br>
+			$("#othersButtonDaily").click(function() {
+				$("#inputOthersDaily").show();
+				$("#inputIDNumDaily").hide();
 				
-				<div class = "row">
-					<a href="#" class="" data-toggle="modal" data-target="#searchrecords-modal">
-				        <div class="col-sm-4">
-				            <div class="thumbnail">
-				                <div class="caption">
-				                    <h4 class="options-heading">Search/Edit Records</h4>
-				                </div>
-				                <img src="img/searchRecord1.png" alt="..." class="">
-				            </div>
-				        </div>
-			    	</a>
-
-			    	<a href="#" class="" data-toggle="modal" data-target="#daily-modal">
-					        <div class="col-sm-4">
-					            <div class="thumbnail">
-					                <div class="caption">
-					                	<h4 class="options-heading">Generate Reports</h4>
-					                </div>
-					                <img src="img/Daily.png" alt="..." class="">
-					               
-					            </div>
-					        </div>
-				    </a>
-
-				    <a href="#" class="" data-toggle="modal" data-target="#email-modal">
-					        <div class="col-sm-4">
-					            <div class="thumbnail">
-					                <div class="caption" style = "">
-					                	<h4 class="options-heading">Email Reports</h4>
-					                </div>
-					                <img src="img/email.png" alt="..." class="">
-					               
-					            </div>
-					        </div>
-				    </a>
-	        
-				</div> <!--row -->
-			</div> <!--im-centered-->
-		</div> <!--container-->
-
-		<!-- SEARCH ATTENDANCE RECORDS MODAL -->
-		<div class="modal fade" id="searchrecords-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-		 <div class="modal-dialog">
-				<div class="addaymodal-container" id = "searchrecords-container">
-					<form class = "form form-horizontal">
-						<fieldset>
-			            	<legend class="text-center"><h3><b>Search Attendance Records</b></h3></legend>
-
-							<div class="form-group">
-			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input id = "searchByID" type="radio" name="searchinputs" value = "search-idnumber" checked>&nbsp;&nbsp;by ID Number: </label>
-			            	 	<div class = "col-xs-4">
-			            	 		<input id="search-idnumber" name = "searchInputs" type="text" class="form-control" style = "width:213px;" />
-			            	 	</div>
-			            	 </div>
-
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input id = "searchByName" type="radio" name="searchinputs" value="search-name">&nbsp;&nbsp;by Name: </label>
-			            	 	<div class = "col-xs-4">
-			            	 		<input id="search-name" name = "searchInputs" type="text" class="form-control" style = "width:213px;" readonly/>
-			            	 	</div>
-			            	 </div>
-							
-							<br>
-							<div class="text-center">
-						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-search"></i> SUBMIT </button> 
-						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
-				            </div>
-						
-			        	</fieldset>
-			
-					</form>
-
-
+				console.log("ASD");
+			});
+		});
+		$(document).ready(function(){
+			$("#facultyButtonMonthly").click(function() {
+				$("#inputIDNumMonthly").show();
+				$("#inputOthersMonthly").hide();
+			});
+			$("#othersButtonMonthly").click(function() {
+				$("#inputOthersMonthly").show();
+				$("#inputIDNumMonthly").hide();
+			});
+		});
+		$(document).ready(function(){
+			$("#facultyButtonTerm").click(function() {
+				$("#inputIDNumTerm").show();
+				$("#inputOthersTerm").hide();
+			});
+			$("#othersButtonTerm").click(function() {
+				$("#inputOthersTerm").show();
+				$("#inputIDNumTerm").hide();
+			});
+		});
+		$(document).ready(function(){
+			$('#inputName').click(function(){
+				var name =$("#name");
+				var idnumber =$("#idnumber");
+				name.removeAttr("readonly");
+				idnumber.val("");
+				//idnumber.removeAttr("required");
+				//name.prop("required", "true");
+				idnumber.prop("readonly", "true");
+			});
+			$('#inputID').click(function(){
+				var name =$("#name");
+				var idnumber =$("#idnumber");
+				name.prop("readonly", "true");
+				//idnumber.prop("required", "true");
+				//name.removeAttr("required");
+				idnumber.removeAttr("readonly");
+				name.val("");
+			});
+		});
+		$(document).ready(function(){
+			$("#dailyButton").click(function() {
+				$("#inputDaily").show();
+				$("#inputMonthly").hide();
+				$("#inputMonthly2").hide();
+				$("#inputTerm").hide();
+			});
+			$("#monthlyButton").click(function() {
+				$("#inputMonthly").show();
+				$("#inputMonthly2").show();
+				$("#inputDaily").hide();
+				$("#inputTerm").hide();
+			});
+			$("#termButton").click(function() {
+				$("#inputTerm").show();
+				$("#inputDaily").hide();
+				$("#inputMonthly").hide();
+				$("#inputMonthly2").hide();
+			});
+		});
+		$(document).ready(function(){
+			$('#searchByName').click(function(){
+				var name =$("#search-name");
+				var idnumber =$("#search-idnumber");
+				name.removeAttr("readonly");
+				idnumber.val("");
+				//idnumber.removeAttr("required");
+				//name.prop("required", "true");
+				idnumber.prop("readonly", "true");
+			});
+			$('#searchByID').click(function(){
+				var name =$("#search-name");
+				var idnumber =$("#search-idnumber");
+				name.prop("readonly", "true");
+				//idnumber.prop("required", "true");
+				//name.removeAttr("required");
+				idnumber.removeAttr("readonly");
+				name.val("");
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$("[rel='tooltip']").tooltip();    
+			$('.thumbnail').hover(
+				function(){
+					$(this).find('.caption').slideDown(500); //.fadeIn(250)
+				},
+				function(){
+					$(this).find('.caption').slideUp(250); //.fadeOut(205)
+				}
+			); 
+	</script>
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-target="#navbar-brand-centered" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+				<div class="navbar-brand navbar-brand-centered">
+					FAMS
 				</div>
-		  </div>
+			</div><!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="navbar-brand-centered">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="dashboard.html"><b>Maintenance</b></a>
+					</li>
+					<li>
+						<a href="dashboard-reports.html"><b>Log Out</b></a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" style="padding:7px;">
+					<li><button class="btn btn-default" data-target="#ayModal" data-toggle="modal" id="dashay-button" type="button"><b>Current AY: 2016 - 2017 || Term 1</b></button></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav><!-- Current AY Modal -->
+	<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="ayModal" role="dialog" style="display: none;" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="addaymodal-container" id="searchrecords-container">
+				<fieldset>
+					<div class="">
+						<label class="control-label col-xs-5" style="text-align:left;">Current Academic Year:</label>
+						<div class="col-xs-4">
+							<input class="form-control" placeholder="2016 - 2017" style="width:213px;" type="text">
+						</div>
+					</div><br>
+					<div class="">
+						<label class="control-label col-xs-5" style="text-align:left;">Current Term</label>
+						<div class="col-xs-4">
+							<input class="form-control" placeholder="1" style="width:213px;" type="text">
+						</div>
+					</div>
+					<div class="text-center">
+						<a data-dismiss="modal" data-toggle="modal" href="#adday-modal" id="adday">Academic Year finished? Click to add a new one!</a>
+					</div><br>
+					<br>
+					<div class="text-center">
+						<button class="cancel btn btn-danger col-xs-offset-4 col-xs-3" data-dismiss="modal" style="" type="button"><i class="glyphicon glyphicon-remove"></i> CLOSE</button>
+					</div>
+				</fieldset>
+			</div>
 		</div>
-
-		<!-- GENERATE REPORTS MODAL -->
-		<div class="modal fade" id="daily-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	  <div class="modal-dialog">
-				<div class="addaymodal-container" id = "daily-container">
-					<form class = "form form-horizontal" action="generatereports.php" method="POST">
-						<fieldset>
-			            	 <legend class="text-center"><h3><b>Generate Reports</b></h3></legend>
-
-
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Type:</label>
-						        <div class="col-xs-5">
-						            <div class="segmented-report-type" style="width:500px;margin-left:5px;">
-									    <a id ="dailyButton" href="#" class="list-group-item active" value = "daily">
-									    	Daily
-									    	<input name ="buttons" value ="daily"type="radio" checked/>
-									    </a>
-									    <a id="monthlyButton" href="#" class="list-group-item" value = "month">
-									    	Monthly
-									        <input name ="buttons" value ="monthly" type="radio"/>
-									    </a>
-									    <a id ="termButton" href="#" class="list-group-item" value = "term">
-									    	Term
-									    	<input name ="buttons" value ="term" type="radio"/>
-									    </a>
-									                
+	</div>
+	<div class="container">
+		<br>
+		<br>
+		<div class="im-centered">
+			<div class="row text-center">
+				<h4 style="font-family: 'Bungee' ,cursive;">Faculty Attendance Monitoring System</h4>
+			</div><br>
+			<br>
+			<div class="row">
+				<a class="" data-target="#searchrecords-modal" data-toggle="modal" href="#">
+				<div class="col-sm-4">
+					<div class="thumbnail">
+					<div class="caption">
+						<h4 class="options-heading">Search/Edit Records</h4>
+					</div><img alt="..." class="" src="img/searchRecord1.png"></div>
+				</div></a> <a class="" data-target="#daily-modal" data-toggle="modal" href="#">
+				<div class="col-sm-4">
+					<div class="thumbnail">
+					<div class="caption">
+						<h4 class="options-heading">Generate Reports</h4>
+					</div><img alt="..." class="" src="img/Daily.png"></div>
+				</div></a> <a class="" data-target="#email-modal" data-toggle="modal" href="#">
+				<div class="col-sm-4">
+					<div class="thumbnail">
+					<div class="caption" style="">
+						<h4 class="options-heading">Email Reports</h4>
+					</div><img alt="..." class="" src="img/email.png"></div>
+				</div></a>
+			</div><!--row -->
+		</div><!--im-centered-->
+	</div><!--container-->
+	<!-- SEARCH ATTENDANCE RECORDS MODAL -->
+	<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="searchrecords-modal" role="dialog" style="display: none;" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="addaymodal-container" id="searchrecords-container">
+				<form action="php/search-faculty.php" method="POST" class="form form-horizontal">
+					<fieldset>
+						<legend class="text-center"></legend>
+						<h3><legend class="text-center"><b>Search Attendance Records</b></legend></h3>
+						<div class="form-group">
+							<label class="control-label col-xs-5" style="text-align:left;"><input checked id="searchByID" name="searchinputs" type="radio" value="search-idnumber">&nbsp;&nbsp;by ID Number:</label>
+							<div class="col-xs-4">
+								<input class="form-control" id="search-idnumber" name="idNumber" style="width:213px;" type="text">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-5" style="text-align:left;"><input id="searchByName" name="searchinputs" type="radio" value="search-name">&nbsp;&nbsp;by Name:</label>
+							<div class="col-xs-4">
+								<input class="form-control" id="search-name" name="name" style="width:213px;" type="text">
+							</div>
+						</div><br>
+						<div class="text-center">
+							<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-search"></i> SUBMIT</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div><!-- GENERATE REPORTS MODAL -->
+	<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="daily-modal" role="dialog" style="display: none;" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="addaymodal-container" id="daily-container">
+				<form action="generatereports.php" class="form form-horizontal" method="post">
+					<fieldset>
+						<legend class="text-center"></legend>
+						<h3><legend class="text-center"><b>Generate Reports</b></legend></h3>
+						<div class="form-group">
+							<label class="control-label col-xs-4" style="text-align:left;">Type:</label>
+							<div class="col-xs-5">
+								<div class="segmented-report-type" style="width:500px;margin-left:5px;">
+									<a class="list-group-item active" href="#" id="dailyButton" value="daily">Daily <input name="buttons" type="radio" value="daily"></a> <a class="list-group-item" href="#" id="monthlyButton" value="month">Monthly <input name="buttons" type="radio" value="monthly"></a> <a class="list-group-item" href="#" id="termButton" value="term">Term <input name="buttons" type="radio" value="term"></a>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-4" style="text-align:left;">Date:</label>
+							<div class="col-xs-8" id="inputDaily">
+								<input class="form-control" id="dailydate" name="dailydate" type="text">
+							</div>
+							<div class="col-xs-4" id="inputMonthly" name="monthly" style="display:none;">
+								<select class="selectpicker show-tick" data-width="110px" name="months" style="text-align:left;;">
+									<option selected>
+										January
+									</option>
+									<option>
+										February
+									</option>
+									<option>
+										March
+									</option>
+									<option>
+										April
+									</option>
+									<option>
+										May
+									</option>
+									<option>
+										June
+									</option>
+									<option>
+										July
+									</option>
+									<option>
+										August
+									</option>
+									<option>
+										September
+									</option>
+									<option>
+										October
+									</option>
+									<option>
+										November
+									</option>
+									<option>
+										December
+									</option>
+								</select>
+							</div>
+							<div id="inputMonthly2" style="display:none;">
+								<select class="selectpicker show-tick" data-width="100px" id="try" name="years" style="text-align:left;">
+									<option selected>
+										2016
+									</option>
+									<option>
+										2015
+									</option>
+								</select>
+							</div>
+							<div class="col-xs-4" id="inputTerm" name="terms" style="display:none;">
+								<select class="selectpicker show-tick" name="academicyears" style="text-align:left;">
+									<option selected>
+										A.Y. 2016-2017
+									</option>
+									<option>
+										A.Y. 2015-2016
+									</option>
+								</select><br>
+								<br>
+								<select class="selectpicker show-tick" name="terms" style="text-align:left;">
+									<option selected value="1">
+										Term 1
+									</option>
+									<option value="2">
+										Term 2
+									</option>
+									<option value="3">
+										Term 3
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-4" for="inputPassword" style="text-align:left;">Report for:</label>
+							<div class="col-xs-5">
+								<div class=" segmented-control" style="width:150px;margin-left:5px;">
+									<a class="list-group-item active" href="#" id="facultyButtonDaily">Faculty <input name="options" type="radio" value="faculty"></a> <a class="list-group-item" href="#" id="othersButtonDaily">Others <input name="options" type="radio" value="others"></a>
+								</div>
+							</div>
+						</div>
+						<hr class="style2 col-xs-offset-1 col-xs-9">
+						<br>
+						<div id="inputIDNumDaily">
+							<div class="form-group">
+								<div class="form-group">
+									<label class="control-label col-xs-4" style="text-align:left; margin-left:15px;"><input checked id="inputID" name="inputs" type="radio" value="idnumber">&nbsp;&nbsp;by ID Number:</label>
+									<div class="col-xs-3">
+										<input class="form-control" id="idnumber" name="idnumber" type="text">
 									</div>
-						        </div>
-			            	 </div>
-									
-
-
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
-			            	 	
-			            	 	<div id = "inputDaily" class = "col-xs-8">
-			            	 		<input type="text" class="form-control" id = "dailydate" name="dailydate"/>
-			            	 	</div>
-								
-								<div id = "inputMonthly" class = "col-xs-4" name = "monthly" style = "display:none;">
-									
-									<select class="selectpicker show-tick" style = "text-align:left;;" name ="months" data-width="110px">
-										<option selected>January</option>
-										<option>February</option>
-										<option>March</option>
-										<option>April</option>
-										<option>May</option>
-										<option>June</option>
-										<option>July</option>
-										<option>August</option>
-										<option>September</option>
-										<option>October</option>
-										<option>November</option>
-										<option>December</option>
-									</select>						                
-
-
-			            		</div>
-
-			            		<div id = "inputMonthly2" style = "display:none;">
-				            		<select id = "try" class="selectpicker show-tick" style = "text-align:left;" name ="years" data-width="100px">
-												<option selected>2016</option>
-												<option>2015</option>
-												
+								</div>
+								<div class="form-group">
+									<label class="control-label col-xs-4" style="text-align:left; margin-left:15px;"><input id="inputName" name="inputs" type="radio" value="name">&nbsp;&nbsp;by Name:</label>
+									<div class="col-xs-3">
+										<input class="form-control" id="name" name="name" type="text">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="inputOthersDaily" style="display:none;">
+							<div class="form-group">
+								<label class="control-label col-xs-4" style="text-align:left;">Report filter:</label>
+								<div class="col-xs-5" style="width:250px">
+									<select class="selectpicker show-tick" name="college" style="text-align:left;">
+										<option selected>
+											All Colleges
+										</option>
+										<option>
+											CLA
+										</option>
+										<option>
+											COB
+										</option>
+										<option>
+											COS
+										</option>
+										<option>
+											COE
+										</option>
+										<option>
+											CCS
+										</option>
+										<option>
+											CED
+										</option>
+										<option>
+											SOE
+										</option>
 									</select>
 								</div>
-									
-
-			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
-						                
-						                <select class="selectpicker show-tick" style = "text-align:left;" name ="academicyears">
-												<option selected>A.Y. 2016-2017</option>
-												<option>A.Y. 2015-2016</option>
-												
-									    </select>
-									    <br><br>
-						                <select class="selectpicker show-tick" style = "text-align:left;" name ="terms">
-												<option value = "1" selected>Term 1</option>
-												<option value = "2">Term 2</option>
-												<option value = "3">Term 3</option>
-												
-									    </select>
-
-									    
-
-			            		</div>
-
-			            	 </div>
-
-			            	 <div class="form-group">
-						        <label for="inputPassword" class="control-label col-xs-4" style = "text-align:left;">Report for:</label>
-						        <div class="col-xs-5">
-						            <div class=" segmented-control" style="width:150px;margin-left:5px;">
-									    <a id ="facultyButtonDaily" href="#" class="list-group-item active">
-									    	Faculty
-									    	<input type="radio" name ="options" value ="faculty" checked/>
-									    </a>
-									    <a id="othersButtonDaily" href="#" class="list-group-item">
-									    	Others
-									        <input type="radio" name ="options" value = "others"/>
-									    </a>
-									                
-									</div>
-						        </div>
-						    </div>
-						    <hr class="style2 col-xs-offset-1 col-xs-9"><br>
-
-						    <div id = "inputIDNumDaily">
-							    <div class="form-group">
-		                            <div class="form-group">
-					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
-					            	 		<input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
-					            	 	<div class = "col-xs-3">
-					            	 		<input type="text" class="form-control"	id= "idnumber" name="idnumber"/>
-					            	 	</div>
-					            	</div>
-
-				            	 	<div class="form-group">
-					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
-					            	 		<input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
-					            	 	<div class = "col-xs-3">
-					            	 		<input type="text" class="form-control"	id= "name" name="name" readonly/>
-
-					            	 	</div>
-					            	</div>
-							    </div>
-
 							</div>
-
-						    <div id = "inputOthersDaily" style = "display:none;">
-
-							    <div class = "form-group">
-				            	 		<label class = "control-label col-xs-4" style = "text-align:left;">Report filter:</label>
-				            	 		<div class = "col-xs-5" style="width:250px">
-											<select class="selectpicker show-tick" style = "text-align:left;" name ="college">
-												<option selected>All Colleges</option>
-												<option>CLA</option>
-												<option>COB</option>
-												<option>COS</option>
-												<option>COE</option>
-												<option>CCS</option>
-												<option>CED</option>
-												<option>SOE</option>
-									    	</select>
-				            	 		</div>
-							    </div>
-
-							    <div class = "form-group">
-				            	 		<label class = "control-label col-xs-4" style = "text-align:left;"></label>
-				            	 		<div class = "col-xs-5">
-											<select class="selectpicker show-tick" name = "department" multiple>
-											<option selected>All Departments</option>
-												<option>Software Technology</option>
-												<option>Information Technology</option>
-												<option>Computer Technology	</option>
-
-									    	</select>
-				            	 		</div>
-							    </div>
+							<div class="form-group">
+								<label class="control-label col-xs-4" style="text-align:left;"></label>
+								<div class="col-xs-5">
+									<select class="selectpicker show-tick" multiple name="department">
+										<option selected>
+											All Departments
+										</option>
+										<option>
+											Software Technology
+										</option>
+										<option>
+											Information Technology
+										</option>
+										<option>
+											Computer Technology
+										</option>
+									</select>
+								</div>
 							</div>
-							<br>
-
-						    <div class="text-center">
-						        <button id="btnViewReportDaily" type="submit" class="btn btn-success btn-lg col-xs-4 submit" style = "margin-left:40px; margin-right:30px;font-size:14px;"> <i class="glyphicon glyphicon-th-list"></i> GENERATE </button> 
-						        
-						        <button type="button" class="btn btn-danger btn-lg col-xs-4 cancel" data-dismiss="modal" style="
-    							margin-left: 20px;font-size:14px;"> <i class="glyphicon glyphicon-remove"></i> CANCEL </button>
-				            </div>
-
-			        	</fieldset>
-					</form>
-				</div>
-		  </div>
+						</div><br>
+						<div class="text-center">
+							<button class="btn btn-success btn-lg col-xs-4 submit" id="btnViewReportDaily" style="margin-left:40px; margin-right:30px;font-size:14px;" type="submit"><i class="glyphicon glyphicon-th-list"></i> GENERATE</button> <button class="btn btn-danger btn-lg col-xs-4 cancel" data-dismiss="modal" style=" margin-left: 20px;font-size:14px;" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
 		</div>
-
-		<!-- EMAIL MODAL -->
-		<div class="modal fade" id="email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-		 <div class="modal-dialog">
-				<div class="addaymodal-container" id = "searchrecords-container">
-						<fieldset>
-			            	<legend class="text-center"><h3><b>Email Daily Attendance Report to all Faculty</b></h3></legend>
-
-							<div class="text-center">
-						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-envelope"></i> EMAIL </button> 
-						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class = "glyphicon glyphicon-remove"></i> CANCEL </button>
-				            </div>
-						
-			        	</fieldset>
-
-
-				</div>
-		  </div>
+	</div><!-- EMAIL MODAL -->
+	<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="email-modal" role="dialog" style="display: none;" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="addaymodal-container" id="searchrecords-container">
+				<fieldset>
+					<legend class="text-center"></legend>
+					<h3><legend class="text-center"><b>Email Daily Attendance Report to all Faculty</b></legend></h3>
+					<div class="text-center">
+						<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-envelope"></i> EMAIL</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+					</div>
+				</fieldset>
+			</div>
 		</div>
-
-
-
-	</body>
-
-
+	</div>
+</body>
 </html>
