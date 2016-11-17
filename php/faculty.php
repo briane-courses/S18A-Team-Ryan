@@ -7,12 +7,12 @@
     $stmt = $conn->prepare("SELECT date, time_start, time_end, Course.name AS course, section, Room.name AS room, CheckerAccount.user_name AS checker, remarks
         FROM Attendance, CourseOffering, Course, CheckerAccount, Room, RotationRoom, Rotation
         WHERE faculty_id = :idNumber 
-            AND CourseOffering.course_id = Course.id;
+            AND CourseOffering.course_id = Course.id
             AND courseoffering_id = CourseOffering.id 
             AND CourseOffering.room_id = Room.id
             AND Room.id = RotationRoom.room_id
-            AND RotationRoom.rotation_id = Rotation.id
-            AND Rotation.id = CheckerAccount.rotation_id");
+            AND RotationRoom.id = Rotation.id
+            AND Rotation.id = CheckerAccount.rotation_id;");
     $stmt->execute(["idNumber" => $_GET["id"]]);
 ?>
 <!DOCTYPE html>
@@ -342,15 +342,6 @@
 									</tr>";
 								}
                             ?>
-							<tr class="row-data" data-href="#">
-								<td>10/20/2016</td>
-								<td>09:15 - 10:45</td>
-								<td>SOFENGG</td>
-								<td>S17</td>
-								<td>G203</td>
-								<td>KEITH</td>
-								<td>VACANT ROOM</td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
