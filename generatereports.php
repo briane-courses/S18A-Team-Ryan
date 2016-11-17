@@ -9,15 +9,65 @@
 	
     //echo "Data: ".$date."</br>";
     //echo $buttonDaily."</br>";
-    
-	if($buttons == 'daily') {
-
+	
+	if($buttons == 'daily') 
+	{
 		$date = isset($_POST["dailydate"]) ? $_POST["dailydate"] : false;
+		$dates = explode("/",$date);
+		$date = $dates[2]."-".$dates[0]."-".$dates[1]; 
+		$dateFilter = "date = '".$date."' ";
+	}
+	else if($buttons == 'monthly')
+	{
+		$months = isset($_POST["months"]) ? $_POST["months"] : false;
+		$years = isset($_POST["years"]) ? $_POST["years"] : false;
+
+		switch($months)
+		{
+			case "January" : $months =1; $end = 31; break;
+			case "February" : $months =2; 
+			if(($year % 4 == 0) && ($years % 100 != 0) || ($years % 400 == 0))
+				$end = 28; 
+			else 
+				$end =29; 
+			break;
+			case "March" : $months =3; $end = 31; break;
+			case "April" : $months =4; $end = 30; break;
+			case "May" : $months =5; $end = 31; break;
+			case "June" : $months =6; $end = 30; break;
+			case "July" : $months =7; $end = 31; break;
+			case "August" : $months =8; $end = 31; break;
+			case "September" : $months =9; $end = 30; break;
+			case "October" : $months =10; $end = 31; break;
+			case "November" : $months =11; $end = 30; break;
+			case "December" : $months =12; $end = 31; break;
+		}
+
+
+		$date = $years."-".$months."-01"; 
+		$date2 = $years."-".$months."-".$end; 
+
+		$dateFilter = "date BETWEEN '".$date."' AND '".$date2."' "; 
 	}
 	else
 	{
+		$terms = isset($_POST["terms"]) ? $_POST["terms"] : false;
+		$years = isset($_POST["academicyears"]) ? $_POST["academicyears"] : false;
+
+		$stmt = $conn->prepare("SELECT * 
+								FROM term INNER JOIN academicyear AY ON term.year_id = AY.id 
+								WHERE term_no = :terms AND AY.name = :years;");
+
+		$stmt->execute(["terms" => $terms, "years" =>$years]);
+		
+
+		$result = $stmt->execute();
+		$rows = $stmt->fetch(PDO::FETCH_ASSOC); // assuming $result == true
+									 
+		$dateFilter = "date BETWEEN '".$rows['start']."' AND '".$rows['end']."' "; 
 
 	}
+		
 	
 	$options = isset($_POST["options"]) ? $_POST["options"] : false;
 
@@ -136,12 +186,8 @@
 			        <li>
 
 			        	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id = "dashay-button"> 
+			        		<b>Current AY: 2016 - 2017 || Term 1<b>
 			        		<?php 
-
-
-									 $dates = explode("/",$date);
-									 $date = $dates[2]."-".$dates[0]."-".$dates[1]; 
-									 
 
 									 if (($timestamp = strtotime($date)) !== false)
 									 {
@@ -151,27 +197,29 @@
 									 }
 									 
 
-									 $stmt= $conn->prepare("SELECT name, term_no
-															FROM academicyear A
-															INNER JOIN term T ON T.year_id = A.id
-															WHERE t.term_no =
-															(SELECT term_no FROM term
-															WHERE :dailydate BETWEEN term.start AND term.end);");
-									 $stmt->execute(["dailydate" => $date]);
+									 // $stmt= $conn->prepare("SELECT name, term_no
+										// 					FROM academicyear A
+										// 					INNER JOIN term T ON T.year_id = A.id
+										// 					WHERE t.term_no =
+										// 					(SELECT term_no FROM term
+										// 					WHERE :dailydate BETWEEN term.start AND term.end);");
+									 // $stmt->execute(["dailydate" => $date]);
 
-									 $result = $stmt->execute();
-									 $rows = $stmt->fetch(PDO::FETCH_ASSOC); // assuming $result == true
+									 // $result = $stmt->execute();
+									 // $rows = $stmt->fetch(PDO::FETCH_ASSOC); // assuming $result == true
 								
 
 									 
-									        echo "Current ".$rows['name']." || Term ".$rows['term_no'];
+									 //        echo "Current ".$rows['name']." || Term ".$rows['term_no'];
 									 
-									 switch($rows['term_no'] )
-									 {
-									 	case '1': $term_no_string = '1st'; break;
-									 	case '2': $term_no_string = '2nd'; break;
-									 	case '3': $term_no_string = '3rd'; break;
-									 }
+									 // switch($rows['term_no'] )
+									 // {
+									 // 	case '1': $term_no_string = '1st'; break;
+									 // 	case '2': $term_no_string = '2nd'; break;
+									 // 	case '3': $term_no_string = '3rd'; break;
+
+									 // }
+									 //$labelDate = "<h5>".$term_no_string." TRIMESTER, ".$rows['name']."</h5><h5>".$dateString."</h5>"
 
 								?>
 			        		</button>
@@ -232,7 +280,7 @@
 			<center>
 				<div class="row">
 					<h4><b>FACULTY ATTENDANCE REPORT</b></h4>
-					<?php echo "<h5>".$term_no_string." TRIMESTER, ".$rows['name']."</h5><h5>".$dateString."</h5>"; ?>
+					<?php //echo $labelDate; ?>
 				</div>
 			</center>
 			<br>
@@ -241,6 +289,21 @@
 						<div class="box-content">
 							<table id="resulttable" class="table table-bordered table-striped table-condensed">
 								<thead class="collegelabel">
+									<tr><th colspan ='9'></th></tr>
+								</thead> 
+								<thead id = 'col-header'><tr>
+									<th>Date </th>
+									<th>College </th>
+									<th>Department</th>
+									<th>Faculty</th>
+									<th>Time</th>
+									<th>Course</th>
+									<th>Section</th>
+									<th>Room</th>
+									<th>Remarks</th>
+									</tr>
+									</thead>
+									<tbody>
 									<?php
 
 										$filter = "";
@@ -317,38 +380,23 @@
 																				 FROM faculty F
 																				 INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																			 INNER JOIN attendance A on A.courseoffering_id = Y.offering_id
-																			 WHERE date = :dailydate ) as Z
+																			 WHERE ".$dateFilter." ) as Z
 																		INNER JOIN room R on R.id = Z.room_id) as A
 																	INNER JOIN course C ON C.id = A.course_id
 																	".$filter."
 																	;");
-
-    										$stmt->execute(["dailydate" => $date]);
-
+																
 									 		$result = $stmt->execute();
 
-									?>
-
-									
-									<?php
 										$prevCollege = "";
 									 		while($rows = $stmt->fetch(PDO::FETCH_ASSOC))
 									 		{
 									 			if($prevCollege != $rows['college'])
-									 				echo "<tr> <th colspan ='7'>".$rows['college']."</th></tr></thead> 
-									 				<thead id = 'col-header'><tr>
-													<th>Department</th>
-													<th>Faculty</th>
-													<th>Time</th>
-													<th>Course</th>
-													<th>Section</th>
-													<th>Room</th>
-													<th>Remarks</th>
-													</tr>
-													</thead>
-													<tbody>";
 
-									 				echo "<tr class='row-data' data-href='#'>"."<td>".$rows['department']."</td>
+									 				echo "<tr class='row-data' data-href='#'>
+									 				<td>".$rows['date']."</td>
+									 				<td>".$rows['college']."</td>
+									 				<td>".$rows['department']."</td>
 									 				<td>".$rows['last_name'].", ".$rows['first_name']." ".$rows['middle_name']."</td>
 									 				<td>".$rows['time_start']." - ".$rows['time_end']."</td>
 									 				<td>".$rows['code']."</td>
@@ -357,7 +405,6 @@
 									 				<td>".$rows['remarks']."</td></tr>";
 
 									 		}
-
 											
 										?>
 								</tbody>

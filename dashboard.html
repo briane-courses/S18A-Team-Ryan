@@ -183,11 +183,18 @@
 			$(document).ready(function(){
 				$("#dailyButton").click(function() {
 			      	$("#inputDaily").show();
-			        $("#inputMonthlyTermEnd").hide();
+			        $("#inputMonthly").hide();
+			        $("#inputTerm").hide();
 			    });
-			    $("#monthlyOrTermEndButton").click(function() {
-			      	$("#inputMonthlyTermEnd").show();
+			    $("#monthlyButton").click(function() {
+			      	$("#inputMonthly").show();
 			      	$("#inputDaily").hide();
+			      	$("#inputTerm").hide();
+			    });
+			    $("#termButton").click(function() {
+			      	$("#inputTerm").show();
+			      	$("#inputDaily").hide();
+			        $("#inputMonthly").hide();
 			    });
 			});
 		</script>
@@ -361,7 +368,7 @@
 		<div class="modal fade" id="daily-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container" id = "daily-container">
-					<form class = "form form-horizontal" action="try.php" method="POST">
+					<form class = "form form-horizontal" action="generatereports.php" method="POST">
 						<fieldset>
 			            	 <legend class="text-center"><h3><b>Generate Reports</b></h3></legend>
 
@@ -374,9 +381,13 @@
 									    	Daily
 									    	<input name ="buttons" value ="daily"type="radio" checked/>
 									    </a>
-									    <a id="monthlyOrTermEndButton" href="#" class="list-group-item">
-									    	Monthly / Term-End
-									        <input name ="buttons" value ="term/monthly" type="radio"/>
+									    <a id="monthlyButton" href="#" class="list-group-item" value = "month">
+									    	Monthly
+									        <input name ="buttons" value ="monthly" type="radio"/>
+									    </a>
+									    <a id ="termButton" href="#" class="list-group-item" value = "term">
+									    	Term
+									    	<input name ="buttons" value ="term" type="radio"/>
 									    </a>
 									                
 									</div>
@@ -392,13 +403,44 @@
 			            	 		<input type="text" class="form-control" id = "dailydate" name="dailydate" value="9/24/2016"/>
 			            	 	</div>
 								
-								<div id = "inputMonthlyTermEnd" class = "col-xs-7" style = "display:none;">
-						                <div id="reportrange" class="pull-right" style = "padding:5px;">
-										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
-											<input type="hidden" id="term1Start" name="term1Start" value="">
-											<input type="hidden" id="term1End" name="term1End" value="">
-										</div>
+								<div id = "inputMonthly" class = "col-xs-4" name = "monthly" style = "display:none;">
+						                <select class="selectpicker show-tick" style = "text-align:left;" name ="months">
+												<option selected>January</option>
+												<option>February</option>
+												<option>March</option>
+												<option>April</option>
+												<option>May</option>
+												<option>June</option>
+												<option>July</option>
+												<option>August</option>
+												<option>September</option>
+												<option>October</option>
+												<option>November</option>
+												<option>December</option>
+									    </select>
+
+									    <select class="selectpicker show-tick" style = "text-align:left;" name ="years">
+												<option selected>2016</option>
+												<option>2015</option>
+												
+									    </select>
+
+			            		</div>
+
+			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
+						                <select class="selectpicker show-tick" style = "text-align:left;" name ="terms">
+												<option value = "1" selected>Term 1</option>
+												<option value = "2">Term 2</option>
+												<option value = "3">Term 3</option>
+												
+									    </select>
+
+									    <select class="selectpicker show-tick" style = "text-align:left;" name ="academicyears">
+												<option selected>A.Y. 2016-2017</option>
+												<option>A.Y. 2015-2016</option>
+												
+									    </select>
+
 			            		</div>
 
 			            	 </div>
