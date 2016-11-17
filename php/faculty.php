@@ -12,7 +12,8 @@
             AND CourseOffering.room_id = Room.id
             AND Room.id = RotationRoom.room_id
             AND RotationRoom.id = Rotation.id
-            AND Rotation.id = CheckerAccount.rotation_id;");
+            AND Rotation.id = CheckerAccount.rotation_id
+			AND date = cast(now() as date);");
     $stmt->execute(["idNumber" => $_GET["id"]]);
 ?>
 <!DOCTYPE html>
