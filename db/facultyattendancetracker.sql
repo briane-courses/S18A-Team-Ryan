@@ -235,7 +235,6 @@ CREATE TABLE `faculty` (
   `pic` varchar(45) NOT NULL,
   `mobile_number` varchar(45) NOT NULL,
   `department` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
