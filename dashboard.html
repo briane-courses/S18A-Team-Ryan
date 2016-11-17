@@ -22,47 +22,6 @@
 	    <script type="text/javascript" src="js/daterangepicker.js"></script>
 	    <!-- DROPDOWN -->
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
-	    <script type="text/javascript">
-
-			$(function() {
-			    var start = moment().subtract(29, 'days');
-			    var end = moment();
-			    function cb(start, end) {
-			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			        $('#term1Start').val(start.format('YYYY-MM-DD'));
-					$('#term1End').val(end.format('YYYY-MM-DD'));
-			    }
-			    function cb2(start, end) {			       
-			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-					$('#term2Start').val(start.format('YYYY-MM-DD'));
-					$('#term2End').val(end.format('YYYY-MM-DD'));
-				}
-			    function cb3(start, end) {
-			        $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-					$('#term3Start').val(start.format('YYYY-MM-DD'));
-					$('#term3End').val(end.format('YYYY-MM-DD'));
-				}
-
-			    $('#reportrange').daterangepicker({
-			        startDate: start,
-			        endDate: end
-			        }, cb);
-			    
-			    $('#reportrange2').daterangepicker({
-			        startDate: start,
-			        endDate: end
-			        }, cb2);
-
-			    $('#reportrange3').daterangepicker({
-			        startDate: start,
-			        endDate: end
-			        }, cb3);
-
-			    cb(start, end);
-			    cb2(start, end);
-			    cb3(start, end);
-			});
-		</script>
 
 		<script type="text/javascript">
 			$(function() {
@@ -78,22 +37,7 @@
 			});
 		</script>
 
-		<script type="text/javascript">
-			$(function() {
-
-				var currMonth =moment.currDate;
-
-			$('input[name="monthlydate"]').daterangepicker( {
-			    format: "mm-yyyy",
-			    viewMode: "months", 
-			    minViewMode: "months",
-			    enableYearToMonth: true, 
-			    enableMonthToDay : false,
-			    value : currMonth
-			});
-
-			});
-		</script>
+		
 
 		<script type="text/javascript">
 		    $("[rel='tooltip']").tooltip();    
@@ -155,7 +99,7 @@
 			    $("#othersButtonDaily").click(function() {
 			      	$("#inputOthersDaily").show();
 			      	$("#inputIDNumDaily").hide();
-			      	$("#inputIDNumDaily").removeAttr
+			      	
 			      	console.log("ASD");
 			    });
 			});
@@ -427,6 +371,12 @@
 			            	 	</div>
 								
 								<div id = "inputMonthly" class = "col-xs-4" name = "monthly" style = "display:none;">
+						                <select class="selectpicker show-tick" style = "text-align:left;" name ="years">
+												<option selected>2016</option>
+												<option>2015</option>
+												
+									    </select>
+									    
 						                <select class="selectpicker show-tick" style = "text-align:left;" name ="months">
 												<option selected>January</option>
 												<option>February</option>
@@ -442,15 +392,18 @@
 												<option>December</option>
 									    </select>
 
-									    <select class="selectpicker show-tick" style = "text-align:left;" name ="years">
-												<option selected>2016</option>
-												<option>2015</option>
-												
-									    </select>
+									   
 
 			            		</div>
 
 			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
+						                
+						                <select class="selectpicker show-tick" style = "text-align:left;" name ="academicyears">
+												<option selected>A.Y. 2016-2017</option>
+												<option>A.Y. 2015-2016</option>
+												
+									    </select>
+
 						                <select class="selectpicker show-tick" style = "text-align:left;" name ="terms">
 												<option value = "1" selected>Term 1</option>
 												<option value = "2">Term 2</option>
@@ -458,11 +411,7 @@
 												
 									    </select>
 
-									    <select class="selectpicker show-tick" style = "text-align:left;" name ="academicyears">
-												<option selected>A.Y. 2016-2017</option>
-												<option>A.Y. 2015-2016</option>
-												
-									    </select>
+									    
 
 			            		</div>
 
@@ -539,6 +488,7 @@
 							    </div>
 							</div>
 							<br>
+
 						    <div class="text-center">
 						        <button id="btnViewReportDaily" type="submit" class="btn btn-success btn-lg col-xs-4 submit" style = "margin-left:40px; margin-right:30px;font-size:14px;"> <i class="glyphicon glyphicon-th-list"></i> GENERATE </button> 
 						        

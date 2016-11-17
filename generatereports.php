@@ -131,6 +131,86 @@
 
 		</script>
 
+		<script>
+			$(document).ready(function(){
+				$("#facultyButtonDaily").click(function() {
+			      	$("#inputIDNumDaily").show();
+			        $("#inputOthersDaily").hide();
+			        console.log("ASD");
+			    });
+
+			    $("#othersButtonDaily").click(function() {
+			      	$("#inputOthersDaily").show();
+			      	$("#inputIDNumDaily").hide();
+			      	$("#inputIDNumDaily").removeAttr
+			      	console.log("ASD");
+			    });
+			});
+
+			$(document).ready(function(){
+				$("#facultyButtonMonthly").click(function() {
+			      	$("#inputIDNumMonthly").show();
+			        $("#inputOthersMonthly").hide();
+			    });
+			    $("#othersButtonMonthly").click(function() {
+			      	$("#inputOthersMonthly").show();
+			      	$("#inputIDNumMonthly").hide();
+			    });
+			});
+
+			$(document).ready(function(){
+				$("#facultyButtonTerm").click(function() {
+			      	$("#inputIDNumTerm").show();
+			        $("#inputOthersTerm").hide();
+			    });
+			    $("#othersButtonTerm").click(function() {
+			      	$("#inputOthersTerm").show();
+			      	$("#inputIDNumTerm").hide();
+			    });
+			});
+			
+			$(document).ready(function(){
+				$('#inputName').click(function(){
+				var name =$("#name");
+		 		var idnumber =$("#idnumber");
+		 		name.removeAttr("readonly");
+		 		//idnumber.removeAttr("required");
+		 		//name.prop("required", "true");
+		 		idnumber.prop("readonly", "true");
+		 		});
+	 			
+	 			$('#inputID').click(function(){
+	 			var name =$("#name");
+		 		var idnumber =$("#idnumber");
+		 		name.prop("readonly", "true");
+		 		//idnumber.prop("required", "true");
+		 		//name.removeAttr("required");
+		 		idnumber.removeAttr("readonly");
+	 			});
+
+	 			
+			});
+
+			$(document).ready(function(){
+				$("#dailyButton").click(function() {
+			      	$("#inputDaily").show();
+			        $("#inputMonthly").hide();
+			        $("#inputTerm").hide();
+			    });
+			    $("#monthlyButton").click(function() {
+			      	$("#inputMonthly").show();
+			      	$("#inputDaily").hide();
+			      	$("#inputTerm").hide();
+			    });
+			    $("#termButton").click(function() {
+			      	$("#inputTerm").show();
+			      	$("#inputDaily").hide();
+			        $("#inputMonthly").hide();
+			    });
+
+			});
+		</script>
+
     	<script type="text/javascript">
 		    $("[rel='tooltip']").tooltip();    
 			    $('.thumbnail').hover(
@@ -414,10 +494,11 @@
 			</div><br><br>
 
 		<!-- GENERATE REPORTS MODAL -->
+
 		<div class="modal fade" id="generate-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container" id = "daily-container">
-					<form class = "form form-horizontal">
+					<form class = "form form-horizontal" action="generatereports.php" method="POST">
 						<fieldset>
 			            	 <legend class="text-center"><h3><b>Generate Reports</b></h3></legend>
 
@@ -430,9 +511,13 @@
 									    	Daily
 									    	<input name ="buttons" value ="daily"type="radio" checked/>
 									    </a>
-									    <a id="monthlyOrTermEndButton" href="#" class="list-group-item">
-									    	Monthly / Term-End
-									        <input name ="buttons" value ="term/monthly" type="radio"/>
+									    <a id="monthlyButton" href="#" class="list-group-item" value = "month">
+									    	Monthly
+									        <input name ="buttons" value ="monthly" type="radio"/>
+									    </a>
+									    <a id ="termButton" href="#" class="list-group-item" value = "term">
+									    	Term
+									    	<input name ="buttons" value ="term" type="radio"/>
 									    </a>
 									                
 									</div>
@@ -444,18 +529,55 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
 			            	 	
-			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" id = "dailydate" name="dailydate" value="10/31/2016"/>
+			            	 	<div id = "inputDaily" class = "col-xs-8">
+			            	 		<input type="text" class="form-control" id = "dailydate" name="dailydate"/>
 			            	 	</div>
-			            		<!-- when radio button "others" is clicked, this must be SHOWN
-			            		<div class = "col-xs-8">
-						                <div id="reportrange" class="pull-right">
-										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
-											<input type="hidden" id="term1Start" name="term1Start" value="">
-											<input type="hidden" id="term1End" name="term1End" value="">
-										</div>
-			            		</div>-->
+								
+								<div id = "inputMonthly" class = "col-xs-4" name = "monthly" style = "display:none;">
+						                <select class="selectpicker show-tick" style = "text-align:left;" name ="years">
+												<option selected>2016</option>
+												<option>2015</option>
+												
+									    </select>
+									    
+						                <select class="selectpicker show-tick" style = "text-align:left;" name ="months">
+												<option selected>January</option>
+												<option>February</option>
+												<option>March</option>
+												<option>April</option>
+												<option>May</option>
+												<option>June</option>
+												<option>July</option>
+												<option>August</option>
+												<option>September</option>
+												<option>October</option>
+												<option>November</option>
+												<option>December</option>
+									    </select>
+
+									   
+
+			            		</div>
+
+			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
+						                
+						                <select class="selectpicker show-tick" style = "text-align:left;" name ="academicyears">
+												<option selected>A.Y. 2016-2017</option>
+												<option>A.Y. 2015-2016</option>
+												
+									    </select>
+
+						                <select class="selectpicker show-tick" style = "text-align:left;" name ="terms">
+												<option value = "1" selected>Term 1</option>
+												<option value = "2">Term 2</option>
+												<option value = "3">Term 3</option>
+												
+									    </select>
+
+									    
+
+			            		</div>
+
 			            	 </div>
 
 			            	 <div class="form-group">
@@ -482,7 +604,7 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input type="text" class="form-control"	id="idnumber"/>
+					            	 		<input type="text" class="form-control"	id= "idnumber" name="idnumber"/>
 					            	 	</div>
 					            	</div>
 
@@ -490,32 +612,13 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input type="text" class="form-control"	id="name" readonly/>
+					            	 		<input type="text" class="form-control"	id= "name" name="name" readonly/>
 
 					            	 	</div>
 					            	</div>
 							    </div>
 
 							</div>
-							<script>
-								$('#inputName').click(function(){
-
-
-		 							var name =$("#name");
-		 							var idnumber =$("#idnumber");
-		 							name.removeAttr("readonly");
-		 							idnumber.prop("readonly", "true");
-
-		 							
-	 							});
-	 							$('#inputID').click(function(){
-	 								var name =$("#name");
-		 							var idnumber =$("#idnumber");
-		 							name.prop("readonly", "true");
-		 							idnumber.removeAttr("readonly");
-	 							});
-							</script>
-
 
 						    <div id = "inputOthersDaily" style = "display:none;">
 
@@ -547,7 +650,9 @@
 				            	 		</div>
 							    </div>
 							</div>
+
 							<br>
+
 						    <div class="text-center">
 						        <button id="btnViewReportDaily" type="submit" class="btn btn-success btn-lg col-xs-4 submit" style = "margin-left:40px; margin-right:30px;font-size:14px;"> <i class="glyphicon glyphicon-th-list"></i> GENERATE </button> 
 						        
