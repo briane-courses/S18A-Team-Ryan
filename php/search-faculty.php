@@ -8,8 +8,8 @@
         $stmt->execute(["idNumber" => $_POST["idNumber"]]);
         $facultyExists = true;
     } elseif($_POST["name"] != null) {
-        $stmt = $conn->prepare("SELECT * FROM Faculty WHERE id = :idNumber");
-        $stmt->execute(["idNumber" => $_POST["idNumber"]]);
+        $stmt = $conn->prepare("SELECT * FROM Faculty WHERE first_name = :first_name AND last_name = :last_name;");
+        $stmt->execute(["first_name" => $_POST["first_name"], "last_name" => $POST_["last_name"]]);
         $facultyExists = true;
     } else {
         echo "<script>
