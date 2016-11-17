@@ -170,6 +170,33 @@
 			    });
 
 			});
+
+			$(document).ready(function(){
+				$('#searchByName').click(function(){
+				var name =$("#search-name");
+		 		var idnumber =$("#search-idnumber");
+		 		name.removeAttr("readonly");
+		 		idnumber.val("");
+		 		//idnumber.removeAttr("required");
+		 		//name.prop("required", "true");
+		 		idnumber.prop("readonly", "true");
+		 		});
+	 			
+	 			$('#searchByID').click(function(){
+	 			var name =$("#search-name");
+		 		var idnumber =$("#search-idnumber");
+		 		name.prop("readonly", "true");
+		 		//idnumber.prop("required", "true");
+		 		//name.removeAttr("required");
+		 		idnumber.removeAttr("readonly");
+		 		name.val("");
+
+	 			});
+
+	 			
+			});
+
+
 		</script>
 
 		<script type="text/javascript">
@@ -309,16 +336,16 @@
 			            	<legend class="text-center"><h3><b>Search Attendance Records</b></h3></legend>
 
 							<div class="form-group">
-			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by ID Number: </label>
+			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input id = "searchByID" type="radio" name="searchinputs" value = "search-idnumber" checked>&nbsp;&nbsp;by ID Number: </label>
 			            	 	<div class = "col-xs-4">
-			            	 		<input type="text" class="form-control" style = "width:213px;" />
+			            	 		<input id="search-idnumber" name = "searchInputs" type="text" class="form-control" style = "width:213px;" />
 			            	 	</div>
 			            	 </div>
 
 			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by Name: </label>
+			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input id = "searchByName" type="radio" name="searchinputs" value="search-name">&nbsp;&nbsp;by Name: </label>
 			            	 	<div class = "col-xs-4">
-			            	 		<input type="text" class="form-control"	style = "width:213px;" />
+			            	 		<input id="search-name" name = "searchInputs" type="text" class="form-control" style = "width:213px;" readonly/>
 			            	 	</div>
 			            	 </div>
 							
