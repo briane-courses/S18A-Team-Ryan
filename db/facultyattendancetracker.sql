@@ -60,7 +60,7 @@ CREATE TABLE `attendance` (
   KEY `status_id_idx` (`status_id`),
   CONSTRAINT `courseoffering_id` FOREIGN KEY (`courseoffering_id`) REFERENCES `courseoffering` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `status_id` FOREIGN KEY (`status_id`) REFERENCES `attendancestatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `attendance` (
 
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
-INSERT INTO `attendance` VALUES (1,1,1,'','2016-09-22','1500'),(2,1,1,'','2016-09-24','1500'),(3,2,2,'','2016-11-02','0945'),(4,2,1,'','2016-11-07','0945'),(5,3,1,'','2016-09-22','1500'),(6,4,1,'','2016-09-22','1130'),(7,5,1,'','2016-09-22','0945');
+INSERT INTO `attendance` VALUES (1,1,1,'','2016-09-22','1500'),(2,1,1,'','2016-09-24','1500'),(3,2,2,'','2016-11-02','0945'),(4,2,1,'','2016-11-07','0945'),(5,3,1,'','2016-09-22','1500'),(6,4,1,'','2016-09-22','1130'),(7,5,1,'','2016-09-22','0945'),(8,6,1,'','2016-09-22','0945'),(9,7,1,'','2016-09-22','1130'),(10,8,2,'','2016-09-22','1315');
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +110,7 @@ CREATE TABLE `building` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `building` (
 
 LOCK TABLES `building` WRITE;
 /*!40000 ALTER TABLE `building` DISABLE KEYS */;
-INSERT INTO `building` VALUES (1,'Gokongwei');
+INSERT INTO `building` VALUES (1,'Gokongwei'),(2,'Velasco');
 /*!40000 ALTER TABLE `building` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,7 +168,7 @@ CREATE TABLE `course` (
   `hours` varchar(45) NOT NULL,
   `type` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,7 +177,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'HCIFACE','Human Computer Interfaces','3.0','undergraduate'),(2,'OPERSYS','Operating Systems','3.0','undergraduate'),(3,'DASALGO','Data structures and algorithms','3.0','undergraduate'),(4,'OBJECTP','Object Oriented Programming','3.0','undergraduate'),(5,'MACLERN','Machine Learning','3.0','undergraduate'),(6,'INTRODB','Introduction to Database Systems','3.0','undergraduate'),(7,'SOFENGG','Software Engineering','3.0','undergraduate'),(8,'WEBAPDE','Web Application Development','3.0','undergraduate');
+INSERT INTO `course` VALUES (1,'HCIFACE','Human Computer Interfaces','3.0','undergraduate'),(2,'OPERSYS','Operating Systems','3.0','undergraduate'),(3,'DASALGO','Data structures and algorithms','3.0','undergraduate'),(4,'OBJECTP','Object Oriented Programming','3.0','undergraduate'),(5,'MACLERN','Machine Learning','3.0','undergraduate'),(6,'INTRODB','Introduction to Database Systems','3.0','undergraduate'),(7,'SOFENGG','Software Engineering','3.0','undergraduate'),(8,'WEBAPDE','Web Application Development','3.0','undergraduate'),(9,'MATAPRE','Math appreciation','3.0','undergraduate'),(10,'ENGTRIG','Trigonometry for Engineering Students','3.0','undergraduate');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +206,7 @@ CREATE TABLE `courseoffering` (
   CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES `faculty` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `room_id` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `term_id` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +215,7 @@ CREATE TABLE `courseoffering` (
 
 LOCK TABLES `courseoffering` WRITE;
 /*!40000 ALTER TABLE `courseoffering` DISABLE KEYS */;
-INSERT INTO `courseoffering` VALUES (1,1,'S18',1,3,'1430','1600',1),(2,2,'S17',2,3,'0915','1045',1),(3,6,'S17',5,3,'1430','1600',3),(4,4,'S17',6,3,'1100','1230',5),(5,7,'S17',3,3,'0915','1045',4);
+INSERT INTO `courseoffering` VALUES (1,1,'S18',1,3,'1430','1600',1),(2,2,'S17',2,3,'0915','1045',1),(3,6,'S17',5,3,'1430','1600',3),(4,4,'S17',6,3,'1100','1230',5),(5,7,'S17',3,3,'0915','1045',4),(6,10,'EA',8,3,'0915','1045',8),(7,9,'EZ',9,3,'1100','1230',8),(8,9,'EZ',9,3,'1245','1415',8);
 /*!40000 ALTER TABLE `courseoffering` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,7 +237,7 @@ CREATE TABLE `faculty` (
   `mobile_number` varchar(45) NOT NULL,
   `department` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,7 +246,7 @@ CREATE TABLE `faculty` (
 
 LOCK TABLES `faculty` WRITE;
 /*!40000 ALTER TABLE `faculty` DISABLE KEYS */;
-INSERT INTO `faculty` VALUES (1,'Patrick Ruffio','Alvero','Arceo','CCS','patrick_arceo@dlsu.edu.ph','sample','09228500313','Math'),(2,'Darren','Goldwin','David','COE','darren_david@dlsu.edu.ph','sample','09165590089','Software Technology'),(3,'Briane','Paul','Samson','CCS','briane_samson@dlsu.edu.ph','sample','12345678901','Software Technology'),(4,'Roger','Somthing','Uy','CCS','roger_uy@dlsu.edu.ph','sample','12345678902','Software Technology'),(5,'Ethel','Somthing','Ong','CCS','ethel_ong@dlsu.edu.ph','sample','12345678903','Software Technology'),(6,'Thomas','James','Tiam-Lee','CCS','thomasjames_tiam-lee@dlsu.edu.ph','sample','12345678904','Software Technology'),(7,'Judith','Jay','Azcarraga','CCS','judith_azcarraga@dlsu.edu.ph','sample','12345678905','Software Technology');
+INSERT INTO `faculty` VALUES (1,'Patrick Ruffio','Alvero','Arceo','CCS','patrick_arceo@dlsu.edu.ph','sample','09228500313','Math'),(2,'Darren','Goldwin','David','COE','darren_david@dlsu.edu.ph','sample','09165590089','Software Technology'),(3,'Briane','Paul','Samson','CCS','briane_samson@dlsu.edu.ph','sample','12345678901','Software Technology'),(4,'Roger','Somthing','Uy','CCS','roger_uy@dlsu.edu.ph','sample','12345678902','Software Technology'),(5,'Ethel','Somthing','Ong','CCS','ethel_ong@dlsu.edu.ph','sample','12345678903','Software Technology'),(6,'Thomas','James','Tiam-Lee','CCS','thomasjames_tiam-lee@dlsu.edu.ph','sample','12345678904','Software Technology'),(7,'Judith','Jay','Azcarraga','CCS','judith_azcarraga@dlsu.edu.ph','sample','12345678905','Software Technology'),(8,'Teech','Ng','Eng','GCOE','some_eng_prof@dlsu.edu.ph','Sample','12345678906','Math'),(9,'Nagaaral','Ng','Mabooty','GCOE','mabooty_prof@dlsu.edu.ph','Sample','12345678907','Math');
 /*!40000 ALTER TABLE `faculty` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,7 +292,7 @@ CREATE TABLE `room` (
   PRIMARY KEY (`id`),
   KEY `building_id_idx` (`building_id`),
   CONSTRAINT `building_id` FOREIGN KEY (`building_id`) REFERENCES `building` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -301,7 +301,7 @@ CREATE TABLE `room` (
 
 LOCK TABLES `room` WRITE;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (1,'G205',1),(2,'G209',1),(3,'G201',1),(4,'G211',1),(5,'G304B',1),(7,'G202',1);
+INSERT INTO `room` VALUES (1,'G205',1),(2,'G209',1),(3,'G201',1),(4,'G211',1),(5,'G304B',1),(7,'G202',1),(8,'V202',2),(9,'V204',2),(10,'V311',2);
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,4 +391,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-17 22:56:50
+-- Dump completed on 2016-11-18  1:02:37
