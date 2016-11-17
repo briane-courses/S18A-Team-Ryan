@@ -102,7 +102,7 @@ input[type=text]{
 #daily-container input[type=text]{
     height: 34px;
   width: 180px;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
   font-size: 14px;
 }
 
@@ -143,3 +143,4 @@ input[type=text]{
 .style2{
     border-top: 3px double #8c8b8b;
 }
+

@@ -130,6 +130,7 @@
 				var name =$("#name");
 		 		var idnumber =$("#idnumber");
 		 		name.removeAttr("readonly");
+		 		idnumber.val("");
 		 		//idnumber.removeAttr("required");
 		 		//name.prop("required", "true");
 		 		idnumber.prop("readonly", "true");
@@ -142,6 +143,8 @@
 		 		//idnumber.prop("required", "true");
 		 		//name.removeAttr("required");
 		 		idnumber.removeAttr("readonly");
+		 		name.val("");
+
 	 			});
 
 	 			
@@ -150,10 +153,12 @@
 				$("#dailyButton").click(function() {
 			      	$("#inputDaily").show();
 			        $("#inputMonthly").hide();
+			        $("#inputMonthly2").hide();
 			        $("#inputTerm").hide();
 			    });
 			    $("#monthlyButton").click(function() {
 			      	$("#inputMonthly").show();
+			      	$("#inputMonthly2").show();
 			      	$("#inputDaily").hide();
 			      	$("#inputTerm").hide();
 			    });
@@ -161,6 +166,7 @@
 			      	$("#inputTerm").show();
 			      	$("#inputDaily").hide();
 			        $("#inputMonthly").hide();
+			        $("#inputMonthly2").hide();
 			    });
 
 			});
@@ -371,30 +377,33 @@
 			            	 	</div>
 								
 								<div id = "inputMonthly" class = "col-xs-4" name = "monthly" style = "display:none;">
-						                <select class="selectpicker show-tick" style = "text-align:left;" name ="years">
+									
+									<select class="selectpicker show-tick" style = "text-align:left;;" name ="months" data-width="110px">
+										<option selected>January</option>
+										<option>February</option>
+										<option>March</option>
+										<option>April</option>
+										<option>May</option>
+										<option>June</option>
+										<option>July</option>
+										<option>August</option>
+										<option>September</option>
+										<option>October</option>
+										<option>November</option>
+										<option>December</option>
+									</select>						                
+
+
+			            		</div>
+
+			            		<div id = "inputMonthly2" style = "display:none;">
+				            		<select id = "try" class="selectpicker show-tick" style = "text-align:left;" name ="years" data-width="100px">
 												<option selected>2016</option>
 												<option>2015</option>
 												
-									    </select>
-									    
-						                <select class="selectpicker show-tick" style = "text-align:left;" name ="months">
-												<option selected>January</option>
-												<option>February</option>
-												<option>March</option>
-												<option>April</option>
-												<option>May</option>
-												<option>June</option>
-												<option>July</option>
-												<option>August</option>
-												<option>September</option>
-												<option>October</option>
-												<option>November</option>
-												<option>December</option>
-									    </select>
-
-									   
-
-			            		</div>
+									</select>
+								</div>
+									
 
 			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
 						                
@@ -403,7 +412,7 @@
 												<option>A.Y. 2015-2016</option>
 												
 									    </select>
-
+									    <br><br>
 						                <select class="selectpicker show-tick" style = "text-align:left;" name ="terms">
 												<option value = "1" selected>Term 1</option>
 												<option value = "2">Term 2</option>
@@ -475,14 +484,15 @@
 				            	 		</div>
 							    </div>
 
-							    <div class = "form-group" >
+							    <div class = "form-group">
 				            	 		<label class = "control-label col-xs-4" style = "text-align:left;"></label>
 				            	 		<div class = "col-xs-5">
-											<select class="selectpicker show-tick" name = "department">
+											<select class="selectpicker show-tick" name = "department" multiple>
 											<option selected>All Departments</option>
 												<option>Software Technology</option>
 												<option>Information Technology</option>
 												<option>Computer Technology	</option>
+
 									    	</select>
 				            	 		</div>
 							    </div>

@@ -86,12 +86,18 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
 		<!-- FONTS -->
 		<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
-
+		<!-- DROPDOWN -->
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src = "js/jquery-3.0.0.min.js"></script>
     	<!-- Include all compiled plugins (below), or include individual files as needed -->
     	<script src="js/bootstrap.min.js"></script>
+    	<script type="text/javascript" src="js/moment.js"></script>
+	    <script type="text/javascript" src="js/daterangepicker.js"></script>
+
+	    	    <!-- DROPDOWN -->
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
     	<!-- For Segmented Tabs -->
     	<script type="text/javascript">
 			$(function(){
@@ -111,6 +117,8 @@
 		});
 
 		</script>
+
+
 
 		<script type="text/javascript">
 			$(function(){
@@ -195,10 +203,12 @@
 				$("#dailyButton").click(function() {
 			      	$("#inputDaily").show();
 			        $("#inputMonthly").hide();
+			        $("#inputMonthly2").hide();
 			        $("#inputTerm").hide();
 			    });
 			    $("#monthlyButton").click(function() {
 			      	$("#inputMonthly").show();
+			      	$("#inputMonthly2").show();
 			      	$("#inputDaily").hide();
 			      	$("#inputTerm").hide();
 			    });
@@ -206,6 +216,7 @@
 			      	$("#inputTerm").show();
 			      	$("#inputDaily").hide();
 			        $("#inputMonthly").hide();
+			        $("#inputMonthly2").hide();
 			    });
 
 			});
@@ -493,8 +504,8 @@
 				</div>
 			</div><br><br>
 
-		<!-- GENERATE REPORTS MODAL -->
 
+		<!-- GENERATE REPORTS MODAL -->
 		<div class="modal fade" id="generate-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container" id = "daily-container">
@@ -534,30 +545,33 @@
 			            	 	</div>
 								
 								<div id = "inputMonthly" class = "col-xs-4" name = "monthly" style = "display:none;">
-						                <select class="selectpicker show-tick" style = "text-align:left;" name ="years">
+									
+									<select class="selectpicker show-tick" style = "text-align:left;;" name ="months" data-width="110px">
+										<option selected>January</option>
+										<option>February</option>
+										<option>March</option>
+										<option>April</option>
+										<option>May</option>
+										<option>June</option>
+										<option>July</option>
+										<option>August</option>
+										<option>September</option>
+										<option>October</option>
+										<option>November</option>
+										<option>December</option>
+									</select>						                
+
+
+			            		</div>
+
+			            		<div id = "inputMonthly2" style = "display:none;">
+				            		<select id = "try" class="selectpicker show-tick" style = "text-align:left;" name ="years" data-width="100px">
 												<option selected>2016</option>
 												<option>2015</option>
 												
-									    </select>
-									    
-						                <select class="selectpicker show-tick" style = "text-align:left;" name ="months">
-												<option selected>January</option>
-												<option>February</option>
-												<option>March</option>
-												<option>April</option>
-												<option>May</option>
-												<option>June</option>
-												<option>July</option>
-												<option>August</option>
-												<option>September</option>
-												<option>October</option>
-												<option>November</option>
-												<option>December</option>
-									    </select>
-
-									   
-
-			            		</div>
+									</select>
+								</div>
+									
 
 			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
 						                
@@ -566,7 +580,7 @@
 												<option>A.Y. 2015-2016</option>
 												
 									    </select>
-
+									    <br><br>
 						                <select class="selectpicker show-tick" style = "text-align:left;" name ="terms">
 												<option value = "1" selected>Term 1</option>
 												<option value = "2">Term 2</option>
@@ -638,19 +652,19 @@
 				            	 		</div>
 							    </div>
 
-							    <div class = "form-group" >
+							    <div class = "form-group">
 				            	 		<label class = "control-label col-xs-4" style = "text-align:left;"></label>
 				            	 		<div class = "col-xs-5">
-											<select class="selectpicker show-tick" name = "department">
+											<select class="selectpicker show-tick" name = "department" multiple>
 											<option selected>All Departments</option>
 												<option>Software Technology</option>
 												<option>Information Technology</option>
 												<option>Computer Technology	</option>
+
 									    	</select>
 				            	 		</div>
 							    </div>
 							</div>
-
 							<br>
 
 						    <div class="text-center">
@@ -659,7 +673,6 @@
 						        <button type="button" class="btn btn-danger btn-lg col-xs-4 cancel" data-dismiss="modal" style="
     							margin-left: 20px;font-size:14px;"> <i class="glyphicon glyphicon-remove"></i> CANCEL </button>
 				            </div>
-
 
 			        	</fieldset>
 					</form>
