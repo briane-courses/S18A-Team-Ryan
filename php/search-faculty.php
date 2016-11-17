@@ -19,10 +19,8 @@
     }
 
     if($facultyExists && $stmt->rowCount() == 1){
-        echo "<script>
-                alert('Faculty found');
-                window.location.replace('../dashboard.html');
-            </script>";
+        header("Location: faculty.php?id=".$_POST["idNumber"]);
+        exit;
     } else {
         echo "<script>
                 alert('Faculty member not found.');
