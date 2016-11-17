@@ -14,10 +14,7 @@
             WHERE first_name = :firstName 
                 AND last_name = :lastName;");
         $stmt->execute(["firstName" => $_POST["firstName"], "lastName" => $_POST["lastName"]]);
-        if($stmt->rowCount() == 1) {
-            $facultyExists = true;
-            $_POST["idNumber"] = $stmt->fetch(PDO::FETCH_ASSOC)["id"];
-        }
+        $facultyExists = true;
     } else {
         echo "<script>
             alert('Missing search details.');
@@ -26,7 +23,7 @@
     }
 
     if($facultyExists && $stmt->rowCount() == 1) {
-        header("Location: faculty.php?id=".$_POST["idNumber"]);
+        header("Location: faculty.php?id=".$stmt->fetch(PDO::FETCH_ASSOC)["id"]);
         exit;
     } else {
         echo "<script>
