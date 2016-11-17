@@ -13,12 +13,88 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
 		<!-- FONTS -->
 		<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
-
-
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src = "js/jquery-3.0.0.min.js"></script>
-    	<!-- Include all compiled plugins (below), or include individual files as needed -->
-    	<script src="js/bootstrap.min.js"></script>
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/moment.js"></script>
+	    <script type="text/javascript" src="js/daterangepicker.js"></script>
+	    <!-- DROPDOWN -->
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+		<!-- DATE RANGE CALENDAR -->
+	    <script type="text/javascript">
+
+			$(function() {
+			    var start = moment().subtract(29, 'days');
+			    var end = moment();
+			    function cb(start, end) {
+			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+			        $('#term1Start').val(start.format('YYYY-MM-DD'));
+					$('#term1End').val(end.format('YYYY-MM-DD'));
+			    }
+			    function cb2(start, end) {			       
+			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+					$('#term2Start').val(start.format('YYYY-MM-DD'));
+					$('#term2End').val(end.format('YYYY-MM-DD'));
+				}
+			    function cb3(start, end) {
+			        $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+					$('#term3Start').val(start.format('YYYY-MM-DD'));
+					$('#term3End').val(end.format('YYYY-MM-DD'));
+				}
+
+			    $('#reportrange').daterangepicker({
+			        startDate: start,
+			        endDate: end
+			        }, cb);
+			    
+			    $('#reportrange2').daterangepicker({
+			        startDate: start,
+			        endDate: end
+			        }, cb2);
+
+			    $('#reportrange3').daterangepicker({
+			        startDate: start,
+			        endDate: end
+			        }, cb3);
+
+			    cb(start, end);
+			    cb2(start, end);
+			    cb3(start, end);
+			});
+		</script>
+
+
+		<script type="text/javascript">
+			$(function() {
+
+				var currDate = moment.currDate;
+
+			    $('input[name="dailydate"]').daterangepicker({
+			        singleDatePicker: true,
+			        showDropdowns: true,
+			        value: currDate
+			    }); 
+
+			});
+		</script>
+
+		<script type="text/javascript">
+			$(function() {
+
+				var currMonth =moment.currDate;
+
+			$('input[name="monthlydate"]').daterangepicker( {
+			    format: "mm-yyyy",
+			    viewMode: "months", 
+			    minViewMode: "months",
+			    enableYearToMonth: true, 
+			    enableMonthToDay : false,
+			    value : currMonth
+			});
+
+			});
+		</script>
 
     	<!-- For Segmented Tabs -->
     	<script type="text/javascript">
@@ -58,7 +134,54 @@
 		});
 
 		</script>
+		<!-- SCRIPT FOR SEGMENTED BUTTONS IN GENERATE REPORTS -->
+		<script>
+			$(document).ready(function(){
+				$("#facultyButtonDaily").click(function() {
+			      	$("#inputIDNumDaily").show();
+			        $("#inputOthersDaily").hide();
+			        console.log("ASD");
+			    });
+			    $("#othersButtonDaily").click(function() {
+			      	$("#inputOthersDaily").show();
+			      	$("#inputIDNumDaily").hide();
+			      	console.log("ASD");
+			    });
+			});
 
+			$(document).ready(function(){
+				$("#facultyButtonMonthly").click(function() {
+			      	$("#inputIDNumMonthly").show();
+			        $("#inputOthersMonthly").hide();
+			    });
+			    $("#othersButtonMonthly").click(function() {
+			      	$("#inputOthersMonthly").show();
+			      	$("#inputIDNumMonthly").hide();
+			    });
+			});
+
+			$(document).ready(function(){
+				$("#facultyButtonTerm").click(function() {
+			      	$("#inputIDNumTerm").show();
+			        $("#inputOthersTerm").hide();
+			    });
+			    $("#othersButtonTerm").click(function() {
+			      	$("#inputOthersTerm").show();
+			      	$("#inputIDNumTerm").hide();
+			    });
+			});
+
+			$(document).ready(function(){
+				$("#dailyButton").click(function() {
+			      	$("#inputDaily").show();
+			        $("#inputMonthlyTermEnd").hide();
+			    });
+			    $("#monthlyOrTermEndButton").click(function() {
+			      	$("#inputMonthlyTermEnd").show();
+			      	$("#inputDaily").hide();
+			    });
+			});
+		</script>
     	<script type="text/javascript">
 		    $("[rel='tooltip']").tooltip();    
 			    $('.thumbnail').hover(
@@ -69,8 +192,8 @@
 			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
 			        }
 			    ); 
+		
 		</script>
-
 		<script type="text/javascript">
 				var $table = $('#resulttable');
 
@@ -266,18 +389,17 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
 			            	 	
-			            	 	<div class = "col-xs-8">
+			            	 	<div id = "inputDaily" class = "col-xs-8">
 			            	 		<input type="text" class="form-control" name="dailydate" value="10/31/2016"/>
 			            	 	</div>
-			            		<!-- when radio button "others" is clicked, this must be SHOWN
-			            		<div class = "col-xs-8">
-						                <div id="reportrange" class="pull-right">
+								<div id = "inputMonthlyTermEnd" class = "col-xs-7" style = "display:none;">
+						                <div id="reportrange" class="pull-right" style = "padding:5px;">
 										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
 										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
 											<input type="hidden" id="term1Start" name="term1Start" value="">
 											<input type="hidden" id="term1End" name="term1End" value="">
 										</div>
-			            		</div>-->
+			            		</div>
 			            	 </div>
 
 			            	 <div class="form-group">
