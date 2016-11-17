@@ -151,9 +151,11 @@
 			        $("#inputOthersDaily").hide();
 			        console.log("ASD");
 			    });
+
 			    $("#othersButtonDaily").click(function() {
 			      	$("#inputOthersDaily").show();
 			      	$("#inputIDNumDaily").hide();
+			      	$("#inputIDNumDaily").removeAttr
 			      	console.log("ASD");
 			    });
 			});
@@ -179,7 +181,27 @@
 			      	$("#inputIDNumTerm").hide();
 			    });
 			});
+			$(document).ready(function(){
+				$('#inputName').click(function(){
+				var name =$("#name");
+		 		var idnumber =$("#idnumber");
+		 		name.removeAttr("readonly");
+		 		//idnumber.removeAttr("required");
+		 		//name.prop("required", "true");
+		 		idnumber.prop("readonly", "true");
+		 		});
+	 			
+	 			$('#inputID').click(function(){
+	 			var name =$("#name");
+		 		var idnumber =$("#idnumber");
+		 		name.prop("readonly", "true");
+		 		//idnumber.prop("required", "true");
+		 		//name.removeAttr("required");
+		 		idnumber.removeAttr("readonly");
+	 			});
 
+	 			
+			});
 			$(document).ready(function(){
 				$("#dailyButton").click(function() {
 			      	$("#inputDaily").show();
@@ -196,6 +218,7 @@
 			      	$("#inputDaily").hide();
 			        $("#inputMonthly").hide();
 			    });
+
 			});
 		</script>
 
@@ -400,7 +423,7 @@
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
 			            	 	
 			            	 	<div id = "inputDaily" class = "col-xs-8">
-			            	 		<input type="text" class="form-control" id = "dailydate" name="dailydate" value="9/24/2016"/>
+			            	 		<input type="text" class="form-control" id = "dailydate" name="dailydate"/>
 			            	 	</div>
 								
 								<div id = "inputMonthly" class = "col-xs-4" name = "monthly" style = "display:none;">
@@ -484,25 +507,6 @@
 							    </div>
 
 							</div>
-							<script>
-								$('#inputName').click(function(){
-
-
-		 							var name =$("#name");
-		 							var idnumber =$("#idnumber");
-		 							name.removeAttr("readonly");
-		 							idnumber.prop("readonly", "true");
-
-		 							
-	 							});
-	 							$('#inputID').click(function(){
-	 								var name =$("#name");
-		 							var idnumber =$("#idnumber");
-		 							name.prop("readonly", "true");
-		 							idnumber.removeAttr("readonly");
-	 							});
-							</script>
-
 
 						    <div id = "inputOthersDaily" style = "display:none;">
 
