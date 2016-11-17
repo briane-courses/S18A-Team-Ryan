@@ -4,7 +4,7 @@
     $stmt = $conn->prepare("SELECT * FROM Faculty WHERE id = :idNumber");
     $stmt->execute(["idNumber" => $_GET["id"]]);
     $faculty = $stmt->fetch(PDO::FETCH_ASSOC);
-    $stmt = $conn->prepare("SELECT date, time_start, time_end, Course.name AS course, section, Room.name AS room, CheckerAccount.user_name AS Checker, remarks
+    $stmt = $conn->prepare("SELECT date, time_start, time_end, Course.name AS course, section, Room.name AS room, CheckerAccount.user_name AS checker, remarks
         FROM Attendance, CourseOffering, Course, CheckerAccount, Room, RotationRoom, Rotation
         WHERE faculty_id = :idNumber 
             AND CourseOffering.course_id = Course.id;
@@ -29,7 +29,7 @@
 	<link href="../css/daterangepicker.css" rel="stylesheet" type="text/css"><!-- DROPDOWN-->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css" rel="stylesheet"><!-- FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
-	<link href="css/bootstrap-timepicker.min.css" type="text/css"><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<link href="../css/bootstrap-timepicker.min.css" type="text/css"><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
 	<script src="../js/jquery-3.0.0.min.js">
 	</script><!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -330,7 +330,17 @@
 						</thead>
 						<tbody>
                             <?php 
-                                
+                                foreach ($stmt as $row) {
+									echo "<tr class='row-data' data-href='#'>
+										<td>".$row["date"]."</td>
+										<td>".$row["time_start"]." - ".$row["time_end"]."</td>
+										<td>".$row["course"]."</td>
+										<td>".$row["section"]."</td>
+										<td>".$row["room"]."</td>
+										<td>".$row["checker"]."</td>
+										<td>".$row["remarks"]."</td>
+									</tr>";
+								}
                             ?>
 							<tr class="row-data" data-href="#">
 								<td>10/20/2016</td>
@@ -340,33 +350,6 @@
 								<td>G203</td>
 								<td>KEITH</td>
 								<td>VACANT ROOM</td>
-							</tr>
-							<tr class="row-data" data-href="#">
-								<td>10/28/2016</td>
-								<td>12:45 - 14:15</td>
-								<td>SOFENGG</td>
-								<td>S18A</td>
-								<td>G209</td>
-								<td>KEITH</td>
-								<td>LATE</td>
-							</tr>
-							<tr class="row-data" data-href="#">
-								<td>10/20/2016</td>
-								<td>09:15 - 10:45</td>
-								<td>SOFENGG</td>
-								<td>S17</td>
-								<td>G203</td>
-								<td>KEITH</td>
-								<td>VACANT ROOM</td>
-							</tr>
-							<tr class="row-data" data-href="#">
-								<td>10/28/2016</td>
-								<td>12:45 - 14:15</td>
-								<td>SOFENGG</td>
-								<td>S18A</td>
-								<td>G209</td>
-								<td>KEITH</td>
-								<td>LATE</td>
 							</tr>
 						</tbody>
 					</table>

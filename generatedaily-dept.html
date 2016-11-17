@@ -21,49 +21,6 @@
 	    <script type="text/javascript" src="js/daterangepicker.js"></script>
 	    <!-- DROPDOWN -->
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
-		<!-- DATE RANGE CALENDAR -->
-	    <script type="text/javascript">
-
-			$(function() {
-			    var start = moment().subtract(29, 'days');
-			    var end = moment();
-			    function cb(start, end) {
-			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			        $('#term1Start').val(start.format('YYYY-MM-DD'));
-					$('#term1End').val(end.format('YYYY-MM-DD'));
-			    }
-			    function cb2(start, end) {			       
-			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-					$('#term2Start').val(start.format('YYYY-MM-DD'));
-					$('#term2End').val(end.format('YYYY-MM-DD'));
-				}
-			    function cb3(start, end) {
-			        $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-					$('#term3Start').val(start.format('YYYY-MM-DD'));
-					$('#term3End').val(end.format('YYYY-MM-DD'));
-				}
-
-			    $('#reportrange').daterangepicker({
-			        startDate: start,
-			        endDate: end
-			        }, cb);
-			    
-			    $('#reportrange2').daterangepicker({
-			        startDate: start,
-			        endDate: end
-			        }, cb2);
-
-			    $('#reportrange3').daterangepicker({
-			        startDate: start,
-			        endDate: end
-			        }, cb3);
-
-			    cb(start, end);
-			    cb2(start, end);
-			    cb3(start, end);
-			});
-		</script>
-
 
 		<script type="text/javascript">
 			$(function() {
@@ -134,7 +91,7 @@
 		});
 
 		</script>
-		<!-- SCRIPT FOR SEGMENTED BUTTONS IN GENERATE REPORTS -->
+
 		<script>
 			$(document).ready(function(){
 				$("#facultyButtonDaily").click(function() {
@@ -142,9 +99,11 @@
 			        $("#inputOthersDaily").hide();
 			        console.log("ASD");
 			    });
+
 			    $("#othersButtonDaily").click(function() {
 			      	$("#inputOthersDaily").show();
 			      	$("#inputIDNumDaily").hide();
+			      	
 			      	console.log("ASD");
 			    });
 			});
@@ -170,18 +129,80 @@
 			      	$("#inputIDNumTerm").hide();
 			    });
 			});
+			$(document).ready(function(){
+				$('#inputName').click(function(){
+				var name =$("#name");
+		 		var idnumber =$("#idnumber");
+		 		name.removeAttr("readonly");
+		 		idnumber.val("");
+		 		//idnumber.removeAttr("required");
+		 		//name.prop("required", "true");
+		 		idnumber.prop("readonly", "true");
+		 		});
+	 			
+	 			$('#inputID').click(function(){
+	 			var name =$("#name");
+		 		var idnumber =$("#idnumber");
+		 		name.prop("readonly", "true");
+		 		//idnumber.prop("required", "true");
+		 		//name.removeAttr("required");
+		 		idnumber.removeAttr("readonly");
+		 		name.val("");
 
+	 			});
+
+	 			
+			});
 			$(document).ready(function(){
 				$("#dailyButton").click(function() {
 			      	$("#inputDaily").show();
-			        $("#inputMonthlyTermEnd").hide();
+			        $("#inputMonthly").hide();
+			        $("#inputMonthly2").hide();
+			        $("#inputTerm").hide();
 			    });
-			    $("#monthlyOrTermEndButton").click(function() {
-			      	$("#inputMonthlyTermEnd").show();
+			    $("#monthlyButton").click(function() {
+			      	$("#inputMonthly").show();
+			      	$("#inputMonthly2").show();
 			      	$("#inputDaily").hide();
+			      	$("#inputTerm").hide();
 			    });
+			    $("#termButton").click(function() {
+			      	$("#inputTerm").show();
+			      	$("#inputDaily").hide();
+			        $("#inputMonthly").hide();
+			        $("#inputMonthly2").hide();
+			    });
+
 			});
+
+			$(document).ready(function(){
+				$('#searchByName').click(function(){
+				var name =$("#search-name");
+		 		var idnumber =$("#search-idnumber");
+		 		name.removeAttr("readonly");
+		 		idnumber.val("");
+		 		//idnumber.removeAttr("required");
+		 		//name.prop("required", "true");
+		 		idnumber.prop("readonly", "true");
+		 		});
+	 			
+	 			$('#searchByID').click(function(){
+	 			var name =$("#search-name");
+		 		var idnumber =$("#search-idnumber");
+		 		name.prop("readonly", "true");
+		 		//idnumber.prop("required", "true");
+		 		//name.removeAttr("required");
+		 		idnumber.removeAttr("readonly");
+		 		name.val("");
+
+	 			});
+
+	 			
+			});
+
+
 		</script>
+
     	<script type="text/javascript">
 		    $("[rel='tooltip']").tooltip();    
 			    $('.thumbnail').hover(
@@ -382,11 +403,11 @@
 			<br><br>
     	</div>
 
-    		<!-- GENERATE REPORTS MODAL -->
+		<!-- GENERATE REPORTS MODAL -->
 		<div class="modal fade" id="generate-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container" id = "daily-container">
-					<form class = "form form-horizontal">
+					<form class = "form form-horizontal" action="generatereports.php" method="POST">
 						<fieldset>
 			            	 <legend class="text-center"><h3><b>Generate Reports</b></h3></legend>
 
@@ -394,14 +415,18 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Type:</label>
 						        <div class="col-xs-5">
-						            <div class=" segmented-report-type" style="width:500px;margin-left:5px;">
-									    <a id ="dailyButton" href="#" class="list-group-item active">
+						            <div class="segmented-report-type" style="width:500px;margin-left:5px;">
+									    <a id ="dailyButton" href="#" class="list-group-item active" value = "daily">
 									    	Daily
-									    	<input type="radio" checked/>
+									    	<input name ="buttons" value ="daily"type="radio" checked/>
 									    </a>
-									    <a id="monthlyOrTermEndButton" href="#" class="list-group-item">
-									    	Monthly / Term-End
-									        <input type="radio"/>
+									    <a id="monthlyButton" href="#" class="list-group-item" value = "month">
+									    	Monthly
+									        <input name ="buttons" value ="monthly" type="radio"/>
+									    </a>
+									    <a id ="termButton" href="#" class="list-group-item" value = "term">
+									    	Term
+									    	<input name ="buttons" value ="term" type="radio"/>
 									    </a>
 									                
 									</div>
@@ -414,16 +439,57 @@
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
 			            	 	
 			            	 	<div id = "inputDaily" class = "col-xs-8">
-			            	 		<input type="text" class="form-control" name="dailydate" value="10/31/2016"/>
+			            	 		<input type="text" class="form-control" id = "dailydate" name="dailydate"/>
 			            	 	</div>
-								<div id = "inputMonthlyTermEnd" class = "col-xs-7" style = "display:none;">
-						                <div id="reportrange" class="pull-right" style = "padding:5px;">
-										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
-											<input type="hidden" id="term1Start" name="term1Start" value="">
-											<input type="hidden" id="term1End" name="term1End" value="">
-										</div>
+								
+								<div id = "inputMonthly" class = "col-xs-4" name = "monthly" style = "display:none;">
+									
+									<select class="selectpicker show-tick" style = "text-align:left;;" name ="months" data-width="110px">
+										<option selected>January</option>
+										<option>February</option>
+										<option>March</option>
+										<option>April</option>
+										<option>May</option>
+										<option>June</option>
+										<option>July</option>
+										<option>August</option>
+										<option>September</option>
+										<option>October</option>
+										<option>November</option>
+										<option>December</option>
+									</select>						                
+
+
 			            		</div>
+
+			            		<div id = "inputMonthly2" style = "display:none;">
+				            		<select id = "try" class="selectpicker show-tick" style = "text-align:left;" name ="years" data-width="100px">
+												<option selected>2016</option>
+												<option>2015</option>
+												
+									</select>
+								</div>
+									
+
+			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
+						                
+						                <select class="selectpicker show-tick" style = "text-align:left;" name ="academicyears">
+												<option selected>A.Y. 2016-2017</option>
+												<option>A.Y. 2015-2016</option>
+												
+									    </select>
+									    <br><br>
+						                <select class="selectpicker show-tick" style = "text-align:left;" name ="terms">
+												<option value = "1" selected>Term 1</option>
+												<option value = "2">Term 2</option>
+												<option value = "3">Term 3</option>
+												
+									    </select>
+
+									    
+
+			            		</div>
+
 			            	 </div>
 
 			            	 <div class="form-group">
@@ -432,43 +498,46 @@
 						            <div class=" segmented-control" style="width:150px;margin-left:5px;">
 									    <a id ="facultyButtonDaily" href="#" class="list-group-item active">
 									    	Faculty
-									    	<input type="radio" checked/>
+									    	<input type="radio" name ="options" value ="faculty" checked/>
 									    </a>
 									    <a id="othersButtonDaily" href="#" class="list-group-item">
 									    	Others
-									        <input type="radio"/>
+									        <input type="radio" name ="options" value = "others"/>
 									    </a>
 									                
 									</div>
 						        </div>
 						    </div>
 						    <hr class="style2 col-xs-offset-1 col-xs-9"><br>
+
 						    <div id = "inputIDNumDaily">
-							    <div class="form-group" id = "inputIDNumDaily">
+							    <div class="form-group">
 		                            <div class="form-group">
-					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by ID Number: </label>
+					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
+					            	 		<input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input type="text" class="form-control"	id="generatefaculty"/>
+					            	 		<input type="text" class="form-control"	id= "idnumber" name="idnumber"/>
 					            	 	</div>
 					            	</div>
 
 				            	 	<div class="form-group">
-					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by Name: </label>
+					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
+					            	 		<input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input type="text" class="form-control"	id="generatefaculty"/>
+					            	 		<input type="text" class="form-control"	id= "name" name="name" readonly/>
+
 					            	 	</div>
 					            	</div>
 							    </div>
 
 							</div>
 
-
 						    <div id = "inputOthersDaily" style = "display:none;">
 
 							    <div class = "form-group">
 				            	 		<label class = "control-label col-xs-4" style = "text-align:left;">Report filter:</label>
 				            	 		<div class = "col-xs-5" style="width:250px">
-											<select class="selectpicker show-tick" style = "text-align:left;">
+											<select class="selectpicker show-tick" style = "text-align:left;" name ="college">
 												<option selected>All Colleges</option>
 												<option>CLA</option>
 												<option>COB</option>
@@ -481,19 +550,21 @@
 				            	 		</div>
 							    </div>
 
-							    <div class = "form-group" >
+							    <div class = "form-group">
 				            	 		<label class = "control-label col-xs-4" style = "text-align:left;"></label>
 				            	 		<div class = "col-xs-5">
-											<select class="selectpicker show-tick">
+											<select class="selectpicker show-tick" name = "department" multiple>
 											<option selected>All Departments</option>
 												<option>Software Technology</option>
 												<option>Information Technology</option>
 												<option>Computer Technology	</option>
+
 									    	</select>
 				            	 		</div>
 							    </div>
 							</div>
 							<br>
+
 						    <div class="text-center">
 						        <button id="btnViewReportDaily" type="submit" class="btn btn-success btn-lg col-xs-4 submit" style = "margin-left:40px; margin-right:30px;font-size:14px;"> <i class="glyphicon glyphicon-th-list"></i> GENERATE </button> 
 						        
@@ -506,6 +577,7 @@
 				</div>
 		  </div>
 		</div>
+
 
     </body>
 
