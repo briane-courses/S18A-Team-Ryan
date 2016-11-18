@@ -5,8 +5,6 @@
 
 	$buttons = isset($_POST["buttons"]) ? $_POST["buttons"] : "monthly/term";
 
-   
-	
     //echo "Data: ".$date."</br>";
     //echo $buttonDaily."</br>";
 	
@@ -71,6 +69,13 @@
 	
 	$options = isset($_POST["options"]) ? $_POST["options"] : false;
 
+	 // if (($timestamp = strtotime($date)) !== false)
+	 // {
+		// $php_date = getdate($timestamp);
+		// // or if you want to output a date in year/month/day format:
+		// $dateString = date("F d, Y", $timestamp); // see the date manual page for format options      
+	 // }
+
 ?>
 	<head>
 		<meta charset = "UTF-8">
@@ -100,22 +105,17 @@
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
     	<!-- For Segmented Tabs -->
     	<script type="text/javascript">
-			$(function(){
-    
-		    $('div.segmented-control a').on('click', function(){
-		        
-		        $('div.segmented-control a').each(function(i,e){
-		            $(e).removeClass('active');
-		        });
-		        
-		        $(this).addClass('active');
-		        $(this).find('input').prop('checked',true);
-		        return false;
-		        
-		    });
-		    
-		});
+			$(function() {
 
+				var currDate = moment.currDate;
+
+			    $('input[name="dailydate"]').daterangepicker({
+			        singleDatePicker: true,
+			        showDropdowns: true,
+			        value: currDate
+			    }); 
+
+			});
 		</script>
 
 
@@ -278,41 +278,6 @@
 
 			        	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id = "dashay-button"> 
 			        		<b>Current AY: 2016 - 2017 || Term 1<b>
-			        		<?php 
-
-									 if (($timestamp = strtotime($date)) !== false)
-									 {
-									   $php_date = getdate($timestamp);
-									   // or if you want to output a date in year/month/day format:
-									   $dateString = date("F d, Y", $timestamp); // see the date manual page for format options      
-									 }
-									 
-
-									 // $stmt= $conn->prepare("SELECT name, term_no
-										// 					FROM academicyear A
-										// 					INNER JOIN term T ON T.year_id = A.id
-										// 					WHERE t.term_no =
-										// 					(SELECT term_no FROM term
-										// 					WHERE :dailydate BETWEEN term.start AND term.end);");
-									 // $stmt->execute(["dailydate" => $date]);
-
-									 // $result = $stmt->execute();
-									 // $rows = $stmt->fetch(PDO::FETCH_ASSOC); // assuming $result == true
-								
-
-									 
-									 //        echo "Current ".$rows['name']." || Term ".$rows['term_no'];
-									 
-									 // switch($rows['term_no'] )
-									 // {
-									 // 	case '1': $term_no_string = '1st'; break;
-									 // 	case '2': $term_no_string = '2nd'; break;
-									 // 	case '3': $term_no_string = '3rd'; break;
-
-									 // }
-									 //$labelDate = "<h5>".$term_no_string." TRIMESTER, ".$rows['name']."</h5><h5>".$dateString."</h5>"
-
-								?>
 			        		</button>
 
 					</li>
@@ -378,24 +343,8 @@
 			<div class="row">
 				<div class ="box col-md-12">
 						<div class="box-content">
-							<table id="resulttable" class="table table-bordered table-striped table-condensed">
-								<thead class="collegelabel">
-									<tr><th colspan ='9'></th></tr>
-								</thead> 
-								<thead id = 'col-header'><tr>
-									<th>Date </th>
-									<th>College </th>
-									<th>Department</th>
-									<th>Faculty</th>
-									<th>Time</th>
-									<th>Course</th>
-									<th>Section</th>
-									<th>Room</th>
-									<th>Remarks</th>
-									</tr>
-									</thead>
-									<tbody>
-									<?php
+							
+										<?php
 
 										$filter = "";
  										
@@ -476,13 +425,31 @@
 																	INNER JOIN course C ON C.id = A.course_id
 																	".$filter."
 																	;");
+
+											
 																
 									 		$result = $stmt->execute();
-
-										$prevCollege = "";
-									 		while($rows = $stmt->fetch(PDO::FETCH_ASSOC))
+									 		if($rows = $stmt->fetch(PDO::FETCH_ASSOC))
 									 		{
-									 			if($prevCollege != $rows['college'])
+									 			echo "<table id='resulttable' class='table table-bordered table-striped table-condensed'>
+														<thead class='collegelabel'>
+															<tr><th colspan ='9'></th></tr>
+														</thead> 
+									 					<thead id = 'col-header'><tr>
+														<th>Date </th>
+														<th>College </th>
+														<th>Department</th>
+														<th>Faculty</th>
+														<th>Time</th>
+														<th>Course</th>
+														<th>Section</th>
+														<th>Room</th>
+														<th>Remarks</th>
+														</tr>
+														</thead>
+														<tbody>";
+									 			do
+									 			{
 
 									 				echo "<tr class='row-data' data-href='#'>
 									 				<td>".$rows['date']."</td>
@@ -495,11 +462,20 @@
 									 				<td>".$rows['room_name']."</td>
 									 				<td>".$rows['remarks']."</td></tr>";
 
+									 			}while($rows = $stmt->fetch(PDO::FETCH_ASSOC));
+
+									 			echo "</tbody> </table>";
+
 									 		}
+									 		else
+									 		{
+									 			echo "<h1> NO RECORDS FOUND </h1>";
+									 		}
+									 		
 											
 										?>
-								</tbody>
-							</table>
+								
+							
 						</div>
 				</div>
 			</div><br><br>
