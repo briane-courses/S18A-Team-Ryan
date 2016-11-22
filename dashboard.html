@@ -6,11 +6,11 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<title>FAMS 2.0</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/global.css" rel="stylesheet">
 	<link href="css/dashboard.css" rel="stylesheet">
-	<link href="css/add-AY.css" rel="stylesheet">
 	<link href="css/daterangepicker.css" rel="stylesheet" type="text/css"><!-- DROPDOWN-->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css" rel="stylesheet"><!-- FONTS -->
-	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet"><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<link href="https://fonts.googleapis.com/css?family=Bungee|Gudea" rel="stylesheet"><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
 	<script src="js/jquery-3.0.0.min.js">
 	</script><!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -21,7 +21,6 @@
 	</script>
 	<script src="js/daterangepicker.js" type="text/javascript">
 	</script><!-- DROPDOWN -->
-
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js">
 	</script>
 	<script type="text/javascript">
@@ -108,8 +107,10 @@
 		$(document).ready(function(){
 			$('#inputName').click(function(){
 				var name = $("#name");
+				var fname = $("#fname");
 				var idnumber = $("#idnumber");
 				name.removeAttr("readonly");
+				fname.removeAttr("readonly");
 				idnumber.val("");
 				//idnumber.removeAttr("required");
 				//name.prop("required", "true");
@@ -117,8 +118,10 @@
 			});
 			$('#inputID').click(function(){
 				var name = $("#name");
+				var fname = $("#fname");
 				var idnumber = $("#idnumber");
 				name.prop("readonly", "true");
+				fname.prop("readonly", "true");
 				//idnumber.prop("required", "true");
 				//name.removeAttr("required");
 				idnumber.removeAttr("readonly");
@@ -240,7 +243,7 @@
 		<br>
 		<div class="im-centered">
 			<div class="row text-center">
-				<h4 style="font-family: 'Bungee' ,cursive;">Faculty Attendance Monitoring System</h4>
+				<h3><b>Faculty Attendance Monitoring System</b></h3>
 			</div><br>
 			<br>
 			<div class="row">
@@ -272,8 +275,8 @@
 			<div class="addaymodal-container" id="searchrecords-container">
 				<form action="php/search-faculty.php" method="POST" class="form form-horizontal">
 					<fieldset>
-						<legend class="text-center"></legend>
-						<h3><legend class="text-center"><b>Search Attendance Records</b></legend></h3>
+						<legend style = "margin-bottom:-10px;"></legend>
+						<h3><legend class="text-center"><b>SEARCH ATTENDANCE RECORDS</b></legend></h3>
 						<div class="form-group">
 							<label class="control-label col-xs-5" style="text-align:left;"><input checked id="searchByID" name="searchinputs" type="radio" value="search-idnumber">&nbsp;&nbsp;by ID Number:</label>
 							<div class="col-xs-4">
@@ -281,11 +284,16 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-xs-5" style="text-align:left;"><input id="searchByName" name="searchinputs" type="radio" value="search-name">&nbsp;&nbsp;by Name:</label>
+							<label class="control-label col-xs-5" style="text-align:left;"><input id="searchByName" name="searchinputs" type="radio" value="search-name">&nbsp;&nbsp;by Name:</label> 
 							<div class="col-xs-7">
-								<input class="form-control" id="search-name" name="lastname" style="width:104px;" type="text" placeholder="Last Name" readonly>
-								<input class="form-control" id="search-fname" name="firstName" style="width:104px;" type="text" placeholder="First Name" readonly>
+								<input id="search-name" name="lastname" style="width:104px;" type="text" placeholder="Last Name" readonly>
+								<input id="search-fname" name="firstName" style="width:104px;" type="text" placeholder="First Name" readonly>
 							</div>
+
+							<!-- IF THE ONE INPUT ONLY 
+							<div class="col-xs-4">
+								<input class = "form-control" id="search-name" name="lastname" style="width:213px;" type="text" placeholder="Last Name, FirstName" readonly>
+							</div>-->
 						</div><br>
 						<div class="text-center">
 							<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-search"></i> SUBMIT</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
@@ -300,8 +308,8 @@
 			<div class="addaymodal-container" id="daily-container">
 				<form action="generatereports.php" class="form form-horizontal" method="post">
 					<fieldset>
-						<legend class="text-center"></legend>
-						<h3><legend class="text-center"><b>Generate Reports</b></legend></h3>
+						<legend style = "margin-bottom:-10px;"></legend>
+						<h3><legend class="text-center"><b>GENERATE REPORTS</b></legend></h3>
 						<div class="form-group">
 							<label class="control-label col-xs-4" style="text-align:left;">Type:</label>
 							<div class="col-xs-5">
@@ -313,7 +321,7 @@
 						<div class="form-group">
 							<label class="control-label col-xs-4" style="text-align:left;">Date:</label>
 							<div class="col-xs-8" id="inputDaily">
-								<input class="form-control" id="dailydate" name="dailydate" type="text">
+								<input class="form-control" id="dailydate" name="dailydate" type="text" style = "width:100px;">
 							</div>
 							<div class="col-xs-4" id="inputMonthly" name="monthly" style="display:none;">
 								<select class="selectpicker show-tick" data-width="110px" name="months" style="text-align:left;;">
@@ -403,14 +411,16 @@
 								<div class="form-group">
 									<label class="control-label col-xs-4" style="text-align:left; margin-left:15px;"><input checked id="inputID" name="inputs" type="radio" value="idnumber">&nbsp;&nbsp;by ID Number:</label>
 									<div class="col-xs-3">
-										<input class="form-control" id="idnumber" name="idnumber" type="text">
+										<input class="form-control" id="idnumber" name="idnumber" type="text" style = "width:214px">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-xs-4" style="text-align:left; margin-left:15px;"><input id="inputName" name="inputs" type="radio" value="name">&nbsp;&nbsp;by Name:</label>
-									<div class="col-xs-3">
-										<input class="form-control" id="name" name="name" type="text">
+									<label class="control-label col-xs-4" style="text-align:left; margin-left:15px;"><input id="inputName" name="inputs" type="radio" placeholder = "Last N" value="name">&nbsp;&nbsp;by Name:</label>
+									<div class="col-xs-7">
+										<input id="name" name="lastname" style="width:104px;" type="text" placeholder="Last Name" readonly>
+										<input id="fname" name="firstName" style="width:104px;" type="text" placeholder="First Name" readonly>
 									</div>
+
 								</div>
 							</div>
 						</div>
@@ -478,8 +488,8 @@
 		<div class="modal-dialog">
 			<div class="addaymodal-container" id="searchrecords-container">
 				<fieldset>
-					<legend class="text-center"></legend>
-					<h3><legend class="text-center"><b>Email Daily Attendance Report to all Faculty</b></legend></h3>
+					<legend style = "margin-bottom:-10px;"></legend>
+					<h3><legend class="text-center"><b>EMAIL REPORTS</b></legend></h3>
 					<div class="text-center">
 						<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-envelope"></i> EMAIL</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
 					</div>
