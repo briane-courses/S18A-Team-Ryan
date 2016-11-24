@@ -135,13 +135,3 @@ table td, table th {
     margin-left: 20px;
 }
 
-input[type=text]{
-  height: 34px !important;
-  width: 180px;
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-input[type=text]::-webkit-input-placeholder{
-   color:black;
-}
