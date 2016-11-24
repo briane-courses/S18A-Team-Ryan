@@ -1,0 +1,147 @@
+body{
+    background-image: url("../img/glass-background.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+@media screen and (min-width:768px){
+    .navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        display: block;
+        width: 160px;
+        text-align: center;
+        background-color: rgb(21,70,10);
+        color:white;
+    }
+    .navbar>.container .navbar-brand-centered, 
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -80px;
+    }
+}
+
+.im-centered-body { margin: auto; width:100%;}
+
+.im-centered { margin: auto; width:60%;}
+
+.box-inner{
+    border: 2px solid #bfc6bd;
+    background-color: white;
+}
+
+.innerbox{
+    height:150px;
+    border:solid 1px black;
+}
+
+.searchresults-box{
+    padding-right: 0px;
+    padding-left:0px;
+    
+}
+
+
+#title-header{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.label{
+    font-size: 14px;
+    color: black;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+#facultyname{
+    font-weight: bold;
+    float: right;
+    margin-top: 10px;
+    margin-right: 800px;
+}
+
+#department, #kind{
+    margin-left: 160px;
+}
+
+#facultylabel{
+    margin-top: 10px;
+}
+
+#idlabel{
+    float: right;
+    margin-top: 10px;
+    margin-right: -500px;
+}
+
+#facultyid{
+    float: right;
+    margin-top: 10px;
+    margin-right: -800px;
+    font-weight: bold;
+}
+
+.table-bordered {
+    border: 1px solid #dddddd;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+table {
+    background-color: transparent;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: #859d81;
+}
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
+    border: 1px solid #b0bdac;
+}
+.table-condensed>thead>tr>th, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td {
+    padding: 5px;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #b0bdac;
+}
+table td, table th {
+    padding: 9px 10px;
+    text-align: left;
+}
+
+.row-data{
+    cursor:pointer;
+}
+
+#class-choose{
+    margin-left: 20px;
+}
+
+#dailydate{
+    margin-left: 20px;
+}
+
+.selectpicker{
+    margin-left: 20px;
+}
+
+input[type=text]{
+  height: 34px !important;
+  width: 180px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+input[type=text]::-webkit-input-placeholder{
+   color:black;
+}

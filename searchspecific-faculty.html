@@ -1,0 +1,662 @@
+<html>
+	<head>
+		<meta charset = "UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+		<title> Search Specific Faculty </title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/searchspecific-faculty.css">
+		<link rel="stylesheet" href="css/dashboard.css">
+		<link rel="stylesheet" href="css/add-AY.css">
+		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
+		<!-- DROPDOWN-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+		<!-- FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+
+		<link type="text/css" href="css/bootstrap-timepicker.min.css" />
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    	<script src = "js/jquery-3.0.0.min.js"></script>
+    	<!-- Include all compiled plugins (below), or include individual files as needed -->
+    	<script src="js/bootstrap.min.js"></script>
+    	<script type="text/javascript" src="js/moment.js"></script>
+	    <script type="text/javascript" src="js/daterangepicker.js"></script>
+	    <script src="http://momentjs.com/downloads/moment-with-locales.js"></script>
+		<script src="http://momentjs.com/downloads/moment-timezone-with-data.js"></script>
+
+	    <!-- DROPDOWN -->
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+
+    	<script type="text/javascript">
+		    $("[rel='tooltip']").tooltip();
+			    $('.thumbnail').hover(
+			        function(){
+			            $(this).find('.caption').slideDown(500); //.fadeIn(250)
+			        },
+			        function(){
+			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
+			        }
+			    ); 
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function($) {
+			    $(".table-row").click(function() {
+			        window.document.location = $(this).data("href");
+			    });
+			});
+		</script>
+
+		<script type="text/javascript">
+			$(function() {
+
+				var currDate = moment.currDate;
+
+			    $('input[name="dailydate"]').daterangepicker({
+			        singleDatePicker: true,
+			        showDropdowns: true,
+			        value: currDate
+			    }); 
+
+			});
+		</script>
+
+		<script type="text/javascript">
+			$(function() {
+
+				var currDate = moment.currDate;
+
+			    $('input[name="dailydate"]').daterangepicker({
+			        singleDatePicker: true,
+			        showDropdowns: true,
+			        value: currDate
+			    }); 
+
+			});
+		</script>
+
+		<script type="text/javascript">
+			$(function() {
+
+				var currMonth =moment.currDate;
+
+			$('input[name="monthlydate"]').daterangepicker( {
+			    format: "mm-yyyy",
+			    viewMode: "months", 
+			    minViewMode: "months",
+			    enableYearToMonth: true, 
+			    enableMonthToDay : false,
+			    value : currMonth
+			});
+
+			});
+		</script>
+
+		<script type="text/javascript">
+		    $("[rel='tooltip']").tooltip();    
+			    $('.thumbnail').hover(
+			        function(){
+			            $(this).find('.caption').slideDown(500); //.fadeIn(250)
+			        },
+			        function(){
+			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
+			        }
+			    ); 
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function($) {
+			    $(".row-data").click(function() {
+			        window.document.location = $(this).data("href");
+			    });
+			});
+		</script>
+    </head>
+
+    <body>
+    	<nav class="navbar navbar-default" role="navigation">
+    	  <div class="container">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <div class="navbar-brand navbar-brand-centered">FAMS</div>
+			    </div>
+
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="navbar-brand-centered">
+			      <ul class="nav navbar-nav">
+			        <li><a href="dashboard.html"><b>Maintenance</b></a></li>
+			        <li><a href="dashboard-reports.html"><b>Reports</b></a></li>		
+			      </ul>
+				  <ul class="nav navbar-nav navbar-right" style = "padding:7px;">
+			        <li>
+			        	<button type="button" class="btn btn-default" id = "dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
+					</li>
+				  </ul>
+			    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
+		<div class = "container" style = "margin-top:-20px;">
+			<div class = "im-centered-body">
+				<div class = "row">
+					<div style = "margin:auto;width:98%;margin-left:150px">
+							<div class = "box col-xs-3 searchresults-box">
+								<div class="box-inner innerbox"><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<label> Type of Classes </label>
+									<div id="class-choose" class="radio">
+									  &nbsp;<label><input type="radio" name="class-type" checked>Normal</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									  <label><input type="radio" name="class-type">Makeup</label>
+									</div>
+									
+
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="checkbox-inline">
+									  <input type="checkbox" id="inlineCheckbox1" name = "load-type" value="option1" checked> Undergraduate
+									</label>
+									<label class="checkbox-inline">
+									  <input type="checkbox" id="inlineCheckbox1" name = "load-type" value="option1"> Graduate
+									</label>
+																											  
+									</div>
+								</div>
+							</div>
+
+							<div class = "box col-xs-2 searchresults-box">
+								<div class = "box-inner innerbox"><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<label> Filter by </label>
+									<div id="class-choose" class="radio">
+									  &nbsp;<label><input type="radio" name="filter-type" checked>Daily</label><br>
+									  &nbsp;<label><input type="radio" name="filter-type">Monthly</label><br>
+									  &nbsp;<label><input type="radio" name="filter-type">Term-End</label>
+									</div>
+								</div>
+							</div>
+
+
+							<div class = "box col-xs-3 searchresults-box">
+								<div class = "box-inner innerbox"><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<label> Filter Input </label>
+									<form class = "form form-horizontal">
+										<div class = "form-group">
+		                                	<label class = "control-label col-xs-5" style = "text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Date </label>
+				            	 			<div class = "col-xs-1">
+				            	 				<input style = "width:130px;"type="text" class="form-control" name="dailydate" value="10/31/2016"/>
+				            	 			</div>										
+										</div>
+
+										<div class = "form-group" >
+		                                	<label class = "control-label col-xs-5" style = "text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Month </label>
+				            	 			<div class = "col-xs-1" >
+				            	 				<select style = "width:130px;height:25px">
+														<option selected>January</option>
+														<option>February</option>
+														<option>March</option>
+														<option>April</option>
+														<option>May</option>
+														<option>June</option>
+														<option>July</option>
+														<option>August</option>
+														<option>September</option>
+														<option>October</option>
+														<option>November</option>
+														<option>December</option>
+
+											    </select>
+				            	 			</div>										
+										</div>
+
+										<div class = "form-group" style = "display:none;">
+		                                	<label class = "control-label col-xs-5" style = "text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Year </label>
+				            	 			<div class = "col-xs-1" style = "width:130px;">
+				            	 				<select style = "width:130px;height:25px">
+														<option selected>Term 1</option>
+														<option>February</option>
+														<option>March</option>
+														<option>April</option>
+														<option>May</option>
+														<option>June</option>
+														<option>July</option>
+														<option>August</option>
+														<option>September</option>
+														<option>October</option>
+														<option>November</option>
+														<option>December</option>
+
+											    </select>
+				            	 			</div>										
+										</div>
+
+									</form>
+
+								</div>
+							</div>
+
+							<div class = "box col-xs-1 searchresults-box text-center">
+
+								<div class = "box-inner innerbox"><br>
+									<label> Search </label><br>
+									<button class = "btn btn-lg btn-success" data-toggle="modal" data-target="#searchrecords-modal"><i class = "glyphicon glyphicon-search"></i></button>
+								</div>
+							</div>
+
+					</div>
+				</div>
+
+				<br>
+				<h5 id="title-header"> Search Results  </h5>
+				<div class = "row">
+					<div class ="box col-xs-12">
+						<div class="box-inner">
+							<div class="row">
+								<br>
+								<p class = "col-xs-1"></p>
+								<p class = "col-xs-2">Faculty Name:</p>
+								<p class = "col-xs-3"><b>SAMSON, BRIANE PAUL V.</b></p>
+								<p class = "col-xs-2"></p>
+								<p class = "col-xs-2"> Faculty ID: </p>
+								<p class = "col-xs-2"> 12345678 </p>
+
+							</div>
+
+							<div class="row">
+								<p class = "col-xs-1"></p>
+								<p class = "col-xs-2"></p>
+								<p class = "col-xs-3">Software Technology Department</p>
+							</div>
+
+							<div class="row">
+								<p class = "col-xs-1"></p>
+								<p class = "col-xs-2"></p>
+								<p class = "col-xs-3">Undergraduate Lecture</p>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<br><br><br>
+				<div class="row">
+					<div class ="box col-xs-12">
+							<div class="box-content">
+								<table class="table table-bordered table-condensed table-hover">
+									<thead>
+										<tr>
+											<th>Date</th>
+											<th>Time</th>
+											<th>Course</th>
+											<th>Section</th>
+											<th>Room</th>
+											<th>Checker</th>
+											<th>Remarks</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="row-data" data-href="#">
+											<td>10/20/2016</td>
+											<td>09:15 - 10:45</td>
+											<td>SOFENGG</td>
+											<td>S17</td>
+											<td>G203</td>
+											<td>KEITH</td>
+											<td>VACANT ROOM</td>
+										</tr>
+										<tr class="row-data" data-href="#">
+											<td>10/28/2016</td>
+											<td>12:45 - 14:15</td>
+											<td>SOFENGG</td>
+											<td>S18A</td>
+											<td>G209</td>
+											<td>KEITH</td>
+											<td>LATE</td>
+										</tr>
+										<tr class="row-data" data-href="#">
+											<td>10/20/2016</td>
+											<td>09:15 - 10:45</td>
+											<td>SOFENGG</td>
+											<td>S17</td>
+											<td>G203</td>
+											<td>KEITH</td>
+											<td>VACANT ROOM</td>
+										</tr>
+										<tr class="row-data" data-href="#">
+											<td>10/28/2016</td>
+											<td>12:45 - 14:15</td>
+											<td>SOFENGG</td>
+											<td>S18A</td>
+											<td>G209</td>
+											<td>KEITH</td>
+											<td>LATE</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+					</div>
+				</div>
+	    	</div>
+    	</div>
+
+		<!-- SEARCH ATTENDANCE RECORDS MODAL -->
+		<div class="modal fade" id="searchrecords-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		 <div class="modal-dialog">
+				<div class="addaymodal-container" id = "searchrecords-container">
+					<form class = "form form-horizontal">
+						<fieldset>
+			            	<legend class="text-center"><h3><b>Search Attendance Records</b></h3></legend>
+
+							<div class="form-group">
+			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by ID Number: </label>
+			            	 	<div class = "col-xs-4">
+			            	 		<input type="text" class="form-control"	/>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by Name: </label>
+			            	 	<div class = "col-xs-4">
+			            	 		<input type="text" class="form-control"	/>
+			            	 	</div>
+			            	 </div>
+							
+							<br>
+							<div class="text-center">
+						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-search"></i> SUBMIT </button> 
+						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+				            </div>
+						
+			        	</fieldset>
+			
+					</form>
+
+
+				</div>
+		  </div>
+		</div>
+
+		</div>
+		<div class="navbar navbar-fixed-bottom">
+	    	<div class="container text-center">
+	      		<div class = "im-centered">
+	      		  <a href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#addrecord-modal">
+			      <span class="glyphicon glyphicon-plus"></span> ADD NEW RECORD </a>
+			      <a class="navbar-btn btn-success btn" data-toggle="modal" data-target="#modifyrecord-modal">
+			      <span class="glyphicon glyphicon-pencil"></span> MODIFY  </a>
+
+			      <a href="http://youtu.be/zJahlKPCL9g" class="navbar-btn btn-danger btn">
+			      <span class="glyphicon glyphicon-trash"></span> REMOVE </a>
+			      <a class="navbar-btn btn-success btn" data-toggle="modal" data-target="#makeup-modal">
+			      <span class="glyphicon glyphicon-plus"></span> ADD MAKE UP CLASS  </a>
+	      		</div>
+	   		</div>	
+		</div>
+
+
+
+		<!-- ADD NEW RECORD MODAL -->
+		<div class="modal fade" id="addrecord-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+				<div class="addaymodal-container" id = "daily-container">
+					<form class = "form form-horizontal" action="php/generate-daily.php" method="POST">
+						<fieldset>
+			            	 <legend class="text-center"><h3><b>Add New Attendance Record</b></h3></legend>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty ID No:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control" value = "123456" disabled/>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty Name:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control" value = "Briane Samson" disabled/>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Absence Date:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control" name="dailydate" value="10/31/2016"/>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Course:</label>
+			            	 	<div class = "col-xs-8">
+			            	 				<select style = "text-align:left;width:180px;height:30px;">
+												<option selected>SOFENGG</option>
+												<option>SWDESPA</option>
+									    	</select>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Section:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input id="section" type="text" class="form-control"/>
+			            	 	</div>
+			            	 </div>
+
+			            	<div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Checker:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control"/>
+			            	 	</div>
+			            	 </div>
+			            	 	<div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Remarks:</label>
+			            	 	<div class = "col-xs-8" style = "text-align:left;">
+			            	 				<select style = "text-align:left;width:180px;height:30px;">
+												<option selected>VR Vacant Room</option>
+												<option>CLA</option>
+												<option>COB</option>
+												<option>COS</option>
+												<option>COE</option>
+												<option>CCS</option>
+												<option>CED</option>
+												<option>SOE</option>
+									    	</select>
+			            	 	</div>
+			            	 </div>
+
+
+			            	 
+
+
+							<br>
+						    <div class="text-center">
+						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-plus"></i> ADD </button> 
+						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+				            </div>
+
+			        	</fieldset>
+					</form>
+				</div>
+		  </div>
+		</div>
+
+		<!-- MODIFY RECORD MODAL -->
+		<div class="modal fade" id="modifyrecord-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+				<div class="addaymodal-container" id = "daily-container">
+					<form class = "form form-horizontal" action="php/generate-daily.php" method="POST">
+						<fieldset>
+			            	 <legend class="text-center"><h3><b>Modify Attendance Record</b></h3></legend>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty ID No:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control" value = "123456" disabled/>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty Name:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control" value = "Briane Samson" disabled/>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Absence Date:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control" name="dailydate" value="10/31/2016"/>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Course:</label>
+			            	 	<div class = "col-xs-8">
+			            	 				<select style = "text-align:left;width:180px;height:30px;">
+												<option selected>SOFENGG</option>
+												<option>SWDESPA</option>
+									    	</select>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Section:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control" placeholder = "S17"/>
+			            	 	</div>
+			            	 </div>
+
+			            	<div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Checker:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control" placeholder = "Keith"/>
+			            	 	</div>
+			            	 </div>
+			            	 	<div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Remarks:</label>
+			            	 	<div class = "col-xs-8" style = "text-align:left;">
+			            	 				<select style = "text-align:left;width:180px;height:30px;">
+												<option selected>VR Vacant Room</option>
+												<option>CLA</option>
+												<option>COB</option>
+												<option>COS</option>
+												<option>COE</option>
+												<option>CCS</option>
+												<option>CED</option>
+												<option>SOE</option>
+									    	</select>
+			            	 	</div>
+			            	 </div>
+
+
+			            	 
+
+
+							<br>
+						    <div class="text-center">
+						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-floppy-saved"></i> SAVE </button> 
+						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+				            </div>
+
+			        	</fieldset>
+					</form>
+				</div>
+		  </div>
+		</div>
+
+		<!-- ADD MAKE UP CLASS MODAL -->
+		<div class="modal fade" id="makeup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+				<div class="addaymodal-container" id = "daily-container">
+					<form class = "form form-horizontal" action="php/generate-daily.php" method="POST">
+						<fieldset>
+			            	 <legend class="text-center"><h3><b>Add Make Up Class</b></h3></legend>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty ID No:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control" value = "123456" disabled/>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty Name:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control" value = "Briane Samson" disabled/>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control" name="dailydate" value="10/31/2016"/>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Start Time:</label>
+			            	 	<div class = "col-xs-6">
+			            	 		<input class="form-control" name="starttime" id="starttime" type="time">
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">End Time:</label>
+			            	 	<div class = "col-xs-6">
+			            	 		<input class="form-control" name="endtime" id="endtime" type="time">
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Course:</label>
+			            	 	<div class = "col-xs-8">
+			            	 				<select style = "text-align:left;width:180px;height:30px;">
+												<option selected>SOFENGG</option>
+												<option>SWDESPA</option>
+									    	</select>
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Section:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input id="section" type="text" class="form-control"/>
+			            	 	</div>
+			            	 </div>
+
+			            	<div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Checker:</label>
+			            	 	<div class = "col-xs-8">
+			            	 		<input type="text" class="form-control"/>
+			            	 	</div>
+			            	 </div>
+			            	 	<div class="form-group">
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Remarks:</label>
+			            	 	<div class = "col-xs-8" style = "text-align:left;">
+			            	 				<select style = "text-align:left;width:180px;height:30px;">
+												<option selected>VR Vacant Room</option>
+												<option>CLA</option>
+												<option>COB</option>
+												<option>COS</option>
+												<option>COE</option>
+												<option>CCS</option>
+												<option>CED</option>
+												<option>SOE</option>
+									    	</select>
+			            	 	</div>
+			            	 </div>
+							<br>
+						    <div class="text-center">
+   								<button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-plus"></i> ADD </button> 
+						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+				            </div>
+
+			        	</fieldset>
+					</form>
+				</div>
+		  </div>
+		</div>
+
+    </body>
+
+</html>
