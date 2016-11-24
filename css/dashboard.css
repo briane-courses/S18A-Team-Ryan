@@ -95,7 +95,7 @@ input[type=text]{
 #searchrecords-container input[type=text]{
   height: 34px;
   width: 220px;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
   font-size: 14px;
 }
 
@@ -136,11 +136,7 @@ input[type=text]{
                 border-bottom-left-radius:0;
             }
 
-.submit, .cancel{
-    font-weight: bold;
-}
 
 .style2{
     border-top: 3px double #8c8b8b;
 }
-
