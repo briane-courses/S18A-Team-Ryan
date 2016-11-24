@@ -84,7 +84,7 @@ legend{
 
 .addaymodal-container a {
   text-decoration: none;
-  color: #666;
+  /*color: #666;*/
   font-weight: 400;
   display: inline-block;
   transition: opacity ease 0.5s;
@@ -96,4 +96,9 @@ legend{
 
 td{
   font-size:14px;
+}
+
+
+input{
+  font-weight:normal;
 }

@@ -136,9 +136,6 @@ input[type=text]{
                 border-bottom-left-radius:0;
             }
 
-.submit, .cancel{
-    font-weight: bold;
-}
 
 .style2{
     border-top: 3px double #8c8b8b;
