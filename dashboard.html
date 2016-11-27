@@ -36,7 +36,9 @@
 
 			});
 		</script>
+
 		
+
 		<script type="text/javascript">
 		    $("[rel='tooltip']").tooltip();    
 			    $('.thumbnail').hover(
@@ -172,23 +174,23 @@
 			$(document).ready(function(){
 				$('#searchByName').click(function(){
 				var name =$("#search-name");
-				var fname =$("#search-fname");
 		 		var idnumber =$("#search-idnumber");
 		 		name.removeAttr("readonly");
-		 		fname.removeAttr("readonly");
 		 		idnumber.val("");
+		 		//idnumber.removeAttr("required");
+		 		//name.prop("required", "true");
 		 		idnumber.prop("readonly", "true");
 		 		});
 	 			
 	 			$('#searchByID').click(function(){
 	 			var name =$("#search-name");
-	 			var fname =$("#search-fname");
 		 		var idnumber =$("#search-idnumber");
 		 		name.prop("readonly", "true");
-		 		fname.prop("readonly", "true");
+		 		//idnumber.prop("required", "true");
+		 		//name.removeAttr("required");
 		 		idnumber.removeAttr("readonly");
 		 		name.val("");
-		 		fname.val("");
+
 	 			});
 
 	 			
@@ -229,7 +231,7 @@
 			    <div class="collapse navbar-collapse" id="navbar-brand-centered">
 			      <ul class="nav navbar-nav">
 			        <li><a href="dashboard.html"><b>Maintenance</b></a></li>
-			        <li><a href="index.html"><b>Log Out</b></a></li>		
+			        <li><a href="dashboard-reports.html"><b>Log Out</b></a></li>		
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right" style = "padding:7px;">
 			        
@@ -258,7 +260,7 @@
                             <br>
                             <div class="">
                                 <label class = "control-label col-xs-5" style = "text-align:left;">Current Term </label>
-			            	 	<div class = "">
+			            	 	<div class = "col-xs-4">
 			            	 		<input type="text" class="form-control" style = "width:213px;" placeholder="1 "/>
 			            	 	</div>
                             </div>
@@ -326,34 +328,42 @@
 		</div> <!--container-->
 
 		<!-- SEARCH ATTENDANCE RECORDS MODAL -->
-		<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="searchrecords-modal" role="dialog" style="display: none;" tabindex="-1">
-			<div class="modal-dialog">
-				<div class="addaymodal-container" id="searchrecords-container">
-					<form action="php/search-faculty.php" method="POST" class="form form-horizontal">
+		<div class="modal fade" id="searchrecords-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		 <div class="modal-dialog">
+				<div class="addaymodal-container" id = "searchrecords-container">
+					<form class = "form form-horizontal">
 						<fieldset>
-							<legend class="text-center"></legend>
-							<h3><legend class="text-center"><b>Search Attendance Records</b></legend></h3>
+			            	<legend class="text-center"><h3><b>Search Attendance Records</b></h3></legend>
+
 							<div class="form-group">
-								<label class="control-label col-xs-5" style="text-align:left;"><input checked id="searchByID" name="option" type="radio" value="idNumber">&nbsp;&nbsp;by ID Number:</label>
-								<div class="col-xs-4">
-									<input class="form-control" id="search-idnumber" name="idNumber" style="width:213px;" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-5" style="text-align:left;"><input id="searchByName" name="option" type="radio" value="name">&nbsp;&nbsp;by Name:</label>
-								<div class="col-xs-7">
-									<input class="form-control" id="search-name" name="lastName" style="width:100px; float: left; margin-right:5px;" type="text" placeholder="Last Name" readonly>
-									<input class="form-control" id="search-fname" name="firstName" style="width:100px; float:left;" type="text" placeholder="First Name" readonly>
-								</div>
-							</div><br>
+			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input id = "searchByID" type="radio" name="searchinputs" value = "search-idnumber" checked>&nbsp;&nbsp;by ID Number: </label>
+			            	 	<div class = "col-xs-4">
+			            	 		<input id="search-idnumber" name = "searchInputs" type="text" class="form-control" style = "width:213px;" />
+			            	 	</div>
+			            	 </div>
+
+			            	 <div class="form-group">
+			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input id = "searchByName" type="radio" name="searchinputs" value="search-name">&nbsp;&nbsp;by Name: </label>
+			            	 	<div class = "col-xs-4">
+			            	 		<input id="search-name" name = "searchInputs" type="text" class="form-control" style = "width:213px;" readonly/>
+			            	 	</div>
+			            	 </div>
+							
+							<br>
 							<div class="text-center">
-								<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-search"></i> SUBMIT</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
-							</div>
-						</fieldset>
+						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-search"></i> SUBMIT </button> 
+						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+				            </div>
+						
+			        	</fieldset>
+			
 					</form>
+
+
 				</div>
-			</div>
+		  </div>
 		</div>
+
 		<!-- GENERATE REPORTS MODAL -->
 		<div class="modal fade" id="daily-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
@@ -425,7 +435,8 @@
 			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
 						                
 						                <select class="selectpicker show-tick" style = "text-align:left;" name ="academicyears">
-												<option seleccted>A.Y. 2015-2016</option>
+												<option selected>A.Y. 2016-2017</option>
+												<option>A.Y. 2015-2016</option>
 												
 									    </select>
 									    <br><br>
