@@ -23,6 +23,7 @@
 	    <!-- DROPDOWN -->
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
 
+	    <!-- SINGLE CALENDAR -->
 		<script type="text/javascript">
 			$(function() {
 
@@ -34,6 +35,45 @@
 			        value: currDate
 			    }); 
 
+			});
+		</script>
+
+		<!-- DATE RANGE PICKER -->
+		<script type="text/javascript">
+
+			$(function() {
+
+			    var start = moment().subtract(29, 'days');
+			    var end = moment();
+
+			    function cb(start, end) {
+			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+			        $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+			    }
+			    $('#reportrange').daterangepicker({
+			        startDate: start,
+			        endDate: end,
+			        ranges: {
+			          
+			        }}, cb);
+			    
+			    $('#reportrange2').daterangepicker({
+			        startDate: start,
+			        endDate: end,
+			        ranges: {
+			          
+			        }}, cb);
+
+			    $('#reportrange3').daterangepicker({
+			        startDate: start,
+			        endDate: end,
+			        ranges: {
+			          
+			        }}, cb);
+
+			    cb(start, end);
+			    
 			});
 		</script>
 		
@@ -49,25 +89,41 @@
 			    ); 
 		</script>
 
-		<script type="text/javascript">
-			$(function(){
-    
-		    $('div.segmented-control a').on('click', function(){
-		        
-		        $('div.segmented-control a').each(function(i,e){
-		            $(e).removeClass('active');
-		        });
-		        
-		        $(this).addClass('active');
-		        $(this).find('input').prop('checked',true);
-		        return false;
-		        
-		    });
-		    
-		});
+		<!-- CHANGING OF REPORT TYPES -->
+		<script>
+			function change(){
+				if(document.getElementById('report-type').value == "daily") {
+			      	$("#inputDaily").show();
+			        $("#inputTerm").hide();
+			        $("#inputCustom").hide();
+			        $("#inputPromo").hide();
+				}
 
+				if(document.getElementById('report-type').value == "term") {
+			      	$("#inputTerm").show();
+			      	$("#inputDaily").hide();
+			        $("#inputCustom").hide();
+			        $("#inputPromo").hide();
+				}
+
+				if(document.getElementById('report-type').value == "custom") {
+					$("#inputCustom").show();
+					$("#inputTerm").hide();
+			      	$("#inputDaily").hide();
+			      	$("#inputPromo").hide();
+				}
+
+				if(document.getElementById('report-type').value == "promotional") {
+					$("#inputPromo").show();
+					$("#inputDaily").hide();
+					$("#inputTerm").hide();
+					$("#inputCustom").hide();
+				}
+
+
+			}
 		</script>
-
+		<!-- SEGMENTED BUTTONS - Faculty & Others -->
 		<script type="text/javascript">
 			$(function(){
     
@@ -147,27 +203,6 @@
 
 	 			
 			});
-			$(document).ready(function(){
-				$("#dailyButton").click(function() {
-			      	$("#inputDaily").show();
-			        $("#inputMonthly").hide();
-			        $("#inputMonthly2").hide();
-			        $("#inputTerm").hide();
-			    });
-			    $("#monthlyButton").click(function() {
-			      	$("#inputMonthly").show();
-			      	$("#inputMonthly2").show();
-			      	$("#inputDaily").hide();
-			      	$("#inputTerm").hide();
-			    });
-			    $("#termButton").click(function() {
-			      	$("#inputTerm").show();
-			      	$("#inputDaily").hide();
-			        $("#inputMonthly").hide();
-			        $("#inputMonthly2").hide();
-			    });
-
-			});
 
 			$(document).ready(function(){
 				$('#searchByName').click(function(){
@@ -208,6 +243,8 @@
 			        }
 			    ); 
 		</script>
+
+
 
 	</head>
 
@@ -369,6 +406,13 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Type:</label>
 						        <div class="col-xs-5">
+						        	<select id = "report-type" class = "selectpicker show-tick" data-width = "155px" onchange = "change()">
+						        		<option id ="dailyButton" value = "daily"> Daily </option>
+						        		<option value = "term"> Term-End </option>
+						        		<option value = "custom"> Custom </option>
+						        		<option value = "promotional"> Promotional </option>
+						        	</select>
+						        	<!--
 						            <div class="segmented-report-type" style="width:500px;margin-left:5px;">
 									    <a id ="dailyButton" href="#" class="list-group-item active" value = "daily">
 									    	Daily
@@ -382,8 +426,13 @@
 									    	Term
 									    	<input name ="buttons" value ="term" type="radio"/>
 									    </a>
+									    <a id ="customButton" href="#" class="list-group-item" value = "term">
+									    	Custom
+									    	<input name ="buttons" value ="term" type="radio"/>
+									    </a>
 									                
 									</div>
+									-->
 						        </div>
 			            	 </div>
 									
@@ -395,7 +444,7 @@
 			            	 	<div id = "inputDaily" class = "col-xs-8">
 			            	 		<input style = "width:100px;" type="text" class="form-control" id = "dailydate" name="dailydate"/>
 			            	 	</div>
-								
+								<!--
 								<div id = "inputMonthly" class = "col-xs-4" name = "monthly" style = "display:none;">
 									
 									<select class="selectpicker show-tick" style = "text-align:left;;" name ="months" data-width="110px">
@@ -423,7 +472,7 @@
 												
 									</select>
 								</div>
-									
+								-->
 
 			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
 						                
@@ -439,9 +488,21 @@
 												
 									    </select>
 
-									    
-
 			            		</div>
+
+
+
+			            		<div id = "inputCustom" class="col-xs-8" style = "display:none;">
+						                <div id="reportrange" class="pull-right">
+										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+										    <span style = "font-weight:normal;"></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
+										</div>
+			              			 
+					    		</div>
+								
+								<div id = "inputPromo" class="col-xs-8" style = "display:none;">
+									- up to present
+								</div>
 
 			            	 </div>
 
