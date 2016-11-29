@@ -83,46 +83,6 @@ body{
     font-weight: bold;
 }
 
-.table-bordered {
-    border: 1px solid #dddddd;
-}
-.table {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
-}
-table {
-    background-color: transparent;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
-    background-color: #859d81;
-}
-.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
-    border: 1px solid #b0bdac;
-}
-.table-condensed>thead>tr>th, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td {
-    padding: 5px;
-}
-.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
-    padding: 8px;
-    line-height: 1.42857143;
-    vertical-align: top;
-    border-top: 1px solid #b0bdac;
-}
-table td, table th {
-    padding: 9px 10px;
-    text-align: left;
-}
-
-.row-data{
-    cursor:pointer;
-}
-
 #class-choose{
     margin-left: 20px;
 }
@@ -135,3 +95,64 @@ table td, table th {
     margin-left: 20px;
 }
 
+input[type=text]{
+  height: 34px !important;
+  width: 180px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+input[type=text]::-webkit-input-placeholder{
+   color:black;
+}
+
+
+/***PAGINATION***/
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+ul.pagination li a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+
+div.center {text-align: center;}
+
+/***************************************/
+
+.page{
+    border-radius: 0px !important;
+    background-color: #fff !important;
+    color: #449d44 !important;
+    border-color: #398439 !important;
+}
+
+.page:hover{
+    border-radius: 0px !important;
+    color: black;
+}
+
+table, table tr, table tr td {
+    margin: 0; padding: 0; border: 0; cursor: pointer;
+}
+table tr.active td {
+    background: white !important;
+    box-shadow: 5px 5px 5px #888888;
+}

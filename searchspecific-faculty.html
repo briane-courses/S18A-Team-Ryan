@@ -8,6 +8,7 @@
 		<link href="css/global.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/searchspecific-faculty.css">
 		<link rel="stylesheet" href="css/dashboard.css">
+		<link rel="stylesheet" href="css/table.css">
 		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
 		<!-- DROPDOWN-->
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css" rel="stylesheet">
@@ -117,6 +118,19 @@
 			    });
 			});
 		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+			    $("#result").children("tbody").children("tr").children("td").click(function(){
+			        $(this.parentNode).toggleClass("active");
+			    });
+
+			    $('button').disable(true);
+			$('button').attr("disabled", true);
+			});
+
+		</script>
+
     </head>
 
     <body>
@@ -289,12 +303,12 @@
 				<br>
 
 						
-						<br><br>
-						<div class="row">
+				<br><br>
+				<div class="row">
 							<div class ="box col-xs-12">
 									<div class="box-content">
-										<table class="table table-bordered table-condensed table-hover">
-											<thead>
+										<table id="result" class="table table-bordered table-condensed table-hover">
+											<thead id="col-header">
 												<tr>
 													<th>Date</th>
 													<th>Time</th>
@@ -346,9 +360,19 @@
 										</table>
 									</div>
 							</div>
-						</div>
+				</div>
+
+				<div class="container" style="margin-left: -15px;">
+				  <ul class="pager">
+				    <li class="previous"><a class="page" href="#">« Previous</a></li>
+				    <li class="next"><a class="page" href="#">Next »</a></li>
+				  </ul>
+				</div>
+
 	    	</div>
     	</div>
+
+
 
 		<!-- SEARCH ATTENDANCE RECORDS MODAL -->
 		<div class="modal fade" id="searchrecords-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
