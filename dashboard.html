@@ -87,6 +87,24 @@
 
 		</script>
 		<script>
+
+			$(document).ready(function(){
+				$("#collegepicker").change(function() {
+					
+					var college = $("#collegepicker :selected");
+					    	var query = $("#query :selected");
+					    	console.log(query);
+			      	
+			      	$
+					if()
+
+
+			    });
+
+			    
+			});
+
+
 			$(document).ready(function(){
 				$("#facultyButtonDaily").click(function() {
 			      	$("#inputIDNumDaily").show();
@@ -490,23 +508,25 @@
 							    <div class = "form-group">
 				            	 		<label class = "control-label col-xs-4" style = "text-align:left;">Report filter:</label>
 				            	 		<div class = "col-xs-5" style="width:250px">
-											<select class="selectpicker show-tick" style = "text-align:left;" name ="college">
+											<select id = "collegepicker" class="selectpicker show-tick" style = "text-align:left;" name ="college">
 												<option selected>All Colleges</option>
-												<option>CLA</option>
-												<option>COB</option>
-												<option>COS</option>
-												<option>COE</option>
+												<option>BAGCED</option>
 												<option>CCS</option>
-												<option>CED</option>
+												<option>CLA</option>
+												<option>COL</option>
+												<option>COS</option>
+												<option>GCOE</option>
+												<option>RVRCOB</option>
 												<option>SOE</option>
-									    	</select>
+											</select>
+				            	 		
 				            	 		</div>
 							    </div>
 
 							    <div class = "form-group">
 				            	 		<label class = "control-label col-xs-4" style = "text-align:left;"></label>
 				            	 		<div class = "col-xs-5">
-											<select class="selectpicker show-tick" name = "department" multiple>
+											<select id = "departmentpicker" class="selectpicker show-tick" name = "department" multiple>
 											<option selected>All Departments</option>
 												<option>Software Technology</option>
 												<option>Information Technology</option>

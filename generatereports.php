@@ -80,6 +80,14 @@
 		$rows = $stmt->fetch(PDO::FETCH_ASSOC); // assuming $result == true
 									 
 		$dateFilter = "date BETWEEN '".$rows['start']."' AND '".$rows['end']."' "; 
+		if($terms == 1)
+			$termP = "1st";
+		if($terms == 2)
+			$termPs = "2nd";
+		if($terms == 3)
+			$termP = "3rd";
+
+		$labeldate = $termP." TRIMESTER, ".$years ;
 
 	}
 		
