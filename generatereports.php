@@ -14,6 +14,23 @@
 		$dates = explode("/",$date);
 		$date = $dates[2]."-".$dates[0]."-".$dates[1]; 
 		$dateFilter = "date = '".$date."' ";
+
+		switch($dates[0])
+		{
+			case 1 : $labeldate = "January"; break;
+			case 2 : $labeldate = "February"; break;
+			case 3 : $labeldate = "March"; break;
+			case 4 : $labeldate = "April"; break;
+			case 5 : $labeldate = "May"; break;
+			case 6 : $labeldate = "June"; break;
+			case 7 : $labeldate = "July"; break;
+			case 8 : $labeldate = "August"; break;
+			case 9 : $labeldate = "September"; break;
+			case 10 : $labeldate = "October"; break;
+			case 11 : $labeldate = "November"; break;
+			case 12 : $labeldate = "December"; break;
+		}
+		$labeldate = $labeldate." ".$dates[1].", ".$dates[2];
 	}
 	else if($buttons == 'monthly')
 	{
@@ -336,7 +353,7 @@
 			<center>
 				<div class="row">
 					<h4><b>FACULTY ATTENDANCE REPORT</b></h4>
-					<?php //echo $labelDate; ?>
+					<?php echo $labeldate; ?>
 				</div>
 			</center>
 			
@@ -410,7 +427,7 @@
 
 										    if($buttons == 'daily')
 										    {
-										    	$stmt = $conn->prepare("SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks,room_name,date,code
+										    	$stmt = $conn->prepare("SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks,room_name,code
 																	FROM
 																		(SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks,name as 'room_name',date,course_id
 																		FROM
@@ -440,7 +457,6 @@
 																<tr><th colspan ='9'></th></tr>
 															</thead> 
 										 					<thead id = 'col-header'><tr>
-															<th>Date </th>
 															<th>College </th>
 															<th>Department</th>
 															<th>Faculty</th>
@@ -456,7 +472,6 @@
 										 			{
 
 										 				echo "<tr class='row-data' data-href='#'>
-										 				<td>".$rows['date']."</td>
 										 				<td>".$rows['college']."</td>
 										 				<td>".$rows['department']."</td>
 										 				<td>".$rows['last_name'].", ".$rows['first_name']." ".$rows['middle_name']."</td>
