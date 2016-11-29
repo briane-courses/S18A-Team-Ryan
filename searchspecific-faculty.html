@@ -5,16 +5,14 @@
 		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
 		<title> Search Specific Faculty </title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link href="css/global.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/searchspecific-faculty.css">
 		<link rel="stylesheet" href="css/dashboard.css">
-		<link rel="stylesheet" href="css/add-AY.css">
 		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
 		<!-- DROPDOWN-->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css" rel="stylesheet">
 		<!-- FONTS -->
-		<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
-
-
+		<link href="https://fonts.googleapis.com/css?family=Bungee|Gudea" rel="stylesheet">
 
 		<link type="text/css" href="css/bootstrap-timepicker.min.css" />
 		<!--<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>-->
@@ -358,7 +356,7 @@
 				<div class="addaymodal-container" id = "searchrecords-container">
 					<form class = "form form-horizontal">
 						<fieldset>
-			            	<legend class="text-center"><h3><b>Search Attendance Records</b></h3></legend>
+			            	<legend class="text-center"><h3><b>SEARCH ATTENDANCE RECORDS</b></h3></legend>
 
 							<div class="form-group">
 			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by ID Number: </label>
@@ -398,7 +396,7 @@
 			      <a class="navbar-btn btn-success btn" data-toggle="modal" data-target="#modifyrecord-modal">
 			      <span class="glyphicon glyphicon-pencil"></span> MODIFY  </a>
 
-			      <a href="http://youtu.be/zJahlKPCL9g" class="navbar-btn btn-danger btn">
+			      <a href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#removerecord-modal">
 			      <span class="glyphicon glyphicon-trash"></span> REMOVE </a>
 			      <a class="navbar-btn btn-success btn" data-toggle="modal" data-target="#makeup-modal">
 			      <span class="glyphicon glyphicon-plus"></span> ADD MAKE UP CLASS  </a>
@@ -414,19 +412,20 @@
 				<div class="addaymodal-container" id = "daily-container">
 					<form class = "form form-horizontal" action="php/generate-daily.php" method="POST">
 						<fieldset>
-			            	 <legend class="text-center"><h3><b>Add New Attendance Record</b></h3></legend>
+							<legend style = "margin-bottom:-10px;"></legend>
+							<h3><legend class="text-center"><b>ADD NEW ATTENDANCE RECORD</b></legend></h3>
 
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty ID No:</label>
 			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" value = "123456" disabled/>
+			            	 		<input type="text" class="form-control" value = "123456" readonly/>
 			            	 	</div>
 			            	 </div>
 
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty Name:</label>
 			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" value = "Briane Samson" disabled/>
+			            	 		<input type="text" class="form-control" value = "Briane Samson" readonly/>
 			            	 	</div>
 			            	 </div>
 
@@ -440,10 +439,10 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Course:</label>
 			            	 	<div class = "col-xs-8">
-			            	 				<select style = "text-align:left;width:180px;height:30px;">
-												<option selected>SOFENGG</option>
-												<option>SWDESPA</option>
-									    	</select>
+			            	 			<select class = "selectpicker show-tick" data-width = "180px">
+											<option selected>SOFENGG</option>
+											<option>SWDESPA</option>
+									    </select>
 			            	 	</div>
 			            	 </div>
 
@@ -462,8 +461,8 @@
 			            	 </div>
 			            	 	<div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Remarks:</label>
-			            	 	<div class = "col-xs-8" style = "text-align:left;">
-			            	 				<select style = "text-align:left;width:180px;height:30px;">
+			            	 	<div class = "col-xs-8">
+			            	 				<select class = "selectpicker show-tick" data-width = "180px">
 												<option selected>VR Vacant Room</option>
 												<option>CLA</option>
 												<option>COB</option>
@@ -498,19 +497,20 @@
 				<div class="addaymodal-container" id = "daily-container">
 					<form class = "form form-horizontal" action="php/generate-daily.php" method="POST">
 						<fieldset>
-			            	 <legend class="text-center"><h3><b>Modify Attendance Record</b></h3></legend>
+							 <legend style = "margin-bottom:-10px;"></legend>
+			            	 <legend class="text-center"><h3><b>MODIFY ATTENDANCE RECORD</b></h3></legend>
 
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty ID No:</label>
 			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" value = "123456" disabled/>
+			            	 		<input type="text" class="form-control" value = "123456" readonly/>
 			            	 	</div>
 			            	 </div>
 
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty Name:</label>
 			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" value = "Briane Samson" disabled/>
+			            	 		<input type="text" class="form-control" value = "Briane Samson" readonly/>
 			            	 	</div>
 			            	 </div>
 
@@ -524,9 +524,10 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Course:</label>
 			            	 	<div class = "col-xs-8">
-			            	 				<select style = "text-align:left;width:180px;height:30px;">
-												<option selected>SOFENGG</option>
+									    	<select class = "selectpicker show-tick" data-width = "180px">
+									    		<option selected>SOFENGG</option>
 												<option>SWDESPA</option>
+
 									    	</select>
 			            	 	</div>
 			            	 </div>
@@ -547,7 +548,7 @@
 			            	 	<div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Remarks:</label>
 			            	 	<div class = "col-xs-8" style = "text-align:left;">
-			            	 				<select style = "text-align:left;width:180px;height:30px;">
+			            	 				<select class = "selectpicker show-tick" data-width = "180px">
 												<option selected>VR Vacant Room</option>
 												<option>CLA</option>
 												<option>COB</option>
@@ -559,10 +560,6 @@
 									    	</select>
 			            	 	</div>
 			            	 </div>
-
-
-			            	 
-
 
 							<br>
 						    <div class="text-center">
@@ -582,19 +579,20 @@
 				<div class="addaymodal-container" id = "daily-container">
 					<form class = "form form-horizontal" action="php/generate-daily.php" method="POST">
 						<fieldset>
-			            	 <legend class="text-center"><h3><b>Add Make Up Class</b></h3></legend>
+							<legend style = "margin-bottom:-10px;"></legend>
+			            	 <legend class="text-center"><h3><b>ADD MAKE UP CLASS</b></h3></legend>
 
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty ID No:</label>
 			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" value = "123456" disabled/>
+			            	 		<input type="text" class="form-control" value = "123456" readonly/>
 			            	 	</div>
 			            	 </div>
 
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty Name:</label>
 			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" value = "Briane Samson" disabled/>
+			            	 		<input type="text" class="form-control" value = "Briane Samson" readonly/>
 			            	 	</div>
 			            	 </div>
 
@@ -622,7 +620,7 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Course:</label>
 			            	 	<div class = "col-xs-8">
-			            	 				<select style = "text-align:left;width:180px;height:30px;">
+			            	 				<select class = "selectpicker tick-show" data-width = "180px">
 												<option selected>SOFENGG</option>
 												<option>SWDESPA</option>
 									    	</select>
@@ -645,7 +643,7 @@
 			            	 	<div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Remarks:</label>
 			            	 	<div class = "col-xs-8" style = "text-align:left;">
-			            	 				<select style = "text-align:left;width:180px;height:30px;">
+			            	 				<select class = "selectpicker tick-show" data-width = "180px">
 												<option selected>VR Vacant Room</option>
 												<option>CLA</option>
 												<option>COB</option>
@@ -657,11 +655,6 @@
 									    	</select>
 			            	 	</div>
 			            	 </div>
-
-
-			            	 
-
-
 							<br>
 						    <div class="text-center">
    								<button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-plus"></i> ADD </button> 
@@ -674,6 +667,28 @@
 		  </div>
 		</div>
 
+		<!-- REMOVE RECORD MODAL -->
+		<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="removerecord-modal" role="dialog" style="display: none;" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="addaymodal-container" id="searchrecords-container">
+					<form action="generatereports.php" class="form form-horizontal" method="post">
+						<fieldset>
+							<legend style = "margin-bottom:-10px;"></legend>
+							<h3><legend class="text-center"><b>REMOVE ATTENDANCE RECORD</b></legend></h3>
+
+							<div style = "font-weight:normal" class = "text-center">
+								Are you sure to want to permanently delete the attendance record?
+							</div>
+							<br><br>
+							<div class="text-center">
+								<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-envelope"></i> REMOVE</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+							</div>
+
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
     </body>
 
 </html>

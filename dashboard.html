@@ -5,13 +5,13 @@
 		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
 		<title> FAMS 2.0 </title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/global.css">
 		<link rel="stylesheet" href="css/dashboard.css">
-		<link rel="stylesheet" href="css/add-AY.css">
 		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
 		<!-- DROPDOWN-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
 		<!-- FONTS -->
-		<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Bungee|Gudea" rel="stylesheet">
 
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -36,9 +36,7 @@
 
 			});
 		</script>
-
 		
-
 		<script type="text/javascript">
 		    $("[rel='tooltip']").tooltip();    
 			    $('.thumbnail').hover(
@@ -174,23 +172,23 @@
 			$(document).ready(function(){
 				$('#searchByName').click(function(){
 				var name =$("#search-name");
+				var fname =$("#search-fname");
 		 		var idnumber =$("#search-idnumber");
 		 		name.removeAttr("readonly");
+		 		fname.removeAttr("readonly");
 		 		idnumber.val("");
-		 		//idnumber.removeAttr("required");
-		 		//name.prop("required", "true");
 		 		idnumber.prop("readonly", "true");
 		 		});
 	 			
 	 			$('#searchByID').click(function(){
 	 			var name =$("#search-name");
+	 			var fname =$("#search-fname");
 		 		var idnumber =$("#search-idnumber");
 		 		name.prop("readonly", "true");
-		 		//idnumber.prop("required", "true");
-		 		//name.removeAttr("required");
+		 		fname.prop("readonly", "true");
 		 		idnumber.removeAttr("readonly");
 		 		name.val("");
-
+		 		fname.val("");
 	 			});
 
 	 			
@@ -231,7 +229,7 @@
 			    <div class="collapse navbar-collapse" id="navbar-brand-centered">
 			      <ul class="nav navbar-nav">
 			        <li><a href="dashboard.html"><b>Maintenance</b></a></li>
-			        <li><a href="dashboard-reports.html"><b>Log Out</b></a></li>		
+			        <li><a href="index.html"><b>Log Out</b></a></li>		
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right" style = "padding:7px;">
 			        
@@ -260,7 +258,7 @@
                             <br>
                             <div class="">
                                 <label class = "control-label col-xs-5" style = "text-align:left;">Current Term </label>
-			            	 	<div class = "col-xs-4">
+			            	 	<div class = "">
 			            	 		<input type="text" class="form-control" style = "width:213px;" placeholder="1 "/>
 			            	 	</div>
                             </div>
@@ -284,7 +282,7 @@
 			<br><br>
 			<div class = "im-centered">
 				<div class = "row text-center">
-					<h4 style = "font-family: 'Bungee' ,cursive;"> Faculty Attendance Monitoring System </h4>
+					<h3><b>Faculty Attendance Monitoring System<b></h3>
 				</div><br><br>
 				
 				<div class = "row">
@@ -328,50 +326,45 @@
 		</div> <!--container-->
 
 		<!-- SEARCH ATTENDANCE RECORDS MODAL -->
-		<div class="modal fade" id="searchrecords-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-		 <div class="modal-dialog">
-				<div class="addaymodal-container" id = "searchrecords-container">
-					<form class = "form form-horizontal">
+		<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="searchrecords-modal" role="dialog" style="display: none;" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="addaymodal-container" id="searchrecords-container">
+					<form action="php/search-faculty.php" method="POST" class="form form-horizontal">
 						<fieldset>
-			            	<legend class="text-center"><h3><b>Search Attendance Records</b></h3></legend>
-
+							<legend style = "margin-bottom:-10px;"></legend>
+							<h3><legend class="text-center"><b>SEARCH ATTENDANCE RECORDS</b></legend></h3>
 							<div class="form-group">
-			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input id = "searchByID" type="radio" name="searchinputs" value = "search-idnumber" checked>&nbsp;&nbsp;by ID Number: </label>
-			            	 	<div class = "col-xs-4">
-			            	 		<input id="search-idnumber" name = "searchInputs" type="text" class="form-control" style = "width:213px;" />
-			            	 	</div>
-			            	 </div>
-
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input id = "searchByName" type="radio" name="searchinputs" value="search-name">&nbsp;&nbsp;by Name: </label>
-			            	 	<div class = "col-xs-4">
-			            	 		<input id="search-name" name = "searchInputs" type="text" class="form-control" style = "width:213px;" readonly/>
-			            	 	</div>
-			            	 </div>
-							
-							<br>
+								<label class="control-label col-xs-5" style="text-align:left;"><input checked id="searchByID" name="option" type="radio" value="idNumber">&nbsp;&nbsp;by ID Number:</label>
+								<div class="col-xs-4">
+									<input class="form-control" id="search-idnumber" name="idNumber" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-5" style="text-align:left;"><input id="searchByName" name="option" type="radio" value="name">&nbsp;&nbsp;by Name:</label>
+								<div class="col-xs-7">
+									<!-- Last Name, First Name
+									<input class="form-control" id="search-name" name="lastName" style="width:104px; float: left; margin-right:5px;" type="text" placeholder="Last Name" readonly>
+									<input class="form-control" id="search-fname" name="firstName" style="width:104px; float:left;" type="text" placeholder="First Name" readonly>
+									-->
+									<input class="form-control" id="search-name" name="fullName" style="float: left; margin-right:5px;" type="text" placeholder="Last Name, First Name" readonly>
+								</div>
+							</div><br>
 							<div class="text-center">
-						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-search"></i> SUBMIT </button> 
-						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
-				            </div>
-						
-			        	</fieldset>
-			
+								<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-search"></i> SUBMIT</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+							</div>
+						</fieldset>
 					</form>
-
-
 				</div>
-		  </div>
+			</div>
 		</div>
-
 		<!-- GENERATE REPORTS MODAL -->
 		<div class="modal fade" id="daily-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container" id = "daily-container">
 					<form class = "form form-horizontal" action="generatereports.php" method="POST">
 						<fieldset>
-			            	 <legend class="text-center"><h3><b>Generate Reports</b></h3></legend>
-
+							<legend style = "margin-bottom:-10px;"></legend>
+							<h3><legend class="text-center"><b>GENERATE REPORTS</b></legend></h3>
 
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Type:</label>
@@ -400,7 +393,7 @@
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
 			            	 	
 			            	 	<div id = "inputDaily" class = "col-xs-8">
-			            	 		<input type="text" class="form-control" id = "dailydate" name="dailydate"/>
+			            	 		<input style = "width:100px;" type="text" class="form-control" id = "dailydate" name="dailydate"/>
 			            	 	</div>
 								
 								<div id = "inputMonthly" class = "col-xs-4" name = "monthly" style = "display:none;">
@@ -435,8 +428,7 @@
 			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
 						                
 						                <select class="selectpicker show-tick" style = "text-align:left;" name ="academicyears">
-												<option selected>A.Y. 2016-2017</option>
-												<option>A.Y. 2015-2016</option>
+												<option seleccted>A.Y. 2015-2016</option>
 												
 									    </select>
 									    <br><br>
@@ -477,7 +469,7 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input type="text" class="form-control"	id= "idnumber" name="idnumber"/>
+					            	 		<input style = "width:214px"type="text" class="form-control"	id= "idnumber" name="idnumber"/>
 					            	 	</div>
 					            	</div>
 
@@ -485,7 +477,7 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input type="text" class="form-control"	id= "name" name="name" readonly/>
+					            	 		<input style = "width:214px" type="text" class="form-control"	id= "name" name="name" readonly/>
 
 					            	 	</div>
 					            	</div>
@@ -543,17 +535,61 @@
 		<div class="modal fade" id="email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 		 <div class="modal-dialog">
 				<div class="addaymodal-container" id = "searchrecords-container">
+					<form action="generatereports.php" class="form form-horizontal" method="post">
 						<fieldset>
-			            	<legend class="text-center"><h3><b>Email Daily Attendance Report to all Faculty</b></h3></legend>
+							<legend style = "margin-bottom:-10px;"></legend>
+							<h3><legend class="text-center"><b>EMAIL DAILY REPORTS</b></legend></h3>
+
+			            	 <div class="form-group">
+						        <label for="inputPassword" class="control-label col-xs-4" style = "text-align:left;">Report for:</label>
+						        <div class="col-xs-5">
+						            <div class=" segmented-control" style="width:150px;margin-left:5px;">
+									    <a id ="facultyButtonDaily" href="#" class="list-group-item active">
+									    	Faculty
+									    	<input type="radio" name ="options" value ="faculty" checked/>
+									    </a>
+									    <a id="othersButtonDaily" href="#" class="list-group-item">
+									    	Others
+									        <input type="radio" name ="options" value = "others"/>
+									    </a>
+									                
+									</div>
+						        </div>
+						    </div>
+
+							<div class="form-group">
+								<label class="control-label col-xs-4" style="text-align:left;">To:</label>
+								<div class="col-xs-8">
+									<input class="form-control" type="text" style = "width:100%;" disabled>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="form-group">
+									<label class="control-label col-xs-7" style="text-align:left; margin-left:15px;"><input checked id="inputID" name="inputs" type="radio" value="idnumber">&nbsp;&nbsp;ALL FACULTY
+									</label>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="form-group">
+									<label class="control-label col-xs-7" style="text-align:left; margin-left:15px;"><input checked id="inputID" name="inputs" type="radio" value="idnumber">&nbsp;&nbsp;SELECTED FACULTY
+									</label>
+
+								</div>
+							</div>
+
+
+
+
+
 
 							<div class="text-center">
-						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-envelope"></i> EMAIL </button> 
-						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class = "glyphicon glyphicon-remove"></i> CANCEL </button>
-				            </div>
-						
-			        	</fieldset>
+								<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-envelope"></i> EMAIL</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+							</div>
 
-
+						</fieldset>
+					</form>
 				</div>
 		  </div>
 		</div>
