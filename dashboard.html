@@ -76,18 +76,6 @@
 			    
 			});
 		</script>
-		
-		<script type="text/javascript">
-		    $("[rel='tooltip']").tooltip();    
-			    $('.thumbnail').hover(
-			        function(){
-			            $(this).find('.caption').slideDown(500); //.fadeIn(250)
-			        },
-			        function(){
-			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
-			        }
-			    ); 
-		</script>
 
 		<!-- CHANGING OF REPORT TYPES -->
 		<script>
@@ -127,9 +115,9 @@
 		<script type="text/javascript">
 			$(function(){
     
-		    $('div.segmented-report-type a').on('click', function(){
+		    $('div.segmented-control a').on('click', function(){
 		        
-		        $('div.segmented-report-type a').each(function(i,e){
+		        $('div.segmented-control a').each(function(i,e){
 		            $(e).removeClass('active');
 		        });
 		        
@@ -179,6 +167,7 @@
 			      	$("#inputIDNumTerm").hide();
 			    });
 			});
+
 			$(document).ready(function(){
 				$('#inputName').click(function(){
 				var name =$("#name");
@@ -476,12 +465,12 @@
 
 			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
 						                
-						                <select class="selectpicker show-tick" style = "text-align:left;" name ="academicyears">
+						                <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px"name ="academicyears">
 												<option seleccted>A.Y. 2015-2016</option>
 												
 									    </select>
 									    <br><br>
-						                <select class="selectpicker show-tick" style = "text-align:left;" name ="terms">
+						                <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px" name ="terms">
 												<option value = "1" selected>Term 1</option>
 												<option value = "2">Term 2</option>
 												<option value = "3">Term 3</option>
@@ -493,15 +482,15 @@
 
 
 			            		<div id = "inputCustom" class="col-xs-8" style = "display:none;">
-						                <div id="reportrange" class="pull-right">
+						                <div id="reportrange" class="pull-right" style = "width:230px">
 										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-										    <span style = "font-weight:normal;"></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
+										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
 										</div>
 			              			 
 					    		</div>
 								
-								<div id = "inputPromo" class="col-xs-8" style = "display:none;">
-									- up to present
+								<div id = "inputPromo" class="col-xs-8" style = "display:none;margin-top:5px;">
+									<span><i>start up to present</i></span>
 								</div>
 
 			            	 </div>
@@ -538,7 +527,7 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input style = "width:214px" type="text" class="form-control"	id= "name" name="name" readonly/>
+					            	 		<input style = "width:214px" type="text" class="form-control" id= "name" name="name" placeholder = "Last Name, First Name" readonly/>
 
 					            	 	</div>
 					            	</div>
@@ -580,9 +569,9 @@
 							<br>
 
 						    <div class="text-center">
-						        <button id="btnViewReportDaily" type="submit" class="btn btn-success btn-lg col-xs-4 submit" style = "margin-left:40px; margin-right:30px;font-size:14px;"> <i class="glyphicon glyphicon-th-list"></i> GENERATE </button> 
+						        <button id="btnViewReportDaily" type="submit" class="btn btn-success col-xs-4 submit" style = "margin-left:40px; margin-right:30px;font-size:14px;"> <i class="glyphicon glyphicon-th-list"></i> GENERATE </button> 
 						        
-						        <button type="button" class="btn btn-danger btn-lg col-xs-4 cancel" data-dismiss="modal" style="
+						        <button type="button" class="btn btn-danger col-xs-4 cancel" data-dismiss="modal" style="
     							margin-left: 20px;font-size:14px;"> <i class="glyphicon glyphicon-remove"></i> CANCEL </button>
 				            </div>
 

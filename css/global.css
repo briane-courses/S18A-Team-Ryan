@@ -90,14 +90,14 @@ legend{
   transition: opacity ease 0.5s;
 } 
 
-.adday-help{
-  font-size: 12px;
+span{
+  font-weight:normal;
+  font-size:14px;
 }
 
 td{
   font-size:14px;
 }
-
 
 input{
   font-weight:normal;
