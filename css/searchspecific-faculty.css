@@ -97,13 +97,6 @@ body{
 
 input[type=text]{
   height: 34px !important;
-  width: 180px;
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-input[type=text]::-webkit-input-placeholder{
-   color:black;
 }
 
 
@@ -155,4 +148,24 @@ table, table tr, table tr td {
 table tr.active td {
     background: white !important;
     box-shadow: 5px 5px 5px #888888;
+}
+
+.filter-col{
+    padding-left:10px;
+    padding-right:10px;
+}
+
+#filter-form{
+    margin-bottom:0px;
+}
+
+#reportrange{
+    background: #fff;
+    cursor: pointer;
+    padding:10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 34px;
+    width:100%;
+    margin-left:10px;
 }

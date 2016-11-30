@@ -29,7 +29,7 @@ body{
 }
 
 #title-header{
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-size: 17px;
 }
 
@@ -89,20 +89,9 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+*/
 
-.collegelabel{
-    /*background-color: #53754b;
-    color: #e9f5e7;*/
-    background-color:#243e16;
-    color:white;
-    border: 2px solid #b0bdac;
-}
 
-#col-header{
-    background-color: #53754b;
-    color: #e9f5e7;
-    font-size:14px;
-}
 
 /*.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
     background-color: #859d81;
@@ -120,15 +109,7 @@ table {
     vertical-align: top;
     border-top: 2px solid #b0bdac;
 }
-table td, table th {
-    padding: 9px 10px;
-    text-align: left;
-}
-
-td{
-    font-size:14px;
-}
 
 .row-data{
     cursor:pointer;
-}*/
+}

@@ -86,27 +86,18 @@ body{
     font-weight: bold;
 }
 
-#searchrecords-container input[type=text]{
-  height: 34px;
-  width: 220px;
-  /*margin-top: 10px;*/
-  font-size: 14px;
-}
-
-#daily-container input[type=text]{
-    height: 34px;
-  width: 180px;
-  /*margin-top: 10px;*/
-  font-size: 14px;
-}
-
 .im-centered{
     margin:auto;
     width:70%;
 }
+.list-group-item{
+    padding:10px;
+    font-size:14px;
+}
 
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
     background-color:#4c7a34;
+
 }
 
             .segmented-control input[type="radio"], .segmented-report-type input[type="radio"]{

@@ -7,7 +7,6 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link href="css/global.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/searchspecific-faculty.css">
-		<link rel="stylesheet" href="css/dashboard.css">
 		<link rel="stylesheet" href="css/table.css">
 		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
 		<!-- DROPDOWN-->
@@ -29,31 +28,7 @@
 
 	    <!-- DROPDOWN -->
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
-
-	    		    <!--<script type="text/javascript">
-            $('#timepicker1').timepicker();
-        </script>-->
-
-    	<script type="text/javascript">
-		    $("[rel='tooltip']").tooltip();    
-			    $('.thumbnail').hover(
-			        function(){
-			            $(this).find('.caption').slideDown(500); //.fadeIn(250)
-			        },
-			        function(){
-			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
-			        }
-			    ); 
-		</script>
-
-		<script type="text/javascript">
-			$(document).ready(function($) {
-			    $(".table-row").click(function() {
-			        window.document.location = $(this).data("href");
-			    });
-			});
-		</script>
-
+		<!-- SINGLE CALENDAR -->
 		<script type="text/javascript">
 			$(function() {
 
@@ -67,50 +42,135 @@
 
 			});
 		</script>
-
+		<!-- DATE RANGE PICKER -->
 		<script type="text/javascript">
+
 			$(function() {
 
-				var currDate = moment.currDate;
+			    var start = moment().subtract(29, 'days');
+			    var end = moment();
 
-			    $('input[name="dailydate"]').daterangepicker({
-			        singleDatePicker: true,
-			        showDropdowns: true,
-			        value: currDate
-			    }); 
+			    function cb(start, end) {
+			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+			        $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+			    }
+			    $('#reportrange').daterangepicker({
+			        startDate: start,
+			        endDate: end,
+			        ranges: {
+			          
+			        }}, cb);
+			    
+			    $('#reportrange2').daterangepicker({
+			        startDate: start,
+			        endDate: end,
+			        ranges: {
+			          
+			        }}, cb);
 
+			    $('#reportrange3').daterangepicker({
+			        startDate: start,
+			        endDate: end,
+			        ranges: {
+			          
+			        }}, cb);
+
+			    cb(start, end);
+			    
 			});
 		</script>
+		<!-- SEARCH BY NAME/ID -->	
+		<script type = "text/javascript">
+			$(document).ready(function(){
+				$('#inputName').click(function(){
+				var name =$("#name");
+		 		var idnumber =$("#idnumber");
+		 		name.removeAttr("readonly");
+		 		idnumber.val("");
+		 		//idnumber.removeAttr("required");
+		 		//name.prop("required", "true");
+		 		idnumber.prop("readonly", "true");
+		 		});
+	 			
+	 			$('#inputID').click(function(){
+	 			var name =$("#name");
+		 		var idnumber =$("#idnumber");
+		 		name.prop("readonly", "true");
+		 		//idnumber.prop("required", "true");
+		 		//name.removeAttr("required");
+		 		idnumber.removeAttr("readonly");
+		 		name.val("");
 
-		<script type="text/javascript">
-			$(function() {
+	 			});
 
-				var currMonth =moment.currDate;
-
-			$('input[name="monthlydate"]').daterangepicker( {
-			    format: "mm-yyyy",
-			    viewMode: "months", 
-			    minViewMode: "months",
-			    enableYearToMonth: true, 
-			    enableMonthToDay : false,
-			    value : currMonth
+	 			
 			});
 
+			$(document).ready(function(){
+				$('#searchByName').click(function(){
+				var name =$("#search-name");
+				var fname =$("#search-fname");
+		 		var idnumber =$("#search-idnumber");
+		 		name.removeAttr("readonly");
+		 		fname.removeAttr("readonly");
+		 		idnumber.val("");
+		 		idnumber.prop("readonly", "true");
+		 		});
+	 			
+	 			$('#searchByID').click(function(){
+	 			var name =$("#search-name");
+	 			var fname =$("#search-fname");
+		 		var idnumber =$("#search-idnumber");
+		 		name.prop("readonly", "true");
+		 		fname.prop("readonly", "true");
+		 		idnumber.removeAttr("readonly");
+		 		name.val("");
+		 		fname.val("");
+	 			});
+
+	 			
 			});
+
 		</script>
 
-		<script type="text/javascript">
-		    $("[rel='tooltip']").tooltip();    
-			    $('.thumbnail').hover(
-			        function(){
-			            $(this).find('.caption').slideDown(500); //.fadeIn(250)
-			        },
-			        function(){
-			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
-			        }
-			    ); 
+
+		<!-- CHANGING OF REPORT TYPES -->
+		<script>
+			function change(){
+				if(document.getElementById('report-type').value == "daily") {
+			      	$("#inputDaily").show();
+			        $("#inputTerm").hide();
+			        $("#inputCustom").hide();
+			        $("#inputPromo").hide();
+				}
+
+				if(document.getElementById('report-type').value == "term") {
+			      	$("#inputTerm").show();
+			      	$("#inputDaily").hide();
+			        $("#inputCustom").hide();
+			        $("#inputPromo").hide();
+				}
+
+				if(document.getElementById('report-type').value == "custom") {
+					$("#inputCustom").show();
+					$("#inputTerm").hide();
+			      	$("#inputDaily").hide();
+			      	$("#inputPromo").hide();
+				}
+
+				if(document.getElementById('report-type').value == "promotional") {
+					$("#inputPromo").show();
+					$("#inputDaily").hide();
+					$("#inputTerm").hide();
+					$("#inputCustom").hide();
+				}
+
+
+			}
 		</script>
 
+		<!-- CLICKING OF TABLES -->
 		<script type="text/javascript">
 			$(document).ready(function($) {
 			    $(".row-data").click(function() {
@@ -118,6 +178,7 @@
 			    });
 			});
 		</script>
+
 
 		<script type="text/javascript">
 			$(document).ready(function(){
@@ -130,6 +191,20 @@
 			});
 
 		</script>
+
+		<script type="text/javascript">
+		    $("[rel='tooltip']").tooltip();    
+			    $('.thumbnail').hover(
+			        function(){
+			            $(this).find('.caption').slideDown(500); //.fadeIn(250)
+			        },
+			        function(){
+			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
+			        }
+			    ); 
+		</script>
+
+
 
     </head>
 
@@ -166,6 +241,7 @@
 
 		<div class = "container" style = "margin-top:-20px;">
 			<div class = "im-centered-body">
+				<!--
 				<div class = "row">
 					<div style = "margin:auto;width:98%;margin-left:150px">
 							<div class = "box col-xs-3 searchresults-box">
@@ -268,9 +344,13 @@
 
 					</div>
 				</div>
+				-->
 
 				<br>
 				<h5 id="title-header"> Search Results  </h5>
+
+		   	</div>
+		   	<!--
 				<div class = "row">
 					<div class ="box col-xs-12">
 						<div class="box-inner">
@@ -279,9 +359,12 @@
 								<p class = "col-xs-1"></p>
 								<p class = "col-xs-2">Faculty Name:</p>
 								<p class = "col-xs-3"><b>SAMSON, BRIANE PAUL V.</b></p>
+
+							</div>
+							<div class = "row">
+								<p class = "col-xs-1"></p>
 								<p class = "col-xs-2"></p>
-								<p class = "col-xs-2"> Faculty ID: </p>
-								<p class = "col-xs-2"> 12345678 </p>
+								<p class = "col-xs-3">12345678</p>
 
 							</div>
 
@@ -291,23 +374,101 @@
 								<p class = "col-xs-3">Software Technology Department</p>
 							</div>
 
-							<div class="row">
-								<p class = "col-xs-1"></p>
-								<p class = "col-xs-2"></p>
-								<p class = "col-xs-3">Undergraduate Lecture</p>
-							</div>
-
 						</div>
 					</div>
-				</div>
-				<br>
+				</div> -->
 
-						
-				<br><br>
+			    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filter-panel">
+			        <span class="glyphicon glyphicon-cog"></span> Filter Settings
+			    </button>
+				<button href = "#" data-toggle="modal" data-target = "#searchrecords-modal" class="navbar-btn btn-success btn">
+			    <span class="glyphicon glyphicon-th-list"></span> Search </button>
+
+
+			    <div class = "im-centered-body">
+			    	<br>
+					<div class = "container">
+						<div class = "row">
+							<div id="filter-panel" class="collapse filter-panel" style = "width:85%;">
+					            <div class="panel panel-default">
+					                <div class="panel-body">
+					                    <form class="form-inline" id = "filter-form" role="form">
+					                        <div class="form-group">
+					                            <label class="filter-col" style="margin-right:0;" for="class-type">Class Type:</label>
+					                            <select id = "class-type" class="form-control selectpicker show-tick" data-width = "100px">
+					                                <option value="normal" selected>Normal</option>
+					                                <option value="makeup">Make-Up</option>
+					                                <option value="both">Both</option>
+					                            </select>                                
+					                        </div> <!-- form group [rows] -->
+					                        <div class="form-group">
+					                            <label class="filter-col" style="margin-right:0;" for="report-type">Daily Report Filter:</label>
+					                            <select id = "report-type" onchange = "change()" class="form-control selectpicker show-tick" data-width = "155px">
+									        		<option id ="dailyButton" value = "daily"> Daily </option>
+									        		<option value = "term"> Term-End </option>
+									        		<option value = "custom"> Custom </option>
+									        		<option value = "promo"> Promotional </option>
+					                            </select>   
+					                        </div><!-- form group [search] -->
+					                        <div class="form-group">
+					                        	<div id = "inputDaily">
+						                            <label class="filter-col" style="margin-right:;margin-top:5px" for="report-date">Date:
+						                            <input style = "width:100px;margin-top:0px;margin-left:10px;" type="text" class="form-control" name="dailydate">
+						                            </label>
+					                        	</div>
+
+												<div id = "inputTerm" style = "display:none;">
+										            <label class="filter-col" style="margin-right:0;" for="report-date">Date:</label>
+										            <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px"name ="academicyears">
+														<option seleccted>A.Y. 2015-2016</option>		
+													</select>
+										            <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px" name ="terms">
+														<option value = "1" selected>Term 1</option>
+														<option value = "2">Term 2</option>
+														<option value = "3">Term 3</option>
+																
+													</select>
+							            		</div>	
+
+							            		<div id = "inputCustom" style = "display:none;">
+							            			<label class="filter-col" style="margin-right:0;margin-top:5px;" for="report-date">Date:</label>
+										            <div id="reportrange" class="pull-right" style = "width:230px">
+														<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+														<span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
+													</div>
+							              			
+									    		</div>					 
+
+
+							     				                       
+					                        </div> <!-- form group [order by] --> 
+					                        <div class="form-group">
+					                            <button type="submit" class="btn btn-success filter-col" style = "margin-left:10px;">
+					                                <span class="glyphicon glyphicon-record"></span> Apply
+					                            </button>  
+					                        </div>
+					                    </form>
+					                </div>
+					            </div>
+					        </div> 
+
+				   	</div><!--end of filter container -->
+
+			    </div>
+
 				<div class="row">
 							<div class ="box col-xs-12">
 									<div class="box-content">
 										<table id="result" class="table table-bordered table-condensed table-hover">
+											<thead class="collegelabel">
+												<tr>
+													<th colspan ="7">
+														SAMSON, Brian Paul V. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														12345678&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														Software Technology Department
+													</th>	
+												</tr>
+											</thead>
 											<thead id="col-header">
 												<tr>
 													<th>Date</th>
@@ -375,42 +536,45 @@
 
 
 		<!-- SEARCH ATTENDANCE RECORDS MODAL -->
-		<div class="modal fade" id="searchrecords-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-		 <div class="modal-dialog">
-				<div class="addaymodal-container" id = "searchrecords-container">
-					<form class = "form form-horizontal">
+		<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="searchrecords-modal" role="dialog" style="display: none;" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="addaymodal-container" id="searchrecords-container">
+					<form action="php/search-faculty.php" method="POST" class="form form-horizontal">
 						<fieldset>
-			            	<legend class="text-center"><h3><b>SEARCH ATTENDANCE RECORDS</b></h3></legend>
-
-							<div class="form-group">
-			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by ID Number: </label>
-			            	 	<div class = "col-xs-4">
-			            	 		<input type="text" class="form-control"	/>
-			            	 	</div>
-			            	 </div>
+							<legend style = "margin-bottom:-10px;"></legend>
+							<h3><legend class="text-center"><b>SEARCH ATTENDANCE RECORDS</b></legend></h3>
 
 			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-5" style = "text-align:left;"><input type="radio" name="search-options" id="search1" value="1" checked>&nbsp;&nbsp;by Name: </label>
-			            	 	<div class = "col-xs-4">
-			            	 		<input type="text" class="form-control"	/>
+			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
+			            	 	
+			            	 	<div id = "inputDaily" class = "col-xs-8">
+			            	 		<input style = "width:100px;margin-left:35px" type="text" class="form-control" id = "dailydate" name="dailydate"/>
 			            	 	</div>
 			            	 </div>
-							
-							<br>
+							<div class="form-group">
+								<label class="control-label col-xs-5" style="text-align:left;"><input checked id="searchByID" name="option" type="radio" value="idNumber">&nbsp;&nbsp;by ID Number:</label>
+								<div class="col-xs-7">
+									<input class="form-control" id="search-idnumber" name="idNumber" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-5" style="text-align:left;"><input id="searchByName" name="option" type="radio" value="name">&nbsp;&nbsp;by Name:</label>
+								<div class="col-xs-7">
+									<!-- Last Name, First Name
+									<input class="form-control" id="search-name" name="lastName" style="width:104px; float: left; margin-right:5px;" type="text" placeholder="Last Name" readonly>
+									<input class="form-control" id="search-fname" name="firstName" style="width:104px; float:left;" type="text" placeholder="First Name" readonly>
+									-->
+									<input class="form-control" id="search-name" name="fullName" style="float: left; margin-right:5px;" type="text" placeholder="Last Name, First Name" readonly>
+								</div>
+							</div><br>
 							<div class="text-center">
-						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-search"></i> SUBMIT </button> 
-						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
-				            </div>
-						
-			        	</fieldset>
-			
+								<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-search"></i> SUBMIT</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+							</div>
+						</fieldset>
 					</form>
-
-
 				</div>
-		  </div>
+			</div>
 		</div>
-
 		</div>
 		<div class="navbar navbar-fixed-bottom">
 	    	<div class="container text-center">
@@ -708,6 +872,39 @@
 								<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-envelope"></i> REMOVE</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
 							</div>
 
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- SEARCH MODAL -->
+		<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="searchrecords-modal" role="dialog" style="display: none;" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="addaymodal-container" id="searchrecords-container">
+					<form action="php/search-faculty.php" method="POST" class="form form-horizontal">
+						<fieldset>
+							<legend style = "margin-bottom:-10px;"></legend>
+							<h3><legend class="text-center"><b>SEARCH ATTENDANCE RECORDS</b></legend></h3>
+							<div class="form-group">
+								<label class="control-label col-xs-5" style="text-align:left;"><input checked id="searchByID" name="option" type="radio" value="idNumber">&nbsp;&nbsp;by ID Number:</label>
+								<div class="col-xs-4">
+									<input class="form-control" id="search-idnumber" name="idNumber" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-5" style="text-align:left;"><input id="searchByName" name="option" type="radio" value="name">&nbsp;&nbsp;by Name:</label>
+								<div class="col-xs-7">
+									<!-- Last Name, First Name
+									<input class="form-control" id="search-name" name="lastName" style="width:104px; float: left; margin-right:5px;" type="text" placeholder="Last Name" readonly>
+									<input class="form-control" id="search-fname" name="firstName" style="width:104px; float:left;" type="text" placeholder="First Name" readonly>
+									-->
+									<input class="form-control" id="search-name" name="fullName" style="float: left; margin-right:5px;" type="text" placeholder="Last Name, First Name" readonly>
+								</div>
+							</div><br>
+							<div class="text-center">
+								<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-search"></i> SUBMIT</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+							</div>
 						</fieldset>
 					</form>
 				</div>
