@@ -3,7 +3,7 @@
 
 	include "php/connector.php";
 
-	$buttons = isset($_POST["buttons"]) ? $_POST["buttons"] : "monthly/term";
+	$buttons = isset($_POST["buttons"]) ? $_POST["buttons"] : false;
 
     //echo "Data: ".$date."</br>";
     //echo $buttonDaily."</br>";
@@ -67,7 +67,7 @@
 		$labeldate = $month." ".$years;
 
 	}
-	else
+	else if($buttons == 'term')
 	{
 		$terms = isset($_POST["terms"]) ? $_POST["terms"] : false;
 		$years = isset($_POST["academicyears"]) ? $_POST["academicyears"] : false;
