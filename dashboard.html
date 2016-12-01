@@ -23,7 +23,6 @@
 	    <!-- DROPDOWN -->
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
 
-	    <!-- SINGLE CALENDAR -->
 		<script type="text/javascript">
 			$(function() {
 
@@ -37,87 +36,44 @@
 
 			});
 		</script>
-
-		<!-- DATE RANGE PICKER -->
+		
 		<script type="text/javascript">
-
-			$(function() {
-
-			    var start = moment().subtract(29, 'days');
-			    var end = moment();
-
-			    function cb(start, end) {
-			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			        $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			    }
-			    $('#reportrange').daterangepicker({
-			        startDate: start,
-			        endDate: end,
-			        ranges: {
-			          
-			        }}, cb);
-			    
-			    $('#reportrange2').daterangepicker({
-			        startDate: start,
-			        endDate: end,
-			        ranges: {
-			          
-			        }}, cb);
-
-			    $('#reportrange3').daterangepicker({
-			        startDate: start,
-			        endDate: end,
-			        ranges: {
-			          
-			        }}, cb);
-
-			    cb(start, end);
-			    
-			});
+		    $("[rel='tooltip']").tooltip();    
+			    $('.thumbnail').hover(
+			        function(){
+			            $(this).find('.caption').slideDown(500); //.fadeIn(250)
+			        },
+			        function(){
+			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
+			        }
+			    ); 
 		</script>
 
-		<!-- CHANGING OF REPORT TYPES -->
-		<script>
-			function change(){
-				if(document.getElementById('report-type').value == "daily") {
-			      	$("#inputDaily").show();
-			        $("#inputTerm").hide();
-			        $("#inputCustom").hide();
-			        $("#inputPromo").hide();
-				}
-
-				if(document.getElementById('report-type').value == "term") {
-			      	$("#inputTerm").show();
-			      	$("#inputDaily").hide();
-			        $("#inputCustom").hide();
-			        $("#inputPromo").hide();
-				}
-
-				if(document.getElementById('report-type').value == "custom") {
-					$("#inputCustom").show();
-					$("#inputTerm").hide();
-			      	$("#inputDaily").hide();
-			      	$("#inputPromo").hide();
-				}
-
-				if(document.getElementById('report-type').value == "promotional") {
-					$("#inputPromo").show();
-					$("#inputDaily").hide();
-					$("#inputTerm").hide();
-					$("#inputCustom").hide();
-				}
-
-
-			}
-		</script>
-		<!-- SEGMENTED BUTTONS - Faculty & Others -->
 		<script type="text/javascript">
 			$(function(){
     
 		    $('div.segmented-control a').on('click', function(){
 		        
 		        $('div.segmented-control a').each(function(i,e){
+		            $(e).removeClass('active');
+		        });
+		        
+		        $(this).addClass('active');
+		        $(this).find('input').prop('checked',true);
+		        return false;
+		        
+		    });
+		    
+		});
+
+		</script>
+
+		<script type="text/javascript">
+			$(function(){
+    
+		    $('div.segmented-report-type a').on('click', function(){
+		        
+		        $('div.segmented-report-type a').each(function(i,e){
 		            $(e).removeClass('active');
 		        });
 		        
@@ -142,6 +98,7 @@
 					
 					if(college == 'CCS')
 					{
+						$("#department").val("CCS");
 						$("#CCS").show();
 				        $("#COS").hide();
 				        $("#COL").hide();
@@ -154,6 +111,7 @@
 					}
 					if(college == 'COS')
 					{
+						$("#department").val("COS");
 						$("#CCS").hide();
 				        $("#COS").show();
 				        $("#COL").hide();
@@ -166,6 +124,7 @@
 					}
 					if(college == 'COL')
 					{
+						$("#department").val("COL");
 						$("#CCS").hide();
 				        $("#COS").hide();
 				        $("#COL").show();
@@ -178,6 +137,7 @@
 					}
 					if(college == 'CLA')
 					{
+						$("#department").val("CLA");
 						$("#CCS").hide();
 				        $("#COS").hide();
 				        $("#COL").hide();
@@ -190,6 +150,7 @@
 					}
 					if(college == 'GCOE')
 					{
+						$("#department").val("GCOE");
 						$("#CCS").hide();
 				        $("#COS").hide();
 				        $("#COL").hide();
@@ -202,6 +163,7 @@
 					}
 					if(college == 'SOE')
 					{
+						$("#department").val("SOE");
 						$("#CCS").hide();
 				        $("#COS").hide();
 				        $("#COL").hide();
@@ -214,6 +176,7 @@
 					}
 					if(college == 'BAGCED')
 					{
+						$("#department").val("BAGCED");
 						$("#CCS").hide();
 				        $("#COS").hide();
 				        $("#COL").hide();
@@ -226,6 +189,7 @@
 					}
 					if(college == 'RVRCOB')
 					{
+						$("#department").val("RVRCOB");
 						$("#CCS").hide();
 				        $("#COS").hide();
 				        $("#COL").hide();
@@ -238,6 +202,7 @@
 					}
 					if(college == 'All Colleges')
 					{
+						$("#department").val("All Colleges");
 						$("#CCS").hide();
 				        $("#COS").hide();
 				        $("#COL").hide();
@@ -299,7 +264,6 @@
 			      	$("#inputIDNumTerm").hide();
 			    });
 			});
-
 			$(document).ready(function(){
 				$('#inputName').click(function(){
 				var name =$("#name");
@@ -323,6 +287,27 @@
 	 			});
 
 	 			
+			});
+			$(document).ready(function(){
+				$("#dailyButton").click(function() {
+			      	$("#inputDaily").show();
+			        $("#inputMonthly").hide();
+			        $("#inputMonthly2").hide();
+			        $("#inputTerm").hide();
+			    });
+			    $("#monthlyButton").click(function() {
+			      	$("#inputMonthly").show();
+			      	$("#inputMonthly2").show();
+			      	$("#inputDaily").hide();
+			      	$("#inputTerm").hide();
+			    });
+			    $("#termButton").click(function() {
+			      	$("#inputTerm").show();
+			      	$("#inputDaily").hide();
+			        $("#inputMonthly").hide();
+			        $("#inputMonthly2").hide();
+			    });
+
 			});
 
 			$(document).ready(function(){
@@ -364,8 +349,6 @@
 			        }
 			    ); 
 		</script>
-
-
 
 	</head>
 
@@ -527,13 +510,6 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Type:</label>
 						        <div class="col-xs-5">
-						        	<select id = "report-type" class = "selectpicker show-tick" data-width = "155px" onchange = "change()">
-						        		<option id ="dailyButton" value = "daily"> Daily </option>
-						        		<option value = "term"> Term-End </option>
-						        		<option value = "custom"> Custom </option>
-						        		<option value = "promotional"> Promotional </option>
-						        	</select>
-						        	<!--
 						            <div class="segmented-report-type" style="width:500px;margin-left:5px;">
 									    <a id ="dailyButton" href="#" class="list-group-item active" value = "daily">
 									    	Daily
@@ -547,13 +523,8 @@
 									    	Term
 									    	<input name ="buttons" value ="term" type="radio"/>
 									    </a>
-									    <a id ="customButton" href="#" class="list-group-item" value = "term">
-									    	Custom
-									    	<input name ="buttons" value ="term" type="radio"/>
-									    </a>
 									                
 									</div>
-									-->
 						        </div>
 			            	 </div>
 									
@@ -565,7 +536,7 @@
 			            	 	<div id = "inputDaily" class = "col-xs-8">
 			            	 		<input style = "width:100px;" type="text" class="form-control" id = "dailydate" name="dailydate"/>
 			            	 	</div>
-								<!--
+								
 								<div id = "inputMonthly" class = "col-xs-4" name = "monthly" style = "display:none;">
 									
 									<select class="selectpicker show-tick" style = "text-align:left;;" name ="months" data-width="110px">
@@ -593,37 +564,25 @@
 												
 									</select>
 								</div>
-								-->
+									
 
 			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
 						                
-						                <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px"name ="academicyears">
+						                <select class="selectpicker show-tick" style = "text-align:left;" name ="academicyears">
 												<option seleccted>A.Y. 2015-2016</option>
 												
 									    </select>
 									    <br><br>
-						                <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px" name ="terms">
+						                <select class="selectpicker show-tick" style = "text-align:left;" name ="terms">
 												<option value = "1" selected>Term 1</option>
 												<option value = "2">Term 2</option>
 												<option value = "3">Term 3</option>
 												
 									    </select>
 
+									    
+
 			            		</div>
-
-
-
-			            		<div id = "inputCustom" class="col-xs-8" style = "display:none;">
-						                <div id="reportrange" class="pull-right" style = "width:230px">
-										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
-										</div>
-			              			 
-					    		</div>
-								
-								<div id = "inputPromo" class="col-xs-8" style = "display:none;margin-top:5px;">
-									<span><i>start up to present</i></span>
-								</div>
 
 			            	 </div>
 
@@ -659,7 +618,7 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input style = "width:214px" type="text" class="form-control" id= "name" name="name" placeholder = "Last Name, First Name" readonly/>
+					            	 		<input style = "width:214px" type="text" class="form-control"	id= "name" name="name" readonly/>
 
 					            	 	</div>
 					            	</div>
@@ -670,6 +629,7 @@
 						    <div id = "inputOthersDaily" style = "display:none;">
 
 							    <div class = "form-group">
+							    	<input type ="hidden" id = "department" name = "department" value = "All Departments"/>
 				            	 		<label class = "control-label col-xs-4" style = "text-align:left;">Report filter:</label>
 				            	 		<div class = "col-xs-5" style="width:250px">
 											<select id = "collegepicker" class="selectpicker show-tick" style = "text-align:left;" name ="college">
@@ -690,31 +650,31 @@
 							    <div class = "form-group">
 				            	 		<label class = "control-label col-xs-4" style = "text-align:left;"></label>
 				            	 		<div id = "CCS" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "department">
-												<option selected> Computer Technology</option>
+											<select id = "departmentpicker" class="selectpicker show-tick" name = "ccs">
+												<option> Computer Technology</option>
 												<option> Software Technology</option>
 												<option> Information Technology</option>
 											
 											</select> 	
 				            	 		</div>
 				            	 		<div id = "BAGCED" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "department">
-												<option selected> English and Applied Linguistics</option>
+											<select id = "departmentpicker" class="selectpicker show-tick" name = "bagced">
+												<option> English and Applied Linguistics</option>
 												<option> Science Education</option>
 												<option> Physical Education</option>
 											
 											</select> 	
 				            	 		</div>
 				            	 		<div id = "COL" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "department">
-												<option selected> Law</option>
+											<select id = "departmentpicker" class="selectpicker show-tick" name = "col">
+												<option> Law</option>
 												
 											
 											</select> 	
 				            	 		</div>
 				            	 		<div id = "CLA" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "department">
-												<option selected> Theology and Religious Studies</option>
+											<select id = "departmentpicker" class="selectpicker show-tick" name = "cla">
+												<option> Theology and Religious Studies</option>
 												<option> History </option>
 												<option> Behavioral Sciences </option>
 												<option> Communication </option>
@@ -728,8 +688,8 @@
 											</select> 	
 				            	 		</div>
 				            	 		<div id = "COS" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "department">
-												<option selected> Biology </option>
+											<select id = "departmentpicker" class="selectpicker show-tick" name = "cos">
+												<option> Biology </option>
 												<option> Chemistry </option>
 												<option> Physics </option>
 												<option> Mathematics</option>
@@ -737,8 +697,8 @@
 											</select> 	
 				            	 		</div>
 				            	 		<div id = "GCOE" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "department">
-												<option selected> Chemical Engineering </option>
+											<select id = "departmentpicker" class="selectpicker show-tick" name = "gcoe">
+												<option> Chemical Engineering </option>
 												<option> Civil Engineering </option>
 												<option> Electronics and Communications Engineering </option>
 												<option> Industrial Engineering </option>
@@ -748,8 +708,8 @@
 											</select> 	
 				            	 		</div>
 				            	 		<div id = "RVRCOB" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "department">
-												<option selected> Accountancy </option>
+											<select id = "departmentpicker" class="selectpicker show-tick" name = "rvrcob">
+												<option> Accountancy </option>
 												<option> Marketing Management </option>
 												<option> Management and Organization </option>
 												<option> Financial Management </option>
@@ -758,14 +718,14 @@
 											</select> 	
 				            	 		</div>
 				            	 		<div id = "SOE" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "department">
-												<option selected> Economics</option>
+											<select id = "departmentpicker" class="selectpicker show-tick" name = "soe">
+												<option> Economics</option>
 
 											</select> 	
 				            	 		</div>
 				            	 		<div id = "All" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "department">
-												<option selected> All Departments</option>
+											<select id = "departmentpicker" class="selectpicker show-tick" name = "all">												
+												<option> All Departments</option>
 											</select> 	
 				            	 		</div>
 							    </div>
@@ -773,9 +733,9 @@
 							<br>
 
 						    <div class="text-center">
-						        <button id="btnViewReportDaily" type="submit" class="btn btn-success col-xs-4 submit" style = "margin-left:40px; margin-right:30px;font-size:14px;"> <i class="glyphicon glyphicon-th-list"></i> GENERATE </button> 
+						        <button id="btnViewReportDaily" type="submit" class="btn btn-success btn-lg col-xs-4 submit" style = "margin-left:40px; margin-right:30px;font-size:14px;"> <i class="glyphicon glyphicon-th-list"></i> GENERATE </button> 
 						        
-						        <button type="button" class="btn btn-danger col-xs-4 cancel" data-dismiss="modal" style="
+						        <button type="button" class="btn btn-danger btn-lg col-xs-4 cancel" data-dismiss="modal" style="
     							margin-left: 20px;font-size:14px;"> <i class="glyphicon glyphicon-remove"></i> CANCEL </button>
 				            </div>
 

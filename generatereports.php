@@ -14,6 +14,23 @@
 		$dates = explode("/",$date);
 		$date = $dates[2]."-".$dates[0]."-".$dates[1]; 
 		$dateFilter = "date = '".$date."' ";
+
+		switch($dates[0])
+		{
+			case 1 : $labeldate = "January"; break;
+			case 2 : $labeldate = "February"; break;
+			case 3 : $labeldate = "March"; break;
+			case 4 : $labeldate = "April"; break;
+			case 5 : $labeldate = "May"; break;
+			case 6 : $labeldate = "June"; break;
+			case 7 : $labeldate = "July"; break;
+			case 8 : $labeldate = "August"; break;
+			case 9 : $labeldate = "September"; break;
+			case 10 : $labeldate = "October"; break;
+			case 11 : $labeldate = "November"; break;
+			case 12 : $labeldate = "December"; break;
+		}
+		$labeldate = $labeldate." ".$dates[1].", ".$dates[2];
 	}
 	else if($buttons == 'monthly')
 	{
@@ -63,6 +80,14 @@
 		$rows = $stmt->fetch(PDO::FETCH_ASSOC); // assuming $result == true
 									 
 		$dateFilter = "date BETWEEN '".$rows['start']."' AND '".$rows['end']."' "; 
+		if($terms == 1)
+			$termP = "1st";
+		if($terms == 2)
+			$termPs = "2nd";
+		if($terms == 3)
+			$termP = "3rd";
+
+		$labeldate = $termP." TRIMESTER, ".$years ;
 
 	}
 		
@@ -336,13 +361,10 @@
 			<center>
 				<div class="row">
 					<h4><b>FACULTY ATTENDANCE REPORT</b></h4>
-					<?php //echo $labelDate; ?>
+					<?php echo $labeldate; ?>
 				</div>
 			</center>
-			<br>
-			<div class="row">
-				<div class ="box col-md-12">
-						<div class="box-content">
+			
 							
 										<?php
 
@@ -389,28 +411,51 @@
 										    	$department = isset($_POST["department"]) ? $_POST["department"] : false;
 
 
+										    	switch ($department) {
+										    		case 'CCS':
+										    				$department = isset($_POST["ccs"]) ? $_POST["ccs"] : false;
+										    			break;
+										    		case 'COS':
+										    				$department = isset($_POST["cos"]) ? $_POST["cos"] : false;
+										    			break;
+										    		case 'COL':
+										    				$department = isset($_POST["col"]) ? $_POST["col"] : false;
+										    			break;
+										    		case 'CLA':
+										    				$department = isset($_POST["cla"]) ? $_POST["cla"] : false;
+										    			break;
+										    		case 'RVRCOB':
+										    				$department = isset($_POST["rvrcob"]) ? $_POST["rvrcob"] : false;
+										    			break;
+										    		case 'BAGCED':
+										    				$department = isset($_POST["bagced"]) ? $_POST["bagced"] : false;
+										    			break;
+										    		case 'GCOE':
+										    				$department = isset($_POST["gcoe"]) ? $_POST["gcoe"] : false;
+										    			break;
+										    		case 'SOE':
+										    				$department = isset($_POST["soe"]) ? $_POST["soe"] : false;
+										    			break;
+										    		
+										    		default:
+										    				$department = isset($_POST["all"]) ? $_POST["all"] : false;
+										    			break;
+										    	}
 										    	
-										    	$filter = "WHERE ";
+										    	
+										    	$filter= "";
 
-										    	if($department == 'All Departments')
+										    	if($college != 'All Colleges')
 										    	{
-										    		if ($college == 'All Colleges')	
-										   				$filter = "";
-										   			else
-										   				$filter = $filter."college= '".$college."'";
+										    		$filter = "WHERE "."department= '".$department."' AND college= '".$college."'";
 										   		}
-										   		else
-										   		{
-										   			$filter = $filter."department= '".$department."' ";
-
-										   			if ($college != 'All Colleges')	
-										   				$filter = $filter."AND college= '".$college."'";
-
-										   		}	
 										    		
 										    											    	
 										    }
-											$stmt = $conn->prepare("SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks,room_name,date,code
+
+										    if($buttons == 'daily')
+										    {
+										    	$stmt = $conn->prepare("SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks,room_name,code
 																	FROM
 																		(SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks,name as 'room_name',date,course_id
 																		FROM
@@ -427,58 +472,188 @@
 																	;");
 
 											
-																
-									 		$result = $stmt->execute();
-									 		if($rows = $stmt->fetch(PDO::FETCH_ASSOC))
-									 		{
-									 			echo "<table id='resulttable' class='table table-bordered table-striped table-condensed'>
-														<thead class='collegelabel'>
-															<tr><th colspan ='9'></th></tr>
-														</thead> 
-									 					<thead id = 'col-header'><tr>
-														<th>Date </th>
-														<th>College </th>
-														<th>Department</th>
-														<th>Faculty</th>
-														<th>Time</th>
-														<th>Course</th>
-														<th>Section</th>
-														<th>Room</th>
-														<th>Remarks</th>
-														</tr>
-														</thead>
-														<tbody>";
-									 			do
-									 			{
+																	
+										 		$result = $stmt->execute();
+										 		if($rows = $stmt->fetch(PDO::FETCH_ASSOC))
+										 		{
+										 			echo "	<br>
+															<div class='row'>
+															<div class ='box col-md-12'>
+															<div class='box-content'>
+										 					<table id='resulttable' class='table table-bordered table-striped table-condensed'>
+															<thead class='collegelabel'>
+																<tr><th colspan ='9'></th></tr>
+															</thead> 
+										 					<thead id = 'col-header'><tr>
+															<th>College </th>
+															<th>Department</th>
+															<th>Faculty</th>
+															<th>Time</th>
+															<th>Course</th>
+															<th>Section</th>
+															<th>Room</th>
+															<th>Remarks</th>
+															</tr>
+															</thead>
+															<tbody>";
+										 			do
+										 			{
 
-									 				echo "<tr class='row-data' data-href='#'>
-									 				<td>".$rows['date']."</td>
-									 				<td>".$rows['college']."</td>
-									 				<td>".$rows['department']."</td>
-									 				<td>".$rows['last_name'].", ".$rows['first_name']." ".$rows['middle_name']."</td>
-									 				<td>".$rows['time_start']." - ".$rows['time_end']."</td>
-									 				<td>".$rows['code']."</td>
-									 				<td>".$rows['section']."</td>
-									 				<td>".$rows['room_name']."</td>
-									 				<td>".$rows['remarks']."</td></tr>";
+										 				echo "<tr class='row-data' data-href='#'>
+										 				<td>".$rows['college']."</td>
+										 				<td>".$rows['department']."</td>
+										 				<td>".$rows['last_name'].", ".$rows['first_name']." ".$rows['middle_name']."</td>
+										 				<td>".$rows['time_start']." - ".$rows['time_end']."</td>
+										 				<td>".$rows['code']."</td>
+										 				<td>".$rows['section']."</td>
+										 				<td>".$rows['room_name']."</td>
+										 				<td>".$rows['remarks']."</td></tr>";
 
-									 			}while($rows = $stmt->fetch(PDO::FETCH_ASSOC));
+										 			}while($rows = $stmt->fetch(PDO::FETCH_ASSOC));
 
-									 			echo "</tbody> </table>";
+										 			echo "</tbody> </table>
+										 				  </div>
+														  </div>
+														  </div><br><br>";
 
-									 		}
-									 		else
-									 		{
-									 			echo "<h1> NO RECORDS FOUND </h1>";
-									 		}
+											 	}
+											 		else
+											 			echo "<h1> NO RECORDS FOUND </h1>";
+										 		
+											}
+											else
+											{
+												$stmt = $conn->prepare("SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks,room_name,date,code
+																	FROM
+																		(SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks,name as 'room_name',date,course_id
+																		FROM
+																			(SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks, room_id,course_id, date
+																			 FROM 
+																				(SELECT college, department,first_name,middle_name,last_name,time_start,time_end,C.section,room_id,C.id as 'offering_id', course_id
+																				 FROM faculty F
+																				 INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
+																			 INNER JOIN attendance A on A.courseoffering_id = Y.offering_id
+																			 WHERE ".$dateFilter." ) as Z
+																		INNER JOIN room R on R.id = Z.room_id) as A
+																	INNER JOIN course C ON C.id = A.course_id
+																	".$filter."
+																	;");
+
+											
+																	
+										 		$result = $stmt->execute();
+												if($rows = $stmt->fetch(PDO::FETCH_ASSOC))
+												{
+													echo "
+													<div class='row'>
+													<div class ='box col-md-12'>
+													<div class='box-content'>
+													<table class='tg'>
+													<tr>
+												    <th class='tg-uce2'>Reason for Absence:</th>
+												    <th class='tg-efv9'><b>CF</b> - Conference</th>
+												    <th class='tg-efv9'><b>PM</b> - Personal Matters</th>
+												    <th class='tg-efv9'><b>SI</b> - Sickness</th>
+												    <th class='tg-efv9'><b>XX</b> - Reason Uknown</th>
+												  	</tr>
+												  	<tr>
+												    <td class='tg-cgdk'></td>
+												    <td class='tg-cgdk'><b>OB</b> - Official Business</td>
+												    <td class='tg-cgdk'><b>AC</b> - Alternative Class</td>
+												    <td class='tg-cgdk'><b>FT</b> - Field Trip</td>
+												    <td class='tg-cgdk'><b>OL</b> - Online Class</td>
+												  	</tr>
+												  	<tr>
+												    <td class='tg-efv9'></td>
+												    <td class='tg-efv9'><b>SW</b> - Seatwork</td>
+												    <td class='tg-efv9'><b>SB</b> - Substitute</td>
+												    <td class='tg-efv9'><b>LA</b> - Late</td>
+												    <td class='tg-efv9'><b>ED</b> - Early Dismissal</td>
+												  	</tr>
+													</table>
+													</div>
+													</div>
+													</div>
+													</center>
+													<br><br>
+													<div class='row'>
+													<div class ='box col-md-12'>
+													<div class='box-content'>
+													<table class='table table-bordered table-striped table-condensed'>
+													<tr>
+													<th class='mainHeader' rowspan='3'><br><br>FACULTY NAME</th>
+												    <th class='mainHeader' rowspan='3'><br>LOAD<br>(h/w)</th>
+												    <th class='mainHeader' colspan='5'><br>ABSENCE</th>
+												    <th class='mainHeader' rowspan='3'><br>MAKE-UP<br>HOURS</th>
+												    <th class='mainHeader' colspan='8'><br>OTHERS</th>
+												  	</tr>
+												  	<tr>
+												  	<td class='lblHeader' colspan='5'>in hours</td>
+												    <td class='lblHeader' colspan='6'>in hours</td>
+												    <td class='lblHeader' colspan='2'>in freq.</td>
+												 	</tr>
+												  	<tr>
+												    <td class='subHeader'>CF</td>
+												    <td class='subHeader'>PM</td>
+												    <td class='subHeader'>SI</td>
+												    <td class='subHeader'>XX</td>
+												    <td class='subHeader'>TOTAL</td>
+												    <td class='subHeader'>OB</td>
+												    <td class='subHeader'>AC</td>
+												    <td class='subHeader'>FT</td>
+												    <td class='subHeader'>OL</td>
+												    <td class='subHeader'>SW</td>
+												    <td class='subHeader'>SB</td>
+												    <td class='subHeader'>LA</td>
+												    <td class='subHeader'>ED</td>
+												  	</tr>";
+
+												  	do
+										 			{
+
+										 				echo "<tr>
+										 				<td id = 'name' class='tg-e1mw'>".$rows['last_name'].", ".$rows['first_name']." ".$rows['middle_name']."</td>
+										 				<td class='tg-e1mw'>".$rows['load']."</td>
+										 				<td class='tg-e1mw'>".$rows['cf']."</td>
+										 				<td class='tg-e1mw'>".$rows['pm']."</td>
+										 				<td class='tg-e1mw'>".$rows['si']."</td>
+										 				<td class='tg-e1mw'>".$rows['xx']."</td>
+										 				<td class='tg-e1mw'>".$rows['total']."</td>
+										 				<td class='tg-e1mw'>".$rows['make-up']."</td>
+										 				<td class='tg-e1mw'>".$rows['ob']."</td>
+										 				<td class='tg-e1mw'>".$rows['ac']."</td>
+										 				<td class='tg-e1mw'>".$rows['ft']."</td>
+										 				<td class='tg-e1mw'>".$rows['ol']."</td>
+										 				<td class='tg-e1mw'>".$rows['sw']."</td>
+										 				<td class='tg-e1mw'>".$rows['sb']."</td>
+										 				<td class='tg-e1mw'>".$rows['la']."</td>
+										 				<td class='tg-e1mw'>".$rows['ed']."</td></tr>";
+
+										 			}while($rows = $stmt->fetch(PDO::FETCH_ASSOC));
+
+										 			echo "
+												  	</table>
+													</div>
+													</div>
+													</div>
+													<br><br>
+											    	</div>";
+
+												}
+												else
+											 		echo "<h1> NO RECORDS FOUND </h1>";
+												
+												
+											
+											  	
+											}
+											
 									 		
 											
 										?>
 								
 							
-						</div>
-				</div>
-			</div><br><br>
+						
 
 
 		<!-- GENERATE REPORTS MODAL -->
