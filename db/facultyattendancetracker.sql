@@ -37,6 +37,8 @@ CREATE TABLE IF NOT EXISTS `academicyear` (
 
 INSERT INTO `academicyear` (`id`, `name`) VALUES
 (1, 'A.Y. 2015-2016');
+INSERT INTO `academicyear` (`id`, `name`) VALUES
+(2, 'A.Y. 2016-2017');
 
 -- --------------------------------------------------------
 

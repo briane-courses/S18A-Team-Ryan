@@ -90,8 +90,12 @@ CREATE TABLE IF NOT EXISTS `attendancestatus` (
 INSERT INTO `attendancestatus` (`id`, `code`, `name`, `description`) VALUES
 (1, 'LA', 'Late', 'Faculty is late to class'),
 (2, 'AB', 'Absent', 'Faculty did not come to class'),
-(3, 'SB', 'Substitute', 'Substitute was present');
-
+(3, 'SB', 'Substitute', 'Substitute was present'),
+(4, 'OB', 'Official Business', 'Faculty on official business');
+(5, 'AC', 'Alternative Class', 'Faculty decided on an alternative class');
+(6, 'FT', 'Field Trip', 'Faculty decided on a field trip.');
+(7, 'OL', 'Online Class', 'Faculty decided on an online class.');
+(8, 'SW', 'Seatwork', 'Faculty leaves a seatwork.');
 -- --------------------------------------------------------
 
 --

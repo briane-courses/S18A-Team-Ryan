@@ -3,7 +3,7 @@
 
     $server = "localhost";
     $username = "root";
-    $password = "root";
+    $password = "";
     $db = "facultyattendancetracker";
 
     try {
