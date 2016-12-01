@@ -1,2 +1,2 @@
 # S18A-Team-Ryan
-Faculty Attendance Monitoring System
+[Admin] Faculty Attendance Monitoring System
