@@ -31,19 +31,25 @@
 		<!-- SINGLE CALENDAR -->
 		<script type="text/javascript">
 			$(function() {
+
 				var currDate = moment.currDate;
+
 			    $('input[name="dailydate"]').daterangepicker({
 			        singleDatePicker: true,
 			        showDropdowns: true,
 			        value: currDate
 			    }); 
+
 			});
 		</script>
 		<!-- DATE RANGE PICKER -->
 		<script type="text/javascript">
+
 			$(function() {
+
 			    var start = moment().subtract(29, 'days');
 			    var end = moment();
+
 			    function cb(start, end) {
 			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
 			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
@@ -62,12 +68,14 @@
 			        ranges: {
 			          
 			        }}, cb);
+
 			    $('#reportrange3').daterangepicker({
 			        startDate: start,
 			        endDate: end,
 			        ranges: {
 			          
 			        }}, cb);
+
 			    cb(start, end);
 			    
 			});
@@ -93,9 +101,12 @@
 		 		//name.removeAttr("required");
 		 		idnumber.removeAttr("readonly");
 		 		name.val("");
+
 	 			});
+
 	 			
 			});
+
 			$(document).ready(function(){
 				$('#searchByName').click(function(){
 				var name =$("#search-name");
@@ -117,8 +128,10 @@
 		 		name.val("");
 		 		fname.val("");
 	 			});
+
 	 			
 			});
+
 		</script>
 
 
@@ -131,24 +144,29 @@
 			        $("#inputCustom").hide();
 			        $("#inputPromo").hide();
 				}
+
 				if(document.getElementById('report-type').value == "term") {
 			      	$("#inputTerm").show();
 			      	$("#inputDaily").hide();
 			        $("#inputCustom").hide();
 			        $("#inputPromo").hide();
 				}
+
 				if(document.getElementById('report-type').value == "custom") {
 					$("#inputCustom").show();
 					$("#inputTerm").hide();
 			      	$("#inputDaily").hide();
 			      	$("#inputPromo").hide();
 				}
+
 				if(document.getElementById('report-type').value == "promotional") {
 					$("#inputPromo").show();
 					$("#inputDaily").hide();
 					$("#inputTerm").hide();
 					$("#inputCustom").hide();
 				}
+
+
 			}
 		</script>
 
@@ -167,9 +185,11 @@
 			    $("#result").children("tbody").children("tr").children("td").click(function(){
 			        $(this.parentNode).toggleClass("active");
 			    });
+
 			    $('button').disable(true);
 			$('button').attr("disabled", true);
 			});
+
 		</script>
 
 		<script type="text/javascript">
@@ -232,6 +252,7 @@
 									  <label><input type="radio" name="class-type">Makeup</label>
 									</div>
 									
+
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="checkbox-inline">
 									  <input type="checkbox" id="inlineCheckbox1" name = "load-type" value="option1" checked> Undergraduate
 									</label>
@@ -242,6 +263,7 @@
 									</div>
 								</div>
 							</div>
+
 							<div class = "box col-xs-2 searchresults-box">
 								<div class = "box-inner innerbox"><br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<label> Filter by </label>
@@ -252,6 +274,8 @@
 									</div>
 								</div>
 							</div>
+
+
 							<div class = "box col-xs-3 searchresults-box">
 								<div class = "box-inner innerbox"><br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<label> Filter Input </label>
@@ -262,6 +286,7 @@
 				            	 				<input style = "width:130px;"type="text" class="form-control" name="dailydate" value="10/31/2016"/>
 				            	 			</div>										
 										</div>
+
 										<div class = "form-group" >
 		                                	<label class = "control-label col-xs-5" style = "text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Month </label>
 				            	 			<div class = "col-xs-1" >
@@ -278,9 +303,11 @@
 														<option>October</option>
 														<option>November</option>
 														<option>December</option>
+
 											    </select>
 				            	 			</div>										
 										</div>
+
 										<div class = "form-group" style = "display:none;">
 		                                	<label class = "control-label col-xs-5" style = "text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Year </label>
 				            	 			<div class = "col-xs-1" style = "width:130px;">
@@ -297,18 +324,24 @@
 														<option>October</option>
 														<option>November</option>
 														<option>December</option>
+
 											    </select>
 				            	 			</div>										
 										</div>
+
 									</form>
+
 								</div>
 							</div>
+
 							<div class = "box col-xs-1 searchresults-box text-center">
+
 								<div class = "box-inner innerbox"><br>
 									<label> Search </label><br>
 									<button class = "btn btn-lg btn-success" data-toggle="modal" data-target="#searchrecords-modal"><i class = "glyphicon glyphicon-search"></i></button>
 								</div>
 							</div>
+
 					</div>
 				</div>
 				-->
@@ -317,37 +350,6 @@
 				<h5 id="title-header"> Search Results  </h5>
 
 		   	</div>
-            <br>
-            <div class="container">
-                <div class="prof-info col-xs-6">
-                    <div class="col-xs-12">
-                        <h4>12345678</h4>
-                    </div>
-                    <div class="col-xs-12">
-                        <h4><b>SAMSON, BRIANE PAUL V.</b></h4>
-                    </div>
-                    <div class="col-xs-12">
-                        <h5>Software Technology Department</h5>
-                    </div>
-                    <div class="col-xs-12">
-                        <h5>Undergraduate Lecture</h5>
-                    </div>
-                    <!--<div class="col-xs-6">
-                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filter-panel">
-			            <span class="glyphicon glyphicon-cog"></span> Filter Settings
-			            </button>
-				        <button href = "#" data-toggle="modal" data-target = "#searchrecords-modal" class="navbar-btn btn-success btn">
-			            <span class="glyphicon glyphicon-th-list"></span> Search </button>
-                    </div> -->
-                </div>
-                <div class="col-xs-6">
-                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filter-panel">
-			        <span class="glyphicon glyphicon-cog"></span> Filter Settings
-			        </button>
-				    <button href = "#" data-toggle="modal" data-target = "#searchrecords-modal" class="navbar-btn btn-success btn">
-			        <span class="glyphicon glyphicon-th-list"></span> Search </button>
-                </div>
-            </div>
 		   	<!--
 				<div class = "row">
 					<div class ="box col-xs-12">
@@ -357,31 +359,44 @@
 								<p class = "col-xs-1"></p>
 								<p class = "col-xs-2">Faculty Name:</p>
 								<p class = "col-xs-3"><b>SAMSON, BRIANE PAUL V.</b></p>
+
 							</div>
 							<div class = "row">
 								<p class = "col-xs-1"></p>
 								<p class = "col-xs-2"></p>
 								<p class = "col-xs-3">12345678</p>
+
 							</div>
+
 							<div class="row">
 								<p class = "col-xs-1"></p>
 								<p class = "col-xs-2"></p>
 								<p class = "col-xs-3">Software Technology Department</p>
 							</div>
+
 						</div>
 					</div>
 				</div> -->
-                <br>
-                <!--
-			    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filter-panel">
-			        <span class="glyphicon glyphicon-cog"></span> Filter Settings
-			    </button>
-				<button href = "#" data-toggle="modal" data-target = "#searchrecords-modal" class="navbar-btn btn-success btn">
-			    <span class="glyphicon glyphicon-th-list"></span> Search </button>
-                -->
 
+				<center>
+					<div class="row">
+						<h4><b>SAMSON, BRIANE PAUL V.</b></h4>
+						<h5>12345678</h5>
+						<h5>Software Technology Department</h5>
+					</div>
+				</center>
 
+				<div style = "float:right">
+				    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filter-panel">
+				        <span class="glyphicon glyphicon-cog"></span> Filter Settings
+				    </button>
+					<button href = "#" data-toggle="modal" data-target = "#searchrecords-modal" class="navbar-btn btn-success btn">
+				    <span class="glyphicon glyphicon-th-list"></span> Search </button>
+				</div>
+				<br><br>
 			    <div class = "im-centered-body">
+			    	<br>
+			    	<center>
 					<div class = "container">
 						<div class = "row">
 							<div id="filter-panel" class="collapse filter-panel" style = "width:85%;">
@@ -448,22 +463,13 @@
 					        </div> 
 
 				   	</div><!--end of filter container -->
-
+				   </center>
 			    </div>
 
 				<div class="row">
 							<div class ="box col-xs-12">
 									<div class="box-content">
 										<table id="result" class="table table-bordered table-condensed table-hover">
-											<!--<thead class="collegelabel">
-												<tr>
-													<th colspan ="7">
-														SAMSON, Brian Paul V. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-														12345678&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-														Software Technology Department
-													</th>	
-												</tr>
-											</thead> -->
 											<thead id="col-header">
 												<tr>
 													<th>Date</th>
