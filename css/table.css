@@ -1,0 +1,68 @@
+.table-bordered {
+    border: 1px solid #dddddd;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+table {
+    background-color: transparent;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+#col-header{
+    background-color: #53754b;
+    color: #e9f5e7;
+}
+
+.collegelabel{
+    /*background-color: #53754b;
+    color: #e9f5e7;*/
+    background-color:#243e16;
+    color:white;
+    border: 2px solid #b0bdac;
+}
+
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
+    border: 2px solid #b0bdac;
+}
+.table-condensed>thead>tr>th, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td {
+    padding: 5px !important;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 2px solid #b0bdac;
+}
+table td, table th {
+    padding: 9px 10px;
+    text-align: left;
+    font-family: 'Gudea', cursive;
+}
+
+td{
+    font-size:14px;
+}
+
+.row-data{
+    cursor:pointer;
+}
+
+.collegelabel{
+    /*background-color: #53754b;
+    color: #e9f5e7;*/
+    background-color:#243e16;
+    color:white;
+    border: 2px solid #b0bdac;
+}
+
+#col-header{
+    background-color: #53754b;
+    color: #e9f5e7;
+    font-size:14px;
+}
