@@ -99,6 +99,7 @@
 			        $("#inputTerm").hide();
 			        $("#inputCustom").hide();
 			        $("#inputPromo").hide();
+			        $("#othersButtonDaily").show();
 				}
 
 				if(document.getElementById('report-type').value == "term") {
@@ -106,6 +107,7 @@
 			      	$("#inputDaily").hide();
 			        $("#inputCustom").hide();
 			        $("#inputPromo").hide();
+			        $("#othersButtonDaily").show();
 				}
 
 				if(document.getElementById('report-type').value == "custom") {
@@ -113,6 +115,7 @@
 					$("#inputTerm").hide();
 			      	$("#inputDaily").hide();
 			      	$("#inputPromo").hide();
+			      	$("#othersButtonDaily").show();
 				}
 
 				if(document.getElementById('report-type').value == "promotional") {
@@ -120,6 +123,7 @@
 					$("#inputDaily").hide();
 					$("#inputTerm").hide();
 					$("#inputCustom").hide();
+					$("#othersButtonDaily").hide();
 				}
 
 			}
@@ -726,7 +730,7 @@
 							<div class="form-group">
 								<label class="control-label col-xs-5" style="text-align:left;"><input checked id="searchByID" name="option" type="radio" value="idNumber">&nbsp;&nbsp;by ID Number:</label>
 								<div class="col-xs-4">
-									<input class="form-control" id="search-idnumber" name="idNumber" type="text">
+									<input class="form-control" id="search-idnumber" name="idNumber" type="text" maxlength="8" style = "width:80px;">
 								</div>
 							</div>
 							<div class="form-group">
@@ -833,7 +837,7 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input style = "width:214px"type="text" class="form-control"	id= "idnumber" name="idnumber"/>
+					            	 		<input style = "width:80px" type="text" class="form-control"	id= "idnumber" name="idnumber"/>
 					            	 	</div>
 					            	</div>
 
@@ -841,7 +845,7 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input style = "width:214px" type="text" class="form-control"	id= "name" name="name" readonly/>
+					            	 		<input style = "width:214px" type="text" class="form-control"	id= "name" name="name" placeholder = "Last Name, FirstName" readonly/>
 
 					            	 	</div>
 					            	</div>
@@ -1058,29 +1062,31 @@
 									</div>
 						        </div>
 						    </div>
+						    <hr class="style2 col-xs-offset-1 col-xs-9"><br>
+						    <div id= "inputFacultyEmail">
 
-						    <div id= "inputFacultyEmail" style = "display:none;">
-						    	<div class="form-group">
+								<div class="form-group">
+									<div class="form-group">
+										<label class="control-label col-xs-7" style="text-align:left; margin-left:15px;"><input id="allFaculty" name = "emailFacultyOption" type="radio" value="idnumber" checked>&nbsp;&nbsp;ALL FACULTY
+										</label>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="form-group">
+										<label class="control-label col-xs-7" style="text-align:left; margin-left:15px;"><input id="selectedFaculty"name = "emailFacultyOption"  type="radio" value="idnumber">&nbsp;&nbsp;SELECTED FACULTY
+										</label>
+
+									</div>
+								</div>
+
+						    	<div class="form-group" id = "to" style = "display:none">
 									<label class="control-label col-xs-4" style="text-align:left;">To:</label>
-									<div class="col-xs-8">
+									<div class="col-xs-7">
 										<input id="input-selected" name ="input-selected" class="form-control" type="text" style = "width:100%;" readonly>
 									</div>
 								</div>
 
-								<div class="form-group">
-									<div class="form-group">
-										<label class="control-label col-xs-7" style="text-align:left; margin-left:15px;"><input id="allFaculty" name="inputs" type="radio" value="idnumber">&nbsp;&nbsp;ALL FACULTY
-										</label>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="form-group">
-										<label class="control-label col-xs-7" style="text-align:left; margin-left:15px;"><input id="selectedFaculty" name="inputs" type="radio" value="idnumber">&nbsp;&nbsp;SELECTED FACULTY
-										</label>
-
-									</div>
-								</div>
 						    </div>
 							
 
