@@ -82,7 +82,7 @@
 
 				var currDate = moment.currDate;
 
-			    $('input[name="dailydate"]').daterangepicker({
+			    $('input[name="dailydate2"]').daterangepicker({
 			        singleDatePicker: true,
 			        showDropdowns: true,
 			        value: currDate
@@ -584,11 +584,14 @@
 			 		});
 		 			
 		 			$('#specificFaculty').click(function(){
+
 		 			var input =$("#input-selected");
 			 		input.removeAttr("readonly");
 			 		input.val("");
 		 			});
 		 	});
+
+
 		</script>
 
 		<script type="text/javascript">
@@ -602,6 +605,21 @@
 			        }
 			    ); 
 		</script>
+
+		<script>
+			$(document).ready(function(){
+				 $('input[type="radio"]').click(function() {
+				       if($(this).attr('id') == 'selectedFaculty') {
+				            $('#to').show();           
+				       }else{
+				       		$('#to').hide();  
+				       }
+				   });
+			});
+
+		</script>
+
+
 
 	</head>
 
@@ -837,7 +855,7 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input style = "width:80px" type="text" class="form-control"	id= "idnumber" name="idnumber"/>
+					            	 		<input style = "width:80px" type="text" class="form-control" id= "idnumber" name="idnumber" maxlength = "8"/>
 					            	 	</div>
 					            	</div>
 
@@ -985,7 +1003,7 @@
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Type:</label>
 						        <div class="col-xs-5">
 						        	<select id = "email-type" class = "selectpicker show-tick" data-width = "155px" onchange = "email()">
-						        		<option id ="daily-email" value = "daily"> Daily </option>
+						        		<option value ="daily-email"> Daily </option>
 						        		<option value = "monthly-email"> Monthly </option>
 						        		<option value = "term-email"> Term-End </option>
 						        	</select>
@@ -996,7 +1014,7 @@
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
 			            	 	
 			            	 	<div id = "emailDaily" class = "col-xs-8">
-			            	 		<input style = "width:100px;" type="text" class="form-control" id = "dailydate" name="dailydate"/>
+			            	 		<input style = "width:100px;" type="text" class="form-control" id = "dailydate2" name="dailydate2"/>
 			            	 	</div>
 								
 								<div id = "emailMonthly" class = "col-xs-4" name = "monthly" style = "display:none;">
@@ -1083,7 +1101,7 @@
 						    	<div class="form-group" id = "to" style = "display:none">
 									<label class="control-label col-xs-4" style="text-align:left;">To:</label>
 									<div class="col-xs-7">
-										<input id="input-selected" name ="input-selected" class="form-control" type="text" style = "width:100%;" readonly>
+										<input id="input-selected" name ="input-selected" class="form-control" type="text" style = "width:100%;">
 									</div>
 								</div>
 

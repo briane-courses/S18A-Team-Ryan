@@ -100,6 +100,7 @@
 			        $("#inputTerm").hide();
 			        $("#inputCustom").hide();
 			        $("#inputPromo").hide();
+			        $("#othersButtonDaily").show();
 				}
 
 				if(document.getElementById('report-type').value == "term") {
@@ -107,6 +108,7 @@
 			      	$("#inputDaily").hide();
 			        $("#inputCustom").hide();
 			        $("#inputPromo").hide();
+			        $("#othersButtonDaily").show();
 				}
 
 				if(document.getElementById('report-type').value == "custom") {
@@ -114,6 +116,7 @@
 					$("#inputTerm").hide();
 			      	$("#inputDaily").hide();
 			      	$("#inputPromo").hide();
+			      	$("#othersButtonDaily").show();
 				}
 
 				if(document.getElementById('report-type').value == "promotional") {
@@ -121,6 +124,7 @@
 					$("#inputDaily").hide();
 					$("#inputTerm").hide();
 					$("#inputCustom").hide();
+					$("#othersButtonDaily").hide();
 				}
 
 			}
@@ -620,7 +624,7 @@
 			<br><br>
     	</div>
 
-    	<!-- GENERATE REPORTS MODAL -->
+		<!-- GENERATE REPORTS MODAL -->
 		<div class="modal fade" id="generate-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container" id = "daily-container">
@@ -706,7 +710,7 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input style = "width:214px"type="text" class="form-control"	id= "idnumber" name="idnumber"/>
+					            	 		<input style = "width:80px" type="text" class="form-control" id= "idnumber" name="idnumber" maxlength = "8"/>
 					            	 	</div>
 					            	</div>
 
@@ -714,7 +718,7 @@
 					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
 					            	 		<input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
 					            	 	<div class = "col-xs-3">
-					            	 		<input style = "width:214px" type="text" class="form-control"	id= "name" name="name" readonly/>
+					            	 		<input style = "width:214px" type="text" class="form-control"	id= "name" name="name" placeholder = "Last Name, FirstName" readonly/>
 
 					            	 	</div>
 					            	</div>
