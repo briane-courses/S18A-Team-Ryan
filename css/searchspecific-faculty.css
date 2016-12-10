@@ -128,19 +128,7 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
 
 div.center {text-align: center;}
 
-/***************************************/
-
-.page{
-    border-radius: 0px !important;
-    background-color: #fff !important;
-    color: #449d44 !important;
-    border-color: #398439 !important;
-}
-
-.page:hover{
-    border-radius: 0px !important;
-    color: black;
-}
+/*****CLICKING TABLE********/
 
 table, table tr, table tr td {
     margin: 0; padding: 0; border: 0; cursor: pointer;
@@ -170,3 +158,72 @@ table tr.active td {
     margin-left:10px;
 }
 
+/*****PAGINATION*****/
+
+.w3-pagination{
+    line-height: 1.2 !important;
+    display:inline-block;
+    padding:0;
+    margin:0;
+    font-weight: 200;
+    border-radius: 4px;
+}
+.w3-pagination li{
+    display:inline
+}
+.w3-pagination li a{
+    text-decoration:none;color:#000;float:left;padding:8px 16px
+}
+.w3-pagination li a:hover{
+    background-color:#ccc
+}
+
+.w3-border-0{
+    border:0!important
+}
+.w3-border{
+    border:1px solid #ccc!important
+}
+.w3-border-top{
+    border-top:1px solid #ccc!important
+}
+.w3-border-bottom{
+    border-bottom:1px solid #ccc!important
+}
+.w3-border-left{border-left:1px solid #ccc!important}.w3-border-right{border-right:1px solid #ccc!important}
+
+.w3-margin-left{margin-left:16px!important}
+
+.w3-border-right{border-right:1px solid #ccc!important}
+
+/**************************/
+.makeupmodal-container{
+    padding: 20px;
+    max-width: 800px !important;
+    width: 100% !important;
+    background-color: #F7F7F7;
+    margin: 0 auto;
+    border-radius: 2px;
+    box-shadow: 5px 2px 2px rgba(0, 0, 0, 0.3);
+    /* overflow: hidden; */
+    background-color: #fff;
+}
+
+#makeup-container input[type=text] {
+    height: 34px;
+    width: 120px;
+    /* margin-top: 10px; */
+    font-size: 14px;
+}
+
+#makeup-container label{
+    font-size: 14px;
+}
+
+.form-control{
+    width: 120px;
+}
+
+div.dropdown-menu {
+        max-width: 180px !important;
+}
