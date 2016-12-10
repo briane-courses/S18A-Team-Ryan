@@ -206,7 +206,7 @@ CREATE TABLE `courseoffering` (
   CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES `faculty` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `room_id` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `term_id` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +215,7 @@ CREATE TABLE `courseoffering` (
 
 LOCK TABLES `courseoffering` WRITE;
 /*!40000 ALTER TABLE `courseoffering` DISABLE KEYS */;
-INSERT INTO `courseoffering` VALUES (1,1,'S18',20148867,3,'1430','1600',1),(2,2,'S17',90478090,3,'0915','1045',1),(3,6,'S17',90762212,3,'1430','1600',3),(4,4,'S17',20141122,3,'1100','1230',5),(5,7,'S17',20147777,3,'0915','1045',4),(6,10,'EA',90788867,3,'0915','1045',8),(7,9,'EZ',90874564,3,'1100','1230',8),(8,9,'EZ',90874564,3,'1245','1415',8);
+INSERT INTO `courseoffering` VALUES (1,1,'S18',20148867,1,'1430','1600',1),(2,2,'S17',90478090,1,'0915','1045',1),(3,6,'S17',90762212,1,'1430','1600',3),(4,4,'S17',20141122,1,'1100','1230',5),(5,7,'S17',20147777,1,'0915','1045',4),(6,10,'EA',90788867,1,'0915','1045',8),(7,9,'EZ',90874564,1,'1100','1230',8),(8,9,'EZ',90874564,1,'1245','1415',8),(9,1,'S21',20141515,1,'0915','1045',1);
 /*!40000 ALTER TABLE `courseoffering` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,7 +237,7 @@ CREATE TABLE `faculty` (
   `mobile_number` varchar(45) NOT NULL,
   `department` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=90874565 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,7 +246,7 @@ CREATE TABLE `faculty` (
 
 LOCK TABLES `faculty` WRITE;
 /*!40000 ALTER TABLE `faculty` DISABLE KEYS */;
-INSERT INTO `faculty` VALUES (20141122,'Briane','Paul','Samson','CCS','briane_samson@dlsu.edu.ph','sample','12345678901','Software Technology'),(20141142,'Thomas','James','Tiam-Lee','CCS','thomasjames_tiam-lee@dlsu.edu.ph','sample','12345678904','Software Technology'),(20141234,'Judith','Jay','Azcarraga','CCS','judith_azcarraga@dlsu.edu.ph','sample','12345678905','Software Technology'),(20147777,'Nagaaral','Ng','Mabooty','GCOE','mabooty_prof@dlsu.edu.ph','Sample','12345678907','Math'),(20148867,'Patrick Ruffio','Alvero','Arceo','CCS','patrick_arceo@dlsu.edu.ph','sample','09228500313','Math'),(90478090,'Darren','Goldwin','David','COE','darren_david@dlsu.edu.ph','sample','09165590089','Software Technology'),(90762212,'Ethel','Somthing','Ong','CCS','ethel_ong@dlsu.edu.ph','sample','12345678903','Software Technology'),(90788867,'Roger','Somthing','Uy','CCS','roger_uy@dlsu.edu.ph','sample','12345678902','Software Technology'),(90874564,'Teech','Ng','Eng','GCOE','some_eng_prof@dlsu.edu.ph','Sample','12345678906','Math');
+INSERT INTO `faculty` VALUES (20141122,'Briane','Paul','Samson','CCS','briane_samson@dlsu.edu.ph','sample','12345678901','Software Technology'),(20141142,'Thomas','James','Tiam-Lee','CCS','thomasjames_tiam-lee@dlsu.edu.ph','sample','12345678904','Software Technology'),(20141234,'Judith','Jay','Azcarraga','CCS','judith_azcarraga@dlsu.edu.ph','sample','12345678905','Software Technology'),(20141515,'Perfect','Attendance','Lagi','CCS','perfect_lagi@dlsu.edu.ph','','12345678909','Software Technology'),(20147777,'Nagaaral','Ng','Mabooty','GCOE','mabooty_prof@dlsu.edu.ph','Sample','12345678907','Math'),(20148867,'Patrick Ruffio','Alvero','Arceo','CCS','patrick_arceo@dlsu.edu.ph','sample','09228500313','Math'),(90478090,'Darren','Goldwin','David','COE','darren_david@dlsu.edu.ph','sample','09165590089','Software Technology'),(90762212,'Ethel','Somthing','Ong','CCS','ethel_ong@dlsu.edu.ph','sample','12345678903','Software Technology'),(90788867,'Roger','Somthing','Uy','CCS','roger_uy@dlsu.edu.ph','sample','12345678902','Software Technology'),(90874564,'Teech','Ng','Eng','GCOE','some_eng_prof@dlsu.edu.ph','Sample','12345678906','Math');
 /*!40000 ALTER TABLE `faculty` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -426,4 +426,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-08  1:15:11
+-- Dump completed on 2016-12-11  0:24:45
