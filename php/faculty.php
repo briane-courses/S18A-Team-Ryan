@@ -411,19 +411,35 @@
 												</tr>
 											</thead>
 											<tbody>
-                        <?php
-                          foreach ($stmt as $row) {
-                            echo "<tr class='row-data' data-href='#'>
-                                    <td>".$row["date"]."</td>
-                                    <td>".$row["time_start"]." - ".$row["time_end"]."</td>
-                                    <td>".$row["course"]."</td>
-                                    <td>".$row["section"]."</td>
-                                    <td>".$row["room"]."</td>
-                                    <td>".$row["checker"]."</td>
-                                    <td>".$row["remarks"]."</td>
-                                  </tr>";
-                          }
-                        ?>
+						                        <?php
+						                          foreach ($stmt as $row) {
+						                            echo "<tr class='row-data' data-href='#'>
+						                                    <td>".$row["date"]."</td>
+						                                    <td>".$row["time_start"]." - ".$row["time_end"]."</td>
+						                                    <td>".$row["course"]."</td>
+						                                    <td>".$row["section"]."</td>
+						                                    <td>".$row["room"]."</td>
+						                                    <td>".$row["checker"]."</td>
+						                                    <td>".$row["remarks"]."</td>
+						                                  </tr>";
+						                          }
+						                        ?>
+											</tbody>
+										</table>
+										<table id="resultMakeUp" class="table table-bordered table-condensed table-hover">
+											<thead id="col-header">
+												<tr>
+													<th>Date of Absence</th>
+													<th>Course</th>
+													<th>Section</th>
+													<th>Date of Makeup</th>
+													<th>Start Time</th>
+													<th>End Time</th>
+													<th>Reason</th>
+												</tr>
+											</thead>
+											<tbody>
+						                        
 											</tbody>
 										</table>
 									</div>
