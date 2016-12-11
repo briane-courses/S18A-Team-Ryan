@@ -6,11 +6,11 @@
     $faculty = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt = $conn->prepare("SELECT date, time_start, time_end, Course.name AS course, section, Room.name AS room, CheckerAccount.user_name AS checker, remarks
         FROM Attendance, CourseOffering, Course, CheckerAccount, Room, RotationRoom, Rotation
-        WHERE faculty_id = :idNumber 
+        WHERE faculty_id = :idNumber
             AND CourseOffering.course_id = Course.id
-            AND courseoffering_id = CourseOffering.id 
+            AND courseoffering_id = CourseOffering.id
             AND CourseOffering.room_id = Room.id
-            AND Room.id = RotationRoom.room_id
+            AND RotationRoom.room_id_list LIKE CONCAT('%', Room.id, '%')
             AND RotationRoom.id = Rotation.id
             AND Rotation.id = CheckerAccount.rotation_id;");
     $stmt->execute(["idNumber" => $_GET["id"]]);
@@ -74,7 +74,7 @@
 	                   singleDatePicker: true,
 	                   showDropdowns: true,
 	                   value: currDate
-	               }); 
+	               });
 
 	           });
 	</script>
@@ -87,7 +87,7 @@
 	                   singleDatePicker: true,
 	                   showDropdowns: true,
 	                   value: currDate
-	               }); 
+	               });
 
 	           });
 	</script>
@@ -98,9 +98,9 @@
 
 	           $('input[name="monthlydate"]').daterangepicker( {
 	               format: "mm-yyyy",
-	               viewMode: "months", 
+	               viewMode: "months",
 	               minViewMode: "months",
-	               enableYearToMonth: true, 
+	               enableYearToMonth: true,
 	               enableMonthToDay : false,
 	               value : currMonth
 	           });
@@ -108,7 +108,7 @@
 	           });
 	</script>
 	<script type="text/javascript">
-	           $("[rel='tooltip']").tooltip();    
+	           $("[rel='tooltip']").tooltip();
 	               $('.thumbnail').hover(
 	                   function(){
 	                       $(this).find('.caption').slideDown(500); //.fadeIn(250)
@@ -116,7 +116,7 @@
 	                   function(){
 	                       $(this).find('.caption').slideUp(250); //.fadeOut(205)
 	                   }
-	               ); 
+	               );
 	</script>
 	<script type="text/javascript">
 	           $(document).ready(function($) {
@@ -329,7 +329,7 @@
 							</tr>
 						</thead>
 						<tbody>
-                            <?php 
+                            <?php
                                 foreach ($stmt as $row) {
 									echo "<tr class='row-data' data-href='#'>
 										<td>".$row["date"]."</td>
