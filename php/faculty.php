@@ -53,7 +53,7 @@
 			$(function() {
 				var currDate = moment.currDate;
 
-			    $('input[name="dailydate"]').daterangepicker({
+			    $('input[id="dailydate"]').daterangepicker({
 			        singleDatePicker: true,
 			        showDropdowns: true,
 			        value: currDate
@@ -258,36 +258,34 @@
 			});
 		</script>
   </head>
-    <body>
-    	<nav class="navbar navbar-default" role="navigation">
-    	  <div class="container">
-			    <!-- Brand and toggle get grouped for better mobile display -->
-			    <div class="navbar-header">
-			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
-			        <span class="sr-only">Toggle navigation</span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			      </button>
-			      <div class="navbar-brand navbar-brand-centered">FAMS</div>
-			    </div>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand navbar-brand-centered">FAMS</div>
+        </div>
 
-			    <!-- Collect the nav links, forms, and other content for toggling -->
-			    <div class="collapse navbar-collapse" id="navbar-brand-centered">
-			      <ul class="nav navbar-nav">
-			        <li><a href="dashboard.html"><b>Maintenance</b></a></li>
-			        <li><a href="dashboard-reports.html"><b>Reports</b></a></li>
-			      </ul>
-				  <ul class="nav navbar-nav navbar-right" style = "padding:7px;">
-
-			        <li>
-
-			        	<button type="button" class="btn btn-default" id = "dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
-					</li>
-				  </ul>
-			    </div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-brand-centered">
+          <ul class="nav navbar-nav">
+            <li><a href="dashboard.html"><b>Maintenance</b></a></li>
+            <li><a href="dashboard-reports.html"><b>Reports</b></a></li>
+          </ul>
+            <ul class="nav navbar-nav navbar-right" style = "padding:7px;">
+          <li>
+            <button type="button" class="btn btn-default" id = "dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
+          </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
 
 		<div class = "container" style = "margin-top:-20px;">
 			<div class = "im-centered-body">
@@ -311,7 +309,7 @@
 					<div class = "row">
 						<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filter-panel" style="float:right; margin-right: 15px;">
 							<span class="glyphicon glyphicon-cog"></span> Filter Settings
-					    </button>
+				    </button>
 
 						<div class="col-xs-3" style="float:right; margin-right: -75px;">
 							<span id="pagelabel">1 - 15 of 200&nbsp;</span>
@@ -321,79 +319,69 @@
 							</ul>
 						</div>
 					</div>
-
-
 			    <div class = "im-centered-body">
-
 			    	<center>
-					<div class = "container">
-						<div class = "row">
-							<div id="filter-panel" class="collapse filter-panel" style = "width:85%;">
-					            <div class="panel panel-default">
-					                <div class="panel-body">
-					                    <form class="form-inline" id = "filter-form" role="form">
-					                        <div class="form-group">
-					                            <label class="filter-col" style="margin-right:0;" for="class-type">Class Type:</label>
-					                            <select id = "class-type" class="form-control selectpicker show-tick" data-width = "100px">
-					                                <option value="normal" selected>Normal</option>
-					                                <option value="makeup">Make-Up</option>
-					                                <option value="both">Both</option>
-					                            </select>
-					                        </div> <!-- form group [rows] -->
-					                        <div class="form-group">
-					                            <label class="filter-col" style="margin-right:0;" for="report-type">Daily Report Filter:</label>
-					                            <select id = "report-type" onchange = "change()" class="form-control selectpicker show-tick" data-width = "155px">
-									        		<option id ="dailyButton" value = "daily"> Daily </option>
-									        		<option value = "term"> Term-End </option>
-									        		<option value = "custom"> Custom </option>
-									        		<option value = "promo"> Promotional </option>
-					                            </select>
-					                        </div><!-- form group [search] -->
-					                        <div class="form-group">
-					                        	<div id = "inputDaily">
-						                            <label class="filter-col" style="margin-right:;margin-top:5px" for="report-date">Date:
-						                            <input style = "width:100px;margin-top:0px;margin-left:10px;" type="text" class="form-control" name="dailydate">
-						                            </label>
-					                        	</div>
+              <div class = "container">
+                <div class = "row">
+                  <div id="filter-panel" class="collapse filter-panel" style = "width:85%;">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <form class="form-inline" id = "filter-form" role="form">
+                          <div class="form-group">
+                            <label class="filter-col" style="margin-right:0;" for="class-type">Class Type:</label>
+                            <select id = "class-type" class="form-control selectpicker show-tick" data-width = "100px">
+                              <option value="normal" selected>Normal</option>
+                              <option value="makeup">Make-Up</option>
+                              <option value="both">Both</option>
+                            </select>
+                          </div> <!-- form group [rows] -->
+                          <div class="form-group">
+                            <label class="filter-col" style="margin-right:0;" for="report-type">Daily Report Filter:</label>
+                            <select id = "report-type" onchange = "change()" class="form-control selectpicker show-tick" data-width = "155px">
+                              <option id ="dailyButton" value = "daily"> Daily </option>
+                              <option value = "term"> Term-End </option>
+                              <option value = "custom"> Custom </option>
+                              <option value = "promo"> Promotional </option>
+                            </select>
+                          </div><!-- form group [search] -->
+                          <div class="form-group">
+                            <div id = "inputDaily">
+                              <label class="filter-col" style="margin-right:;margin-top:5px" for="report-date">Date:
+                                <input style = "width:100px;margin-top:0px;margin-left:10px;" type="text" class="form-control" name="dailydate">
+                              </label>
+                            </div>
 
-												<div id = "inputTerm" style = "display:none;">
-										            <label class="filter-col" style="margin-right:0;" for="report-date">Date:</label>
-										            <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px"name ="academicyears">
-														<option seleccted>A.Y. 2015-2016</option>
-													</select>
-										            <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px" name ="terms">
-														<option value = "1" selected>Term 1</option>
-														<option value = "2">Term 2</option>
-														<option value = "3">Term 3</option>
-
-													</select>
-							            		</div>
-
-							            		<div id = "inputCustom" style = "display:none;">
-							            			<label class="filter-col" style="margin-right:0;margin-top:5px;" for="report-date">Date:</label>
-										            <div id="reportrange" class="pull-right" style = "width:230px">
-														<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-														<span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
-													</div>
-
-									    		</div>
-
-
-
-					                        </div> <!-- form group [order by] -->
-					                        <div class="form-group">
-					                            <button type="submit" class="btn btn-success filter-col" style = "margin-left:10px;">
-					                                <span class="glyphicon glyphicon-record"></span> Apply
-					                            </button>
-					                        </div>
-					                    </form>
-					                </div>
-					            </div>
-					        </div>
-
-				   	</div><!--end of filter container -->
-				   </center>
-			    </div>
+                            <div id = "inputTerm" style = "display:none;">
+                              <label class="filter-col" style="margin-right:0;" for="report-date">Date:</label>
+                              <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px"name ="academicyears">
+                                <option seleccted>A.Y. 2015-2016</option>
+                              </select>
+                              <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px" name ="terms">
+                                <option value = "1" selected>Term 1</option>
+                                <option value = "2">Term 2</option>
+                                <option value = "3">Term 3</option>
+                              </select>
+                            </div>
+                            <div id = "inputCustom" style = "display:none;">
+                              <label class="filter-col" style="margin-right:0;margin-top:5px;" for="report-date">Date:</label>
+                              <div id="reportrange" class="pull-right" style = "width:230px">
+                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                                <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
+                              </div>
+                            </div>
+                          </div> <!-- form group [order by] -->
+                          <div class="form-group">
+                            <button type="submit" class="btn btn-success filter-col" style = "margin-left:10px;">
+                              <span class="glyphicon glyphicon-record"></span> Apply
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div><!--end of filter container -->
+              </div>
+          </center>
 			    <br>
 				<div class="row">
 							<div class ="box col-xs-12">
@@ -411,19 +399,19 @@
 												</tr>
 											</thead>
 											<tbody>
-						                        <?php
-						                          foreach ($stmt as $row) {
-						                            echo "<tr class='row-data' data-href='#'>
-						                                    <td>".$row["date"]."</td>
-						                                    <td>".$row["time_start"]." - ".$row["time_end"]."</td>
-						                                    <td>".$row["course"]."</td>
-						                                    <td>".$row["section"]."</td>
-						                                    <td>".$row["room"]."</td>
-						                                    <td>".$row["checker"]."</td>
-						                                    <td>".$row["remarks"]."</td>
-						                                  </tr>";
-						                          }
-						                        ?>
+                        <?php
+                          foreach ($stmt as $row) {
+                            echo "<tr class='row-data' data-href='#'>
+                                    <td>".$row["date"]."</td>
+                                    <td>".$row["time_start"]." - ".$row["time_end"]."</td>
+                                    <td>".$row["course"]."</td>
+                                    <td>".$row["section"]."</td>
+                                    <td>".$row["room"]."</td>
+                                    <td>".$row["checker"]."</td>
+                                    <td>".$row["remarks"]."</td>
+                                  </tr>";
+                          }
+                        ?>
 											</tbody>
 										</table>
 										<table id="resultMakeUp" class="table table-bordered table-condensed table-hover">
@@ -439,7 +427,7 @@
 												</tr>
 											</thead>
 											<tbody>
-						                        
+
 											</tbody>
 										</table>
 									</div>
@@ -448,65 +436,63 @@
 
 	    	</div>
     	</div>
+  		<!-- SEARCH ATTENDANCE RECORDS MODAL -->
+  		<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="searchrecords-modal" role="dialog" style="display: none;" tabindex="-1">
+  			<div class="modal-dialog">
+  				<div class="addaymodal-container" id="searchrecords-container">
+  					<form action="search-faculty.php" method="POST" class="form form-horizontal">
+              <fieldset>
+                <legend style = "margin-bottom:-10px;"></legend>
+                <h3><legend class="text-center"><b>SEARCH ATTENDANCE RECORDS</b></legend></h3>
 
+                <div class="form-group">
+                  <label class="control-label col-xs-4" style="text-align:left;">Date:</label>
+                  <div id = "inputDaily" class = "col-xs-8">
+                    <input style="width:100px;margin-left:35px" type="text" class="form-control" id="dailydate" name="date"/>
+                  </div>
+                </div>
 
+                <div class="form-group">
+                  <label class="control-label col-xs-5" style="text-align:left;"><input checked id="searchByID" name="option" type="radio" value="idNumber">&nbsp;&nbsp;by ID Number:</label>
+                  <div class="col-xs-7">
+                    <input class="form-control" id="search-idnumber" name="idNumber" type="text" style = "width:80px" maxlength="8">
+                  </div>
+                </div>
 
-		<!-- SEARCH ATTENDANCE RECORDS MODAL -->
-		<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="searchrecords-modal" role="dialog" style="display: none;" tabindex="-1">
-			<div class="modal-dialog">
-				<div class="addaymodal-container" id="searchrecords-container">
-					<form action="php/search-faculty.php" method="POST" class="form form-horizontal">
-						<fieldset>
-							<legend style = "margin-bottom:-10px;"></legend>
-							<h3><legend class="text-center"><b>SEARCH ATTENDANCE RECORDS</b></legend></h3>
-
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
-
-			            	 	<div id = "inputDaily" class = "col-xs-8">
-			            	 		<input style = "width:100px;margin-left:35px" type="text" class="form-control" id = "dailydate" name="dailydate"/>
-			            	 	</div>
-			            	 </div>
-							<div class="form-group">
-								<label class="control-label col-xs-5" style="text-align:left;"><input checked id="searchByID" name="option" type="radio" value="idNumber">&nbsp;&nbsp;by ID Number:</label>
-								<div class="col-xs-7">
-									<input class="form-control" id="search-idnumber" name="idNumber" type="text" style = "width:80px"
-									maxlength = "8">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-5" style="text-align:left;"><input id="searchByName" name="option" type="radio" value="name">&nbsp;&nbsp;by Name:</label>
-								<div class="col-xs-7">
-									<!-- Last Name, First Name
-									<input class="form-control" id="search-name" name="lastName" style="width:104px; float: left; margin-right:5px;" type="text" placeholder="Last Name" readonly>
-									<input class="form-control" id="search-fname" name="firstName" style="width:104px; float:left;" type="text" placeholder="First Name" readonly>
-									-->
-									<input class="form-control" id="search-name" name="fullName" style="float: left; margin-right:5px;" type="text" placeholder="Last Name, First Name" readonly>
-								</div>
-							</div><br>
-							<div class="text-center">
-								<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-search"></i> SUBMIT</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
-							</div>
-						</fieldset>
-					</form>
-				</div>
-			</div>
-		</div>
+                <div class="form-group">
+                  <label class="control-label col-xs-5" style="text-align:left;"><input id="searchByName" name="option" type="radio" value="name">&nbsp;&nbsp;by Name:</label>
+                  <div class="col-xs-7">
+                    <input class="form-control" id="search-name" name="fullName" style="float: left; margin-right:5px;" type="text" placeholder="Last Name, First Name" readonly>
+                  </div>
+                </div>
+                <br>
+                <div class="text-center">
+                  <button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-search"></i> SUBMIT</button>
+                  <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+                </div>
+              </fieldset>
+  					</form>
+  				</div>
+  			</div>
+  		</div>
 		</div>
 		<div class="navbar navbar-fixed-bottom">
-	    	<div class="container text-center">
-	      		<div class = "im-centered">
-	      		  <a href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#addrecord-modal">
-			      <span class="glyphicon glyphicon-plus"></span> ADD NEW RECORD </a>
-			      <a id="modifyButton" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#modifyrecord-modal" disabled>
-			      <span class="glyphicon glyphicon-pencil"></span> MODIFY  </a>
-
-			      <a id = "removeButton" href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#removerecord-modal" disabled>
-			      <span class="glyphicon glyphicon-trash"></span> REMOVE </a>
-			     <a href="#" id = "makeupButton" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#addmakeup-modal" disabled>
-			      <span class="glyphicon glyphicon-plus"></span> ADD NEW MAKE-UP CLASS </a>
-	      		</div>
-	   		</div>
+    	<div class="container text-center">
+    		<div class = "im-centered">
+          <a href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#addrecord-modal">
+            <span class="glyphicon glyphicon-plus"></span>ADD NEW RECORD
+          </a>
+          <a id="modifyButton" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#modifyrecord-modal" disabled>
+            <span class="glyphicon glyphicon-pencil"></span>MODIFY
+          </a>
+          <a id = "removeButton" href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#removerecord-modal" disabled>
+            <span class="glyphicon glyphicon-trash"></span> REMOVE
+          </a>
+          <a href="#" id = "makeupButton" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#addmakeup-modal" disabled>
+            <span class="glyphicon glyphicon-plus"></span> ADD NEW MAKE-UP CLASS
+          </a>
+    		</div>
+   		</div>
 		</div>
 		<!-- ADD NEW RECORD MODAL -->
 		<div class="modal fade" id="addrecord-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -514,69 +500,67 @@
 				<div class="addaymodal-container" id = "daily-container">
 					<form class = "form form-horizontal" action="php/generate-daily.php" method="POST">
 						<fieldset>
-							<legend style = "margin-bottom:-10px;"></legend>
-							<h3><legend class="text-center"><b>ADD NEW ATTENDANCE RECORD</b></legend></h3>
+              <legend style = "margin-bottom:-10px;"></legend>
+              <h3><legend class="text-center"><b>ADD NEW ATTENDANCE RECORD</b></legend></h3>
 
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty ID No:</label>
-			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" value = "<?php echo $faculty['id']?>" readonly/>
-			            	 	</div>
-			            	 </div>
+              <div class="form-group">
+                <label class = "control-label col-xs-4" style = "text-align:left;">Faculty ID No:</label>
+                <div class = "col-xs-8">
+                  <input type="text" class="form-control" value = "<?php echo $faculty['id']?>" readonly/>
+                </div>
+              </div>
 
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Faculty Name:</label>
-			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" value="<?php echo strtoupper($faculty['last_name']. ", " .$faculty['first_name']);?>" readonly/>
-			            	 	</div>
-			            	 </div>
+              <div class="form-group">
+                <label class = "control-label col-xs-4" style = "text-align:left;">Faculty Name:</label>
+                <div class = "col-xs-8">
+                  <input type="text" class="form-control" value="<?php echo strtoupper($faculty['last_name']. ", " .$faculty['first_name']);?>" readonly/>
+                </div>
+              </div>
 
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Absence Date:</label>
-			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" name="dailydate" value="10/31/2016"/>
-			            	 	</div>
-			            	 </div>
+              <div class="form-group">
+                <label class = "control-label col-xs-4" style = "text-align:left;">Absence Date:</label>
+                <div class = "col-xs-8">
+                  <input type="text" class="form-control" name="dailydate" value="10/31/2016"/>
+                </div>
+              </div>
 
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Course & Section:</label>
-			            	 	<div class = "col-xs-8">
-			            	 			<select class = "selectpicker show-tick" data-width = "180px">
-											<option selected>SOFENGG - S18A</option>
-											<option selected>SOFENGG - S17</option>
-											<option>SWDESPA - S17</option>
-											<option>SWDESPA - S18</option>
-									    </select>
-			            	 	</div>
-			            	 </div>
+              <div class="form-group">
+                <label class = "control-label col-xs-4" style = "text-align:left;">Course & Section:</label>
+                <div class = "col-xs-8">
+                  <select class = "selectpicker show-tick" data-width = "180px">
+                  <option selected>SOFENGG - S18A</option>
+                  <option selected>SOFENGG - S17</option>
+                  <option>SWDESPA - S17</option>
+                  <option>SWDESPA - S18</option>
+                  </select>
+                </div>
+              </div>
 
-			            	<div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Checker:</label>
-			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control"/>
-			            	 	</div>
-			            	 </div>
-			            	 	<div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Remarks:</label>
-			            	 	<div class = "col-xs-8">
-			            	 				<select class = "selectpicker show-tick" data-width = "180px">
-												<option selected>AB - Absent</option>
-												<option>LA - Late</option>
-												<option>SB - Substitute</option>
-												<option>VR - Vacant Room</option>
-												<option>ED - Early Dismissal</option>
-												<option>US - Unscheduled Class</option>
-									    	</select>
-			            	 	</div>
-			            	 </div>
-
-							<br>
-						    <div class="text-center">
-						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-plus"></i> ADD </button>
-						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
-				            </div>
-
-			        	</fieldset>
+              <div class="form-group">
+                <label class = "control-label col-xs-4" style = "text-align:left;">Checker:</label>
+                <div class = "col-xs-8">
+                  <input type="text" class="form-control"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class = "control-label col-xs-4" style = "text-align:left;">Remarks:</label>
+                <div class = "col-xs-8">
+                  <select class = "selectpicker show-tick" data-width = "180px">
+                  <option selected>AB - Absent</option>
+                  <option>LA - Late</option>
+                  <option>SB - Substitute</option>
+                  <option>VR - Vacant Room</option>
+                  <option>ED - Early Dismissal</option>
+                  <option>US - Unscheduled Class</option>
+                  </select>
+                </div>
+              </div>
+              <br>
+              <div class="text-center">
+                <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-plus"></i> ADD </button>
+                <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+              </div>
+        	  </fieldset>
 					</form>
 				</div>
 		  </div>
@@ -692,105 +676,99 @@
     	  <div class="modal-dialog">
 				<div class="makeupmodal-container" id = "makeup-container">
 					<form class = "form form-horizontal" action="php/generate-daily.php" method="POST">
-						<fieldset>
+            <fieldset>
 							<legend style = "margin-bottom:-10px;"></legend>
-			            	 <legend class="text-center"><h3><b>ADD MAKE UP CLASS</b></h3></legend>
-			            	 <div class="col-md-6">
-			            	 	<div class="form-group">
-				            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Make Up Date:</label>
-				            	 	<div class = "col-xs-8">
-				            	 		<input type="text" class="form-control" name="dailydate" value="12/12/2016"/>
-				            	 	</div>
-				            	 </div>
+              <legend class="text-center"><h3><b>ADD MAKE UP CLASS</b></h3></legend>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Make Up Date:</label>
+                  <div class = "col-xs-8">
+                  <input type="text" class="form-control" name="dailydate" value="12/12/2016"/>
+                  </div>
+                </div>
 
-				            	 <div class="form-group">
-				            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Start Time:</label>
-				            	 	<div class = "col-xs-6">
-				            	 		<input class="form-control" name="starttime" id="starttime" type="time">
-				            	 	</div>
-				            	 </div>
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Start Time:</label>
+                  <div class = "col-xs-6">
+                    <input class="form-control" name="starttime" id="starttime" type="time">
+                  </div>
+                </div>
 
-				            	 <div class="form-group">
-				            	 	<label class = "control-label col-xs-4" style = "text-align:left;">End Time:</label>
-				            	 	<div class = "col-xs-6">
-				            	 		<input class="form-control" name="endtime" id="endtime" type="time">
-				            	 	</div>
-				            	 </div>
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">End Time:</label>
+                  <div class = "col-xs-6">
+                    <input class="form-control" name="endtime" id="endtime" type="time">
+                  </div>
+                </div>
 
-				            	 <div class="form-group">
-				            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Room:</label>
-				            	 	<div class = "col-xs-8">
-				            	 		<input id="section" type="text" class="form-control"/>
-				            	 	</div>
-				            	 </div>
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Room:</label>
+                  <div class = "col-xs-8">
+                    <input id="section" type="text" class="form-control"/>
+                  </div>
+                </div>
 
-				            	 <div class="form-group">
-				            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Course & Section:</label>
-				            	 	<div class = "col-xs-8">
-				            	 				<input id="section" type="text" class="form-control" value = "SOFENGG S18A" readonly/>
-				            	 	</div>
-				            	 </div>
-			            	 </div>
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Course & Section:</label>
+                  <div class = "col-xs-8">
+                  		<input id="section" type="text" class="form-control" value = "SOFENGG S18A" readonly/>
+                  </div>
+                </div>
+              </div>
 
-			            	 <div class="col-md-6">
-			            	 	<div class="form-group">
-				            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date of Absence:</label>
-				            	 	<div class = "col-xs-8">
-				            	 		<input type="text" class="form-control" name="dailydate" value="11/30/2016"/>
-				            	 	</div>
-				            	 </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Date of Absence:</label>
+                  <div class = "col-xs-8">
+                    <input type="text" class="form-control" name="dailydate" value="11/30/2016"/>
+                  </div>
+                </div>
 
-				            	 <div class="form-group">
-				            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Reason for Absence:</label>
-				            	 	<div class = "col-xs-6" style = "text-align:left;">
-				            	 				<select class = "selectpicker tick-show" data-width = "120px">
-													<option selected>CF - Attended Conference</option>
-													<option>PM - Personal Matter</option>
-													<option>SI - Sickness</option>
-													<option>OB - Official Business</option>
-										    	</select>
-				            	 	</div>
-				            	 </div>
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Reason for Absence:</label>
+                  <div class = "col-xs-6" style = "text-align:left;">
+                		<select class = "selectpicker tick-show" data-width = "120px">
+                    <option selected>CF - Attended Conference</option>
+                    <option>PM - Personal Matter</option>
+                    <option>SI - Sickness</option>
+                    <option>OB - Official Business</option>
+                    </select>
+                  </div>
+                </div>
 
-				            	 <div class="form-group">
-				            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date Filed:</label>
-				            	 	<div class = "col-xs-8">
-				            	 		<input type="text" class="form-control" name="dailydate" value="12/01/2016"/>
-				            	 	</div>
-				            	 </div>
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Date Filed:</label>
+                  <div class = "col-xs-8">
+                    <input type="text" class="form-control" name="dailydate" value="12/01/2016"/>
+                  </div>
+                </div>
 
-				            	<div class="form-group">
-				            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Checker:</label>
-				            	 	<div class = "col-xs-8">
-				            	 		<input type="text" class="form-control"/>
-				            	 	</div>
-				            	 </div>
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Checker:</label>
+                  <div class = "col-xs-8">
+                    <input type="text" class="form-control"/>
+                  </div>
+                </div>
 
-				            	 <div class="form-group">
-				            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Class Made Up:</label>
-				            	 	<div class = "col-xs-8" style = "text-align:left;">
-					            	 	<form>
-					            	 		<input type="radio" name="isMakeupDone" value="yes"><span> Yes</span>
-		  									<input type="radio" name="isMakeupDone" value="no" style ="margin-left: 10px;"><span> No</span>
-					            	 	</form>
-				            	 	</div>
-				            	 </div>
-			            	 </div>
-
-
-
-							<br>
-						    <div class="text-center">
-   								<button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-plus"></i> ADD </button>
-						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
-				            </div>
-
-			        	</fieldset>
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Class Made Up:</label>
+                  <div class = "col-xs-8" style = "text-align:left;">
+                    <form>
+                    	<input type="radio" name="isMakeupDone" value="yes"><span> Yes</span>
+                      <input type="radio" name="isMakeupDone" value="no" style ="margin-left: 10px;"><span> No</span>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="text-center">
+                <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-plus"></i> ADD </button>
+                <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+              </div>
+      	   </fieldset>
 					</form>
 				</div>
 		  </div>
-		</div>
-
-    </body>
-
+    </div>
+  </body>
 </html>
