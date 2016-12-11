@@ -175,7 +175,7 @@ table tr.active td {
     text-decoration:none;color:#000;float:left;padding:8px 16px
 }
 .w3-pagination li a:hover{
-    background-color:#ccc
+    background-color:white;
 }
 
 .w3-border-0{
@@ -198,7 +198,7 @@ table tr.active td {
 
 /**************************/
 .makeupmodal-container{
-    padding: 20px;
+    padding: 30px;
     max-width: 800px !important;
     width: 100% !important;
     background-color: #F7F7F7;
@@ -226,4 +226,11 @@ table tr.active td {
 
 div.dropdown-menu {
         max-width: 180px !important;
+}
+
+#pagelabel{
+    font-weight:bold;
+    display:inline-block;
+    position:relative;
+    top:-10px;
 }

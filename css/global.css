@@ -161,3 +161,8 @@ input[type=text]{
 button, a{
   font-size:15px;
 }
+
+input[readonly].form-control{
+    background-color:#eee;
+    opacity:1;
+}
