@@ -227,3 +227,10 @@ table tr.active td {
 div.dropdown-menu {
         max-width: 180px !important;
 }
+
+#pagelabel{
+    font-weight:bold;
+    display:inline-block;
+    position:relative;
+    top:-10px;
+}
