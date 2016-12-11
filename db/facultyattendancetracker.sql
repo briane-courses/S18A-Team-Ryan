@@ -50,31 +50,17 @@ CREATE TABLE `attendance` (
   `status_id` int(11) NOT NULL,
   `remarks` varchar(45) NOT NULL,
   `date` date NOT NULL,
-<<<<<<< HEAD
-  `time_set` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `courseoffering_id_idx` (`courseoffering_id`),
-  KEY `status_id_idx` (`status_id`),
-  CONSTRAINT `courseoffering_id` FOREIGN KEY (`courseoffering_id`) REFERENCES `courseoffering` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `status_id` FOREIGN KEY (`status_id`) REFERENCES `attendancestatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-=======
   `time_set` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
->>>>>>> refs/remotes/origin/master
 
 --
 -- Dumping data for table `attendance`
 --
 
-<<<<<<< HEAD
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
 INSERT INTO `attendance` VALUES (1,1,1,'','2016-09-22','1500'),(2,1,1,'','2016-09-24','1500'),(3,2,2,'','2016-11-02','0945'),(4,2,1,'','2016-11-07','0945'),(5,3,1,'','2016-09-22','1500'),(6,4,1,'','2016-09-22','1130'),(7,5,1,'','2016-09-22','0945'),(8,6,1,'','2016-09-22','0945'),(9,7,1,'','2016-09-22','1130'),(10,8,2,'','2016-09-22','1315');
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
-UNLOCK TABLES;
-=======
 INSERT INTO `attendance` (`id`, `courseoffering_id`, `status_id`, `remarks`, `date`, `time_set`) VALUES
 (1, 1, 1, 'AB', '2016-09-22', '1500'),
 (2, 1, 1, 'LA', '2016-09-24', '1500'),
@@ -88,7 +74,6 @@ INSERT INTO `attendance` (`id`, `courseoffering_id`, `status_id`, `remarks`, `da
 (10, 8, 2, 'AB', '2016-09-22', '1315');
 
 -- --------------------------------------------------------
->>>>>>> refs/remotes/origin/master
 
 --
 -- Table structure for table `attendancestatus`
@@ -118,35 +103,19 @@ INSERT INTO `attendancestatus` (`id`, `code`, `name`, `description`) VALUES
 --
 
 CREATE TABLE `building` (
-<<<<<<< HEAD
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-=======
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
->>>>>>> refs/remotes/origin/master
 
 --
 -- Dumping data for table `building`
 --
 
-<<<<<<< HEAD
-LOCK TABLES `building` WRITE;
-/*!40000 ALTER TABLE `building` DISABLE KEYS */;
-INSERT INTO `building` VALUES (1,'Gokongwei'),(2,'Velasco');
-/*!40000 ALTER TABLE `building` ENABLE KEYS */;
-UNLOCK TABLES;
-=======
 INSERT INTO `building` (`id`, `name`) VALUES
 (1, 'Gokongwei'),
 (2, 'Velasco');
 
 -- --------------------------------------------------------
->>>>>>> refs/remotes/origin/master
 
 --
 -- Table structure for table `checkeraccount`
@@ -159,36 +128,19 @@ CREATE TABLE `checkeraccount` (
   `last_name` varchar(45) NOT NULL,
   `user_name` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-<<<<<<< HEAD
-  `rotation_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `rotation_id_idx` (`rotation_id`),
-  CONSTRAINT `rotation_id` FOREIGN KEY (`rotation_id`) REFERENCES `rotation` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-=======
   `rotation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
->>>>>>> refs/remotes/origin/master
 
 --
 -- Dumping data for table `checkeraccount`
 --
 
-<<<<<<< HEAD
-LOCK TABLES `checkeraccount` WRITE;
-/*!40000 ALTER TABLE `checkeraccount` DISABLE KEYS */;
-INSERT INTO `checkeraccount` VALUES (1,'Keith','Ohare','Dyabooty','Keith','GwapoAko',1),(2,'Ralph','Jason','Bravante','Ralph','GwapoAko1',2),(3,'Jason','Jason','Sy','Jason','GwapoAko2',3);
-/*!40000 ALTER TABLE `checkeraccount` ENABLE KEYS */;
-UNLOCK TABLES;
-=======
 INSERT INTO `checkeraccount` (`id`, `first_name`, `middle_name`, `last_name`, `user_name`, `password`, `rotation_id`) VALUES
 (1, 'Keith', 'Ohare', 'Dyabooty', 'Keith', 'GwapoAko', 1),
 (2, 'Ralph', 'Jason', 'Bravante', 'Ralph', 'GwapoAko1', 2),
 (3, 'Jason', 'Jason', 'Sy', 'Jason', 'GwapoAko2', 3);
 
 -- --------------------------------------------------------
->>>>>>> refs/remotes/origin/master
 
 --
 -- Table structure for table `course`
@@ -199,27 +151,13 @@ CREATE TABLE `course` (
   `code` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
   `hours` varchar(45) NOT NULL,
-<<<<<<< HEAD
-  `type` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-=======
   `type` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
->>>>>>> refs/remotes/origin/master
 
 --
 -- Dumping data for table `course`
 --
 
-<<<<<<< HEAD
-LOCK TABLES `course` WRITE;
-/*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'HCIFACE','Human Computer Interfaces','3.0','undergraduate'),(2,'OPERSYS','Operating Systems','3.0','undergraduate'),(3,'DASALGO','Data structures and algorithms','3.0','undergraduate'),(4,'OBJECTP','Object Oriented Programming','3.0','undergraduate'),(5,'MACLERN','Machine Learning','3.0','undergraduate'),(6,'INTRODB','Introduction to Database Systems','3.0','undergraduate'),(7,'SOFENGG','Software Engineering','3.0','undergraduate'),(8,'WEBAPDE','Web Application Development','3.0','undergraduate'),(9,'MATAPRE','Math appreciation','3.0','undergraduate'),(10,'ENGTRIG','Trigonometry for Engineering Students','3.0','undergraduate');
-/*!40000 ALTER TABLE `course` ENABLE KEYS */;
-UNLOCK TABLES;
-=======
 INSERT INTO `course` (`id`, `code`, `name`, `hours`, `type`) VALUES
 (1, 'HCIFACE', 'Human Computer Interfaces', '3.0', 'undergraduate'),
 (2, 'OPERSYS', 'Operating Systems', '3.0', 'undergraduate'),
@@ -233,7 +171,6 @@ INSERT INTO `course` (`id`, `code`, `name`, `hours`, `type`) VALUES
 (10, 'ENGTRIG', 'Trigonometry for Engineering Students', '3.0', 'undergraduate');
 
 -- --------------------------------------------------------
->>>>>>> refs/remotes/origin/master
 
 --
 -- Table structure for table `courseoffering`
@@ -247,35 +184,13 @@ CREATE TABLE `courseoffering` (
   `term_id` int(11) NOT NULL,
   `time_start` varchar(45) NOT NULL,
   `time_end` varchar(45) NOT NULL,
-<<<<<<< HEAD
-  `room_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `course_id_idx` (`course_id`),
-  KEY `faculty_id_idx` (`faculty_id`),
-  KEY `term_id_idx` (`term_id`),
-  KEY `room_id_idx` (`room_id`),
-  CONSTRAINT `course_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES `faculty` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `room_id` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `term_id` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-=======
   `room_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
->>>>>>> refs/remotes/origin/master
 
 --
 -- Dumping data for table `courseoffering`
 --
 
-<<<<<<< HEAD
-LOCK TABLES `courseoffering` WRITE;
-/*!40000 ALTER TABLE `courseoffering` DISABLE KEYS */;
-INSERT INTO `courseoffering` VALUES (1,1,'S18',1,3,'1430','1600',1),(2,2,'S17',2,3,'0915','1045',1),(3,6,'S17',5,3,'1430','1600',3),(4,4,'S17',6,3,'1100','1230',5),(5,7,'S17',3,3,'0915','1045',4),(6,10,'EA',8,3,'0915','1045',8),(7,9,'EZ',9,3,'1100','1230',8),(8,9,'EZ',9,3,'1245','1415',8);
-/*!40000 ALTER TABLE `courseoffering` ENABLE KEYS */;
-UNLOCK TABLES;
-=======
 INSERT INTO `courseoffering` (`id`, `course_id`, `section`, `faculty_id`, `term_id`, `time_start`, `time_end`, `room_id`) VALUES
 (1, 1, 'S18', 20134908, 3, '1430', '1600', 1),
 (2, 2, 'S17', 20143854, 3, '0915', '1045', 1),
@@ -287,7 +202,6 @@ INSERT INTO `courseoffering` (`id`, `course_id`, `section`, `faculty_id`, `term_
 (8, 9, 'EZ', 97038133, 3, '1245', '1415', 8);
 
 -- --------------------------------------------------------
->>>>>>> refs/remotes/origin/master
 
 --
 -- Table structure for table `faculty`
@@ -302,27 +216,13 @@ CREATE TABLE `faculty` (
   `email` varchar(45) NOT NULL,
   `pic` varchar(45) NOT NULL,
   `mobile_number` varchar(45) NOT NULL,
-<<<<<<< HEAD
-  `department` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-=======
   `department` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
->>>>>>> refs/remotes/origin/master
 
 --
 -- Dumping data for table `faculty`
 --
 
-<<<<<<< HEAD
-LOCK TABLES `faculty` WRITE;
-/*!40000 ALTER TABLE `faculty` DISABLE KEYS */;
-INSERT INTO `faculty` VALUES (1,'Patrick Ruffio','Alvero','Arceo','CCS','patrick_arceo@dlsu.edu.ph','sample','09228500313','Math'),(2,'Darren','Goldwin','David','COE','darren_david@dlsu.edu.ph','sample','09165590089','Software Technology'),(3,'Briane','Paul','Samson','CCS','briane_samson@dlsu.edu.ph','sample','12345678901','Software Technology'),(4,'Roger','Somthing','Uy','CCS','roger_uy@dlsu.edu.ph','sample','12345678902','Software Technology'),(5,'Ethel','Somthing','Ong','CCS','ethel_ong@dlsu.edu.ph','sample','12345678903','Software Technology'),(6,'Thomas','James','Tiam-Lee','CCS','thomasjames_tiam-lee@dlsu.edu.ph','sample','12345678904','Software Technology'),(7,'Judith','Jay','Azcarraga','CCS','judith_azcarraga@dlsu.edu.ph','sample','12345678905','Software Technology'),(8,'Teech','Ng','Eng','GCOE','some_eng_prof@dlsu.edu.ph','Sample','12345678906','Math'),(9,'Nagaaral','Ng','Mabooty','GCOE','mabooty_prof@dlsu.edu.ph','Sample','12345678907','Math');
-/*!40000 ALTER TABLE `faculty` ENABLE KEYS */;
-UNLOCK TABLES;
-=======
 INSERT INTO `faculty` (`id`, `first_name`, `middle_name`, `last_name`, `college`, `email`, `pic`, `mobile_number`, `department`) VALUES
 (20134908, 'Ma Teresa', 'C', 'Calanoc', 'COS', 'ma.teresa.calanoc@dlsu.edu.ph', 'calanoc.jpeg', '09126790396', 'Biology'),
 (20143854, 'Jovy', 'S', 'Sanchez', 'GCOE', 'jovy.sanchez@dlsu.edu.ph', 'sanchez.jpeg', '09151053598', 'Electronics and Communications Engineering'),
@@ -330,7 +230,6 @@ INSERT INTO `faculty` (`id`, `first_name`, `middle_name`, `last_name`, `college`
 (97066310, 'Kaori', 'K', 'Miyazono', 'CCS', 'kaori.miyazono@dlsu.edu.ph', 'miyazono.jpeg', '09144219564', 'Software Technology');
 
 -- --------------------------------------------------------
->>>>>>> refs/remotes/origin/master
 
 --
 -- Table structure for table `leadaccount`
@@ -385,29 +284,13 @@ INSERT INTO `makeupclass` (`id`, `attendance_id`, `reason_code`, `date`, `room_i
 CREATE TABLE `room` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
-<<<<<<< HEAD
-  `building_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `building_id_idx` (`building_id`),
-  CONSTRAINT `building_id` FOREIGN KEY (`building_id`) REFERENCES `building` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-=======
   `building_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
->>>>>>> refs/remotes/origin/master
 
 --
 -- Dumping data for table `room`
 --
 
-<<<<<<< HEAD
-LOCK TABLES `room` WRITE;
-/*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (1,'G205',1),(2,'G209',1),(3,'G201',1),(4,'G211',1),(5,'G304B',1),(7,'G202',1),(8,'V202',2),(9,'V204',2),(10,'V311',2);
-/*!40000 ALTER TABLE `room` ENABLE KEYS */;
-UNLOCK TABLES;
-=======
 INSERT INTO `room` (`id`, `name`, `building_id`) VALUES
 (1, 'G205', 1),
 (2, 'G209', 1),
@@ -420,35 +303,20 @@ INSERT INTO `room` (`id`, `name`, `building_id`) VALUES
 (10, 'V311', 2);
 
 -- --------------------------------------------------------
->>>>>>> refs/remotes/origin/master
 
 --
 -- Table structure for table `rotation`
 --
 
 CREATE TABLE `rotation` (
-<<<<<<< HEAD
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-=======
   `id` int(11) NOT NULL,
   `rotationroom_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
->>>>>>> refs/remotes/origin/master
 
 --
 -- Dumping data for table `rotation`
 --
 
-<<<<<<< HEAD
-LOCK TABLES `rotation` WRITE;
-/*!40000 ALTER TABLE `rotation` DISABLE KEYS */;
-INSERT INTO `rotation` VALUES (1),(2),(3),(4);
-/*!40000 ALTER TABLE `rotation` ENABLE KEYS */;
-UNLOCK TABLES;
-=======
 INSERT INTO `rotation` (`id`, `rotationroom_id`) VALUES
 (1, 7),
 (2, 2),
@@ -456,37 +324,20 @@ INSERT INTO `rotation` (`id`, `rotationroom_id`) VALUES
 (4, 2);
 
 -- --------------------------------------------------------
->>>>>>> refs/remotes/origin/master
 
 --
 -- Table structure for table `rotationroom`
 --
 
 CREATE TABLE `rotationroom` (
-<<<<<<< HEAD
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `room_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `room_id_idx` (`room_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-=======
   `id` int(11) NOT NULL,
   `room_id_list` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
->>>>>>> refs/remotes/origin/master
 
 --
 -- Dumping data for table `rotationroom`
 --
 
-<<<<<<< HEAD
-LOCK TABLES `rotationroom` WRITE;
-/*!40000 ALTER TABLE `rotationroom` DISABLE KEYS */;
-INSERT INTO `rotationroom` VALUES (1,1),(2,2),(3,2),(4,7);
-/*!40000 ALTER TABLE `rotationroom` ENABLE KEYS */;
-UNLOCK TABLES;
-=======
 INSERT INTO `rotationroom` (`id`, `room_id_list`) VALUES
 (1, 1),
 (2, 2),
@@ -494,7 +345,6 @@ INSERT INTO `rotationroom` (`id`, `room_id_list`) VALUES
 (4, 7);
 
 -- --------------------------------------------------------
->>>>>>> refs/remotes/origin/master
 
 --
 -- Table structure for table `term`
@@ -739,9 +589,3 @@ ALTER TABLE `term`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-<<<<<<< HEAD
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2016-11-18  1:02:37
-=======
->>>>>>> refs/remotes/origin/master
