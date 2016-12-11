@@ -48,8 +48,7 @@
 
 			    function cb(start, end) {
 			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			        $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+			        $('#dates').val(start.format('YYYY-MM-DD') + '.' + end.format('YYYY-MM-DD'));
 			    }
 			    $('#reportrange').daterangepicker({
 			        startDate: start,
@@ -57,22 +56,6 @@
 			        ranges: {
 			          
 			        }}, cb);
-			    
-			    $('#reportrange2').daterangepicker({
-			        startDate: start,
-			        endDate: end,
-			        ranges: {
-			          
-			        }}, cb);
-
-			    $('#reportrange3').daterangepicker({
-			        startDate: start,
-			        endDate: end,
-			        ranges: {
-			          
-			        }}, cb);
-
-			    cb(start, end);
 			    
 			});
 		</script>
@@ -831,8 +814,8 @@
 						                <div id="reportrange" class="pull-right" style = "width:230px;">
 										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
 										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
-										</div>
-			              			 
+											<input type="hidden" class="form-control" id = "dates" name="dates"/>
+										</div>	 
 					    		</div>
 								
 								<div id = "inputPromo" class="col-xs-8" style = "display:none;margin-top:5px;">

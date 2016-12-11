@@ -93,6 +93,14 @@
 		$labeldate = $termP." TRIMESTER, ".$years ;
 
 	}
+	else if($buttons == 'custom')
+	{
+		$dates = isset($_POST["dates"]) ? $_POST["dates"] : false;
+		$dates = explode(".", $dates);
+		$dateFilter = "date BETWEEN '".$dates[0]."' AND '".$dates[1]."' "; 
+		$labeldate = "Dates Between ".$dates[0]." to ". $dates[1];		
+
+	}
 		
 	
 	$options = isset($_POST["options"]) ? $_POST["options"] : false;
@@ -901,29 +909,30 @@
 											}
 											else
 											{
-												if($filter != "")
-													$filter = $filter."AND code = 'AB'";
-												else
-													$filter = "WHERE code = 'AB'";
-
-												if($filter != "")
-													$filter3 = $filter."AND code = 'AB'";
-												else
-													$filter3 = "WHERE code <> 'AB'";
-
-												$stmt = $conn->prepare( "SELECT department,first_name,middle_name,last_name, faculty_id, A.id as 'record_id', code, name, COUNT(code)*1.5 as 'Total'
-																		FROM (SELECT department,first_name,middle_name,last_name, faculty_id, status_id, reason,date
-																		 FROM (SELECT department,first_name,middle_name,last_name,C.id as 'offering_id',F.id as 'faculty_id'
-																			   FROM faculty F
-																			   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
-																		 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
-																	     WHERE ".$dateFilter.") as Z
-																	INNER JOIN attendancestatus A ON A.id = Z.status_id
-																	".$filter."
-																	GROUP BY faculty_id;
-																	");
 												
-																	
+												$dateFilter2 = "(".str_replace("date", "start", $dateFilter).") AND (".str_replace("date", "end", $dateFilter).") ";
+
+												$stmt = $conn->prepare( "SELECT department,first_name,middle_name,last_name, faculty_id
+																			FROM (
+																				SELECT department,first_name,middle_name,last_name, faculty_id
+																				FROM (
+																					SELECT department,first_name,middle_name,last_name,term_id,C.id as 'offering_id',F.id as 'faculty_id' 
+																					FROM faculty F INNER JOIN courseoffering C ON C.faculty_id = F.id
+																			        ) as Y 
+																					INNER JOIN term T ON T.id = Y.term_id 
+																					WHERE ".$dateFilter2." 
+																				) as Z 
+																			GROUP BY faculty_id;");
+																				
+												
+												if($filter != "")
+													$filter = $filter."AND code = 'AB' ";
+												else
+													$filter = "WHERE code = 'AB' ";
+
+												
+												$filter3 = "WHERE code <> 'AB' ";
+
 										 		$result = $stmt->execute();
 												if($rows = $stmt->fetch(PDO::FETCH_ASSOC))
 												{
@@ -999,72 +1008,90 @@
 										 			{
 										 				$filter2 = "faculty_id = ".$rows['faculty_id'];
 
-										 				$stmt0 = $conn->prepare( "SELECT first_name,middle_name,last_name, COUNT(C.id)*1.5 as 'LOAD'
-																			FROM courseoffering C
-																			INNER JOIN faculty F ON F.id = C.id
-																			WHERE ".$filter2."
-																			GROUP BY faculty_id;");					
+										 				$stmt0 = $conn->prepare( "SELECT first_name, middle_name,last_name, COUNT(*)*3.0 as 'LOAD', courseoffering_id, faculty_id 
+																					FROM (
+																						SELECT first_name,middle_name,last_name, C.id as 'courseoffering_id', faculty_id, term_id 
+																					    FROM courseoffering C INNER JOIN faculty F ON F.id = C.faculty_id) as X 
+																					INNER JOIN term T on X.term_id = T.id 
+																					WHERE ".$dateFilter2."AND ".$filter2."
+																					GROUP BY faculty_id;
+																					");
+										 	
 										 				$result0 = $stmt0->execute();
 										 				$rows0 = $stmt0->fetch(PDO::FETCH_ASSOC);
 										 				
-										 				$stmt2 = $conn->prepare( "SELECT faculty_id, A.id as 'record_id', code, name, COUNT(code)*1.5 as 'cf'
-																			FROM (SELECT faculty_id, status_id, reason,date
+										 				$stmt1 = $conn->prepare( "SELECT faculty_id, A.id as 'record_id', code, name, COUNT(code)*1.5 as 'Total'
+																			FROM (SELECT faculty_id, status_id, remarks,date
 																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id'
 																				   FROM faculty F
 																				   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																			 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																		     WHERE ".$dateFilter.") as Z
 																		INNER JOIN attendancestatus A ON A.id = Z.status_id
-																		".$filter." AND reason = 'cf' AND ".$filter2."
-																		GROUP BY faculty_id,reason;
+																		".$filter." AND ".$filter2."
+																		GROUP BY faculty_id;
+																		");					
+										 				$result1 = $stmt1->execute();
+										 				$rows1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+
+										 				$stmt2 = $conn->prepare( "SELECT faculty_id, A.id as 'record_id', code, name, COUNT(code)*1.5 as 'cf'
+																			FROM (SELECT faculty_id, status_id, remarks,date
+																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id'
+																				   FROM faculty F
+																				   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
+																			 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
+																		     WHERE ".$dateFilter.") as Z
+																		INNER JOIN attendancestatus A ON A.id = Z.status_id
+																		".$filter." AND remarks = 'cf' AND ".$filter2."
+																		GROUP BY faculty_id,remarks;
 																		");					
 										 				$result2 = $stmt2->execute();
 										 				$rows2 = $stmt2->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt3 = $conn->prepare( "SELECT faculty_id, A.id as 'record_id', code, name, COUNT(code)*1.5 as 'pm'
-																			FROM (SELECT faculty_id, status_id, reason,date
+																			FROM (SELECT faculty_id, status_id, remarks,date
 																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id'
 																				   FROM faculty F
 																				   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																			 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																		     WHERE ".$dateFilter.") as Z
 																		INNER JOIN attendancestatus A ON A.id = Z.status_id
-																		".$filter." AND reason = 'pm' AND ".$filter2."
-																		GROUP BY faculty_id,reason;
+																		".$filter." AND remarks = 'pm' AND ".$filter2."
+																		GROUP BY faculty_id,remarks;
 																		");					
 										 				$result3 = $stmt3->execute();
 										 				$rows3 = $stmt3->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt4 = $conn->prepare( "SELECT faculty_id, A.id as 'record_id', code, name, COUNT(code)*1.5 as 'si'
-																			FROM (SELECT faculty_id, status_id, reason,date
+																			FROM (SELECT faculty_id, status_id, remarks,date
 																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id'
 																				   FROM faculty F
 																				   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																			 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																		     WHERE ".$dateFilter.") as Z
 																		INNER JOIN attendancestatus A ON A.id = Z.status_id
-																		".$filter." AND reason = 'si' AND ".$filter2."
-																		GROUP BY faculty_id,reason;
+																		".$filter." AND remarks = 'si' AND ".$filter2."
+																		GROUP BY faculty_id,remarks;
 																		");					
 										 				$result4 = $stmt4->execute();
 										 				$rows4 = $stmt4->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt5 = $conn->prepare( "SELECT faculty_id, A.id as 'record_id', code, name, COUNT(code)*1.5 as 'xx'
-																			FROM (SELECT faculty_id, status_id, reason,date
+																			FROM (SELECT faculty_id, status_id, remarks,date
 																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id'
 																				   FROM faculty F
 																				   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																			 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																		     WHERE ".$dateFilter.") as Z
 																		INNER JOIN attendancestatus A ON A.id = Z.status_id
-																		".$filter." AND reason = 'xx' AND ".$filter2."
-																		GROUP BY faculty_id,reason;
+																		".$filter." AND remarks = 'xx' AND ".$filter2."
+																		GROUP BY faculty_id,remarks;
 																		");					
 										 				$result5 = $stmt5->execute();
 										 				$rows5 = $stmt5->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt6 = $conn->prepare( "SELECT M.date, X.attendance_id, M.id as 'makeupclass_id', COUNT(X.attendance_id)*1.5 as 'make-up'
-																			FROM(SELECT faculty_id, status_id, reason,date, A.id as 'attendance_id'
+																			FROM(SELECT faculty_id, status_id, remarks,date, A.id as 'attendance_id'
 																				FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
 																					  FROM faculty F
 																					  INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
@@ -1077,110 +1104,140 @@
 										 				$rows6 = $stmt6->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt7 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'ob'
-																			FROM(SELECT faculty_id, status_id, reason,date
+																			FROM(SELECT faculty_id, status_id, remarks,date
 																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
-																			".$filter3." AND reason = 'OB' AND ".$filter2."
-																			GROUP BY faculty_id,reason;");					
+																			".$filter3." AND remarks = 'OB' AND ".$filter2."
+																			GROUP BY faculty_id,remarks;");	
+														
 										 				$result7 = $stmt7->execute();
 										 				$rows7 = $stmt7->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt8 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'ac'
-																			FROM(SELECT faculty_id, status_id, reason,date
+																			FROM(SELECT faculty_id, status_id, remarks,date
 																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
-																			".$filter3." AND reason = 'AC' AND ".$filter2."
-																			GROUP BY faculty_id,reason;");					
+																			".$filter3." AND remarks = 'AC' AND ".$filter2."
+																			GROUP BY faculty_id,remarks;");					
 										 				$result8 = $stmt8->execute();
 										 				$rows8 = $stmt8->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt9 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'ft'
-																			FROM(SELECT faculty_id, status_id, reason,date
+																			FROM(SELECT faculty_id, status_id, remarks,date
 																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
-																			".$filter3." AND reason = 'ft' AND ".$filter2."
-																			GROUP BY faculty_id,reason;");					
+																			".$filter3." AND remarks = 'ft' AND ".$filter2."
+																			GROUP BY faculty_id,remarks;");					
 										 				$result9 = $stmt9->execute();
 										 				$rows9 = $stmt9->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt10 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'ol'
-																			FROM(SELECT faculty_id, status_id, reason,date
+																			FROM(SELECT faculty_id, status_id, remarks,date
 																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
-																			".$filter3." AND reason = 'ol' AND ".$filter2."
-																			GROUP BY faculty_id,reason;");					
+																			".$filter3." AND remarks = 'ol' AND ".$filter2."
+																			GROUP BY faculty_id,remarks;");					
 										 				$result10 = $stmt10->execute();
 										 				$rows10 = $stmt10->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt11 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'sw'
-																			FROM(SELECT faculty_id, status_id, reason,date
+																			FROM(SELECT faculty_id, status_id, remarks,date
 																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
-																			".$filter3." AND reason = 'sw' AND ".$filter2."
-																			GROUP BY faculty_id,reason;");					
+																			".$filter3." AND remarks = 'sw' AND ".$filter2."
+																			GROUP BY faculty_id,remarks;");					
 										 				$result11 = $stmt11->execute();
 										 				$rows11 = $stmt11->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt12 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'sb'
-																			FROM(SELECT faculty_id, status_id, reason,date
+																			FROM(SELECT faculty_id, status_id, remarks,date
 																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
-																			".$filter3." AND reason = 'sb' AND ".$filter2."
-																			GROUP BY faculty_id,reason;");					
+																			".$filter3." AND remarks = 'sb' AND ".$filter2."
+																			GROUP BY faculty_id,remarks;");					
 										 				$result12 = $stmt12->execute();
 										 				$rows12 = $stmt12->fetch(PDO::FETCH_ASSOC);
 
+
+
 										 				$stmt13 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'la'
-																			FROM(SELECT faculty_id, status_id, reason,date
+																			FROM(SELECT faculty_id, status_id, remarks,date
 																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
-																			".$filter3." AND reason = 'la' AND ".$filter2."
-																			GROUP BY faculty_id,reason;");					
+																			".$filter3." AND remarks = 'la' AND ".$filter2."
+																			GROUP BY faculty_id,remarks;");					
 										 				$result13 = $stmt13->execute();
 										 				$rows13 = $stmt13->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt14 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'ed'
-																			FROM(SELECT faculty_id, status_id, reason,date
+																			FROM(SELECT faculty_id, status_id, remarks,date
 																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
-																			".$filter3." AND reason = 'ed' AND ".$filter2."
-																			GROUP BY faculty_id,reason;");					
+																			".$filter3." AND remarks = 'ed' AND ".$filter2."
+																			GROUP BY faculty_id,remarks;");					
 										 				$result14 = $stmt14->execute();
 										 				$rows14 = $stmt14->fetch(PDO::FETCH_ASSOC);
 
-										 				
+										 				if($rows2['cf'] == null)
+										 					$rows2['cf'] = "--";
+										 				if($rows3['pm'] == null)
+										 					$rows3['pm'] = "--";
+										 				if($rows4['si'] == null)
+										 					$rows4['si'] = "--";
+										 				if($rows5['xx'] == null)
+										 					$rows5['xx'] = "--";
+										 				if($rows1['Total'] == null)
+										 					$rows1['Total'] = "--";
+										 				if($rows6['make-up'] == null)
+										 					$rows6['make-up'] = "--";
+										 				if($rows7['ob'] == null)
+										 					$rows7['ob'] = "--";
+										 				if($rows8['ac'] == null)
+										 					$rows8['ac'] = "--";
+										 				if($rows9['ft'] == null)
+										 					$rows9['ft'] = "--";
+										 				if($rows10['ol'] == null)
+										 					$rows10['ol'] = "--";
+										 				if($rows11['sw'] == null)
+										 					$rows11['sw'] = "--";
+										 				if($rows12['sb'] == null)
+										 					$rows12['sb'] = "--";
+										 				if($rows13['la'] == null)
+										 					$rows13['la'] = "--";
+										 				if($rows14['ed'] == null)
+										 					$rows14['ed'] = "--";
 
 										 				echo "<tr>
 										 				<td id = 'name' class='tg-e1mw'>".$rows['last_name'].", ".$rows['first_name']." ".$rows['middle_name']."</td>
@@ -1189,7 +1246,7 @@
 										 				<td class='tg-e1mw'>".$rows3['pm']."</td>
 										 				<td class='tg-e1mw'>".$rows4['si']."</td>
 										 				<td class='tg-e1mw'>".$rows5['xx']."</td>
-										 				<td class='tg-e1mw'>".$rows['Total']."</td>
+										 				<td class='tg-e1mw'>".$rows1['Total']."</td>
 										 				<td class='tg-e1mw'>".$rows6['make-up']."</td>
 										 				<td class='tg-e1mw'>".$rows7['ob']."</td>
 										 				<td class='tg-e1mw'>".$rows8['ac']."</td>
