@@ -9,9 +9,9 @@
         $facultyExists = true;
     } elseif($_POST["option"] = "name") {
         $stmt = $conn->prepare(
-            "SELECT * 
-            FROM Faculty 
-            WHERE first_name = :firstName 
+            "SELECT *
+            FROM Faculty
+            WHERE first_name = :firstName
                 AND last_name = :lastName;");
         $stmt->execute(["firstName" => $_POST["firstName"], "lastName" => $_POST["lastName"]]);
         $facultyExists = true;
@@ -23,7 +23,7 @@
     }
 
     if($facultyExists && $stmt->rowCount() == 1) {
-        header("Location: faculty.php?id=".$stmt->fetch(PDO::FETCH_ASSOC)["id"]);
+        header("Location: faculty.php?id=".$stmt->fetch(PDO::FETCH_ASSOC)["id"]."&date=".date("Y-m-d H:i:s"));
         exit;
     } else {
         echo "<script>
