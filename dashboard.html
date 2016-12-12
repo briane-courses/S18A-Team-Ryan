@@ -39,7 +39,12 @@
       });
 
     </script>
-
+    <style>
+    .inactiveLink {
+   pointer-events: none;
+   cursor: default;
+}
+    </style>
     <!-- DATE RANGE PICKER -->
     <script type="text/javascript">
       $(function() {
@@ -86,7 +91,7 @@
           $("#inputTerm").hide();
           $("#inputCustom").hide();
           $("#inputPromo").hide();
-          $("#othersButtonDaily").show();
+          $("#othersButtonDaily").removeClass("inactiveLink");
         }
 
         if (document.getElementById('report-type').value == "term") {
@@ -94,7 +99,7 @@
           $("#inputDaily").hide();
           $("#inputCustom").hide();
           $("#inputPromo").hide();
-          $("#othersButtonDaily").show();
+          $("#othersButtonDaily").removeClass("inactiveLink");
         }
 
         if (document.getElementById('report-type').value == "custom") {
@@ -102,7 +107,7 @@
           $("#inputTerm").hide();
           $("#inputDaily").hide();
           $("#inputPromo").hide();
-          $("#othersButtonDaily").show();
+          $("#othersButtonDaily").removeClass("inactiveLink");
         }
 
         if (document.getElementById('report-type').value == "promotional") {
@@ -110,7 +115,7 @@
           $("#inputDaily").hide();
           $("#inputTerm").hide();
           $("#inputCustom").hide();
-          $("#othersButtonDaily").hide();
+          $("#othersButtonDaily").addClass("inactiveLink");
         }
 
       }
@@ -878,7 +883,7 @@
 									    </a>
                     <a id="othersButtonDaily" href="#" class="list-group-item">
 									    	Others
-									        <input type="radio" name ="options" value = "others"/>
+									        <input type="radio" id="otherRadio" name ="options" value = "others"/ disabled>
 									    </a>
 
                   </div>
