@@ -347,7 +347,7 @@
                           <div class="form-group">
                             <div id = "inputDaily">
                               <label class="filter-col" style="margin-right:;margin-top:5px" for="report-date">Date:
-                                <input style = "width:100px;margin-top:0px;margin-left:10px;" type="text" class="form-control" name="dailydate">
+                                <input style = "width:100px;margin-top:0px;margin-left:10px;" type="text" class="form-control" id="dailydate" name="dailydate">
                               </label>
                             </div>
 
@@ -520,7 +520,7 @@
               <div class="form-group">
                 <label class = "control-label col-xs-4" style = "text-align:left;">Absence Date:</label>
                 <div class = "col-xs-8">
-                  <input type="text" class="form-control" name="dailydate" value="10/31/2016"/>
+                  <input type="text" class="form-control" id="dailydate" name="dailydate" value="10/31/2016"/>
                 </div>
               </div>
 
@@ -592,7 +592,7 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Absence Date:</label>
 			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" name="dailydate" value="10/31/2016"/>
+			            	 		<input type="text" class="form-control" id="dailydate" name="dailydate" value="10/31/2016"/>
 			            	 	</div>
 			            	 </div>
 
@@ -656,7 +656,6 @@
 						<fieldset>
 							<legend style = "margin-bottom:-10px;"></legend>
 							<h3><legend class="text-center"><b>REMOVE ATTENDANCE RECORD</b></legend></h3>
-
 							<div style = "font-weight:normal" class = "text-center">
 								Are you sure to want to permanently delete the 3 selected attendance record/s?
 							</div>
@@ -664,13 +663,11 @@
 							<div class="text-center">
 								<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-trash"></i> REMOVE</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
 							</div>
-
 						</fieldset>
 					</form>
 				</div>
 			</div>
 		</div>
-
 		<!-- ADD MAKE UP CLASS MODAL -->
 		<div class="modal fade" id="addmakeup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
@@ -683,7 +680,7 @@
                 <div class="form-group">
                   <label class = "control-label col-xs-4" style = "text-align:left;">Make Up Date:</label>
                   <div class = "col-xs-8">
-                  <input type="text" class="form-control" name="dailydate" value="12/12/2016"/>
+                  <input type="text" class="form-control" id="dailydate" name="dailydate" value="12/12/2016"/>
                   </div>
                 </div>
 
@@ -720,7 +717,7 @@
                 <div class="form-group">
                   <label class = "control-label col-xs-4" style = "text-align:left;">Date of Absence:</label>
                   <div class = "col-xs-8">
-                    <input type="text" class="form-control" name="dailydate" value="11/30/2016"/>
+                    <input type="text" class="form-control" id="dailydate" name="dailydate" value="11/30/2016"/>
                   </div>
                 </div>
 
@@ -739,7 +736,7 @@
                 <div class="form-group">
                   <label class = "control-label col-xs-4" style = "text-align:left;">Date Filed:</label>
                   <div class = "col-xs-8">
-                    <input type="text" class="form-control" name="dailydate" value="12/01/2016"/>
+                    <input type="text" class="form-control" id="dailydate" name="dailydate" value="12/01/2016"/>
                   </div>
                 </div>
 
@@ -765,7 +762,7 @@
                 <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-plus"></i> ADD </button>
                 <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
               </div>
-      	   </fieldset>
+            </fieldset>
 					</form>
 				</div>
 		  </div>
