@@ -622,16 +622,17 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-brand-centered">
-          <ul class="nav navbar-nav">
-            <li><a href="dashboard.html"><b>Maintenance</b></a></li>
-            <li><a href="index.html"><b>Log Out</b></a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right" style="padding:7px;">
+
+          <ul class="nav navbar-nav" style="padding:7px;">
 
             <li>
 
               <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id="dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
             </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html"><b>Log Out</b></a></li>
           </ul>
 
         </div>
@@ -774,6 +775,9 @@
         </div><br><br>
 
         <div class="row">
+
+          <div class="col-sm-2"></div>
+
           <a href="#" class="" data-toggle="modal" data-target="#searchrecords-modal">
             <div class="col-sm-4">
               <div class="thumbnail">
@@ -796,19 +800,7 @@
               </div>
             </div>
           </a>
-
-          <a href="#" class="" data-toggle="modal" data-target="#email-modal">
-            <div class="col-sm-4">
-              <div class="thumbnail">
-                <div class="caption" style="">
-                  <h4 class="options-heading">Email Reports</h4>
-                </div>
-                <img src="img/email.png" alt="..." class="">
-
-              </div>
-            </div>
-          </a>
-
+          <div class="col-sm-2"></div>
         </div>
         <!--row -->
       </div>
@@ -1064,7 +1056,7 @@
     </div>
 
     <!-- EMAIL MODAL -->
-    <div class="modal fade" id="email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <!--<div class="modal fade" id="email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
         <div class="addaymodal-container" id="searchrecords-container">
           <form action="generatereports.php" class="form form-horizontal" method="post">
@@ -1296,7 +1288,7 @@
           </form>
         </div>
       </div>
-    </div>
+    </div>-->
 
 
   </body>
