@@ -1,4 +1,4 @@
-<html>
+<html> 
 	<?php
 
 	include "php/connector.php";
@@ -7,12 +7,12 @@
 
     //echo "Data: ".$date."</br>";
     //echo $buttonDaily."</br>";
-
-	if($buttons == 'daily')
+	
+	if($buttons == 'daily') 
 	{
 		$date = isset($_POST["dailydate"]) ? $_POST["dailydate"] : false;
 		$dates = explode("/",$date);
-		$date = $dates[2]."-".$dates[0]."-".$dates[1];
+		$date = $dates[2]."-".$dates[0]."-".$dates[1]; 
 		$dateFilter = "date = '".$date."' ";
 
 		switch($dates[0])
@@ -41,11 +41,11 @@
 		switch($months)
 		{
 			case "January" : $months =1; $end = 31; break;
-			case "February" : $months =2;
+			case "February" : $months =2; 
 			if(($year % 4 == 0) && ($years % 100 != 0) || ($years % 400 == 0))
-				$end = 28;
-			else
-				$end =29;
+				$end = 28; 
+			else 
+				$end =29; 
 			break;
 			case "March" : $months =3; $end = 31; break;
 			case "April" : $months =4; $end = 30; break;
@@ -60,10 +60,10 @@
 		}
 
 
-		$date = $years."-".$months."-01";
-		$date2 = $years."-".$months."-".$end;
+		$date = $years."-".$months."-01"; 
+		$date2 = $years."-".$months."-".$end; 
 
-		$dateFilter = "date BETWEEN '".$date."' AND '".$date2."' ";
+		$dateFilter = "date BETWEEN '".$date."' AND '".$date2."' "; 
 		$labeldate = $month." ".$years;
 
 	}
@@ -72,17 +72,17 @@
 		$terms = isset($_POST["terms"]) ? $_POST["terms"] : false;
 		$years = isset($_POST["academicyears"]) ? $_POST["academicyears"] : false;
 
-		$stmt = $conn->prepare("SELECT *
-								FROM term INNER JOIN academicyear AY ON term.year_id = AY.id
+		$stmt = $conn->prepare("SELECT * 
+								FROM term INNER JOIN academicyear AY ON term.year_id = AY.id 
 								WHERE term_no = :terms AND AY.name = :years;");
 
 		$stmt->execute(["terms" => $terms, "years" =>$years]);
-
+		
 
 		$result = $stmt->execute();
 		$rows = $stmt->fetch(PDO::FETCH_ASSOC); // assuming $result == true
-
-		$dateFilter = "date BETWEEN '".$rows['start']."' AND '".$rows['end']."' ";
+									 
+		$dateFilter = "date BETWEEN '".$rows['start']."' AND '".$rows['end']."' "; 
 		if($terms == 1)
 			$termP = "1st";
 		if($terms == 2)
@@ -97,19 +97,19 @@
 	{
 		$dates = isset($_POST["dates"]) ? $_POST["dates"] : false;
 		$dates = explode(".", $dates);
-		$dateFilter = "date BETWEEN '".$dates[0]."' AND '".$dates[1]."' ";
-		$labeldate = "Dates Between ".$dates[0]." to ". $dates[1];
+		$dateFilter = "date BETWEEN '".$dates[0]."' AND '".$dates[1]."' "; 
+		$labeldate = "Dates Between ".$dates[0]." to ". $dates[1];		
 
 	}
-
-
+		
+	
 	$options = isset($_POST["options"]) ? $_POST["options"] : false;
 
 	 // if (($timestamp = strtotime($date)) !== false)
 	 // {
 		// $php_date = getdate($timestamp);
 		// // or if you want to output a date in year/month/day format:
-		// $dateString = date("F d, Y", $timestamp); // see the date manual page for format options
+		// $dateString = date("F d, Y", $timestamp); // see the date manual page for format options      
 	 // }
 
 ?>
@@ -148,7 +148,7 @@
 			        singleDatePicker: true,
 			        showDropdowns: true,
 			        value: currDate
-			    });
+			    }); 
 
 			});
 		</script>
@@ -160,9 +160,9 @@
 
 			$('input[name="monthlydate"]').daterangepicker( {
 			    format: "mm-yyyy",
-			    viewMode: "months",
+			    viewMode: "months", 
 			    minViewMode: "months",
-			    enableYearToMonth: true,
+			    enableYearToMonth: true, 
 			    enableMonthToDay : false,
 			    value : currMonth
 			});
@@ -179,7 +179,7 @@
 			        singleDatePicker: true,
 			        showDropdowns: true,
 			        value: currDate
-			    });
+			    }); 
 
 			});
 		</script>
@@ -201,25 +201,25 @@
 			        startDate: start,
 			        endDate: end,
 			        ranges: {
-
+			          
 			        }}, cb);
-
+			    
 			    $('#reportrange2').daterangepicker({
 			        startDate: start,
 			        endDate: end,
 			        ranges: {
-
+			          
 			        }}, cb);
 
 			    $('#reportrange3').daterangepicker({
 			        startDate: start,
 			        endDate: end,
 			        ranges: {
-
+			          
 			        }}, cb);
 
 			    cb(start, end);
-
+			    
 			});
 		</script>
 
@@ -232,11 +232,11 @@
 			        singleDatePicker: true,
 			        showDropdowns: true,
 			        value: currDate
-			    });
+			    }); 
 
 			});
 		</script>
-
+		
 		<!-- CHANGING OF REPORT TYPES -->
 		<script>
 			function change(){
@@ -277,10 +277,10 @@
 
 
 				$("#collegepicker").change(function() {
-
-
+					
+					
 					var college = $("#collegepicker :selected").val();
-
+					
 					if(college == 'CCS')
 					{
 						$("#department").val("CCS");
@@ -400,7 +400,7 @@
 					}
 			    });
 
-
+			    
 			});
 
 
@@ -423,7 +423,7 @@
 			        $("#RVRCOB").hide();
 			        $("#All").show();
 			      	$("#inputIDNumDaily").hide();
-
+			      	
 			      	console.log("ASaD");
 			    });
 			});
@@ -459,7 +459,7 @@
 		 		//name.prop("required", "true");
 		 		idnumber.prop("readonly", "true");
 		 		});
-
+	 			
 	 			$('#inputID').click(function(){
 	 			var name =$("#name");
 		 		var idnumber =$("#idnumber");
@@ -471,7 +471,7 @@
 
 	 			});
 
-
+	 			
 			});
 
 			$(document).ready(function(){
@@ -484,7 +484,7 @@
 		 		idnumber.val("");
 		 		idnumber.prop("readonly", "true");
 		 		});
-
+	 			
 	 			$('#searchByID').click(function(){
 	 			var name =$("#search-name");
 	 			var fname =$("#search-fname");
@@ -496,32 +496,32 @@
 		 		fname.val("");
 	 			});
 
-
+	 			
 			});
 
 
 		</script>
-
+		
     	<!-- For Segmented Tabs -->
     	<script type="text/javascript">
 			$(function(){
-
+    
 		    $('div.segmented-control a').on('click', function(){
-
+		        
 		        $('div.segmented-control a').each(function(i,e){
 		            $(e).removeClass('active');
 		        });
-
+		        
 		        $(this).addClass('active');
 		        $(this).find('input').prop('checked',true);
 		        return false;
-
+		        
 		    });
-
+		    
 		});
 
 		</script>
-
+		
 
 		<script>
 			$(document).ready(function(){
@@ -534,7 +534,7 @@
 			    $("#othersButtonDaily").click(function() {
 			      	$("#inputOthersDaily").show();
 			      	$("#inputIDNumDaily").hide();
-
+			      	
 			      	console.log("ASD");
 			    });
 			});
@@ -616,7 +616,7 @@
 		 		//name.prop("required", "true");
 		 		idnumber.prop("readonly", "true");
 		 		});
-
+	 			
 	 			$('#searchByID').click(function(){
 	 			var name =$("#search-name");
 		 		var idnumber =$("#search-idnumber");
@@ -628,7 +628,7 @@
 
 	 			});
 
-
+	 			
 			});
 
 
@@ -636,7 +636,7 @@
 
 
     	<script type="text/javascript">
-		    $("[rel='tooltip']").tooltip();
+		    $("[rel='tooltip']").tooltip();    
 			    $('.thumbnail').hover(
 			        function(){
 			            $(this).find('.caption').slideDown(500); //.fadeIn(250)
@@ -644,7 +644,7 @@
 			        function(){
 			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
 			        }
-			    );
+			    ); 
 		</script>
 
 
@@ -683,13 +683,13 @@
 			    <div class="collapse navbar-collapse" id="navbar-brand-centered">
 			      <ul class="nav navbar-nav">
 			        <li><a href="dashboard.html"><b>Maintenance</b></a></li>
-			        <li><a href="dashboard-reports.html"><b>Log Out</b></a></li>
+			        <li><a href="dashboard-reports.html"><b>Log Out</b></a></li>		
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right" style = "padding:7px;">
-
+			        
 			        <li>
 
-			        	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id = "dashay-button">
+			        	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id = "dashay-button"> 
 			        		<b>Current AY: 2016 - 2017 || Term 1<b>
 			        		</button>
 
@@ -699,12 +699,12 @@
 			    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
-		<!-- Current AY Modal -->
+		<!-- Current AY Modal -->    
         <div class="modal fade" id="ayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 		 <div class="modal-dialog">
 				<div class="addaymodal-container" id = "searchrecords-container">
 						<fieldset>
-
+                            
                             <div class="">
                                 <label class = "control-label col-xs-5" style = "text-align:left;">Current Academic Year: </label>
 			            	 	<div class = "col-xs-4">
@@ -718,7 +718,7 @@
 			            	 		<input type="text" class="form-control" style = "width:213px;" placeholder="1 "/>
 			            	 	</div>
                             </div>
-
+                            
                             <div class="text-center">
                                 <a data-dismiss="modal" data-toggle="modal" href="#adday-modal" id="adday" >Academic Year finished? Click to add a new one!</a>
                             </div>
@@ -726,7 +726,7 @@
 							<div class="text-center">
 						        <button type="button" class="cancel btn btn-danger col-xs-offset-4 col-xs-3" data-dismiss="modal" style=""><i class = "glyphicon glyphicon-remove"></i> CLOSE </button>
 				            </div>
-
+						
 			        	</fieldset>
 
 
@@ -743,7 +743,7 @@
 				     <span class="glyphicon glyphicon-print"></span>  PRINT </a> &nbsp;
 
 			      	<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
-			      	<span class="glyphicon glyphicon-envelope"></span> EMAIL </a>
+			      	<span class="glyphicon glyphicon-envelope"></span> EMAIL </a>  	
 			</p>
 			<br><br>
 			<center>
@@ -752,34 +752,34 @@
 					<?php echo $labeldate; ?>
 				</div>
 			</center>
-
-
+			
+							
 										<?php
 
 										$filter = "";
-
+ 										
 											if($options == 'faculty'){
 												$filter = "WHERE ";
 												$inputs = isset($_POST["inputs"]) ? $_POST["inputs"] : false;
-
+												
 
 												if($inputs == 'idnumber'){
 													$idnumber = isset($_POST["idnumber"]) ? $_POST["idnumber"] : false;
-
-													$stmt= $conn->prepare("SELECT first_name, middle_name, last_name FROM faculty
+													
+													$stmt= $conn->prepare("SELECT first_name, middle_name, last_name FROM faculty 
 										    							   WHERE id = :idnumber ;");
 
 													$stmt->execute(["idnumber" => $idnumber]);
 
 													$result = $stmt->execute();
-													$rows = $stmt->fetch(PDO::FETCH_ASSOC);
+													$rows = $stmt->fetch(PDO::FETCH_ASSOC);			    		
 													$filter = $filter."last_name ='".$rows['last_name']."' AND  first_name ='".$rows['first_name']."' AND middle_name ='".$rows['middle_name']."'";
-
+							
 										    	}
 												else
 												{
 													$name = isset($_POST["name"]) ? $_POST["name"] : false;
-													$stmt= $conn->prepare("SELECT first_name, middle_name, last_name FROM faculty
+													$stmt= $conn->prepare("SELECT first_name, middle_name, last_name FROM faculty 
 										    							   WHERE first_name= :name OR last_name= :name OR middle_name= :name");
 
 													$stmt->execute(["name" => $name]);
@@ -787,10 +787,10 @@
 													$result = $stmt->execute();
 													$rows = $stmt->fetch(PDO::FETCH_ASSOC);
 											    	$filter = $filter."last_name ='".$rows['last_name']."' AND  first_name ='".$rows['first_name']."' AND middle_name ='".$rows['middle_name']."'";
-
+													
 												}
-
-
+												
+												
 										    }
 										    else
 										    {
@@ -798,8 +798,7 @@
 										    	$college = isset($_POST["college"]) ? $_POST["college"] : false;
 										    	$department = isset($_POST["department"]) ? $_POST["department"] : false;
 
-
-										    	switch ($department) {
+										    	switch ($college) {
 										    		case 'CCS':
 										    				$department = isset($_POST["ccs"]) ? $_POST["ccs"] : false;
 										    			break;
@@ -824,21 +823,23 @@
 										    		case 'SOE':
 										    				$department = isset($_POST["soe"]) ? $_POST["soe"] : false;
 										    			break;
-
+										    		
 										    		default:
 										    				$department = isset($_POST["all"]) ? $_POST["all"] : false;
 										    			break;
 										    	}
-
-
+										    	
 										    	$filter= "";
 
 										    	if($college != 'All Colleges')
 										    	{
-										    		$filter = "WHERE "."department= '".$department."' AND college= '".$college."'";
+										    		if($department != 'All Departments')
+										    			$filter = "WHERE "."department= '".$department."' AND college= '".$college."'";
+										    		else
+										    			$filter = "WHERE college = '".$college."' ";
 										   		}
-
-
+										    		
+										    											    	
 										    }
 
 										    if($buttons == 'daily')
@@ -848,7 +849,7 @@
 																		(SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks,name as 'room_name',date,course_id
 																		FROM
 																			(SELECT college, department,first_name,middle_name,last_name,time_start,time_end,section,remarks, room_id,course_id, date
-																			 FROM
+																			 FROM 
 																				(SELECT college, department,first_name,middle_name,last_name,time_start,time_end,C.section,room_id,C.id as 'offering_id', course_id
 																				 FROM faculty F
 																				 INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
@@ -859,8 +860,8 @@
 																	".$filter."
 																	;");
 
-
-
+											
+																	
 										 		$result = $stmt->execute();
 										 		if($rows = $stmt->fetch(PDO::FETCH_ASSOC))
 										 		{
@@ -871,7 +872,7 @@
 										 					<table id='resulttable' class='table table-bordered table-striped table-condensed'>
 															<thead class='collegelabel'>
 																<tr><th colspan ='7'>".$rows['college']."</th></tr>
-															</thead>
+															</thead> 
 										 					<thead id = 'col-header'><tr>
 															<th>Department</th>
 															<th>Faculty</th>
@@ -904,33 +905,32 @@
 
 											 	}
 											 		else
-											 			echo "<h1> NO RECORDS FOUND </h1>";
-
+											 			echo "<script>
+														      alert('No Records Found.');
+														      window.location.replace('dashboard.html');
+														      </script>";
+										 		
 											}
 											else
 											{
-
+												
 												$dateFilter2 = "(".str_replace("date", "start", $dateFilter).") AND (".str_replace("date", "end", $dateFilter).") ";
-
-												$stmt = $conn->prepare( "SELECT department,first_name,middle_name,last_name, faculty_id
+												
+												$stmt = $conn->prepare( "SELECT department, college, first_name,middle_name,last_name, faculty_id
 																			FROM (
-																				SELECT department,first_name,middle_name,last_name, faculty_id
+																				SELECT department,first_name, college, middle_name,last_name, faculty_id
 																				FROM (
-																					SELECT department,first_name,middle_name,last_name,term_id,C.id as 'offering_id',F.id as 'faculty_id'
-																					FROM faculty F INNER JOIN courseoffering C ON C.faculty_id = F.id
-																			        ) as Y
-																					INNER JOIN term T ON T.id = Y.term_id
-																					WHERE ".$dateFilter2."
-																				) as Z
+																					SELECT department, college, first_name,middle_name,last_name,term_id,C.id as 'offering_id',F.id as 'faculty_id' 
+																					FROM faculty F INNER JOIN courseoffering C ON C.faculty_id = F.id ".$filter."
+																			        ) as Y 
+																					INNER JOIN term T ON T.id = Y.term_id 
+																					WHERE ".$dateFilter2." 
+																				) as Z 
 																			GROUP BY faculty_id;");
+																					
+												$filter = "WHERE code = 'AB' ";
 
-
-												if($filter != "")
-													$filter = $filter."AND code = 'AB' ";
-												else
-													$filter = "WHERE code = 'AB' ";
-
-
+												
 												$filter3 = "WHERE code <> 'AB' ";
 
 										 		$result = $stmt->execute();
@@ -1002,27 +1002,27 @@
 												  	</tr>
 												  	";
 
-
+												  
 
 												  	do
 										 			{
 										 				$filter2 = "faculty_id = ".$rows['faculty_id'];
 
-										 				$stmt0 = $conn->prepare( "SELECT first_name, middle_name,last_name, COUNT(*)*3.0 as 'LOAD', courseoffering_id, faculty_id
+										 				$stmt0 = $conn->prepare( "SELECT first_name, middle_name,last_name, COUNT(*)*3.0 as 'LOAD', courseoffering_id, faculty_id 
 																					FROM (
-																						SELECT first_name,middle_name,last_name, C.id as 'courseoffering_id', faculty_id, term_id
-																					    FROM courseoffering C INNER JOIN faculty F ON F.id = C.faculty_id) as X
-																					INNER JOIN term T on X.term_id = T.id
+																						SELECT first_name,middle_name,last_name, C.id as 'courseoffering_id', faculty_id, term_id 
+																					    FROM courseoffering C INNER JOIN faculty F ON F.id = C.faculty_id) as X 
+																					INNER JOIN term T on X.term_id = T.id 
 																					WHERE ".$dateFilter2."AND ".$filter2."
 																					GROUP BY faculty_id;
 																					");
-
+										 	
 										 				$result0 = $stmt0->execute();
 										 				$rows0 = $stmt0->fetch(PDO::FETCH_ASSOC);
-
+										 				
 										 				$stmt1 = $conn->prepare( "SELECT faculty_id, A.id as 'record_id', code, name, COUNT(code)*1.5 as 'Total'
-																			FROM (SELECT faculty_id, status_id, remarks,date
-																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id'
+																			FROM (SELECT faculty_id, status_id, remarks,date , department, college
+																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id', department, college 
 																				   FROM faculty F
 																				   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																			 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
@@ -1030,13 +1030,14 @@
 																		INNER JOIN attendancestatus A ON A.id = Z.status_id
 																		".$filter." AND ".$filter2."
 																		GROUP BY faculty_id;
-																		");
+																		");			
+														
 										 				$result1 = $stmt1->execute();
 										 				$rows1 = $stmt1->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt2 = $conn->prepare( "SELECT faculty_id, A.id as 'record_id', code, name, COUNT(code)*1.5 as 'cf'
-																			FROM (SELECT faculty_id, status_id, remarks,date
-																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id'
+																			FROM (SELECT faculty_id, status_id, remarks,date, department, college
+																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id', department, college
 																				   FROM faculty F
 																				   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																			 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
@@ -1044,13 +1045,13 @@
 																		INNER JOIN attendancestatus A ON A.id = Z.status_id
 																		".$filter." AND remarks = 'cf' AND ".$filter2."
 																		GROUP BY faculty_id,remarks;
-																		");
+																		");					
 										 				$result2 = $stmt2->execute();
 										 				$rows2 = $stmt2->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt3 = $conn->prepare( "SELECT faculty_id, A.id as 'record_id', code, name, COUNT(code)*1.5 as 'pm'
-																			FROM (SELECT faculty_id, status_id, remarks,date
-																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id'
+																			FROM (SELECT faculty_id, status_id, remarks,date, department, college
+																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id', department, college
 																				   FROM faculty F
 																				   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																			 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
@@ -1058,13 +1059,13 @@
 																		INNER JOIN attendancestatus A ON A.id = Z.status_id
 																		".$filter." AND remarks = 'pm' AND ".$filter2."
 																		GROUP BY faculty_id,remarks;
-																		");
+																		");					
 										 				$result3 = $stmt3->execute();
 										 				$rows3 = $stmt3->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt4 = $conn->prepare( "SELECT faculty_id, A.id as 'record_id', code, name, COUNT(code)*1.5 as 'si'
-																			FROM (SELECT faculty_id, status_id, remarks,date
-																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id'
+																			FROM (SELECT faculty_id, status_id, remarks,date, department, college
+																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id', department, college
 																				   FROM faculty F
 																				   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																			 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
@@ -1072,13 +1073,13 @@
 																		INNER JOIN attendancestatus A ON A.id = Z.status_id
 																		".$filter." AND remarks = 'si' AND ".$filter2."
 																		GROUP BY faculty_id,remarks;
-																		");
+																		");					
 										 				$result4 = $stmt4->execute();
 										 				$rows4 = $stmt4->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt5 = $conn->prepare( "SELECT faculty_id, A.id as 'record_id', code, name, COUNT(code)*1.5 as 'xx'
-																			FROM (SELECT faculty_id, status_id, remarks,date
-																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id'
+																			FROM (SELECT faculty_id, status_id, remarks,date, department, college
+																			 FROM (SELECT C.id as 'offering_id',F.id as 'faculty_id', department, college
 																				   FROM faculty F
 																				   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																			 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
@@ -1086,127 +1087,127 @@
 																		INNER JOIN attendancestatus A ON A.id = Z.status_id
 																		".$filter." AND remarks = 'xx' AND ".$filter2."
 																		GROUP BY faculty_id,remarks;
-																		");
+																		");					
 										 				$result5 = $stmt5->execute();
 										 				$rows5 = $stmt5->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt6 = $conn->prepare( "SELECT M.date, X.attendance_id, M.id as 'makeupclass_id', COUNT(X.attendance_id)*1.5 as 'make-up'
-																			FROM(SELECT faculty_id, status_id, remarks,date, A.id as 'attendance_id'
-																				FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
+																			FROM(SELECT faculty_id, status_id, remarks,date, A.id as 'attendance_id', department, college
+																				FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id', department, college
 																					  FROM faculty F
 																					  INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																				WHERE ".$dateFilter.") as X
 																			INNER JOIN makeupclass M ON M.attendance_id = X.attendance_id
-																			WHERE ".$filter2."
-																			GROUP BY faculty_id");
+																			WHERE ".$filter2." 
+																			GROUP BY faculty_id");					
 										 				$result6 = $stmt6->execute();
 										 				$rows6 = $stmt6->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt7 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'ob'
-																			FROM(SELECT faculty_id, status_id, remarks,date
-																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
+																			FROM(SELECT faculty_id, status_id, remarks,date, department, college
+																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id', department, college
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
 																			".$filter3." AND remarks = 'OB' AND ".$filter2."
-																			GROUP BY faculty_id,remarks;");
-
+																			GROUP BY faculty_id,remarks;");	
+														
 										 				$result7 = $stmt7->execute();
 										 				$rows7 = $stmt7->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt8 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'ac'
-																			FROM(SELECT faculty_id, status_id, remarks,date
-																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
+																			FROM(SELECT faculty_id, status_id, remarks,date, department, college
+																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id', department, college
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
 																			".$filter3." AND remarks = 'AC' AND ".$filter2."
-																			GROUP BY faculty_id,remarks;");
+																			GROUP BY faculty_id,remarks;");					
 										 				$result8 = $stmt8->execute();
 										 				$rows8 = $stmt8->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt9 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'ft'
-																			FROM(SELECT faculty_id, status_id, remarks,date
-																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
+																			FROM(SELECT faculty_id, status_id, remarks,date, department, college
+																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id', department, college
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
 																			".$filter3." AND remarks = 'ft' AND ".$filter2."
-																			GROUP BY faculty_id,remarks;");
+																			GROUP BY faculty_id,remarks;");					
 										 				$result9 = $stmt9->execute();
 										 				$rows9 = $stmt9->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt10 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'ol'
-																			FROM(SELECT faculty_id, status_id, remarks,date
-																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
+																			FROM(SELECT faculty_id, status_id, remarks,date, department, college
+																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id', department, college
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
 																			".$filter3." AND remarks = 'ol' AND ".$filter2."
-																			GROUP BY faculty_id,remarks;");
+																			GROUP BY faculty_id,remarks;");					
 										 				$result10 = $stmt10->execute();
 										 				$rows10 = $stmt10->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt11 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'sw'
-																			FROM(SELECT faculty_id, status_id, remarks,date
-																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
+																			FROM(SELECT faculty_id, status_id, remarks,date, department, college
+																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id', department, college
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
 																			".$filter3." AND remarks = 'sw' AND ".$filter2."
-																			GROUP BY faculty_id,remarks;");
+																			GROUP BY faculty_id,remarks;");					
 										 				$result11 = $stmt11->execute();
 										 				$rows11 = $stmt11->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt12 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'sb'
-																			FROM(SELECT faculty_id, status_id, remarks,date
-																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
+																			FROM(SELECT faculty_id, status_id, remarks,date, department, college
+																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id', department, college
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
 																			".$filter3." AND remarks = 'sb' AND ".$filter2."
-																			GROUP BY faculty_id,remarks;");
+																			GROUP BY faculty_id,remarks;");					
 										 				$result12 = $stmt12->execute();
 										 				$rows12 = $stmt12->fetch(PDO::FETCH_ASSOC);
 
 
 
 										 				$stmt13 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'la'
-																			FROM(SELECT faculty_id, status_id, remarks,date
-																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
+																			FROM(SELECT faculty_id, status_id, remarks,date, department, college
+																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id', department, college
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
 																			".$filter3." AND remarks = 'la' AND ".$filter2."
-																			GROUP BY faculty_id,remarks;");
+																			GROUP BY faculty_id,remarks;");					
 										 				$result13 = $stmt13->execute();
 										 				$rows13 = $stmt13->fetch(PDO::FETCH_ASSOC);
 
 										 				$stmt14 = $conn->prepare( "SELECT A.id as 'record_id', code, name, COUNT(code) as 'ed'
-																			FROM(SELECT faculty_id, status_id, remarks,date
-																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id'
+																			FROM(SELECT faculty_id, status_id, remarks,date, department, college
+																				 FROM (SELECT C.id as 'offering_id', course_id, F.id as 'faculty_id', department, college
 																					   FROM faculty F
 																					   INNER JOIN courseoffering C ON C.faculty_id = F.id) as Y
 																				 INNER JOIN attendance A ON A.courseoffering_id = Y.offering_id
 																			     WHERE ".$dateFilter.") as Z
 																			INNER JOIN attendancestatus A ON A.id = Z.status_id
 																			".$filter3." AND remarks = 'ed' AND ".$filter2."
-																			GROUP BY faculty_id,remarks;");
+																			GROUP BY faculty_id,remarks;");					
 										 				$result14 = $stmt14->execute();
 										 				$rows14 = $stmt14->fetch(PDO::FETCH_ASSOC);
 
@@ -1269,15 +1270,18 @@
 
 												}
 												else
-											 		echo "<h1> NO RECORDS FOUND </h1>";
-
-
-
-
+											 		echo "<script>
+														  alert('No Records Found.');
+														  window.location.replace('dashboard.html');
+														  </script>";
+												
+												
+											
+											  	
 											}
-
-
-
+											
+									 		
+											
 										?>
 
 	<!-- GENERATE REPORTS MODAL -->
@@ -1300,28 +1304,28 @@
 						        	</select>
 						        </div>
 			            	 </div>
-
+									
 
 
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
-
+			            	 	
 			            	 	<div id = "inputDaily" class = "col-xs-8">
 			            	 		<input style = "width:100px;" type="text" class="form-control" id = "dailydate" name="dailydate"/>
 			            	 	</div>
-
+								
 			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
-
+						                
 						                <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px"name ="academicyears">
 												<option seleccted>A.Y. 2015-2016</option>
-
+												
 									    </select>
 									    <br><br>
 						                <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px" name ="terms">
 												<option value = "1" selected>Term 1</option>
 												<option value = "2">Term 2</option>
 												<option value = "3">Term 3</option>
-
+												
 									    </select>
 
 			            		</div>
@@ -1333,9 +1337,9 @@
 										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
 										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
 										</div>
-
+			              			 
 					    		</div>
-
+								
 								<div id = "inputPromo" class="col-xs-8" style = "display:none;margin-top:5px;">
 									<span><i>start up to present</i></span>
 								</div>
@@ -1354,12 +1358,12 @@
 									    	Others
 									        <input type="radio" name ="options" value = "others"/>
 									    </a>
-
+									                
 									</div>
 						        </div>
 						    </div>
 						    <hr class="style2 col-xs-offset-1 col-xs-9"><br>
-
+ 
 						    <div id = "inputIDNumDaily">
 							    <div class="form-group">
 		                            <div class="form-group">
@@ -1399,36 +1403,36 @@
 												<option value = "RVRCOB">RVRCOB</option>
 												<option value = "SOE">SOE</option>
 											</select>
-
+				            	 		
 				            	 		</div>
 							    </div>
 
 							    <div class = "form-group">
 				            	 		<label class = "control-label col-xs-4" style = "text-align:left;"></label>
-				            	 		<div id = "CCS" class = "col-xs-5">
+				            	 		<div id = "CCS" class = "col-xs-5">          	 			
 											<select id = "departmentpicker" class="selectpicker show-tick" name = "ccs">
 												<option> Computer Technology</option>
 												<option> Software Technology</option>
 												<option> Information Technology</option>
-
-											</select>
+											
+											</select> 	
 				            	 		</div>
-				            	 		<div id = "BAGCED" class = "col-xs-5">
+				            	 		<div id = "BAGCED" class = "col-xs-5">          	 			
 											<select id = "departmentpicker" class="selectpicker show-tick" name = "bagced">
 												<option> English and Applied Linguistics</option>
 												<option> Science Education</option>
 												<option> Physical Education</option>
-
-											</select>
+											
+											</select> 	
 				            	 		</div>
-				            	 		<div id = "COL" class = "col-xs-5">
+				            	 		<div id = "COL" class = "col-xs-5">          	 			
 											<select id = "departmentpicker" class="selectpicker show-tick" name = "col">
 												<option> Law</option>
-
-
-											</select>
+												
+											
+											</select> 	
 				            	 		</div>
-				            	 		<div id = "CLA" class = "col-xs-5">
+				            	 		<div id = "CLA" class = "col-xs-5">          	 			
 											<select id = "departmentpicker" class="selectpicker show-tick" name = "cla">
 												<option> Theology and Religious Studies</option>
 												<option> History </option>
@@ -1440,19 +1444,19 @@
 												<option> Political Science </option>
 												<option> Psychology </option>
 												<option> Literature </option>
-
-											</select>
+											
+											</select> 	
 				            	 		</div>
-				            	 		<div id = "COS" class = "col-xs-5">
+				            	 		<div id = "COS" class = "col-xs-5">          	 			
 											<select id = "departmentpicker" class="selectpicker show-tick" name = "cos">
 												<option> Biology </option>
 												<option> Chemistry </option>
 												<option> Physics </option>
 												<option> Mathematics</option>
-
-											</select>
+											
+											</select> 	
 				            	 		</div>
-				            	 		<div id = "GCOE" class = "col-xs-5">
+				            	 		<div id = "GCOE" class = "col-xs-5">          	 			
 											<select id = "departmentpicker" class="selectpicker show-tick" name = "gcoe">
 												<option> Chemical Engineering </option>
 												<option> Civil Engineering </option>
@@ -1460,37 +1464,37 @@
 												<option> Industrial Engineering </option>
 												<option> Mechanical Engineering </option>
 												<option> Manufacturing Engineering and Management </option>
-
-											</select>
+											
+											</select> 	
 				            	 		</div>
-				            	 		<div id = "RVRCOB" class = "col-xs-5">
+				            	 		<div id = "RVRCOB" class = "col-xs-5">          	 			
 											<select id = "departmentpicker" class="selectpicker show-tick" name = "rvrcob">
 												<option> Accountancy </option>
 												<option> Marketing Management </option>
 												<option> Management and Organization </option>
 												<option> Financial Management </option>
 												<option> Commercial Law </option>
-
-											</select>
+											
+											</select> 	
 				            	 		</div>
-				            	 		<div id = "SOE" class = "col-xs-5">
+				            	 		<div id = "SOE" class = "col-xs-5">          	 			
 											<select id = "departmentpicker" class="selectpicker show-tick" name = "soe">
 												<option> Economics</option>
 
-											</select>
+											</select> 	
 				            	 		</div>
-				            	 		<div id = "All" class = "col-xs-5">
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "all">
+				            	 		<div id = "All" class = "col-xs-5">          	 			
+											<select id = "departmentpicker" class="selectpicker show-tick" name = "all">												
 												<option> All Departments</option>
-											</select>
+											</select> 	
 				            	 		</div>
 							    </div>
 							</div>
 							<br>
 
 						    <div class="text-center">
-						        <button id="btnViewReportDaily" type="submit" class="btn btn-success col-xs-4 submit" style = "margin-left:40px; margin-right:30px;font-size:14px;"> <i class="glyphicon glyphicon-th-list"></i> GENERATE </button>
-
+						        <button id="btnViewReportDaily" type="submit" class="btn btn-success col-xs-4 submit" style = "margin-left:40px; margin-right:30px;font-size:14px;"> <i class="glyphicon glyphicon-th-list"></i> GENERATE </button> 
+						        
 						        <button type="button" class="btn btn-danger col-xs-4 cancel" data-dismiss="modal" style="
     							margin-left: 20px;font-size:14px;"> <i class="glyphicon glyphicon-remove"></i> CANCEL </button>
 				            </div>
