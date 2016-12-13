@@ -576,22 +576,22 @@
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="navbar-brand-centered">
-			      <ul class="nav navbar-nav">
-			        <li><a href="../dashboard.html"><b>Maintenance</b></a></li>
-			        <li><a href="../dashboard-reports.html"><b>Log Out</b></a></li>		
-			      </ul>
-			      <ul class="nav navbar-nav navbar-right" style = "padding:7px;">
-			        
-			        <li>
 
-			        	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id = "dashay-button"> 
-			        		<b>Current AY: 2016 - 2017 || Term 1<b>
-			        		</button>
+		          <ul class="nav navbar-nav" style="padding:7px;">
 
-					</li>
-				  </ul>
+		            <li>
 
-			    </div><!-- /.navbar-collapse -->
+		              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id="dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
+		            </li>
+
+		          </ul>
+
+		          <ul class="nav navbar-nav navbar-right">
+		            <li><a href="index.html"><b>Log Out</b></a></li>
+		          </ul>
+
+		        </div>
+			    <!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 		<!-- Current AY Modal -->    
@@ -631,14 +631,14 @@
 		<div class = "container">
 			<p style = "float:right">
 
-					<a href = "#" data-toggle="modal" data-target = "#generate-modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
-			      	<span class="glyphicon glyphicon-th-list"></span> GENERATE </a> &nbsp;
+					<a href = "dashboard.html" data-toggle="modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+			      	<span class="glyphicon glyphicon-chevron-left"></span> BACK </a> &nbsp;
 
 					<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
-				     <span class="glyphicon glyphicon-print"></span>  PRINT </a> &nbsp;
+				     <span class="glyphicon glyphicon-print"></span> PRINT </a> &nbsp;
 
-			      	<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
-			      	<span class="glyphicon glyphicon-envelope"></span> EMAIL </a>  	
+			      	<a href="#" data-toggle="modal" data-target = "#email-modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+			      	<span class="glyphicon glyphicon-envelope"></span> EMAIL </a> 
 			</p>
 			<br><br>
 			<center>
@@ -935,226 +935,148 @@
 			}
 ?>
 
-<!-- GENERATE REPORTS MODAL -->
-		<div class="modal fade" id="generate-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	  <div class="modal-dialog">
-				<div class="addaymodal-container" id = "daily-container">
-					<form class = "form form-horizontal" action="generatereports.php" method="POST">
+<!-- EMAIL MODAL -->
+		<div class="modal fade" id="email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		 <div class="modal-dialog">
+				<div class="addaymodal-container" id = "searchrecords-container">
+					<form action="generatereports.php" class="form form-horizontal" method="post">
 						<fieldset>
 							<legend style = "margin-bottom:-10px;"></legend>
-							<h3><legend class="text-center"><b>GENERATE REPORTS</b></legend></h3>
+							<h3><legend class="text-center"><b>EMAIL</b></legend></h3>
 
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Type:</label>
-						        <div class="col-xs-5">
-						        	<select id = "report-type" class = "selectpicker show-tick" data-width = "155px" name ="buttons" onchange = "change()">
-						        		<option id ="dailyButton" value = "daily"> Daily </option>
-						        		<option value = "term"> Term-End </option>
-						        		<option value = "custom"> Custom </option>
-						        		<option value = "promotional"> Promotional </option>
-						        	</select>
-						        </div>
-			            	 </div>
-									
+							<!--<div class="form-group">
+				                <label class="control-label col-xs-4" style="text-align:left;">Type:</label>
+				                <div class="col-xs-5">
+				                  <select id="email-type" class="selectpicker show-tick" data-width="155px" onchange="email()">
+				                        <option value ="daily-email"> Daily </option>
+				                        <option value = "monthly-email"> Monthly </option>
+								        <option value = "term-email"> Term-End </option>
+				                        <option value = "custom-email"> Custom </option>
+				                      </select>
+				                </div>
+			              	</div>
 
+			              	<div class="form-group">
+				                <label class="control-label col-xs-4" style="text-align:left;">Date:</label>
 
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Date:</label>
-			            	 	
-			            	 	<div id = "inputDaily" class = "col-xs-8">
-			            	 		<input style = "width:100px;" type="text" class="form-control" id = "dailydate" name="dailydate"/>
-			            	 	</div>
-								
-			            		<div id = "inputTerm" class = "col-xs-4" name = "terms" style = "display:none;">
-						                
-						                <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px"name ="academicyears">
-												<option seleccted>A.Y. 2015-2016</option>
-												
-									    </select>
-									    <br><br>
-						                <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px" name ="terms">
-												<option value = "1" selected>Term 1</option>
-												<option value = "2">Term 2</option>
-												<option value = "3">Term 3</option>
-												
-									    </select>
+				                <div id="emailDaily" class="col-xs-8">
+				                  <input style="width:100px;" type="text" class="form-control" id="dailydate2" name="dailydate2" />
+				                </div>
 
-			            		</div>
+				                <div id="emailMonthly" class="col-xs-4" name="monthly" style="display:none;">
 
+				                  <select class="selectpicker show-tick" style="text-align:left;;" name="months" data-width="110px">
+				                    <option selected>January</option>
+				                    <option>February</option>
+				                    <option>March</option>
+				                    <option>April</option>
+				                    <option>May</option>
+				                    <option>June</option>
+				                    <option>July</option>
+				                    <option>August</option>
+				                    <option>September</option>
+				                    <option>October</option>
+				                    <option>November</option>
+				                    <option>December</option>
+				                  </select>
 
 
-			            		<div id = "inputCustom" class="col-xs-8" style = "display:none;">
-						                <div id="reportrange" class="pull-right" style = "width:230px">
-										    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-										    <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
-										</div>
-			              			 
-					    		</div>
-								
-								<div id = "inputPromo" class="col-xs-8" style = "display:none;margin-top:5px;">
-									<span><i>start up to present</i></span>
+				                </div>
+
+				                <div id="emailMonthly2" style="display:none;">
+				                  <select id="try" class="selectpicker show-tick" style="text-align:left;" name="years" data-width="100px">
+				                        <option selected>2016</option>
+				                        <option>2015</option>
+
+				                  </select>
+				                </div>
+
+				                <div id="emailCustom" class="col-xs-8" style="display:none;margin-left:-20px;">
+				                  <div id="reportrange" class="pull-right" style="width:230px;">
+				                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+				                    <span></span> <b class="caret" style="float:right;margin-top:5px;"></b>
+				                    <input type="hidden" class="form-control" id="dates" name="dates" />
+				                  </div>
+				                </div>
+
+				                <div id="emailTerm" class="col-xs-4" name="terms" style="display:none;">
+
+				                  <select class="selectpicker show-tick" style="text-align:left;" data-width="155px" name="academicyears">
+				                        <option seleccted>A.Y. 2015-2016</option>
+
+				                      </select>
+				                  <br><br>
+				                  <select class="selectpicker show-tick" style="text-align:left;" data-width="155px" name="terms">
+				                        <option value = "1" selected>Term 1</option>
+				                        <option value = "2">Term 2</option>
+				                        <option value = "3">Term 3</option>
+
+				                  </select>
+
+
+				                </div>
+
+
+
+				            </div>-->
+
+
+				            <div class = "email">
+								<div class="form-group">
+									<label class="control-label col-xs-4" style="text-align:left;">To:</label>
+									<div class="col-xs-5" style="width:250px">
+					                    <select id="email-receivers" class="selectpicker show-tick" style="text-align:left;" name="emailadd" data-width="155px" onchange = changeReceipients(); >
+					                        <option value = "All Faculty" selected>All Faculty</option>
+					                        <option value = "SpecFaculty">A Specific Faculty</option>
+					                        <option value = "Custom">Custom</option>
+				                      </select>
+
+				                  	</div>
 								</div>
+							</div>
 
-			            	 </div>
-
-			            	 <div class="form-group">
-						        <label for="inputPassword" class="control-label col-xs-4" style = "text-align:left;">Report for:</label>
-						        <div class="col-xs-5">
-						            <div class=" segmented-control" style="width:150px;margin-left:5px;">
-									    <a id ="facultyButtonDaily" href="#" class="list-group-item active">
-									    	Faculty
-									    	<input type="radio" name ="options" value ="faculty" checked/>
-									    </a>
-									    <a id="othersButtonDaily" href="#" class="list-group-item">
-									    	Others
-									        <input type="radio" name ="options" value = "others"/>
-									    </a>
-									                
+							<div id="custom-email" style = "display:none;">
+								<div class="form-group">
+									<label class="control-label col-xs-4" style="text-align:left;"></label>
+									<div class="col-xs-8">
+										<input class="form-control" type="text" value = "ccs@dlsu.edu.ph">
 									</div>
-						        </div>
-						    </div>
-						    <hr class="style2 col-xs-offset-1 col-xs-9"><br>
- 
-						    <div id = "inputIDNumDaily">
-							    <div class="form-group">
-		                            <div class="form-group">
-					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
-					            	 		<input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
-					            	 	<div class = "col-xs-3">
-					            	 		<input style = "width:214px"type="text" class="form-control"	id= "idnumber" name="idnumber"/>
-					            	 	</div>
-					            	</div>
-
-				            	 	<div class="form-group">
-					            	 	<label class = "control-label col-xs-4" style = "text-align:left; margin-left:15px;">
-					            	 		<input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
-					            	 	<div class = "col-xs-3">
-					            	 		<input style = "width:214px" type="text" class="form-control"	id= "name" name="name" readonly/>
-
-					            	 	</div>
-					            	</div>
-							    </div>
-
+								</div>
 							</div>
 
-						    <div id = "inputOthersDaily" style = "display:none;">
+							<div id="specific-email" style = "display:none;">
+				                <div class="form-group">
+				                  <div class="form-group">
+				                    <label class="control-label col-xs-4" style="text-align:left; margin-left:15px;">
+				                            <input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
+				                    <div class="col-xs-3">
+				                      <input style="width:80px" type="text" class="form-control" id="idnumber" name="idnumber" maxlength="8" />
+				                    </div>
+				                  </div>
 
-							    <div class = "form-group">
-							    	<input type ="hidden" id = "department" name = "department" value = "All Departments"/>
-				            	 		<label class = "control-label col-xs-4" style = "text-align:left;">Report filter:</label>
-				            	 		<div class = "col-xs-5" style="width:250px">
-											<select id = "collegepicker" class="selectpicker show-tick" style = "text-align:left;" name ="college">
-												<option value = "All Colleges" selected>All Colleges</option>
-												<option value = "BAGCED">BAGCED</option>
-												<option value = "CCS">CCS</option>
-												<option value = "CLA">CLA</option>
-												<option value = "COL">COL</option>
-												<option value = "COS">COS</option>
-												<option value = "GCOE">GCOE</option>
-												<option value = "RVRCOB">RVRCOB</option>
-												<option value = "SOE">SOE</option>
-											</select>
-				            	 		
-				            	 		</div>
-							    </div>
+				                  <div class="form-group">
+				                    <label class="control-label col-xs-4" style="text-align:left; margin-left:15px;">
+				                            <input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
+				                    <div class="col-xs-3">
+				                      <input style="width:214px" type="text" class="form-control" id="name" name="name" placeholder="Last Name, FirstName" readonly/>
 
-							    <div class = "form-group">
-				            	 		<label class = "control-label col-xs-4" style = "text-align:left;"></label>
-				            	 		<div id = "CCS" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "ccs">
-												<option> Computer Technology</option>
-												<option> Software Technology</option>
-												<option> Information Technology</option>
-											
-											</select> 	
-				            	 		</div>
-				            	 		<div id = "BAGCED" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "bagced">
-												<option> English and Applied Linguistics</option>
-												<option> Science Education</option>
-												<option> Physical Education</option>
-											
-											</select> 	
-				            	 		</div>
-				            	 		<div id = "COL" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "col">
-												<option> Law</option>
-												
-											
-											</select> 	
-				            	 		</div>
-				            	 		<div id = "CLA" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "cla">
-												<option> Theology and Religious Studies</option>
-												<option> History </option>
-												<option> Behavioral Sciences </option>
-												<option> Communication </option>
-												<option> Philosophy </option>
-												<option> Filipino </option>
-												<option> International Studies </option>
-												<option> Political Science </option>
-												<option> Psychology </option>
-												<option> Literature </option>
-											
-											</select> 	
-				            	 		</div>
-				            	 		<div id = "COS" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "cos">
-												<option> Biology </option>
-												<option> Chemistry </option>
-												<option> Physics </option>
-												<option> Mathematics</option>
-											
-											</select> 	
-				            	 		</div>
-				            	 		<div id = "GCOE" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "gcoe">
-												<option> Chemical Engineering </option>
-												<option> Civil Engineering </option>
-												<option> Electronics and Communications Engineering </option>
-												<option> Industrial Engineering </option>
-												<option> Mechanical Engineering </option>
-												<option> Manufacturing Engineering and Management </option>
-											
-											</select> 	
-				            	 		</div>
-				            	 		<div id = "RVRCOB" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "rvrcob">
-												<option> Accountancy </option>
-												<option> Marketing Management </option>
-												<option> Management and Organization </option>
-												<option> Financial Management </option>
-												<option> Commercial Law </option>
-											
-											</select> 	
-				            	 		</div>
-				            	 		<div id = "SOE" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "soe">
-												<option> Economics</option>
+				                    </div>
+				                  </div>
+				                </div>
 
-											</select> 	
-				            	 		</div>
-				            	 		<div id = "All" class = "col-xs-5">          	 			
-											<select id = "departmentpicker" class="selectpicker show-tick" name = "all">												
-												<option> All Departments</option>
-											</select> 	
-				            	 		</div>
-							    </div>
-							</div>
-							<br>
-
-						    <div class="text-center">
-						        <button id="btnViewReportDaily" type="submit" class="btn btn-success col-xs-4 submit" style = "margin-left:40px; margin-right:30px;font-size:14px;"> <i class="glyphicon glyphicon-th-list"></i> GENERATE </button> 
-						        
-						        <button type="button" class="btn btn-danger col-xs-4 cancel" data-dismiss="modal" style="
-    							margin-left: 20px;font-size:14px;"> <i class="glyphicon glyphicon-remove"></i> CANCEL </button>
 				            </div>
 
-			        	</fieldset>
+							<br>
+							<div class="text-center">
+								<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-envelope"></i> EMAIL</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> DISCARD</button>
+							</div>
+						<br>
+						</fieldset>
 					</form>
 				</div>
 		  </div>
 		</div>
+
 
 
     	</div>
