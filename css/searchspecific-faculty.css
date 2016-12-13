@@ -224,9 +224,6 @@ table tr.active td {
     width: 120px;
 }
 
-div.dropdown-menu {
-        max-width: 180px !important;
-}
 
 #pagelabel{
     font-weight:bold;
