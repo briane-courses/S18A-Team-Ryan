@@ -798,8 +798,7 @@
 										    	$college = isset($_POST["college"]) ? $_POST["college"] : false;
 										    	$department = isset($_POST["department"]) ? $_POST["department"] : false;
 
-
-										    	switch ($department) {
+										    	switch ($college) {
 										    		case 'CCS':
 										    				$department = isset($_POST["ccs"]) ? $_POST["ccs"] : false;
 										    			break;
@@ -830,12 +829,14 @@
 										    			break;
 										    	}
 										    	
-										    	
 										    	$filter= "";
 
 										    	if($college != 'All Colleges')
 										    	{
-										    		$filter = "WHERE "."department= '".$department."' AND college= '".$college."'";
+										    		if($department != 'All Departments')
+										    			$filter = "WHERE "."department= '".$department."' AND college= '".$college."'";
+										    		else
+										    			$filter = "WHERE college = '".$college."' ";
 										   		}
 										    		
 										    											    	
@@ -904,7 +905,10 @@
 
 											 	}
 											 		else
-											 			echo "<h1> NO RECORDS FOUND </h1>";
+											 			echo "<script>
+														      alert('No Records Found.');
+														      window.location.replace('dashboard.html');
+														      </script>";
 										 		
 											}
 											else
@@ -1266,7 +1270,10 @@
 
 												}
 												else
-											 		echo "<h1> NO RECORDS FOUND </h1>";
+											 		echo "<script>
+														  alert('No Records Found.');
+														  window.location.replace('dashboard.html');
+														  </script>";
 												
 												
 											
