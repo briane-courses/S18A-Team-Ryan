@@ -72,6 +72,7 @@
       });
 
     </script>
+
     <!-- SEARCH BY NAME/ID -->
     <script type="text/javascript">
       $(document).ready(function() {
@@ -169,7 +170,7 @@
 
     </script>
 
-    <!-- -->
+    <!-- SEGMENTED BUTTONS-->
     <script type="text/javascript">
       $(function() {
         $('div.segmented-control a').on('click', function() {
@@ -197,17 +198,17 @@
           $(this.parentNode).toggleClass("active");
           console.log(ctr);
           if (ctr == 1) {
-            $('#modifyButton').attr("disabled", false);
-            $('#removeButton').attr("disabled", false);
-            $('#makeupButton').attr("disabled", false);
+            $('#modifyButton').removeClass("disabled");
+            $('#removeButton').removeClass("disabled");
+            $('#makeupButton').removeClass("disabled")
           } else {
-            $('#modifyButton').attr("disabled", true);
-            $('#makeupButton').attr("disabled", true);
+            $('#modifyButton').addClass("disabled");
+            $('#makeupButton').addClass("disabled")
             if (ctr == 0) {
-              $('#removeButton').attr("disabled", true);
-              $('#makeupButton').attr("disabled", true);
+              $('#removeButton').addClass("disabled");
+              $('#makeupButton').addClass("disabled");
             } else
-              $('#removeButton').attr("disabled", false);
+              $('#removeButton').removeClass("disabled");
           }
         });
       });
@@ -585,14 +586,14 @@
     <div class="navbar navbar-fixed-bottom">
       <div class="container text-center">
         <div class="im-centered">
-          <a href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#addrecord-modal">
+          <a id = "addButton" href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#addrecord-modal">
             <span class="glyphicon glyphicon-plus"></span> ADD NEW RECORD </a>
-          <a id="modifyButton" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#modifyrecord-modal" disabled>
+          <a id="modifyButton" class="navbar-btn btn-success btn disabled" data-toggle="modal" data-target="#modifyrecord-modal">
             <span class="glyphicon glyphicon-pencil"></span> MODIFY </a>
 
-          <a id="removeButton" href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#removerecord-modal" disabled>
+          <a id="removeButton" href="#" class="navbar-btn btn-success btn disabled" data-toggle="modal" data-target="#removerecord-modal">
             <span class="glyphicon glyphicon-trash"></span> REMOVE </a>
-          <a href="#" id="makeupButton" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#addmakeup-modal" disabled>
+          <a href="#" id="makeupButton" class="navbar-btn btn-success btn disabled" data-toggle="modal" data-target="#addmakeup-modal">
             <span class="glyphicon glyphicon-plus"></span> ADD NEW MAKE-UP CLASS </a>
         </div>
       </div>
@@ -623,8 +624,8 @@
 
               <div class="form-group">
                 <label class="control-label col-xs-5" style="text-align:left;">Course & Section:</label>
-                <div class="col-xs-7" style="margin-left:-33px;">
-                  <select class="selectpicker show-tick" data-width="180px">
+                <div class="col-xs-7" style="margin-left:-35px;">
+                  <select class="selectpicker show-tick" data-width="178px">
 											<option selected>SOFENGG - S18A</option>
 											<option selected>SOFENGG - S17</option>
 											<option>SWDESPA - S17</option>
@@ -636,9 +637,14 @@
               <div class="form-group">
                 <label class="control-label col-xs-4" style="text-align:left;">Checker:</label>
                 <div class="col-xs-8">
-                  <input type="text" class="form-control" />
+                  <select class="selectpicker show-tick" data-width="180px">
+                        <option selected>Ryan</option>
+                        <option>Darren</option>
+                        <option>Rhovic</option>
+                  </select>
                 </div>
               </div>
+
               <div class="form-group">
                 <label class="control-label col-xs-4" style="text-align:left;">Remarks:</label>
                 <div class="col-xs-8">
@@ -690,30 +696,38 @@
 
               <div class="form-group">
                 <label class="control-label col-xs-5" style="text-align:left;">Course & Section:</label>
-                <div class="col-xs-7">
-                  <input style="margin-left:-33px;" type="text" class="form-control" placeholder="SOFENGG S17" />
+                <div class="col-xs-7" style="margin-left:-35px;">
+                  <select class="selectpicker show-tick" data-width="178px">
+                      <option selected>SOFENGG - S18A</option>
+                      <option selected>SOFENGG - S17</option>
+                      <option>SWDESPA - S17</option>
+                      <option>SWDESPA - S18</option>
+                      </select>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="control-label col-xs-4" style="text-align:left;">Checker:</label>
                 <div class="col-xs-8">
-                  <input type="text" class="form-control" placeholder="Keith" />
+                  <select class="selectpicker show-tick" data-width="180px">
+                        <option selected>Ryan</option>
+                        <option>Darren</option>
+                        <option>Rhovic</option>
+                  </select>
                 </div>
               </div>
+
               <div class="form-group">
                 <label class="control-label col-xs-4" style="text-align:left;">Remarks:</label>
-                <div class="col-xs-8" style="text-align:left;">
+                <div class="col-xs-8">
                   <select class="selectpicker show-tick" data-width="180px">
-												<option selected>VR Vacant Room</option>
-												<option>CLA</option>
-												<option>COB</option>
-												<option>COS</option>
-												<option>COE</option>
-												<option>CCS</option>
-												<option>CED</option>
-												<option>SOE</option>
-									    	</select>
+                        <option selected>AB - Absent</option>
+                        <option>LA - Late</option>
+                        <option>SB - Substitute</option>
+                        <option>VR - Vacant Room</option>
+                        <option>ED - Early Dismissal</option>
+                        <option>US - Unscheduled Class</option>
+                        </select>
                 </div>
               </div>
 
@@ -839,12 +853,16 @@
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <label class="control-label col-xs-4" style="text-align:left;">Checker:</label>
-                  <div class="col-xs-8">
-                    <input type="text" class="form-control" />
-                  </div>
+              <div class="form-group">
+                <label class="control-label col-xs-4" style="text-align:left;">Checker:</label>
+                <div class="col-xs-8">
+                  <select class="selectpicker show-tick" data-width="120px">
+                        <option selected>Ryan</option>
+                        <option>Darren</option>
+                        <option>Rhovic</option>
+                  </select>
                 </div>
+              </div>
 
                 <div class="form-group">
                   <label class="control-label col-xs-4" style="text-align:left;">Class Made Up:</label>
