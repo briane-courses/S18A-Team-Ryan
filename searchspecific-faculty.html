@@ -134,24 +134,27 @@
       function change() {
         if (document.getElementById('report-type').value == "daily") {
           $("#inputDaily").show();
+          $("#inputMonthly").hide();
           $("#inputTerm").hide();
           $("#inputCustom").hide();
-          $("#inputPromo").hide();
+          
         }
         if (document.getElementById('report-type').value == "term") {
           $("#inputTerm").show();
           $("#inputDaily").hide();
+          $("#inputMonthly").hide();
           $("#inputCustom").hide();
-          $("#inputPromo").hide();
+          
         }
         if (document.getElementById('report-type').value == "custom") {
           $("#inputCustom").show();
           $("#inputTerm").hide();
           $("#inputDaily").hide();
-          $("#inputPromo").hide();
+          $("#inputMonthly").hide();
+          
         }
-        if (document.getElementById('report-type').value == "promotional") {
-          $("#inputPromo").show();
+        if (document.getElementById('report-type').value == "monthly") {
+          $("#inputMonthly").show();
           $("#inputDaily").hide();
           $("#inputTerm").hide();
           $("#inputCustom").hide();
@@ -327,13 +330,13 @@
                       </div>
                       <!-- form group [rows] -->
                       <div class="form-group">
-                        <label class="filter-col" style="margin-right:0;" for="report-type">Daily Report Filter:</label>
+                        <label class="filter-col" style="margin-right:0;" for="report-type">Date Range:</label>
                         <select id="report-type" onchange="change()" class="form-control selectpicker show-tick" data-width="155px">
 									        		<option id ="dailyButton" value = "daily"> Daily </option>
+                              <option value = "monthly"> Monthly </option>
 									        		<option value = "term"> Term-End </option>
 									        		<option value = "custom"> Custom </option>
-									        		<option value = "promo"> Promotional </option>
-					                            </select>
+                        </select>
                       </div>
                       <!-- form group [search] -->
                       <div class="form-group">
@@ -355,6 +358,31 @@
 
 													</select>
                         </div>
+
+                        <div id = "inputMonthly" style="display:none">
+                          <label class="filter-col" style="margin-right:0;margin-top:5px;" for="report-date">Month:</label>
+                          <select class="selectpicker show-tick" style="text-align:left;;" name="months" data-width="110px">
+                            <option selected>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                          </select>
+
+                          <select id="try" class="selectpicker show-tick" style="text-align:left;" name="years" data-width="100px">
+                                <option selected>2016</option>
+                                <option>2015</option>
+
+                          </select>
+                        </div>
+
 
                         <div id="inputCustom" style="display:none;">
                           <label class="filter-col" style="margin-right:0;margin-top:5px;" for="report-date">Date:</label>
