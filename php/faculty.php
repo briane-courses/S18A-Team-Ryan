@@ -1,20 +1,5 @@
 <?php
-    include "connector.php";
-
-    $stmt = $conn->prepare("SELECT * FROM Faculty WHERE id = :idNumber");
-    $stmt->execute(["idNumber" => $_GET["id"]]);
-    $faculty = $stmt->fetch(PDO::FETCH_ASSOC);
-    $stmt = $conn->prepare("SELECT date, time_start, time_end, Course.name AS course, section, Room.name AS room, CheckerAccount.user_name AS checker, remarks
-        FROM Attendance, CourseOffering, Course, CheckerAccount, Room, RotationRoom, Rotation
-        WHERE faculty_id = :idNumber
-            AND CourseOffering.course_id = Course.id
-            AND courseoffering_id = CourseOffering.id
-            AND CourseOffering.room_id = Room.id
-            AND RotationRoom.room_id_list LIKE CONCAT('%', Room.id, '%')
-            AND RotationRoom.id = Rotation.id
-            AND Rotation.id = CheckerAccount.rotation_id
-            AND date = cast(:date as date);");
-    $stmt->execute(["idNumber" => $_GET["id"], "date" => $_GET["date"]]);
+    require "search-faculty.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -528,10 +513,9 @@
                 <label class = "control-label col-xs-4" style = "text-align:left;">Course & Section:</label>
                 <div class = "col-xs-8">
                   <select class = "selectpicker show-tick" data-width = "180px">
-                  <option selected>SOFENGG - S18A</option>
-                  <option selected>SOFENGG - S17</option>
-                  <option>SWDESPA - S17</option>
-                  <option>SWDESPA - S18</option>
+                    <?php
+                      echo $classes;
+                    ?>
                   </select>
                 </div>
               </div>
