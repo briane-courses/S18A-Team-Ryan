@@ -49,7 +49,7 @@
               AND CourseOffering.course_id = Course.id
               AND courseoffering_id = CourseOffering.id
               AND CourseOffering.room_id = Room.id
-              AND RotationRoom.room_id_list LIKE CONCAT('%', Room.id, '%')
+              AND RotationRoom.room_id_list REGEXP CONCAT('([0-9]*,)*', Room.id, '($|,.*)')
               AND RotationRoom.id = Rotation.id
               AND Rotation.id = CheckerAccount.rotation_id
               AND date = cast(:date as date);");
