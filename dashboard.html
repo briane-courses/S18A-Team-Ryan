@@ -100,6 +100,18 @@
           $("#inputTerm").hide();
           $("#inputCustom").hide();
           $("#inputPromo").hide();
+          $("#inputMonthly").hide();
+          $("#inputMonthly2").hide();
+          $("#facultyButtonDaily").removeClass("inactiveLink");
+          $("#othersButtonDaily").removeClass("inactiveLink");
+        }
+
+        if (document.getElementById('report-type').value == "monthly") {
+          $("#inputMonthly").show();
+          $("#inputMonthly2").show();
+          $("#inputDaily").hide();
+          $("#inputCustom").hide();
+          $("#inputPromo").hide();
           $("#facultyButtonDaily").removeClass("inactiveLink");
           $("#othersButtonDaily").removeClass("inactiveLink");
         }
@@ -109,6 +121,8 @@
           $("#inputDaily").hide();
           $("#inputCustom").hide();
           $("#inputPromo").hide();
+          $("#inputMonthly").hide();
+          $("#inputMonthly2").hide();
           $("#facultyButtonDaily").removeClass("inactiveLink");
           $("#othersButtonDaily").removeClass("inactiveLink");
         }
@@ -120,6 +134,8 @@
           $("#inputIDNumDaily").hide();
           $("#inputDaily").hide();
           $("#inputPromo").hide();
+          $("#inputMonthly").hide();
+          $("#inputMonthly2").hide();
            $("#facultyButtonDaily").addClass("inactiveLink");
           $("#facultyButtonDaily").removeClass("active");
           $("#othersButtonDaily").addClass("active");
@@ -847,6 +863,7 @@
                 <div class="col-xs-5">
                   <select id="report-type" class="selectpicker show-tick" data-width="155px" name="buttons" onchange="change()">
                         <option id ="dailyButton" value = "daily"> Daily </option>
+                        <option value = "monthly"> Monthly </option>
                         <option value = "term"> Term-End </option>
                         <option value = "custom"> Custom </option>
                         <option value = "promotional"> Promotional </option>
@@ -860,6 +877,34 @@
 
                 <div id="inputDaily" class="col-xs-8">
                   <input style="width:100px;" type="text" class="form-control" id="dailydate" name="dailydate" />
+                </div>
+
+                <div id="inputMonthly" class="col-xs-4" name="monthly" style="display:none;">
+
+                  <select class="selectpicker show-tick" style="text-align:left;;" name="months" data-width="110px">
+                    <option selected>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                  </select>
+
+
+                </div>
+
+                <div id="inputMonthly2" style="display:none;">
+                    <select id="try" class="selectpicker show-tick" style="text-align:left;" name="years" data-width="100px">
+                      <option selected>2016</option>
+                      <option>2015</option>
+
+                    </select>
                 </div>
 
                 <div id="inputTerm" class="col-xs-4" name="terms" style="display:none;">
