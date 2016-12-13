@@ -271,6 +271,26 @@
 			}
 		</script>
 
+		<!-- CHANGING OF EMAIL MODAL -->
+		<script>
+			function changeReceipients(){
+				if(document.getElementById('email-receivers').value == "All Faculty") {
+			      	$("#custom-email").hide();
+			        $("#specific-email").hide();
+				}
+
+				if(document.getElementById('email-receivers').value == "Custom") {
+			      	$("#custom-email").show();
+			        $("#specific-email").hide();
+				}
+
+				if(document.getElementById('email-receivers').value == "SpecFaculty") {
+					$("#custom-email").hide();
+			        $("#specific-email").show();
+				}
+			}
+		</script>
+
 		<script>
 
 			$(document).ready(function(){
@@ -681,20 +701,19 @@
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="navbar-brand-centered">
-			      <ul class="nav navbar-nav">
-			        <li><a href="dashboard.html"><b>Maintenance</b></a></li>
-			        <li><a href="dashboard-reports.html"><b>Log Out</b></a></li>		
-			      </ul>
-			      <ul class="nav navbar-nav navbar-right" style = "padding:7px;">
-			        
-			        <li>
 
-			        	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id = "dashay-button"> 
-			        		<b>Current AY: 2016 - 2017 || Term 1<b>
-			        		</button>
+		          <ul class="nav navbar-nav" style="padding:7px;">
 
-					</li>
-				  </ul>
+		            <li>
+
+		              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id="dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
+		            </li>
+
+		          </ul>
+
+		          <ul class="nav navbar-nav navbar-right">
+		            <li><a href="index.html"><b>Log Out</b></a></li>
+		          </ul>
 
 			    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -736,14 +755,14 @@
 		<div class = "container">
 			<p style = "float:right">
 
-					<a href = "#" data-toggle="modal" data-target = "#generate-modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
-			      	<span class="glyphicon glyphicon-th-list"></span> GENERATE </a> &nbsp;
+					<a href = "dashboard.html" data-toggle="modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+			      	<span class="glyphicon glyphicon-chevron-left"></span> BACK </a> &nbsp;
 
 					<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
-				     <span class="glyphicon glyphicon-print"></span>  PRINT </a> &nbsp;
+				     <span class="glyphicon glyphicon-print"></span> PRINT </a> &nbsp;
 
-			      	<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
-			      	<span class="glyphicon glyphicon-envelope"></span> EMAIL </a>  	
+			      	<a href="#" data-toggle="modal" data-target = "#email-modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+			      	<span class="glyphicon glyphicon-envelope"></span> EMAIL </a> 	
 			</p>
 			<br><br>
 			<center>
@@ -1500,6 +1519,148 @@
 				            </div>
 
 			        	</fieldset>
+					</form>
+				</div>
+		  </div>
+		</div>
+
+		<!-- EMAIL MODAL -->
+		<div class="modal fade" id="email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		 <div class="modal-dialog">
+				<div class="addaymodal-container" id = "searchrecords-container">
+					<form action="generatereports.php" class="form form-horizontal" method="post">
+						<fieldset>
+							<legend style = "margin-bottom:-10px;"></legend>
+							<h3><legend class="text-center"><b>EMAIL</b></legend></h3>
+
+							<!--<div class="form-group">
+				                <label class="control-label col-xs-4" style="text-align:left;">Type:</label>
+				                <div class="col-xs-5">
+				                  <select id="email-type" class="selectpicker show-tick" data-width="155px" onchange="email()">
+				                        <option value ="daily-email"> Daily </option>
+				                        <option value = "monthly-email"> Monthly </option>
+								        <option value = "term-email"> Term-End </option>
+				                        <option value = "custom-email"> Custom </option>
+				                      </select>
+				                </div>
+			              	</div>
+
+			              	<div class="form-group">
+				                <label class="control-label col-xs-4" style="text-align:left;">Date:</label>
+
+				                <div id="emailDaily" class="col-xs-8">
+				                  <input style="width:100px;" type="text" class="form-control" id="dailydate2" name="dailydate2" />
+				                </div>
+
+				                <div id="emailMonthly" class="col-xs-4" name="monthly" style="display:none;">
+
+				                  <select class="selectpicker show-tick" style="text-align:left;;" name="months" data-width="110px">
+				                    <option selected>January</option>
+				                    <option>February</option>
+				                    <option>March</option>
+				                    <option>April</option>
+				                    <option>May</option>
+				                    <option>June</option>
+				                    <option>July</option>
+				                    <option>August</option>
+				                    <option>September</option>
+				                    <option>October</option>
+				                    <option>November</option>
+				                    <option>December</option>
+				                  </select>
+
+
+				                </div>
+
+				                <div id="emailMonthly2" style="display:none;">
+				                  <select id="try" class="selectpicker show-tick" style="text-align:left;" name="years" data-width="100px">
+				                        <option selected>2016</option>
+				                        <option>2015</option>
+
+				                  </select>
+				                </div>
+
+				                <div id="emailCustom" class="col-xs-8" style="display:none;margin-left:-20px;">
+				                  <div id="reportrange" class="pull-right" style="width:230px;">
+				                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+				                    <span></span> <b class="caret" style="float:right;margin-top:5px;"></b>
+				                    <input type="hidden" class="form-control" id="dates" name="dates" />
+				                  </div>
+				                </div>
+
+				                <div id="emailTerm" class="col-xs-4" name="terms" style="display:none;">
+
+				                  <select class="selectpicker show-tick" style="text-align:left;" data-width="155px" name="academicyears">
+				                        <option seleccted>A.Y. 2015-2016</option>
+
+				                      </select>
+				                  <br><br>
+				                  <select class="selectpicker show-tick" style="text-align:left;" data-width="155px" name="terms">
+				                        <option value = "1" selected>Term 1</option>
+				                        <option value = "2">Term 2</option>
+				                        <option value = "3">Term 3</option>
+
+				                  </select>
+
+
+				                </div>
+
+
+
+				            </div>-->
+
+
+				            <div class = "email">
+								<div class="form-group">
+									<label class="control-label col-xs-4" style="text-align:left;">To:</label>
+									<div class="col-xs-5" style="width:250px">
+					                    <select id="email-receivers" class="selectpicker show-tick" style="text-align:left;" name="emailadd" data-width="155px" onchange = changeReceipients(); >
+					                        <option value = "All Faculty" selected>All Faculty</option>
+					                        <option value = "SpecFaculty">A Specific Faculty</option>
+					                        <option value = "Custom">Custom</option>
+				                      </select>
+
+				                  	</div>
+								</div>
+							</div>
+
+							<div id="custom-email" style = "display:none;">
+								<div class="form-group">
+									<label class="control-label col-xs-4" style="text-align:left;"></label>
+									<div class="col-xs-8">
+										<input class="form-control" type="text" value = "ccs@dlsu.edu.ph">
+									</div>
+								</div>
+							</div>
+
+							<div id="specific-email" style = "display:none;">
+				                <div class="form-group">
+				                  <div class="form-group">
+				                    <label class="control-label col-xs-4" style="text-align:left; margin-left:15px;">
+				                            <input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
+				                    <div class="col-xs-3">
+				                      <input style="width:80px" type="text" class="form-control" id="idnumber" name="idnumber" maxlength="8" />
+				                    </div>
+				                  </div>
+
+				                  <div class="form-group">
+				                    <label class="control-label col-xs-4" style="text-align:left; margin-left:15px;">
+				                            <input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
+				                    <div class="col-xs-3">
+				                      <input style="width:214px" type="text" class="form-control" id="name" name="name" placeholder="Last Name, FirstName" readonly/>
+
+				                    </div>
+				                  </div>
+				                </div>
+
+				            </div>
+
+							<br>
+							<div class="text-center">
+								<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-envelope"></i> EMAIL</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> DISCARD</button>
+							</div>
+						<br>
+						</fieldset>
 					</form>
 				</div>
 		  </div>
