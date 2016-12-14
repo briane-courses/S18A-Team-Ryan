@@ -634,7 +634,7 @@
 					<a href = "../dashboard.html" data-toggle="modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
 			      	<span class="glyphicon glyphicon-chevron-left"></span> BACK </a> &nbsp;
 
-					<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+					<a href="print.php" target= "_blank"class="navbar-btn btn-success btn" style = "margin-top:-5px;">
 				     <span class="glyphicon glyphicon-print"></span> PRINT </a> &nbsp;
 
 			      	<a href="#" data-toggle="modal" data-target = "#email-modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
@@ -672,12 +672,12 @@
 		 		$result = $stmt->execute();
 		 		if($rows = $stmt->fetch(PDO::FETCH_ASSOC))
 		 		{
-		 			echo "	
+		 			echo $table1 ="	
 		 				<br>
 						<div class='row'>
 						<div class ='box col-md-12'>
 						<div class='box-content'>
-	 					<table id='resulttable' class='table table-bordered table-striped table-condensed'>
+	 					<table id='resulttable' name = 'resulttable' class='table table-bordered table-striped table-condensed'>
 						<thead class='collegelabel'>
 							<tr><th colspan ='7'>".$rows['college']."</th></tr>
 						</thead> 
@@ -692,10 +692,12 @@
 						</tr>
 						</thead>
 						<tbody>";
+		 			
+		 			$table2 = "";
 		 			do
 		 			{
 
-						echo "<tr class='row-data' data-href='#'>
+						echo $temp="<tr class='row-data' data-href='#'>
 						<td>".$rows['department']."</td>
 						<td>".$rows['last_name'].", ".$rows['first_name']." ".$rows['middle_name']."</td>
 						<td>".$rows['time_start']." - ".$rows['time_end']."</td>
@@ -704,13 +706,19 @@
 						<td>".$rows['room_name']."</td>
 						<td>".$rows['remarks']."</td></tr>";
 
+						$table2.=$temp;
+							
 					}while($rows = $stmt->fetch(PDO::FETCH_ASSOC));
 
-					echo "</tbody> </table>
+					echo $table3="</tbody> </table>
 						  </div>
 						  </div>
 						  </div><br><br>";
 
+					$table= $table1.$table2.$table3;
+					//On page 1
+					$_SESSION['table'] = $table;
+					
 				}
 		 		else
 		 			echo "<script>
