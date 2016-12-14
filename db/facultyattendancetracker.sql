@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `facultyattendancetracker` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE  IF NOT EXISTS `facultyattendancetracker` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `facultyattendancetracker`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: facultyattendancetracker
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.16-MariaDB
+-- Server version	5.6.26-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +28,7 @@ CREATE TABLE `academicyear` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `academicyear` (
 
 LOCK TABLES `academicyear` WRITE;
 /*!40000 ALTER TABLE `academicyear` DISABLE KEYS */;
-INSERT INTO `academicyear` VALUES (1,'A.Y. 2015-2016'),(2,'A.Y. 2016-2017'),(3,'A.Y. 2018-2019');
+INSERT INTO `academicyear` VALUES (1,'A.Y. 2015-2016'),(2,'A.Y. 2016-2017'),(3,'A.Y. 2018-2019'),(4,'A.Y. 2020-2021');
 /*!40000 ALTER TABLE `academicyear` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +69,7 @@ CREATE TABLE `attendance` (
 
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
-INSERT INTO `attendance` VALUES (1,1,2,'XX','2016-09-22','1500'),(2,1,2,'PM','2016-09-24','1500'),(3,2,2,'CF','2016-11-02','0945'),(4,2,2,'XX','2016-11-07','0945'),(5,3,2,'PM','2016-09-22','1500'),(6,4,1,'LA','2016-09-22','1130'),(7,5,3,'OB','2016-09-22','0945'),(8,6,3,'FT','2016-09-22','0945'),(9,7,3,'OB','2016-09-22','1130'),(10,8,2,'CF','2016-09-22','1315'),(11,2,1,'LA','2016-12-13','0945'),(12,2,1,'LA','2016-12-12','0945'),(13,5,3,'OB','2016-12-13','0945'),(14,1,2,'XX','2016-12-13','1500'),(15,3,2,'PM','2016-12-13','1500'),(16,4,1,'LA','2016-12-13','1430'),(17,6,3,'FT','2016-12-13','0945'),(18,7,1,'LA','2016-12-13','0915'),(19,9,1,'LA','2016-12-13','0915'),(20,8,2,'XX','2016-12-13','1245');
+INSERT INTO `attendance` VALUES (1,1,2,'XX','2016-09-22','1500'),(2,1,2,'PM','2016-09-24','1500'),(3,2,2,'CF','2016-11-02','0945'),(4,2,2,'XX','2016-11-07','0945'),(5,3,2,'PM','2016-09-22','1500'),(6,4,1,'LA','2016-09-22','1130'),(7,5,3,'OB','2016-09-22','0945'),(8,6,3,'FT','2016-09-22','0945'),(9,7,3,'OB','2016-09-22','1130'),(10,8,2,'CF','2016-09-22','1315'),(11,2,1,'LA','2016-12-13','0945'),(13,5,3,'OB','2016-12-13','0945'),(14,1,2,'XX','2016-12-13','1500'),(15,3,2,'PM','2016-12-13','1500'),(16,4,1,'LA','2016-12-13','1430'),(17,6,3,'FT','2016-12-13','0945'),(18,7,1,'LA','2016-12-13','0915'),(19,9,1,'LA','2016-12-13','0915'),(20,8,2,'XX','2016-12-13','1245');
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -440,7 +440,7 @@ CREATE TABLE `term` (
 
 LOCK TABLES `term` WRITE;
 /*!40000 ALTER TABLE `term` DISABLE KEYS */;
-INSERT INTO `term` VALUES (1,'2016-09-21','2016-10-20','1',2),(2,'2016-11-01','2017-01-04','2',2),(3,'2017-01-09','2017-02-28','3',2);
+INSERT INTO `term` VALUES (1,'2016-09-21','2016-10-20','1',1),(2,'2016-11-01','2017-01-04','2',1),(3,'2017-01-09','2017-02-28','3',1);
 /*!40000 ALTER TABLE `term` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -479,4 +479,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-13 16:52:29
+-- Dump completed on 2016-12-14 12:27:23
