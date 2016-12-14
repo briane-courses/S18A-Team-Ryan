@@ -168,6 +168,7 @@
           $("#inputDaily").hide();
           $("#inputCustom").hide();
           $("#inputPromo").hide();
+          $("#inputTerm").hide();
           $("#facultyButtonDaily").removeClass("inactiveLink");
           $("#othersButtonDaily").removeClass("inactiveLink");
         }
@@ -184,29 +185,14 @@
         }
 
         if (document.getElementById('report-type').value == "custom") {
-          $("#inputCustom").show();
-          $("#inputOthersDaily").show();
           $("#inputTerm").hide();
-          $("#inputIDNumDaily").hide();
           $("#inputDaily").hide();
+          $("#inputCustom").show();
           $("#inputPromo").hide();
           $("#inputMonthly").hide();
           $("#inputMonthly2").hide();
-           $("#facultyButtonDaily").addClass("inactiveLink");
-          $("#facultyButtonDaily").removeClass("active");
-          $("#othersButtonDaily").addClass("active");
+          $("#facultyButtonDaily").removeClass("inactiveLink");
           $("#othersButtonDaily").removeClass("inactiveLink");
-
-          $("#department").val("All Colleges");
-            $("#CCS").hide();
-            $("#COS").hide();
-            $("#COL").hide();
-            $("#CLA").hide();
-            $("#GCOE").hide();
-            $("#SOE").hide();
-            $("#BAGCED").hide();
-            $("#RVRCOB").hide();
-            $("#All").show();
          
         }
 
