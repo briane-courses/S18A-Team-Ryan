@@ -26,6 +26,61 @@
 
     <!-- SINGLE CALENDAR -->
     <script type="text/javascript">
+    <!-- AutoComplet -->
+      function autocompletNameg() {
+        var min_length = 0; // min caracters to display the autocomplete
+        var keywordg = $('#name').val();
+        if (keywordg.length >= min_length) {
+          $.ajax({
+            url: 'php/ajax_refresh.php',
+            type: 'POST',
+            data: {keywordg:keywordg},
+            success:function(data){
+              $('#name-list').show();
+              $('#name-list').html(data);
+            }
+          });
+        } else {
+          $('#name-list').hide();
+        }
+      }
+ 
+      // set_item : this function will be executed when we select an item
+      function set_itemNameg(item) {
+        // change input value
+        $('#name').val(item);
+        // hide proposition list
+        $('#name-list').hide();
+      }
+
+      <!-- AutoComplet -->
+      function autocompletIdg() {
+
+        var min_length = 0; // min caracters to display the autocomplete
+        var idg = $('#idnumber').val();
+        if (idg.length >= min_length) {
+          
+          $.ajax({
+            url: 'php/ajax_refresh.php',
+            type: 'POST',
+            data: {idg:idg},
+            success:function(data){
+              $('#id-list').show();
+              $('#id-list').html(data);
+            }
+          });
+        } else {
+          $('#id-list').hide();
+        }
+      }
+ 
+      // set_item : this function will be executed when we select an item
+      function set_itemIdg(item) {
+        // change input value
+        $('#idnumber').val(item);
+        // hide proposition list
+        $('#id-list').hide();
+      }
 
       <!-- AutoComplet -->
       function autocompletName() {
@@ -168,6 +223,7 @@
           $("#inputDaily").hide();
           $("#inputCustom").hide();
           $("#inputPromo").hide();
+          $("#inputTerm").hide();
           $("#facultyButtonDaily").removeClass("inactiveLink");
           $("#othersButtonDaily").removeClass("inactiveLink");
         }
@@ -184,29 +240,14 @@
         }
 
         if (document.getElementById('report-type').value == "custom") {
-          $("#inputCustom").show();
-          $("#inputOthersDaily").show();
           $("#inputTerm").hide();
-          $("#inputIDNumDaily").hide();
           $("#inputDaily").hide();
+          $("#inputCustom").show();
           $("#inputPromo").hide();
           $("#inputMonthly").hide();
           $("#inputMonthly2").hide();
-           $("#facultyButtonDaily").addClass("inactiveLink");
-          $("#facultyButtonDaily").removeClass("active");
-          $("#othersButtonDaily").addClass("active");
+          $("#facultyButtonDaily").removeClass("inactiveLink");
           $("#othersButtonDaily").removeClass("inactiveLink");
-
-          $("#department").val("All Colleges");
-            $("#CCS").hide();
-            $("#COS").hide();
-            $("#COL").hide();
-            $("#CLA").hide();
-            $("#GCOE").hide();
-            $("#SOE").hide();
-            $("#BAGCED").hide();
-            $("#RVRCOB").hide();
-            $("#All").show();
          
         }
 
@@ -1019,18 +1060,19 @@
                 <div class="form-group">
                   <div class="form-group">
                     <label class="control-label col-xs-4" style="text-align:left; margin-left:15px;">
-                            <input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
+                            <input type="radio" name="inputs" id="inputID" value="idnumber" checked>&nbsp;&nbsp;by ID Number: </label>
                     <div class="col-xs-3">
-                      <input style="width:80px" type="text" class="form-control" id="idnumber" name="idnumber" maxlength="8" />
+                      <input style="width:80px" type="text" class="form-control" id="idnumber" name="idnumber" maxlength="8" onkeyup = "autocompletIdg()" />
+                      <ul id = "id-list"></ul>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label class="control-label col-xs-4" style="text-align:left; margin-left:15px;">
-                            <input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
+                            <input type="radio" name="inputs" id="inputName" value="name" >&nbsp;&nbsp;by Name: </label>
                     <div class="col-xs-3">
-                      <input style="width:214px" type="text" class="form-control" id="name" name="name" placeholder="Last Name, FirstName" readonly/>
-
+                      <input style="width:214px" type="text" class="form-control" id="name" name="name" placeholder="Last Name, FirstName" onkeyup = "autocompletNameg()"readonly/>
+                      <ul id = "name-list"></ul>
                     </div>
                   </div>
                 </div>

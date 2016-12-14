@@ -4,6 +4,7 @@
 	
 	$filter = isset($_GET["filter"]) ? $_GET["filter"] : false;
 	$dateFilter = isset($_GET["dateFilter"]) ? $_GET["dateFilter"] : false;
+	$dateFilter2 = isset($_GET["dateFilter2"]) ? $_GET["dateFilter2"] : false;
 	$labeldate = isset($_GET["labeldate"]) ? $_GET["labeldate"] : false;
 	$buttons = isset($_GET["buttons"]) ? $_GET["buttons"] : false;
 
@@ -14,7 +15,7 @@
 		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
 		<title> Daily Faculty Report - All </title>
 		<link rel="stylesheet" href="../css/bootstrap.min.css">
-		<link href="css/global.css" rel="stylesheet">
+		<link href="../css/global.css" rel="stylesheet">
 		<link rel="stylesheet" href="../css/generatedaily-all.css">
 		<link rel="stylesheet" href="../css/generatemonthlyterm.css">
 		<link rel="stylesheet" href="../css/dashboard.css">
@@ -64,6 +65,8 @@
 
 			});
 		</script>
+
+		
 
 			<script type="text/javascript">
 			$(function() {
@@ -131,7 +134,62 @@
 
 			});
 		</script>
-		
+	<script>	
+		<!-- AutoComplet -->
+      function autocompletName() {
+        var min_length = 0; // min caracters to display the autocomplete
+        var keyword = $('#name').val();
+        if (keyword.length >= min_length) {
+          $.ajax({
+            url: 'ajax_refresh.php',
+            type: 'POST',
+            data: {keyword:keyword},
+            success:function(data){
+              $('#name-list').show();
+              $('#name-list').html(data);
+            }
+          });
+        } else {
+          $('#name-list').hide();
+        }
+      }
+ 
+      // set_item : this function will be executed when we select an item
+      function set_itemName(item) {
+        // change input value
+        $('#name').val(item);
+        // hide proposition list
+        $('#name-list').hide();
+      }
+
+      <!-- AutoComplet -->
+      function autocompletId() {
+
+        var min_length = 0; // min caracters to display the autocomplete
+        var id = $('#idnumber').val();
+        if (id.length >= min_length) {
+          $.ajax({
+            url: 'ajax_refresh.php',
+            type: 'POST',
+            data: {id:id},
+            success:function(data){
+              $('#id-list').show();
+              $('#id-list').html(data);
+            }
+          });
+        } else {
+          $('#id-list').hide();
+        }
+      }
+ 
+      // set_item : this function will be executed when we select an item
+      function set_itemId(item) {
+        // change input value
+        $('#idnumber').val(item);
+        // hide proposition list
+        $('#id-list').hide();
+      }
+      </script>
 		<!-- CHANGING OF REPORT TYPES -->
 		<script>
 			function change(){
@@ -164,6 +222,25 @@
 				}
 
 			}
+		</script>
+
+		<script>
+			function changeReceipients()
+			{
+				if(document.getElementById('email-receivers').value == "All Faculty") {
+			        $("#specific-email").hide();
+			        $("#custom-email").hide();
+				}
+				if(document.getElementById('email-receivers').value == "SpecFaculty") {
+			        $("#specific-email").show();
+			        $("#custom-email").hide();				}
+				if(document.getElementById('email-receivers').value == "Custom") {
+			        $("#specific-email").hide();
+			        $("#custom-email").show();
+				}
+
+			}
+
 		</script>
 
 		<script>
@@ -455,6 +532,7 @@
 			      	$("#inputIDNumTerm").hide();
 			    });
 			});
+
 			$(document).ready(function(){
 				$('#inputName').click(function(){
 					var name = $("#name");
@@ -715,7 +793,7 @@
 						  </div>
 						  </div><br><br>";
 
-					$table= $table1.$table2.$table3;
+					$table= "<h4><b>FACULTY ATTENDANCE REPORT</b></h4>".$labeldate.$table1.$table2.$table3;
 					//On page 1
 					$_SESSION['table'] = $table;
 					
@@ -729,8 +807,7 @@
 			}
 			else
 			{
-												
-				$dateFilter2 = "(".str_replace("date", "start", $dateFilter).") AND (".str_replace("date", "end", $dateFilter).") ";
+
 												
 				$stmt = $conn->prepare( "SELECT department, college, first_name,middle_name,last_name, faculty_id
 											FROM (
@@ -752,7 +829,7 @@
 				$result = $stmt->execute();
 				if($rows = $stmt->fetch(PDO::FETCH_ASSOC))
 				{
-					echo "
+					echo $table1 ="
 					<center>
 					<div class='row'>
 					<div class ='box col-md-12'>
@@ -818,7 +895,7 @@
 				  	</tr>
 				  	";
 
-				  
+				  	$table2 ="";
 				  	do
 					{
 						$filter2 = "faculty_id = ".$rows['faculty_id'];
@@ -906,7 +983,7 @@
 
 
 
-						echo "<tr>
+						echo $temp ="<tr>
 						<td id = 'name' class='tg-e1mw'>".$rows['last_name'].", ".$rows['first_name']." ".$rows['middle_name']."</td>
 						<td class='tg-e1mw'>".$rows1['LOAD']."</td>
 						<td class='tg-e1mw'>".$array['CF']."</td>
@@ -924,9 +1001,10 @@
 						<td class='tg-e1mw'>".$array['LA']."</td>
 						<td class='tg-e1mw'>".$array['ED']."</td></tr>";
 
+						$table2.=$temp;
 					}while($rows = $stmt->fetch(PDO::FETCH_ASSOC));
 
-					echo "
+					echo $table3 ="
 						</table>
 						</div>
 						</div>
@@ -934,11 +1012,11 @@
 						<br><br>
 						</div>";
 
-				}else
-		 			echo "<script>
-					  alert('No Records Found.');
-					  window.location.replace('../dashboard.html');
-					  </script>";									  	
+					$table= "<h4><b>FACULTY ATTENDANCE REPORT</b></h4>".$labeldate.$table1.$table2.$table3;
+					//On page 1
+					$_SESSION['table'] = $table;
+
+				}								  	
 		
 			}
 ?>
@@ -947,7 +1025,7 @@
 		<div class="modal fade" id="email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 		 <div class="modal-dialog">
 				<div class="addaymodal-container" id = "searchrecords-container">
-					<form action="generatereports.php" class="form form-horizontal" method="post">
+					<form action="email.php" class="form form-horizontal" method="post">
 						<fieldset>
 							<legend style = "margin-bottom:-10px;"></legend>
 							<h3><legend class="text-center"><b>EMAIL</b></legend></h3>
@@ -1047,7 +1125,7 @@
 								<div class="form-group">
 									<label class="control-label col-xs-4" style="text-align:left;"></label>
 									<div class="col-xs-8">
-										<input class="form-control" type="text" value = "ccs@dlsu.edu.ph">
+										<input class="form-control" type="text" name="emailcustom"value = "ccs@dlsu.edu.ph">
 									</div>
 								</div>
 							</div>
@@ -1058,7 +1136,8 @@
 				                    <label class="control-label col-xs-4" style="text-align:left; margin-left:15px;">
 				                            <input type="radio" name="inputs" id="inputID" value="idnumber"checked>&nbsp;&nbsp;by ID Number: </label>
 				                    <div class="col-xs-3">
-				                      <input style="width:80px" type="text" class="form-control" id="idnumber" name="idnumber" maxlength="8" />
+				                      <input style="width:80px" type="text" class="form-control" id="idnumber" name="idnumber" maxlength="8" onkeyup = "autocompletId()"/>
+				                      <ul id = "id-list"></ul>
 				                    </div>
 				                  </div>
 
@@ -1066,8 +1145,8 @@
 				                    <label class="control-label col-xs-4" style="text-align:left; margin-left:15px;">
 				                            <input type="radio" name="inputs" id="inputName" value="name">&nbsp;&nbsp;by Name: </label>
 				                    <div class="col-xs-3">
-				                      <input style="width:214px" type="text" class="form-control" id="name" name="name" placeholder="Last Name, FirstName" readonly/>
-
+				                      <input style="width:214px" type="text" class="form-control" id="name" name="name" placeholder="Last Name, FirstName" onkeyup = "autocompletName()"readonly/>
+				                      <ul id = "name-list"></ul>
 				                    </div>
 				                  </div>
 				                </div>

@@ -60,9 +60,13 @@
         $date = $years."-".$months."-01"; 
         $date2 = $years."-".$months."-".$end; 
 
-        $dateFilter = "date BETWEEN '".$date."' AND '".$date2."' "; 
-        $labeldate = $month." ".$years;
+        $dateFilter = "date BETWEEN '".$date."' AND '".$date2."' ";
 
+        $labeldate = $month." ".$years;
+        
+        //WHERE ('2016-09-04' < start AND '2016-12-22' > end ) OR ('2016-09-04' > start AND '2016-12-22' < end )
+        $dateFilter2 = "( '".$date."' < end ) OR ( '".$date2."' > start) ";
+        //$dateFilter2 = "(".str_replace("date", "start", $dateFilter).") OR (".str_replace("date", "end", $dateFilter).") ";
     }
     else if($buttons == 'term')
     {
@@ -96,6 +100,7 @@
             $termP = "3rd";
 
         $labeldate = $termP." TRIMESTER, ".$years ;
+        $dateFilter2 = "(".str_replace("date", "start", $dateFilter).") AND (".str_replace("date", "end", $dateFilter).") ";
 
     }
     else if($buttons == 'custom')
@@ -104,7 +109,8 @@
         $dates = explode(".", $dates);
         $dateFilter = "date BETWEEN '".$dates[0]."' AND '".$dates[1]."' "; 
         $labeldate = "Dates Between ".$dates[0]." to ". $dates[1];      
-
+        //$dateFilter2 = "(".str_replace("date", "start", $dateFilter).") OR (".str_replace("date", "end", $dateFilter).") ";
+        $dateFilter2 = "( '".$dates[0]."' < end ) OR ( '".$dates[1]."' > start) ";
     }
         
     
@@ -246,7 +252,8 @@
     }
     else
     {
-        $dateFilter2 = "(".str_replace("date", "start", $dateFilter).") AND (".str_replace("date", "end", $dateFilter).") ";
+
+        //$dateFilter2 = "(".str_replace("date", "start", $dateFilter).") AND (".str_replace("date", "end", $dateFilter).") ";
                                                 
         $stmt = $conn->prepare( "SELECT department, college, first_name,middle_name,last_name, faculty_id
                                     FROM (
@@ -259,6 +266,18 @@
                                             WHERE ".$dateFilter2." 
                                         ) as Z 
                                     GROUP BY faculty_id;");
+        echo "SELECT department, college, first_name,middle_name,last_name, faculty_id
+                                    FROM (
+                                        SELECT department,first_name, college, middle_name,last_name, faculty_id
+                                        FROM (
+                                            SELECT department, college, first_name,middle_name,last_name,term_id,C.id as 'offering_id',F.id as 'faculty_id' 
+                                            FROM faculty F INNER JOIN courseoffering C ON C.faculty_id = F.id ".$filter."
+                                            ) as Y 
+                                            INNER JOIN term T ON T.id = Y.term_id 
+                                            WHERE ".$dateFilter2." 
+                                        ) as Z 
+                                    GROUP BY faculty_id;";
+
 
         $result = $stmt->execute();
 
@@ -266,13 +285,14 @@
         {
             echo "<script>
             alert('Record not found.');
-            window.location.replace('../dashboard.html');
+            
             </script>";
         }
         else
         {
             header("Location: generatereports.php?filter=".$filter
                 ."&dateFilter=".$dateFilter
+                ."&dateFilter2=".$dateFilter2
                 ."&labeldate=".$labeldate
                 ."&buttons=".$buttons);
             exit;
