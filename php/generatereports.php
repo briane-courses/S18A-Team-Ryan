@@ -715,7 +715,7 @@
 						  </div>
 						  </div><br><br>";
 
-					$table= $table1.$table2.$table3;
+					$table= "<h4><b>FACULTY ATTENDANCE REPORT</b></h4>".$labeldate.$table1.$table2.$table3;
 					//On page 1
 					$_SESSION['table'] = $table;
 					
@@ -752,7 +752,7 @@
 				$result = $stmt->execute();
 				if($rows = $stmt->fetch(PDO::FETCH_ASSOC))
 				{
-					echo "
+					echo $table1 ="
 					<center>
 					<div class='row'>
 					<div class ='box col-md-12'>
@@ -818,7 +818,7 @@
 				  	</tr>
 				  	";
 
-				  
+				  	$table2 ="";
 				  	do
 					{
 						$filter2 = "faculty_id = ".$rows['faculty_id'];
@@ -906,7 +906,7 @@
 
 
 
-						echo "<tr>
+						echo $temp ="<tr>
 						<td id = 'name' class='tg-e1mw'>".$rows['last_name'].", ".$rows['first_name']." ".$rows['middle_name']."</td>
 						<td class='tg-e1mw'>".$rows1['LOAD']."</td>
 						<td class='tg-e1mw'>".$array['CF']."</td>
@@ -924,15 +924,20 @@
 						<td class='tg-e1mw'>".$array['LA']."</td>
 						<td class='tg-e1mw'>".$array['ED']."</td></tr>";
 
+						$table2.=$temp;
 					}while($rows = $stmt->fetch(PDO::FETCH_ASSOC));
 
-					echo "
+					echo $table3 ="
 						</table>
 						</div>
 						</div>
 						</div>
 						<br><br>
 						</div>";
+
+					$table= "<h4><b>FACULTY ATTENDANCE REPORT</b></h4>".$labeldate.$table1.$table2.$table3;
+					//On page 1
+					$_SESSION['table'] = $table;
 
 				}else
 		 			echo "<script>
