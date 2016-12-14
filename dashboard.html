@@ -26,6 +26,62 @@
 
     <!-- SINGLE CALENDAR -->
     <script type="text/javascript">
+
+      <!-- AutoComplet -->
+      function autocompletName() {
+        var min_length = 0; // min caracters to display the autocomplete
+        var keyword = $('#search-name').val();
+        if (keyword.length >= min_length) {
+          $.ajax({
+            url: 'php/ajax_refresh.php',
+            type: 'POST',
+            data: {keyword:keyword},
+            success:function(data){
+              $('#search-name-list').show();
+              $('#search-name-list').html(data);
+            }
+          });
+        } else {
+          $('#search-name-list').hide();
+        }
+      }
+ 
+      // set_item : this function will be executed when we select an item
+      function set_itemName(item) {
+        // change input value
+        $('#search-name').val(item);
+        // hide proposition list
+        $('#search-name-list').hide();
+      }
+
+      <!-- AutoComplet -->
+      function autocompletId() {
+
+        var min_length = 0; // min caracters to display the autocomplete
+        var id = $('#search-idnumber').val();
+        if (id.length >= min_length) {
+          $.ajax({
+            url: 'php/ajax_refresh.php',
+            type: 'POST',
+            data: {id:id},
+            success:function(data){
+              $('#search-id-list').show();
+              $('#search-id-list').html(data);
+            }
+          });
+        } else {
+          $('#search-id-list').hide();
+        }
+      }
+ 
+      // set_item : this function will be executed when we select an item
+      function set_itemId(item) {
+        // change input value
+        $('#search-idnumber').val(item);
+        // hide proposition list
+        $('#search-id-list').hide();
+      }
+
       $(function() {
 
         var currDate = moment.currDate;
@@ -834,13 +890,16 @@
               <div class="form-group">
                 <label class="control-label col-xs-5" style="text-align:left;"><input checked id="searchByID" name="option" type="radio" value="idNumber">&nbsp;&nbsp;by ID Number:</label>
                 <div class="col-xs-4">
-                  <input class="form-control" id="search-idnumber" name="idNumber" type="text" maxlength="8" style="width:80px;">
+                  <input class="form-control" id="search-idnumber" name="idNumber" type="text" maxlength="8" style="width:80px;" onkeyup = "autocompletId()">
+                  <ul id = "search-id-list"></ul>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-xs-5" style="text-align:left;"><input id="searchByName" name="option" type="radio" value="name">&nbsp;&nbsp;by Name:</label>
                 <div class="col-xs-7">
-                  <input class="form-control" id="search-name" name="fullName" style="float: left; margin-right:5px;" type="text" placeholder="Last Name, First Name" readonly>
+                  <input class="form-control" id="search-name" name="fullName" style="float: left; margin-right:5px;" type="text" placeholder="Last Name, First Name" 
+                  onkeyup = "autocompletName()" readonly>
+                    <ul id = "search-name-list"></ul>
                 </div>
               </div><br>
               <div class="text-center">

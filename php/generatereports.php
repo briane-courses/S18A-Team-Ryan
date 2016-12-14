@@ -631,7 +631,7 @@
 		<div class = "container">
 			<p style = "float:right">
 
-					<a href = "dashboard.html" data-toggle="modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+					<a href = "../dashboard.html" data-toggle="modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
 			      	<span class="glyphicon glyphicon-chevron-left"></span> BACK </a> &nbsp;
 
 					<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
