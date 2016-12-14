@@ -86,6 +86,7 @@ else
 }
 
 echo $emailaddress;
+
 //Tell PHPMailer to use SMTP
 $mail->isSMTP();
 
