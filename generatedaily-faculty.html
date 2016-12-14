@@ -584,32 +584,35 @@
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="navbar-brand-centered">
-			      <ul class="nav navbar-nav">
-			        <li><a href="dashboard.html"><b>Maintenance</b></a></li>
-			        <li><a href="dashboard-reports.html"><b>Log Out</b></a></li>
-			      </ul>
-			      <ul class="nav navbar-nav navbar-right" style = "padding:7px;">
 
-			        <li>
+		          <ul class="nav navbar-nav" style="padding:7px;">
 
-			        	<button type="button" class="btn btn-default" id = "dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
-					</li>
-				  </ul>
+		            <li>
 
-			    </div><!-- /.navbar-collapse -->
+		              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id="dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
+		            </li>
+
+		          </ul>
+
+		          <ul class="nav navbar-nav navbar-right">
+		            <li><a href="index.html"><b>Log Out</b></a></li>
+		          </ul>
+
+		        </div>
+			    <!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 
 		<div class = "container">
 			<p style = "float:right">
-					<a href = "#" data-toggle="modal" data-target = "#generate-modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
-			      	<span class="glyphicon glyphicon-th-list"></span> GENERATE  </a> &nbsp;
+					<a href = "dashboard.html" data-toggle="modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+			      	<span class="glyphicon glyphicon-chevron-left"></span> BACK </a> &nbsp;
 
 					<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
-				     <span class="glyphicon glyphicon-print"></span> PRINT  </a> &nbsp;
+				     <span class="glyphicon glyphicon-print"></span> PRINT </a> &nbsp;
 
 			      	<a href="#" data-toggle="modal" data-target = "#email-modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
-			      	<span class="glyphicon glyphicon-envelope"></span> EMAIL  </a>
+			      	<span class="glyphicon glyphicon-envelope"></span> EMAIL </a>
 			</p>
 			<br><br>
 			<center>
