@@ -25,11 +25,11 @@ if($emailadd == 'All Faculty')
 }
 else if($emailadd == 'SpecFaculty')
 {
-	$filter = "WHERE ";
+    $filter = "WHERE ";
     $inputs = isset($_POST["inputs"]) ? $_POST["inputs"] : false;
                                                     
-		if($inputs == 'idnumber'){
-			
+        if($inputs == 'idnumber'){
+            
             $idnumber = isset($_POST["idnumber"]) ? $_POST["idnumber"] : false;
                  
             $stmt= $conn->prepare("SELECT first_name, middle_name, last_name FROM faculty 
@@ -75,14 +75,14 @@ else if($emailadd == 'SpecFaculty')
         $result = $stmt->execute();
             
         $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-	
-		$emailaddress = $rows['email'];
-	
+    
+        $emailaddress = $rows['email'];
+    
 }
 else
 {
-	$emailaddress = isset($_POST["emailcustom"]) ? $_POST["emailcustom"] : false;
-		
+    $emailaddress = isset($_POST["emailcustom"]) ? $_POST["emailcustom"] : false;
+        
 }
 
 echo $emailaddress;
@@ -138,9 +138,12 @@ $mail->msgHTML($table);
 
 
 //send the message, check for errors
-// if (!$mail->send()) {
-//     echo "Mailer Error: " . $mail->ErrorInfo;
-// } else {
-//     echo "Message sent!";
-// }
+if (!$mail->send()) {
+    echo "Mailer Error: " . $mail->ErrorInfo;
+} else {
+    echo "<script>
+            alert('No Records Found.');
+            window.location.replace('../dashboard.html');
+          </script>";
+}
 ?>

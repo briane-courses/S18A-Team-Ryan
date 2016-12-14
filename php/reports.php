@@ -146,10 +146,15 @@
         else
         {
             $name = isset($_POST["name"]) ? $_POST["name"] : false;
-            $stmt= $conn->prepare("SELECT first_name, middle_name, last_name FROM faculty 
-                                    WHERE first_name= :name OR last_name= :name OR middle_name= :name");
-
-            $stmt->execute(["name" => $name]);
+            $lastName = strtok($_POST["name"], ", ");
+            $firstName = strtok(", ");
+            $stmt = $conn->prepare(
+              "SELECT *
+              FROM Faculty
+              WHERE first_name = :firstName
+                  AND last_name = :lastName;");
+            $stmt->execute(["firstName" => $firstName, "lastName" => $lastName]);
+          
 
             $result = $stmt->execute();
             
