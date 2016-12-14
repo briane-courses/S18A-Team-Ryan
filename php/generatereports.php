@@ -4,6 +4,7 @@
 	
 	$filter = isset($_GET["filter"]) ? $_GET["filter"] : false;
 	$dateFilter = isset($_GET["dateFilter"]) ? $_GET["dateFilter"] : false;
+	$dateFilter2 = isset($_GET["dateFilter2"]) ? $_GET["dateFilter2"] : false;
 	$labeldate = isset($_GET["labeldate"]) ? $_GET["labeldate"] : false;
 	$buttons = isset($_GET["buttons"]) ? $_GET["buttons"] : false;
 
@@ -729,8 +730,7 @@
 			}
 			else
 			{
-												
-				$dateFilter2 = "(".str_replace("date", "start", $dateFilter).") AND (".str_replace("date", "end", $dateFilter).") ";
+
 												
 				$stmt = $conn->prepare( "SELECT department, college, first_name,middle_name,last_name, faculty_id
 											FROM (
@@ -939,11 +939,7 @@
 					//On page 1
 					$_SESSION['table'] = $table;
 
-				}else
-		 			echo "<script>
-					  alert('No Records Found.');
-					  window.location.replace('../dashboard.html');
-					  </script>";									  	
+				}								  	
 		
 			}
 ?>
