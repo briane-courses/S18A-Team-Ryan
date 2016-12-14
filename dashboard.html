@@ -480,6 +480,7 @@
           //idnumber.removeAttr("required");
           //name.prop("required", "true");
           idnumber.prop("readonly", "true");
+
         });
 
         $('#inputID').click(function() {
@@ -504,6 +505,7 @@
           fname.removeAttr("readonly");
           idnumber.val("");
           idnumber.prop("readonly", "true");
+           $('#search-id-list').hide();
         });
 
         $('#searchByID').click(function() {
@@ -515,6 +517,7 @@
           idnumber.removeAttr("readonly");
           name.val("");
           fname.val("");
+          $('#search-name-list').hide();
         });
 
       });
