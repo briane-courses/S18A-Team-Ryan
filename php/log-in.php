@@ -10,7 +10,7 @@
     if($stmt->rowCount() == 1){
         echo "<script>
                 alert('Logged in as a Admin');
-                window.location.replace('../dashboard.html');
+                window.location.replace('../dashboard.php');
             </script>";
     } else {
         $stmt = $conn->prepare("SELECT * FROM Faculty WHERE id = :user_name AND password = :password");

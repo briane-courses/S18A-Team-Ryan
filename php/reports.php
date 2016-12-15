@@ -87,7 +87,7 @@
         {
             echo "<script>
             alert('No Such Term for that Academic Year.');
-            window.location.replace('../dashboard.html');
+            window.location.replace('../dashboard.php');
             </script>";
         }
 
@@ -133,11 +133,11 @@
 
             $result = $stmt->execute();
             
-            if($rows = $stmt->fetch(PDO::FETCH_ASSOC))
+            if(!$rows = $stmt->fetch(PDO::FETCH_ASSOC))
             {
                 echo "<script>
                 alert('Faculty member not found.');
-                window.location.replace('../dashboard.html');
+                window.location.replace('../dashboard.php');
                 </script>";
             }
 
@@ -162,10 +162,11 @@
             {
                 echo "<script>
                 alert('Faculty member not found.');
-                window.location.replace('../dashboard.html');
+                
                 </script>";
             }
             $filter = $filter."last_name ='".$rows['last_name']."' AND  first_name ='".$rows['first_name']."' AND middle_name ='".$rows['middle_name']."'";         
+            
         }
                                                 
     }
@@ -242,7 +243,7 @@
         {
             echo "<script>
             alert('Record not found.');
-            window.location.replace('../dashboard.html');
+            window.location.replace('../dashboard.php');
             </script>";
         }
         else
@@ -250,7 +251,8 @@
             header("Location: generatereports.php?filter=".$filter
                 ."&dateFilter=".$dateFilter
                 ."&labeldate=".$labeldate
-                ."&buttons=".$buttons);
+                ."&buttons=".$buttons
+                ."&labelCollege=".$college);
             exit;
         }
 
@@ -299,7 +301,8 @@
                 ."&dateFilter=".$dateFilter
                 ."&dateFilter2=".$dateFilter2
                 ."&labeldate=".$labeldate
-                ."&buttons=".$buttons);
+                ."&buttons=".$buttons
+                ."&labelCollege=".$college);
             exit;
         }
     }

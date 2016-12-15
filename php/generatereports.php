@@ -6,7 +6,10 @@
 	$dateFilter = isset($_GET["dateFilter"]) ? $_GET["dateFilter"] : false;
 	$dateFilter2 = isset($_GET["dateFilter2"]) ? $_GET["dateFilter2"] : false;
 	$labeldate = isset($_GET["labeldate"]) ? $_GET["labeldate"] : false;
+	$labelCollege = isset($_GET["labelCollege"]) ? $_GET["labelCollege"] : false;
 	$buttons = isset($_GET["buttons"]) ? $_GET["buttons"] : false;
+
+
 
 ?>
 <head>
@@ -709,7 +712,7 @@
 		<div class = "container">
 			<p style = "float:right">
 
-					<a href = "../dashboard.html" data-toggle="modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+					<a href = "../dashboard.php" data-toggle="modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
 			      	<span class="glyphicon glyphicon-chevron-left"></span> BACK </a> &nbsp;
 
 					<a href="print.php" target= "_blank"class="navbar-btn btn-success btn" style = "margin-top:-5px;">
@@ -757,7 +760,7 @@
 						<div class='box-content'>
 	 					<table id='resulttable' name = 'resulttable' class='table table-bordered table-striped table-condensed'>
 						<thead class='collegelabel'>
-							<tr><th colspan ='7'>".$rows['college']."</th></tr>
+							<tr><th colspan ='7'>".$labelCollege."</th></tr>
 						</thead> 
 	 					<thead id = 'col-header'><tr>
 						<th>Department</th>
@@ -801,7 +804,7 @@
 		 		else
 		 			echo "<script>
 					      alert('No Records Found.');
-					      window.location.replace('../dashboard.html');
+					      window.location.replace('../dashboard.php');
 					      </script>";
 										 		
 			}

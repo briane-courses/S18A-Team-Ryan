@@ -260,7 +260,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-brand-centered">
           <ul class="nav navbar-nav">
-            <li><a href="dashboard.html"><b>Maintenance</b></a></li>
+            <li><a href="dashboard.php"><b>Maintenance</b></a></li>
             <li><a href="dashboard-reports.html"><b>Reports</b></a></li>
           </ul>
             <ul class="nav navbar-nav navbar-right" style = "padding:7px;">
@@ -285,7 +285,7 @@
 						<div class = "col-md-6">
 							<div style = "float:right">
 								<button href = "#" data-toggle="modal" data-target = "#searchrecords-modal" class="navbar-btn btn-success btn">
-							    <span class="glyphicon glyphicon-th-list"></span> &nbsp;Search Again  </button>
+							    <span class="glyphicon glyphicon-th-list"></span> &nbsp;Search Again</button>
 							    <br>
 						    </div>
 						</div>

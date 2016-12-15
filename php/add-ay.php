@@ -111,14 +111,14 @@
             // New entry has overlapping terms.
             echo "<script>
                 window.alert('Terms have overlapping dates');
-                window.location.replace('../dashboard.html');
+                window.location.replace('../dashboard.php');
             </script>";
         }
     } else {
         // If academic year already exists:
         echo "<script>
             window.alert('Academic year exists.');
-            window.location.replace('../dashboard.html');
+            window.location.replace('../dashboard.php');
         </script>";
     }
 ?>
