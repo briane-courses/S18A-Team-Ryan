@@ -449,31 +449,6 @@
 	 			
 			});
 
-			$(document).ready(function(){
-				$('#searchByName').click(function(){
-				var name =$("#search-name");
-				var fname =$("#search-fname");
-		 		var idnumber =$("#search-idnumber");
-		 		name.removeAttr("readonly");
-		 		fname.removeAttr("readonly");
-		 		idnumber.val("");
-		 		idnumber.prop("readonly", "true");
-		 		});
-	 			
-	 			$('#searchByID').click(function(){
-	 			var name =$("#search-name");
-	 			var fname =$("#search-fname");
-		 		var idnumber =$("#search-idnumber");
-		 		name.prop("readonly", "true");
-		 		fname.prop("readonly", "true");
-		 		idnumber.removeAttr("readonly");
-		 		name.val("");
-		 		fname.val("");
-	 			});
-
-	 			
-			});
-
 
 		</script>
 		
@@ -715,7 +690,7 @@
 					<a href = "../dashboard.php" data-toggle="modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
 			      	<span class="glyphicon glyphicon-chevron-left"></span> BACK </a> &nbsp;
 
-					<a href="print.php" target= "_blank"class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+					<a href="print.php" data-toggle="modal" data-target = "#print-modal" target= "_blank"class="navbar-btn btn-success btn" style = "margin-top:-5px;">
 				     <span class="glyphicon glyphicon-print"></span> PRINT </a> &nbsp;
 
 			      	<a href="#" data-toggle="modal" data-target = "#email-modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
@@ -728,6 +703,39 @@
 					<?php echo $labeldate; ?>
 				</div>
 			</center>
+			<br>
+			<center>
+					<div class='row'>
+					<div class ='box col-md-12'>
+					<div class='box-content'>
+					<table class='tg'>
+					<tr>
+				    <th class='tg-uce2'>Reason for Absence:</th>
+				    <th class='tg-efv9'><b>CF</b> - Conference</th>
+				    <th class='tg-efv9'><b>PM</b> - Personal Matters</th>
+				    <th class='tg-efv9'><b>SI</b> - Sickness</th>
+				    <th class='tg-efv9'><b>XX</b> - Reason Uknown</th>
+				  	</tr>
+				  	<tr>
+				    <td class='tg-cgdk'></td>
+				    <td class='tg-cgdk'><b>OB</b> - Official Business</td>
+				    <td class='tg-cgdk'><b>AC</b> - Alternative Class</td>
+				    <td class='tg-cgdk'><b>FT</b> - Field Trip</td>
+				    <td class='tg-cgdk'><b>OL</b> - Online Class</td>
+				  	</tr>
+				  	<tr>
+				    <td class='tg-efv9'></td>
+				    <td class='tg-efv9'><b>SW</b> - Seatwork</td>
+				    <td class='tg-efv9'><b>SB</b> - Substitute</td>
+				    <td class='tg-efv9'><b>LA</b> - Late</td>
+				    <td class='tg-efv9'><b>ED</b> - Early Dismissal</td>
+				  	</tr>
+					</table>
+					</div>
+					</div>
+					</div>
+					</center>
+
 			<?php
 			
 			if($buttons == 'daily')
@@ -833,37 +841,6 @@
 				if($rows = $stmt->fetch(PDO::FETCH_ASSOC))
 				{
 					echo $table1 ="
-					<center>
-					<div class='row'>
-					<div class ='box col-md-12'>
-					<div class='box-content'>
-					<table class='tg'>
-					<tr>
-				    <th class='tg-uce2'>Reason for Absence:</th>
-				    <th class='tg-efv9'><b>CF</b> - Conference</th>
-				    <th class='tg-efv9'><b>PM</b> - Personal Matters</th>
-				    <th class='tg-efv9'><b>SI</b> - Sickness</th>
-				    <th class='tg-efv9'><b>XX</b> - Reason Uknown</th>
-				  	</tr>
-				  	<tr>
-				    <td class='tg-cgdk'></td>
-				    <td class='tg-cgdk'><b>OB</b> - Official Business</td>
-				    <td class='tg-cgdk'><b>AC</b> - Alternative Class</td>
-				    <td class='tg-cgdk'><b>FT</b> - Field Trip</td>
-				    <td class='tg-cgdk'><b>OL</b> - Online Class</td>
-				  	</tr>
-				  	<tr>
-				    <td class='tg-efv9'></td>
-				    <td class='tg-efv9'><b>SW</b> - Seatwork</td>
-				    <td class='tg-efv9'><b>SB</b> - Substitute</td>
-				    <td class='tg-efv9'><b>LA</b> - Late</td>
-				    <td class='tg-efv9'><b>ED</b> - Early Dismissal</td>
-				  	</tr>
-					</table>
-					</div>
-					</div>
-					</div>
-					</center>
 					<br><br>
 					<div class='row'>
 					<div class ='box col-md-12'>
@@ -1024,6 +1001,27 @@
 			}
 ?>
 
+<!-- PRINT MODAL-->
+ <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="print-modal" role="dialog" style="display: none;" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="addaymodal-container" id="searchrecords-container">
+          <form action="generatereports.php" class="form form-horizontal" method="post">
+            <fieldset>
+              <legend style="margin-bottom:-10px;"></legend>
+			  <h3><legend class="text-center"><b>PRINT REPORT</b></legend></h3>
+              <div style="font-weight:normal" class="text-center">
+                Are you sure to want print this report?
+              </div>
+              <br><br>
+              <div class="text-center">
+                <button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-print"></i> PRINT</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+              </div>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
 <!-- EMAIL MODAL -->
 		<div class="modal fade" id="email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 		 <div class="modal-dialog">
@@ -1032,83 +1030,6 @@
 						<fieldset>
 							<legend style = "margin-bottom:-10px;"></legend>
 							<h3><legend class="text-center"><b>EMAIL</b></legend></h3>
-
-							<!--<div class="form-group">
-				                <label class="control-label col-xs-4" style="text-align:left;">Type:</label>
-				                <div class="col-xs-5">
-				                  <select id="email-type" class="selectpicker show-tick" data-width="155px" onchange="email()">
-				                        <option value ="daily-email"> Daily </option>
-				                        <option value = "monthly-email"> Monthly </option>
-								        <option value = "term-email"> Term-End </option>
-				                        <option value = "custom-email"> Custom </option>
-				                      </select>
-				                </div>
-			              	</div>
-
-			              	<div class="form-group">
-				                <label class="control-label col-xs-4" style="text-align:left;">Date:</label>
-
-				                <div id="emailDaily" class="col-xs-8">
-				                  <input style="width:100px;" type="text" class="form-control" id="dailydate2" name="dailydate2" />
-				                </div>
-
-				                <div id="emailMonthly" class="col-xs-4" name="monthly" style="display:none;">
-
-				                  <select class="selectpicker show-tick" style="text-align:left;;" name="months" data-width="110px">
-				                    <option selected>January</option>
-				                    <option>February</option>
-				                    <option>March</option>
-				                    <option>April</option>
-				                    <option>May</option>
-				                    <option>June</option>
-				                    <option>July</option>
-				                    <option>August</option>
-				                    <option>September</option>
-				                    <option>October</option>
-				                    <option>November</option>
-				                    <option>December</option>
-				                  </select>
-
-
-				                </div>
-
-				                <div id="emailMonthly2" style="display:none;">
-				                  <select id="try" class="selectpicker show-tick" style="text-align:left;" name="years" data-width="100px">
-				                        <option selected>2016</option>
-				                        <option>2015</option>
-
-				                  </select>
-				                </div>
-
-				                <div id="emailCustom" class="col-xs-8" style="display:none;margin-left:-20px;">
-				                  <div id="reportrange" class="pull-right" style="width:230px;">
-				                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-				                    <span></span> <b class="caret" style="float:right;margin-top:5px;"></b>
-				                    <input type="hidden" class="form-control" id="dates" name="dates" />
-				                  </div>
-				                </div>
-
-				                <div id="emailTerm" class="col-xs-4" name="terms" style="display:none;">
-
-				                  <select class="selectpicker show-tick" style="text-align:left;" data-width="155px" name="academicyears">
-				                        <option seleccted>A.Y. 2015-2016</option>
-
-				                      </select>
-				                  <br><br>
-				                  <select class="selectpicker show-tick" style="text-align:left;" data-width="155px" name="terms">
-				                        <option value = "1" selected>Term 1</option>
-				                        <option value = "2">Term 2</option>
-				                        <option value = "3">Term 3</option>
-
-				                  </select>
-
-
-				                </div>
-
-
-
-				            </div>-->
-
 
 				            <div class = "email">
 								<div class="form-group">

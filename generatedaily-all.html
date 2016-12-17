@@ -633,7 +633,7 @@
 					<a href = "dashboard.html" data-toggle="modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
 			      	<span class="glyphicon glyphicon-chevron-left"></span> BACK </a> &nbsp;
 
-					<a href="#" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+					<a href="#" data-toggle="modal" data-target = "#print-modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
 				     <span class="glyphicon glyphicon-print"></span> PRINT </a> &nbsp;
 
 			      	<a href="#" data-toggle="modal" data-target = "#email-modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
@@ -990,6 +990,28 @@
 		</div>
 
 	</div>
+
+	<!-- PRINT MODAL-->
+ <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="print-modal" role="dialog" style="display: none;" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="addaymodal-container" id="searchrecords-container">
+          <form action="generatereports.php" class="form form-horizontal" method="post">
+            <fieldset>
+              <legend style="margin-bottom:-10px;"></legend>
+			  <h3><legend class="text-center"><b>PRINT REPORT</b></legend></h3>
+              <div style="font-weight:normal" class="text-center">
+                Are you sure to want print this report?
+              </div>
+              <br><br>
+              <div class="text-center">
+                <button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-print"></i> PRINT</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+              </div>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
 
 	<!-- EMAIL MODAL -->
 		<div class="modal fade" id="email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
