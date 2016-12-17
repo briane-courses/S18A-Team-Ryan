@@ -396,8 +396,8 @@
 						</div>
 						<div class = "col-md-6">
 							<div style = "float:right">
-								<button href = "#" data-toggle="modal" data-target = "#searchrecords-modal" class="navbar-btn btn-success btn">
-							    <span class="glyphicon glyphicon-search"></span> &nbsp;Search Again</button>
+								<a href = "../dashboard.php" data-toggle="modal" class="navbar-btn btn-success btn" style="margin-right:-13px">
+			      					<span class="glyphicon glyphicon-chevron-left"></span> BACK </a> &nbsp;
 							    <br>
 						    </div>
 						</div>
@@ -429,7 +429,6 @@
                             <select id = "class-type" class="form-control selectpicker show-tick" data-width = "100px">
                               <option value="normal" selected>Normal</option>
                               <option value="makeup">Make-Up</option>
-                              <option value="both">Both</option>
                             </select>
                           </div> <!-- form group [rows] -->
                           <div class="form-group">
