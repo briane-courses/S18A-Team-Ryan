@@ -498,7 +498,7 @@
     		<div class = "im-centered">
 	          <a href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#addrecord-modal">
 	            <span class="glyphicon glyphicon-plus"></span> ADD NEW RECORD </a>
-	          <a id="modifyButton" class="navbar-btn btn-success btn disabled" data-toggle="modal" data-target="#modifyrecord-modal">
+	          <a id="modifyButton" class="navbar-btn btn-success btn disabled" data-toggle="modal" data-target="#modifymakeup-modal">
 	            <span class="glyphicon glyphicon-pencil"></span> MODIFY </a>
 
 	          <a id="removeButton" href="#" class="navbar-btn btn-success btn disabled" data-toggle="modal" data-target="#removerecord-modal">
@@ -534,7 +534,7 @@
               <div class="form-group">
                 <label class = "control-label col-xs-4" style = "text-align:left;">Absence Date:</label>
                 <div class = "col-xs-8">
-                  <input type="text" class="form-control" id="abscencedate" name="absencedate" value="10/31/2016"/>
+                  <input type="text" class="form-control" id="abscencedate" name="dailydate" value="10/31/2016"/>
                 </div>
               </div>
 
@@ -584,7 +584,7 @@
 		  </div>
 		</div>
 
-		<!-- MODIFY RECORD MODAL -->
+		<!-- MODIFY ATTENDANCE RECORD MODAL -->
 		<div class="modal fade" id="modifyrecord-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="addaymodal-container" id = "daily-container">
@@ -610,7 +610,7 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Absence Date:</label>
 			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" id="absencedate2" name="absencedate2" value="10/31/2016"/>
+			            	 		<input type="text" class="form-control" id="absencedate2" name="dailydate" value="10/31/2016"/>
 			            	 	</div>
 			            	 </div>
 
@@ -694,7 +694,7 @@
                 <div class="form-group">
                   <label class = "control-label col-xs-4" style = "text-align:left;">Make Up Date:</label>
                   <div class = "col-xs-8">
-                  <input type="text" class="form-control" id="makeupdate" name="makeupdate" value="12/12/2016"/>
+                  <input type="text" class="form-control" id="makeupdate" name="dailydate" value="12/12/2016"/>
                   </div>
                 </div>
 
@@ -729,9 +729,9 @@
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class = "control-label col-xs-4" style = "text-align:left;">Date of Absence:</label>
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Absence Date:</label>
                   <div class = "col-xs-8">
-                    <input type="text" class="form-control" id="absencedate-makeup" name="absencedate-makeup" value="11/30/2016"/>
+                    <input type="text" class="form-control" id="absencedate-makeup" name="dailydate" value="11/30/2016"/>
                   </div>
                 </div>
 
@@ -750,7 +750,7 @@
                 <div class="form-group">
                   <label class = "control-label col-xs-4" style = "text-align:left;">Date Filed:</label>
                   <div class = "col-xs-8">
-                    <input type="text" class="form-control" id="filed-date" name="filed-date" value="12/01/2016"/>
+                    <input type="text" class="form-control" id="filed-date" name="dailydate" value="12/01/2016"/>
                   </div>
                 </div>
 
@@ -774,6 +774,106 @@
               <br>
               <div class="text-center">
                 <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-plus"></i> ADD </button>
+                <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+              </div>
+            </fieldset>
+					</form>
+				</div>
+		  </div>
+    </div>
+
+    	<!-- MODIFY MAKE UP CLASS MODAL -->
+		<div class="modal fade" id="modifymakeup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+				<div class="makeupmodal-container" id = "makeup-container">
+					<form class = "form form-horizontal" action="php/generate-daily.php" method="POST">
+            <fieldset>
+							<legend style = "margin-bottom:-10px;"></legend>
+              <legend class="text-center"><h3><b>MODIFY MAKE UP CLASS</b></h3></legend>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Make Up Date:</label>
+                  <div class = "col-xs-8">
+                  <input type="text" class="form-control" id="makeupdate" name="dailydate" value="12/12/2016"/>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Start Time:</label>
+                  <div class = "col-xs-6">
+                    <input class="form-control" name="starttime" id="starttime" type="time" value="11:00">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">End Time:</label>
+                  <div class = "col-xs-6">
+                    <input class="form-control" name="endtime" id="endtime" type="time" value="12:30">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Room:</label>
+                  <div class = "col-xs-8">
+                    <input id="section" type="text" class="form-control"/>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Course & Section:</label>
+                  <div class = "col-xs-8">
+                  		<input id="section" type="text" class="form-control" value = "SOFENGG S18A" readonly/>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Absence Date:</label>
+                  <div class = "col-xs-8">
+                    <input type="text" class="form-control" id="absencedate-makeup" name="absencedate-makeup" value="11/30/2016"/>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Reason for Absence:</label>
+                  <div class = "col-xs-6" style = "text-align:left;">
+                	<select class = "selectpicker tick-show" data-width = "120px">
+	                    <option selected>CF - Attended Conference</option>
+	                    <option>PM - Personal Matter</option>
+	                    <option>SI - Sickness</option>
+	                    <option>OB - Official Business</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Date Filed:</label>
+                  <div class = "col-xs-8">
+                    <input type="text" class="form-control" id="filed-date" name="dailydate" value="12/01/2016"/>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Checker:</label>
+                  <div class = "col-xs-8">
+                    <input type="text" class="form-control"/>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class = "control-label col-xs-4" style = "text-align:left;">Class Made Up:</label>
+                  <div class = "col-xs-8" style = "text-align:left;">
+                    <form>
+                    	<input type="radio" name="isMakeupDone" value="yes"><span> Yes</span>
+                      <input type="radio" name="isMakeupDone" value="no" style ="margin-left: 10px;"><span> No</span>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="text-center">
+                <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-save"></i> SAVE </button>
                 <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
               </div>
             </fieldset>
