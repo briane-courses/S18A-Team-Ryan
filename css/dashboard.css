@@ -145,12 +145,3 @@ body{
 .style2{
     border-top: 3px double #8c8b8b;
 }
-
-/*** AUTOCOMPLETE ***/
-.names{
-    list-style: none;
-}
-
-.ids{
-    list-style:none;
-}

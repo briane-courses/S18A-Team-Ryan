@@ -33,6 +33,115 @@
 	    <script src="../js/daterangepicker.js"></script>
 		    <!-- DROPDOWN -->
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+	    <!--AUTOCOMPLETE CSS -->
+	    <style>
+	        #search-id-list, #search-name-list{
+	            position: absolute;
+	            top: 100%;
+	            left: 0;
+	            z-index: 1000;
+	            display: none;
+	            float: left;
+	            min-width: 80px;
+	            max-height:150px;
+	            overflow:auto;
+	            padding-left:5px;
+	            margin: 2px 0 0;
+	            margin-left:15px;
+	            font-size: 14px;
+	            font-weight:normal;
+	            text-align: left;
+	            list-style: none;
+	            background-color: #fff;
+	            -webkit-background-clip: padding-box;
+	            background-clip: padding-box;
+	            border: 1px solid #ccc;
+	            border: 1px solid rgba(0,0,0,.15);
+	            border-radius: 4px;
+	            -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	        }
+
+	        #search-name-list{
+	          width: 90%;
+	        }
+
+	        #search-id-list, #search-name-list{
+	          cursor:pointer;
+	        }
+
+	        .hover{
+	            background-color:#f5f5f5;
+	        }
+	    </style>
+
+	    <!-- AUTOCOMPLETE JS FOR ATTENDANCE RECORDS -->
+	    <script type="text/javascript">
+
+	      <!-- AutoComplet -->
+	      function autocompletName() {
+	        var min_length = 0; // min caracters to display the autocomplete
+	        var keyword = $('#search-name').val();
+	        if (keyword.length >= min_length) {
+	          $.ajax({
+	            url: 'ajax_refresh.php',
+	            type: 'POST',
+	            data: {keyword:keyword},
+	            success:function(data){
+	                $('#search-name-list').show();
+	                $('#search-name-list').html(data);
+	                $('#search-name-list li').mouseover(function(){
+	                    $('#search-name-list li').removeClass("hover");
+	                    $(this).addClass("hover");
+	                });
+	            }
+	          });
+	        } else {
+	          $('#search-name-list').hide();
+	        }
+	      }
+	 
+	      // set_item : this function will be executed when we select an item
+	      function set_itemName(item) {
+	        // change input value
+	        $('#search-name').val(item);
+	        // hide proposition list
+	        $('#search-name-list').hide();
+	      }
+
+	      <!-- AutoComplet -->
+	      function autocompletId() {
+
+	        var min_length = 0; // min caracters to display the autocomplete
+	        var id = $('#search-idnumber').val();
+	        if (id.length >= min_length) {
+	          $.ajax({
+	            url: 'ajax_refresh.php',
+	            type: 'POST',
+	            data: {id:id},
+	            success:function(data){
+	              $('#search-id-list').show();
+	              $('#search-id-list').html(data);
+	              $('#search-id-list li').mouseover(function(){
+	                  $('#search-id-list li').removeClass("hover");
+	                  $(this).addClass("hover");
+	              }); 
+	            }
+	          });
+	        } else {
+	          $('#search-id-list').hide();
+	        }
+	      }
+	 
+	      // set_item : this function will be executed when we select an item
+	      function set_item(item) {
+	        // change input value
+	        $('#search-idnumber').val(item);
+	        // hide proposition list
+	        $('#search-id-list').hide();
+	      }
+	    </script>
+
 		<!-- SINGLE CALENDAR -->
 	    <script>
 	      $(function() {
@@ -288,7 +397,7 @@
 						<div class = "col-md-6">
 							<div style = "float:right">
 								<button href = "#" data-toggle="modal" data-target = "#searchrecords-modal" class="navbar-btn btn-success btn">
-							    <span class="glyphicon glyphicon-th-list"></span> &nbsp;Search Again</button>
+							    <span class="glyphicon glyphicon-search"></span> &nbsp;Search Again</button>
 							    <br>
 						    </div>
 						</div>
@@ -336,7 +445,7 @@
                       <div class="form-group">
                         <div id="inputDaily">
                           <label class="filter-col" style="margin-right:;margin-top:5px" for="report-date">Date:
-						                            <input style = "width:100px;margin-top:0px;margin-left:10px;" type="text" class="form-control" name="dailydate">
+						                            <input id = "dailydate" style = "width:100px;margin-top:0px;margin-left:10px;" type="text" class="form-control" name="dailydate">
 						                            </label>
                         </div>
 
@@ -453,46 +562,46 @@
 
 	    	</div>
     	</div>
-  		<!-- SEARCH ATTENDANCE RECORDS MODAL -->
-  		<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="searchrecords-modal" role="dialog" style="display: none;" tabindex="-1">
-  			<div class="modal-dialog">
-  				<div class="addaymodal-container" id="searchrecords-container">
-  					<form action="search-faculty.php" method="POST" class="form form-horizontal">
-              <fieldset>
-                <legend style = "margin-bottom:-10px;"></legend>
-                <h3><legend class="text-center"><b>SEARCH ATTENDANCE RECORDS</b></legend></h3>
+	    <!-- SEARCH ATTENDANCE RECORDS MODAL -->
+	    <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="searchrecords-modal" role="dialog" style="display: none;" tabindex="-1">
+	      <div class="modal-dialog">
+	        <div class="addaymodal-container" id="searchrecords-container">
+	          <form action="php/search-faculty.php" method="POST" class="form form-horizontal">
+	            <fieldset>
+	              <legend style="margin-bottom:-10px;"></legend>
+	              <h3><legend class="text-center"><b>SEARCH ATTENDANCE RECORDS</b></legend></h3>
+	              
+	              <div class="form-group">
+                	<label class="control-label col-xs-4" style="text-align:left;">Date:</label>
+		              <div id="inputDaily" class="col-xs-8">
+	                  	<input style="width:100px;margin-left:35px" type="text" class="form-control" id="dailydate" name="dailydate" />
+	                  </div>
+	              </div>
 
-                <div class="form-group">
-                  <label class="control-label col-xs-4" style="text-align:left;">Date:</label>
-                  <div id = "inputDaily" class = "col-xs-8">
-                    <input style="width:100px;margin-left:35px" type="text" class="form-control" id="dailydate" name="date"/>
-                  </div>
-                </div>
 
-                <div class="form-group">
-                  <label class="control-label col-xs-5" style="text-align:left;"><input checked id="searchByID" name="option" type="radio" value="idNumber">&nbsp;&nbsp;by ID Number:</label>
-                  <div class="col-xs-7">
-                    <input class="form-control" id="search-idnumber" name="idNumber" type="text" style = "width:80px" maxlength="8">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="control-label col-xs-5" style="text-align:left;"><input id="searchByName" name="option" type="radio" value="name">&nbsp;&nbsp;by Name:</label>
-                  <div class="col-xs-7">
-                    <input class="form-control" id="search-name" name="fullName" style="float: left; margin-right:5px;" type="text" placeholder="Last Name, First Name" readonly>
-                  </div>
-                </div>
-                <br>
-                <div class="text-center">
-                  <button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-search"></i> SUBMIT</button>
-                  <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
-                </div>
-              </fieldset>
-  					</form>
-  				</div>
-  			</div>
-  		</div>
-		</div>
+	              <div class="form-group">
+	                <label class="control-label col-xs-5" style="text-align:left;"><input checked id="searchByID" name="option" type="radio" value="idNumber">&nbsp;&nbsp;by ID Number:</label>
+	                <div class="col-xs-4">
+	                  <input class="form-control" id="search-idnumber" name="idNumber" type="text" maxlength="8" style="width:80px;" onkeyup = "autocompletId()" autocomplete = "off">
+	                  <ul id = "search-id-list"></ul>
+	                </div>
+	              </div>
+	              <div class="form-group">
+	                <label class="control-label col-xs-5" style="text-align:left;"><input id="searchByName" name="option" type="radio" value="name">&nbsp;&nbsp;by Name:</label>
+	                <div class="col-xs-7">
+	                  <input class="form-control" id="search-name" name="fullName" style="float: left; margin-right:5px;" type="text" placeholder="Last Name, First Name" onkeyup = "autocompletName()" autocomplete = "off" readonly>
+	                    <ul id = "search-name-list"></ul>
+	                </div>
+	              </div><br>
+	              <div class="text-center">
+	                <button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-search"></i> SUBMIT</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+	              </div>
+	            </fieldset>
+	          </form>
+	        </div>
+	      </div>
+	    </div>
+		</div> 
 		<div class="navbar navbar-fixed-bottom">
     	<div class="container text-center">
     		<div class = "im-centered">
@@ -575,8 +684,8 @@
               </div>
               <br>
               <div class="text-center">
-                <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-plus"></i> ADD </button>
-                <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+              	<button type="button" class="cancel btn btn-danger col-xs-3" style = "margin-left:85px; margin-right:30px;" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+                <button type="submit" class="submit btn btn-success col-xs-3"> <i class = "glyphicon glyphicon-plus"></i> ADD </button>
               </div>
         	  </fieldset>
 					</form>
@@ -652,8 +761,9 @@
 
 							<br>
 						    <div class="text-center">
-						        <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-floppy-saved"></i> SAVE </button>
-						        <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+						    	<button type="button" class="cancel btn btn-danger col-xs-3" style = "margin-left:85px; margin-right:30px;" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+						        <button type="submit" class="submit btn btn-success col-xs-3"> <i class = "glyphicon glyphicon-floppy-saved"></i> SAVE </button>
+						        
 				            </div>
 
 			        	</fieldset>
@@ -675,7 +785,8 @@
 							</div>
 							<br><br>
 							<div class="text-center">
-								<button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-trash"></i> REMOVE</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+								 <button class="cancel btn btn-danger col-xs-3" style="margin-left:85px; margin-right:30px;" data-dismiss="modal" type="button"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+								<button class="submit btn btn-success col-xs-3" type="submit"><i class="glyphicon glyphicon-trash"></i> REMOVE</button>
 							</div>
 						</fieldset>
 					</form>
@@ -773,8 +884,8 @@
               </div>
               <br>
               <div class="text-center">
-                <button type="submit" class="submit btn btn-success col-xs-3" style = "margin-left:85px; margin-right:30px;"> <i class = "glyphicon glyphicon-plus"></i> ADD </button>
-                <button type="button" class="cancel btn btn-danger col-xs-3" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+              	<button type="button" class="cancel btn btn-danger col-xs-3" style = "margin-left:85px; margin-right:30px;" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> CANCEL </button>
+                <button type="submit" class="submit btn btn-success col-xs-3"> <i class = "glyphicon glyphicon-plus"></i> ADD </button>
               </div>
             </fieldset>
 					</form>
