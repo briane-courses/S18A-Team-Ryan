@@ -34,214 +34,212 @@
 		    <!-- DROPDOWN -->
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
 		<!-- SINGLE CALENDAR -->
-		<script>
-			$(function() {
-				var currDate = moment.currDate;
+	    <script>
+	      $(function() {
+	        var currDate = moment.currDate;
+	        $('input[name="dailydate"]').daterangepicker({
+	          singleDatePicker: true,
+	          showDropdowns: true,
+	          value: currDate
+	        });
+	      });
 
-			    $('input[id="dailydate"]').daterangepicker({
-			        singleDatePicker: true,
-			        showDropdowns: true,
-			        value: currDate
-			    });
-			});
-		</script>
-		<!-- DATE RANGE PICKER -->
-		<script>
-			$(function() {
-			    var start = moment().subtract(29, 'days');
-			    var end = moment();
+	    </script>
+	    <!-- DATE RANGE PICKER -->
+	    <script>
+	      $(function() {
+	        var start = moment().subtract(29, 'days');
+	        var end = moment();
 
-			    function cb(start, end) {
-			        $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			        $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			        $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
-			    }
-			    $('#reportrange').daterangepicker({
-			        startDate: start,
-			        endDate: end,
-			        ranges: {
+	        function cb(start, end) {
+	          $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+	          $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+	          $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+	        }
+	        $('#reportrange').daterangepicker({
+	          startDate: start,
+	          endDate: end,
+	          ranges: {}
+	        }, cb);
+	        $('#reportrange2').daterangepicker({
+	          startDate: start,
+	          endDate: end,
+	          ranges: {}
+	        }, cb);
+	        $('#reportrange3').daterangepicker({
+	          startDate: start,
+	          endDate: end,
+	          ranges: {}
+	        }, cb);
+	        cb(start, end);
+	      });
 
-			        }}, cb);
+	    </script>
+	    <!-- SEARCH BY NAME/ID -->
+	    <script>
+	      $(document).ready(function() {
+	        $('#inputName').click(function() {
+	          var name = $("#name");
+	          var idnumber = $("#idnumber");
+	          name.removeAttr("readonly");
+	          idnumber.val("");
+	          //idnumber.removeAttr("required");
+	          //name.prop("required", "true");
+	          idnumber.prop("readonly", "true");
+	        });
+	        $('#inputID').click(function() {
+	          var name = $("#name");
+	          var idnumber = $("#idnumber");
+	          name.prop("readonly", "true");
+	          //idnumber.prop("required", "true");
+	          //name.removeAttr("required");
+	          idnumber.removeAttr("readonly");
+	          name.val("");
+	        });
+	      });
+	      $(document).ready(function() {
+	        $('#searchByName').click(function() {
+	          var name = $("#search-name");
+	          var fname = $("#search-fname");
+	          var idnumber = $("#search-idnumber");
+	          name.removeAttr("readonly");
+	          fname.removeAttr("readonly");
+	          idnumber.val("");
+	          idnumber.prop("readonly", "true");
+	        });
+	        $('#searchByID').click(function() {
+	          var name = $("#search-name");
+	          var fname = $("#search-fname");
+	          var idnumber = $("#search-idnumber");
+	          name.prop("readonly", "true");
+	          fname.prop("readonly", "true");
+	          idnumber.removeAttr("readonly");
+	          name.val("");
+	          fname.val("");
+	        });
+	      });
+	      $(document).ready(function() {
+	        $('#normalClassButton').click(function() {
+	          $('#addNormalClass').show();
+	          $('#addMakeUpClass').hide();
+	        });
+	        $('#makeupClassButton').click(function() {
+	          $('#addNormalClass').hide();
+	          $('#addMakeUpClass').show();
+	        });
+	      });
 
-			    $('#reportrange2').daterangepicker({
-			        startDate: start,
-			        endDate: end,
-			        ranges: {
+	    </script>
 
-			        }}, cb);
+	    <!-- CHANGING OF REPORT TYPES -->
+	    <script>
+	      function change() {
+	        if (document.getElementById('report-type').value == "daily") {
+	          $("#inputDaily").show();
+	          $("#inputMonthly").hide();
+	          $("#inputTerm").hide();
+	          $("#inputCustom").hide();
+	        }
+	        if (document.getElementById('report-type').value == "term") {
+	          $("#inputTerm").show();
+	          $("#inputDaily").hide();
+	          $("#inputMonthly").hide();
+	          $("#inputCustom").hide();
+	          
+	        }
+	        if (document.getElementById('report-type').value == "custom") {
+	          $("#inputCustom").show();
+	          $("#inputTerm").hide();
+	          $("#inputDaily").hide();
+	          $("#inputMonthly").hide();
+	        }
+	        if (document.getElementById('report-type').value == "monthly") {
+	          $("#inputMonthly").show();
+	          $("#inputDaily").hide();
+	          $("#inputTerm").hide();
+	        }
+	      }
 
-			    $('#reportrange3').daterangepicker({
-			        startDate: start,
-			        endDate: end,
-			        ranges: {
+	    </script>
 
-			        }}, cb);
+	    <!-- CLICKING OF TABLES -->
+	    <script>
+	      $(document).ready(function($) {
+	        $(".row-data").click(function() {
+	          window.document.location = $(this).data("href");
+	        });
+	      });
 
-			    cb(start, end);
-			});
-		</script>
-		<!-- SEARCH BY NAME/ID -->
-		<script>
-			$(document).ready(function(){
-				$('#inputName').click(function(){
-				var name =$("#name");
-		 		var idnumber =$("#idnumber");
-		 		name.removeAttr("readonly");
-		 		idnumber.val("");
-		 		//idnumber.removeAttr("required");
-		 		//name.prop("required", "true");
-		 		idnumber.prop("readonly", "true");
-		 		});
+	    </script>
 
-	 			$('#inputID').click(function(){
-	 			var name =$("#name");
-		 		var idnumber =$("#idnumber");
-		 		name.prop("readonly", "true");
-		 		//idnumber.prop("required", "true");
-		 		//name.removeAttr("required");
-		 		idnumber.removeAttr("readonly");
-		 		name.val("");
-	 			});
-			});
+	    <!-- -->
+	    <script>
+	      $(function() {
+	        $('div.segmented-control a').on('click', function() {
+	          $('div.segmented-control a').each(function(i, e) {
+	            $(e).removeClass('active');
+	          });
+	          $(this).addClass('active');
+	          $(this).find('input').prop('checked', true);
+	          return false;
+	        });
+	      });
 
-			$(document).ready(function(){
-				$('#searchByName').click(function(){
-				var name =$("#search-name");
-				var fname =$("#search-fname");
-		 		var idnumber =$("#search-idnumber");
-		 		name.removeAttr("readonly");
-		 		fname.removeAttr("readonly");
-		 		idnumber.val("");
-		 		idnumber.prop("readonly", "true");
-		 		});
+	    </script>
 
-	 			$('#searchByID').click(function(){
-	 			var name =$("#search-name");
-	 			var fname =$("#search-fname");
-		 		var idnumber =$("#search-idnumber");
-		 		name.prop("readonly", "true");
-		 		fname.prop("readonly", "true");
-		 		idnumber.removeAttr("readonly");
-		 		name.val("");
-		 		fname.val("");
-	 			});
-			});
+	    <script>
+	      var ctr = 0;
+	      $(document).ready(function() {
+	        $("#result").children("tbody").children("tr").children("td").click(function() {
+	          var isActive = $(this.parentNode).attr('class');
+	          console.log(isActive);
+	          if (isActive == "row-data")
+	            ctr++;
+	          else
+	            ctr--;
+	          $(this.parentNode).toggleClass("active");
+	          console.log(ctr);
+	          if (ctr == 1) {
+	            $('#modifyButton').removeClass("disabled");
+	            $('#removeButton').removeClass("disabled");
+	            $('#makeupButton').removeClass("disabled");
+	          } else {
+	            $('#modifyButton').addClass("disabled");
+	            $('#makeupButton').addClass("disabled");
+	            if (ctr == 0) {
+	              $('#removeButton').addClass("disabled");
+	              $('#makeupButton').addClass("disabled");
+	            } else
+	              $('#removeButton').removeClass("disabled");
+	          }
+	        });
+	      });
 
-			$(document).ready(function(){
-				$('#normalClassButton').click(function(){
-					$('#addNormalClass').show();
-					$('#addMakeUpClass').hide();
-		 		});
-		 		$('#makeupClassButton').click(function(){
-					$('#addNormalClass').hide();
-					$('#addMakeUpClass').show();
-		 		});
-			});
-		</script>
-		<!-- CHANGING OF REPORT TYPES -->
-		<script>
-			function change(){
-				if(document.getElementById('report-type').value == "daily") {
-			      	$("#inputDaily").show();
-			        $("#inputTerm").hide();
-			        $("#inputCustom").hide();
-			        $("#inputPromo").hide();
-				}
+	    </script>
 
-				if(document.getElementById('report-type').value == "term") {
-			      	$("#inputTerm").show();
-			      	$("#inputDaily").hide();
-			        $("#inputCustom").hide();
-			        $("#inputPromo").hide();
-				}
+	    <script>
+	      $("[rel='tooltip']").tooltip();
+	      $('.thumbnail').hover(
+	        function() {
+	          $(this).find('.caption').slideDown(500); //.fadeIn(250)
+	        },
+	        function() {
+	          $(this).find('.caption').slideUp(250); //.fadeOut(205)
+	        }
+	      );
 
-				if(document.getElementById('report-type').value == "custom") {
-					$("#inputCustom").show();
-					$("#inputTerm").hide();
-			      	$("#inputDaily").hide();
-			      	$("#inputPromo").hide();
-				}
+	    </script>
 
-				if(document.getElementById('report-type').value == "promotional") {
-					$("#inputPromo").show();
-					$("#inputDaily").hide();
-					$("#inputTerm").hide();
-					$("#inputCustom").hide();
-				}
-			}
-		</script>
-		<!-- CLICKING OF TABLES -->
-		<script type="text/javascript">
-			$(document).ready(function($) {
-			    $(".row-data").click(function() {
-			        window.document.location = $(this).data("href");
-			    });
-			});
-		</script>
-		<script>
-			$(function(){
-		    $('div.segmented-control a').on('click', function(){
-		        $('div.segmented-control a').each(function(i,e){
-		            $(e).removeClass('active');
-		        });
+	    <!-- SELECT PICKER -->
+	    <script>
+	      $(document).ready(function() {
+	        $('.selectpicker').selectpicker({
+	          style: 'btn-default',
+	          size: false
+	        });
+	      });
 
-		        $(this).addClass('active');
-		        $(this).find('input').prop('checked',true);
-		        return false;
-		    });
-		  });
-		</script>
-		<script>
-			var ctr=0;
-			$(document).ready(function(){
-			    $("#result").children("tbody").children("tr").children("td").click(function(){
-			    	var isActive = $(this.parentNode).attr('class');
-			    	 console.log(isActive);
-			    	if(isActive=="row-data")
-			       	 ctr++;
-			       	else
-			       	 ctr--;
-
-			        $(this.parentNode).toggleClass("active");
-			        console.log(ctr);
-
-			        if(ctr==1){
-			        	$('#modifyButton').attr("disabled", false);
-			        	$('#removeButton').attr("disabled", false);
-			        	$('#makeupButton').attr("disabled", false);
-			        }
-			        else{
-			        	$('#modifyButton').attr("disabled", true);
-			        	$('#makeupButton').attr("disabled", true);
-			        	if(ctr == 0){
-			        		$('#removeButton').attr("disabled", true);
-			        		$('#makeupButton').attr("disabled", true);
-			        	}else
-			        	$('#removeButton').attr("disabled", false);
-			        }
-			    });
-			});
-		</script>
-		<script>
-		    $("[rel='tooltip']").tooltip();
-			    $('.thumbnail').hover(
-			        function(){
-			            $(this).find('.caption').slideDown(500); //.fadeIn(250)
-			        },
-			        function(){
-			            $(this).find('.caption').slideUp(250); //.fadeOut(205)
-			        }
-			    );
-		</script>
-		<!-- SELECT PICKER -->
-		<script>
-			$(document).ready(function() {
-			    $('.selectpicker').selectpicker({
-			        style: 'btn-default',
-			        size: false
-			    });
-			});
-		</script>
+	    </script>
   </head>
   <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -259,16 +257,21 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-brand-centered">
-          <ul class="nav navbar-nav">
-            <li><a href="dashboard.php"><b>Maintenance</b></a></li>
-            <li><a href="dashboard-reports.html"><b>Reports</b></a></li>
+
+          <ul class="nav navbar-nav" style="padding:7px;">
+
+            <li>
+
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id="dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
+            </li>
           </ul>
-            <ul class="nav navbar-nav navbar-right" style = "padding:7px;">
-          <li>
-            <button type="button" class="btn btn-default" id = "dashay-button"><b>Current AY: 2016 - 2017 || Term 1<b></button>
-          </li>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html"><b>Log Out</b></a></li>
           </ul>
-        </div><!-- /.navbar-collapse -->
+
+        </div>
+     	<!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
 
@@ -324,37 +327,66 @@
                             <label class="filter-col" style="margin-right:0;" for="report-type">Daily Report Filter:</label>
                             <select id = "report-type" onchange = "change()" class="form-control selectpicker show-tick" data-width = "155px">
                               <option id ="dailyButton" value = "daily"> Daily </option>
+                              <option value = "monthly"> Monthly </option>
                               <option value = "term"> Term-End </option>
-                              <option value = "custom"> Custom </option>
-                              <option value = "promo"> Promotional </option>
+							  <option value = "custom"> Custom </option>
                             </select>
-                          </div><!-- form group [search] -->
-                          <div class="form-group">
-                            <div id = "inputDaily">
-                              <label class="filter-col" style="margin-right:;margin-top:5px" for="report-date">Date:
-                                <input style = "width:100px;margin-top:0px;margin-left:10px;" type="text" class="form-control" id="dailydate" name="dailydate">
-                              </label>
-                            </div>
+                          </div>
+                          <!-- form group [search] -->
+                      <div class="form-group">
+                        <div id="inputDaily">
+                          <label class="filter-col" style="margin-right:;margin-top:5px" for="report-date">Date:
+						                            <input style = "width:100px;margin-top:0px;margin-left:10px;" type="text" class="form-control" name="dailydate">
+						                            </label>
+                        </div>
 
-                            <div id = "inputTerm" style = "display:none;">
-                              <label class="filter-col" style="margin-right:0;" for="report-date">Date:</label>
-                              <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px"name ="academicyears">
-                                <option seleccted>A.Y. 2015-2016</option>
-                              </select>
-                              <select class="selectpicker show-tick" style = "text-align:left;" data-width = "155px" name ="terms">
-                                <option value = "1" selected>Term 1</option>
-                                <option value = "2">Term 2</option>
-                                <option value = "3">Term 3</option>
-                              </select>
-                            </div>
-                            <div id = "inputCustom" style = "display:none;">
-                              <label class="filter-col" style="margin-right:0;margin-top:5px;" for="report-date">Date:</label>
-                              <div id="reportrange" class="pull-right" style = "width:230px">
-                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                                <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
-                              </div>
-                            </div>
-                          </div> <!-- form group [order by] -->
+                        <div id = "inputMonthly" style = "display:none;">
+                          <label class="filter-col" style="margin-right:0;" for="report-date">Month:</label>
+                          <select class="selectpicker show-tick" style="text-align:left;;" name="months" data-width="110px">
+                            <option selected>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                          </select>
+
+                          <select id="try" class="selectpicker show-tick" style="text-align:left;" name="years" data-width="100px">
+                            <option selected>2016</option>
+                            <option>2015</option>
+                          </select>
+                        </div>
+
+                        <div id="inputTerm" style="display:none;">
+                          <label class="filter-col" style="margin-right:0;" for="report-date">Date:</label>
+                          <select class="selectpicker show-tick" style="text-align:left;" data-width="155px" name="academicyears">
+														<option seleccted>A.Y. 2015-2016</option>
+													</select>
+                          <select class="selectpicker show-tick" style="text-align:left;" data-width="155px" name="terms">
+														<option value = "1" selected>Term 1</option>
+														<option value = "2">Term 2</option>
+														<option value = "3">Term 3</option>
+
+													</select>
+                        </div>
+
+                        <div id="inputCustom" style="display:none;">
+                          <label class="filter-col" style="margin-right:0;margin-top:5px;" for="report-date">Date:</label>
+                          <div id="reportrange" class="pull-right" style="width:230px">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                            <span></span> <b class="caret" style="float:right;margin-top:5px;"></b>
+                          </div>
+
+                        </div>
+
+                      </div>
+                          <!-- form group [order by] -->
                           <div class="form-group">
                             <button type="submit" class="btn btn-success filter-col" style = "margin-left:10px;">
                               <span class="glyphicon glyphicon-record"></span> Apply
@@ -464,18 +496,15 @@
 		<div class="navbar navbar-fixed-bottom">
     	<div class="container text-center">
     		<div class = "im-centered">
-          <a href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#addrecord-modal">
-            <span class="glyphicon glyphicon-plus"></span>ADD NEW RECORD
-          </a>
-          <a id="modifyButton" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#modifyrecord-modal" disabled>
-            <span class="glyphicon glyphicon-pencil"></span>MODIFY
-          </a>
-          <a id = "removeButton" href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#removerecord-modal" disabled>
-            <span class="glyphicon glyphicon-trash"></span> REMOVE
-          </a>
-          <a href="#" id = "makeupButton" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#addmakeup-modal" disabled>
-            <span class="glyphicon glyphicon-plus"></span> ADD NEW MAKE-UP CLASS
-          </a>
+	          <a href="#" class="navbar-btn btn-success btn" data-toggle="modal" data-target="#addrecord-modal">
+	            <span class="glyphicon glyphicon-plus"></span> ADD NEW RECORD </a>
+	          <a id="modifyButton" class="navbar-btn btn-success btn disabled" data-toggle="modal" data-target="#modifyrecord-modal">
+	            <span class="glyphicon glyphicon-pencil"></span> MODIFY </a>
+
+	          <a id="removeButton" href="#" class="navbar-btn btn-success btn disabled" data-toggle="modal" data-target="#removerecord-modal">
+	            <span class="glyphicon glyphicon-trash"></span> REMOVE </a>
+	          <a href="#" id="makeupButton" class="navbar-btn btn-success btn disabled" data-toggle="modal" data-target="#addmakeup-modal">
+	            <span class="glyphicon glyphicon-plus"></span> ADD NEW MAKE-UP CLASS </a>
     		</div>
    		</div>
 		</div>
@@ -505,7 +534,7 @@
               <div class="form-group">
                 <label class = "control-label col-xs-4" style = "text-align:left;">Absence Date:</label>
                 <div class = "col-xs-8">
-                  <input type="text" class="form-control" id="dailydate" name="dailydate" value="10/31/2016"/>
+                  <input type="text" class="form-control" id="abscencedate" name="absencedate" value="10/31/2016"/>
                 </div>
               </div>
 
@@ -521,11 +550,16 @@
               </div>
 
               <div class="form-group">
-                <label class = "control-label col-xs-4" style = "text-align:left;">Checker:</label>
-                <div class = "col-xs-8">
-                  <input type="text" class="form-control"/>
+                <label class="control-label col-xs-5" style="text-align:left;">Checker:</label>
+                <div class="col-xs-7" style="margin-left:-35px;">
+                  <select class="selectpicker show-tick" data-width="180px">
+                      <option selected>Ryan</option>
+                      <option>Darren</option>
+                      <option>Rhovic</option>
+                      </select>
                 </div>
               </div>
+
               <div class="form-group">
                 <label class = "control-label col-xs-4" style = "text-align:left;">Remarks:</label>
                 <div class = "col-xs-8">
@@ -576,49 +610,45 @@
 			            	 <div class="form-group">
 			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Absence Date:</label>
 			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" id="dailydate" name="dailydate" value="10/31/2016"/>
+			            	 		<input type="text" class="form-control" id="absencedate2" name="absencedate2" value="10/31/2016"/>
 			            	 	</div>
 			            	 </div>
 
 			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Course:</label>
-			            	 	<div class = "col-xs-8">
-									    	<select class = "selectpicker show-tick" data-width = "180px">
-									    		<option selected>SOFENGG</option>
-												<option>SWDESPA</option>
-
-									    	</select>
-			            	 	</div>
-			            	 </div>
-
-			            	 <div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Section:</label>
-			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" placeholder = "S17"/>
-			            	 	</div>
-			            	 </div>
+				                <label class = "control-label col-xs-4" style = "text-align:left;">Course & Section:</label>
+				                <div class = "col-xs-8">
+				                  <select class = "selectpicker show-tick" data-width = "180px">
+				                    <?php
+				                      echo $classes;
+				                    ?>
+				                  </select>
+				                </div>
+				              </div>
 
 			            	<div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Checker:</label>
-			            	 	<div class = "col-xs-8">
-			            	 		<input type="text" class="form-control" placeholder = "Keith"/>
-			            	 	</div>
-			            	 </div>
-			            	 	<div class="form-group">
-			            	 	<label class = "control-label col-xs-4" style = "text-align:left;">Remarks:</label>
-			            	 	<div class = "col-xs-8" style = "text-align:left;">
-			            	 				<select class = "selectpicker show-tick" data-width = "180px">
-												<option selected>VR Vacant Room</option>
-												<option>CLA</option>
-												<option>COB</option>
-												<option>COS</option>
-												<option>COE</option>
-												<option>CCS</option>
-												<option>CED</option>
-												<option>SOE</option>
-									    	</select>
-			            	 	</div>
-			            	 </div>
+				                <label class="control-label col-xs-5" style="text-align:left;">Checker:</label>
+				                <div class="col-xs-7" style="margin-left:-35px;">
+				                  <select class="selectpicker show-tick" data-width="180px">
+				                      <option selected>Ryan</option>
+				                      <option>Darren</option>
+				                      <option>Rhovic</option>
+				                      </select>
+				                </div>
+				              </div>
+
+			            	<div class="form-group">
+				                <label class="control-label col-xs-4" style="text-align:left;">Remarks:</label>
+				                <div class="col-xs-8">
+				                  <select class="selectpicker show-tick" data-width="180px">
+				                        <option selected>AB - Absent</option>
+				                        <option>LA - Late</option>
+				                        <option>SB - Substitute</option>
+				                        <option>VR - Vacant Room</option>
+				                        <option>ED - Early Dismissal</option>
+				                        <option>US - Unscheduled Class</option>
+				                        </select>
+				                </div>
+				              </div>
 
 							<br>
 						    <div class="text-center">
@@ -664,7 +694,7 @@
                 <div class="form-group">
                   <label class = "control-label col-xs-4" style = "text-align:left;">Make Up Date:</label>
                   <div class = "col-xs-8">
-                  <input type="text" class="form-control" id="dailydate" name="dailydate" value="12/12/2016"/>
+                  <input type="text" class="form-control" id="makeupdate" name="makeupdate" value="12/12/2016"/>
                   </div>
                 </div>
 
@@ -701,7 +731,7 @@
                 <div class="form-group">
                   <label class = "control-label col-xs-4" style = "text-align:left;">Date of Absence:</label>
                   <div class = "col-xs-8">
-                    <input type="text" class="form-control" id="dailydate" name="dailydate" value="11/30/2016"/>
+                    <input type="text" class="form-control" id="absencedate-makeup" name="absencedate-makeup" value="11/30/2016"/>
                   </div>
                 </div>
 
@@ -720,7 +750,7 @@
                 <div class="form-group">
                   <label class = "control-label col-xs-4" style = "text-align:left;">Date Filed:</label>
                   <div class = "col-xs-8">
-                    <input type="text" class="form-control" id="dailydate" name="dailydate" value="12/01/2016"/>
+                    <input type="text" class="form-control" id="filed-date" name="filed-date" value="12/01/2016"/>
                   </div>
                 </div>
 
