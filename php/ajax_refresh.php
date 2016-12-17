@@ -71,7 +71,7 @@
           // put in bold the written text
           $idname = str_replace($_POST['idg'], '<b>'.$_POST['idg'].'</b>', $rs['id']);
           // add new option
-            echo '<li onclick="set_itemg(\''.str_replace("'", "\'", $rs['id']).'\')">'.$idname.'</li>';
+            echo '<li onclick="set_itemIdg(\''.str_replace("'", "\'", $rs['id']).'\')">'.$idname.'</li>';
         }
 
     }
