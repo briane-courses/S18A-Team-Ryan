@@ -349,21 +349,6 @@
          
         }
 
-        if (document.getElementById('report-type').value == "promotional") {
-          $("#inputPromo").show();
-          $("#inputIDNumDaily").show();
-          $("#inputOthersDaily").hide();
-          $("#inputDaily").hide();
-          $("#inputTerm").hide();
-          $("#inputCustom").hide();
-          $("#inputMonthly").hide();
-          $("#inputMonthly2").hide();
-          $("#facultyButtonDaily").addClass("active");
-          $("#othersButtonDaily").removeClass("active");
-          $("#facultyButtonDaily").removeClass("inactiveLink");
-          $("#othersButtonDaily").addClass("inactiveLink");
-        }
-
       }
 
     </script>
@@ -548,27 +533,6 @@
         });
       });
 
-      $(document).ready(function() {
-        $("#facultyButtonMonthly").click(function() {
-          $("#inputIDNumMonthly").show();
-          $("#inputOthersMonthly").hide();
-        });
-        $("#othersButtonMonthly").click(function() {
-          $("#inputOthersMonthly").show();
-          $("#inputIDNumMonthly").hide();
-        });
-      });
-
-      $(document).ready(function() {
-        $("#facultyButtonTerm").click(function() {
-          $("#inputIDNumTerm").show();
-          $("#inputOthersTerm").hide();
-        });
-        $("#othersButtonTerm").click(function() {
-          $("#inputOthersTerm").show();
-          $("#inputIDNumTerm").hide();
-        });
-      });
       $(document).ready(function() {
         $('#inputName').click(function() {
           var name = $("#name");
@@ -1026,7 +990,7 @@
     <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="searchrecords-modal" role="dialog" style="display: none;" tabindex="-1">
       <div class="modal-dialog">
         <div class="addaymodal-container" id="searchrecords-container">
-          <form action="search-faculty.php" method="POST" class="form form-horizontal">
+          <form action="php/search-faculty.php" method="POST" class="form form-horizontal">
             <fieldset>
               <legend style="margin-bottom:-10px;"></legend>
               <h3><legend class="text-center"><b>SEARCH ATTENDANCE RECORDS</b></legend></h3>
@@ -1056,7 +1020,7 @@
     <div class="modal fade" id="daily-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
         <div class="addaymodal-container" id="daily-container">
-          <form class="form form-horizontal" action="reports.php" method="POST">
+          <form class="form form-horizontal" action="php/reports.php" method="POST">
             <fieldset>
               <legend style="margin-bottom:-10px;"></legend>
               <h3><legend class="text-center"><b>GENERATE REPORTS</b></legend></h3>
@@ -1069,7 +1033,6 @@
                         <option value = "monthly"> Monthly </option>
                         <option value = "term"> Term-End </option>
                         <option value = "custom"> Custom </option>
-                        <option value = "promotional"> Promotional </option>
                       </select>
                 </div>
               </div>
@@ -1174,6 +1137,7 @@
                       <ul id = "id-list"></ul>
                     </div>
                   </div>
+                </div>
 
                   <div class="form-group">
                     <label class="control-label col-xs-4" style="text-align:left; margin-left:15px;">
