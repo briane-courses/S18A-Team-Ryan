@@ -990,7 +990,7 @@
     <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="searchrecords-modal" role="dialog" style="display: none;" tabindex="-1">
       <div class="modal-dialog">
         <div class="addaymodal-container" id="searchrecords-container">
-          <form action="php/search-faculty.php" method="POST" class="form form-horizontal">
+          <form action="search-faculty.php" method="POST" class="form form-horizontal">
             <fieldset>
               <legend style="margin-bottom:-10px;"></legend>
               <h3><legend class="text-center"><b>SEARCH ATTENDANCE RECORDS</b></legend></h3>
@@ -1020,7 +1020,7 @@
     <div class="modal fade" id="daily-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
         <div class="addaymodal-container" id="daily-container">
-          <form class="form form-horizontal" action="php/reports.php" method="POST">
+          <form class="form form-horizontal" action="reports.php" method="POST">
             <fieldset>
               <legend style="margin-bottom:-10px;"></legend>
               <h3><legend class="text-center"><b>GENERATE REPORTS</b></legend></h3>
