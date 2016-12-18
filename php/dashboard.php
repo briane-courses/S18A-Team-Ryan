@@ -8,7 +8,7 @@
   
     $currentDate = date("Y-m-d");
   
-    $sql = "SELECT name, term_no
+    $sql = "SELECT name, term_no, year_id, start, end
     FROM term NATURAL JOIN academicyear
     Where '" . $currentDate . "' >=start AND '" . $currentDate . "' <=end;";
       $stmt = $conn->prepare($sql);
@@ -16,9 +16,12 @@
         $row = $stmt->fetch(PDO::FETCH_NUM);
       
       $AY = $row[0];
-      $Term = "Term " . $row[1];
+      $Term = $row[1];
+      $AYid = $row[2];
+      $start = $row[3];
+      $end = $row[4];
       if($AY == "" || $Term == ""){
-        $AY = "TERM BREAK";
+        $Term = "Break";
       }
 
     $stmt = $conn->prepare("SELECT * FROM academicyear");
@@ -35,7 +38,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" type="../text/css" href="css/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="../css/daterangepicker.css" />
     <!-- DROPDOWN-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
     <!-- FONTS -->
@@ -265,6 +268,17 @@
         function cb(start, end) {
           $('#reportrange span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
           $('#dates').val(start.format('YYYY-MM-DD') + '.' + end.format('YYYY-MM-DD'));
+
+        }
+
+        function cb2(start, end) {
+          $('#reportrange2 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+          $('#dates').val(start.format('YYYY-MM-DD') + '.' + end.format('YYYY-MM-DD'));
+        }
+
+        function cb3(start, end) {
+          $('#reportrange3 span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+          $('#dates').val(start.format('YYYY-MM-DD') + '.' + end.format('YYYY-MM-DD'));
         }
         $('#reportrange').daterangepicker({
           startDate: start,
@@ -274,14 +288,23 @@
           }
         }, cb);
 
-        $('#reportrange1').daterangepicker({
+        $('#reportrange2').daterangepicker({
           startDate: start,
           endDate: end,
           ranges: {
 
           }
-        }, cb);
+        }, cb2);
 
+        $('#reportrange3').daterangepicker({
+          startDate: start,
+          endDate: end,
+          ranges: {
+
+          }
+        }, cb3);
+          
+          cb3(start, end);
       });
 
     </script>
@@ -805,7 +828,7 @@
 
             <li>
 
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id="dashay-button"><b><?=$AY ?> <?=$Term?><b></button>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayModal" id="dashay-button"><b><?=$AY ?> Term <?=$Term?><b></button>
             </li>
           </ul>
 
@@ -829,14 +852,14 @@
             <div class="col-xs-12">
               <label class="control-label col-xs-5" style="text-align:left;">Current Academic Year: </label>
               <div class="col-xs-4">
-                <input type="text" class="form-control" style="width:213px;" placeholder="2016 - 2017" readonly/>
+                <input type="text" class="form-control" style="width:213px;" placeholder="<?=$AY ?>"readonly/>
               </div>
             </div>
             <br>
             <div class="col-xs-12">
               <label class="col-xs-5" style="text-align:left;">Current Term: </label>
               <div class="col-xs-4">
-                <input type="text" class="form-control" style="width:113px;" placeholder="1 " readonly/>
+                <input type="text" class="form-control" style="width:113px;" placeholder="<?=$Term?>" readonly/>
                </div>
             </div>
             <br>
@@ -844,70 +867,20 @@
             <br>
             <br>
             <div class="text-center">
-              <a data-toggle="modal" data-dismiss="modal" href="#newaytermoptionmodal" id="adday">Academic Year  or Term finished? Click to add a new one!</a>
+              <a data-toggle="modal" data-dismiss="modal" href="#newTermmodal" id="adday">Term finished? Click to add a new one!</a>
             </div>
             <br>
             <div class="text-center">
-              <button type="button" class="cancel btn btn-danger col-xs-offset-4 col-xs-4" data-dismiss="modal" style=""><i class = "glyphicon glyphicon-remove"></i> CLOSE </button>
+              
+                  <button class="cancel btn btn-danger col-xs-offset-4 col-xs-4" data-dismiss="modal" style="" type="button"><i class="glyphicon glyphicon-remove"></i> CLOSE</button>
+
             </div>
 
           </fieldset>
         </div>
       </div>
     </div>
-
-    <!--Add AY/Term Option Modal -->
-     <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="newaytermoptionmodal" role="dialog" style="display: none;" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="addaymodal-container" id="searchrecords-container">
-          <form action="" method="POST" class="form form-horizontal">
-            <fieldset>
-              <legend style="margin-bottom:-10px;"></legend>
-              <h3><legend class="text-center"><b>CHOOSE AN OPTION</b></legend></h3>
-            <div class="col-xs-12 row">
-               <button type="button" class="btn btn-success col-xs-offset-1 col-xs-5" data-dismiss = "modal" data-toggle="modal" data-target="#newAYmodal"><i class = "glyphicon glyphicon-plus"></i> ADD AY </button>
-
-               <button type="button" class="btn btn-success col-xs-offset-1 col-xs-5" data-dismiss = "modal" data-toggle="modal" data-target="#newTermmodal"><i class = "glyphicon glyphicon-plus"></i> ADD TERM </button>
-            </div>
-            <br>
-            <br>
-            <br>
-            <div class="text-center">
-              <button type="button" class="cancel btn btn-danger col-xs-offset-4 col-xs-4" data-dismiss="modal" data-toggle = "modal" style="" data-target = "#ayModal"><i class = "glyphicon glyphicon-arrow-left"></i> BACK </button>
-            </div>
-
-          </fieldset>
-        </div>
-      </div>
-    </div>
-        
-    <!--Add AY Modal -->
-     <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="newAYmodal" role="dialog" style="display: none;" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="addaymodal-container" id="searchrecords-container">
-          <form action="add-ay.php" method="POST" class="form form-horizontal">
-            <fieldset>
-              <legend style="margin-bottom:-10px;"></legend>
-              <h3><legend class="text-center"><b>ADD AY</b></legend></h3>
-              <div class="form-group">
-                          <label class="col-xs-4 control-label" for="ay">Academic Year:</label>
-                        <div class="col-xs-8">
-                        <input type="text" class="form-control" id="academic_year" name="academic_year" placeholder="eg. A.Y. 2014-2015"/>
-
-                        </div>
-                     </div>
-
-                <br>
-                <br>
-                <br>
-                <div class="text-center">
-                <button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:30px;" type="submit"><i class="glyphicon glyphicon-plus"></i> ADD AY</button> <button class="cancel btn btn-danger col-xs-3" data-dismiss="modal" data-toggle = "modal" type="button" data-target = "#newaytermoptionmodal"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
-              </div>
-            </fieldset>
-          </form>
-        </div>
-      </div>
-    </div>    
+    
 
     <!--Add Term Modal -->
         
@@ -917,34 +890,46 @@
           <form action="add-term.php" method="POST" class="form form-horizontal">
             <fieldset>
               <legend style="margin-bottom:-10px;"></legend>
-              <h3><legend class="text-center"><b>ADD TERM</b></legend></h3>
+              <h3><legend class="text-center"><b>ADD NEXT TERM</b></legend></h3>
 
                      <div class="form-group">
-                          <label class="col-xs-4 control-label" for="term1">Next Term:</label>
+                          <label class="col-xs-4 control-label" for="term1">
+                          <?php
+                          if($Term  ==3){
+                            $startY = substr($AY, 4, 5);
+                            $endY = substr($AY, 10, 13);
+                            (int) $startY+=1;
+                            (int) $endY+=1;
+                            echo "A.Y. ".$startY."-".$endY." Term 1";
+                          }else{
+
+                            echo $AY." Term ".($Term + 1);
+                          }
+                          ?>
+                          </label>
                         <div class="col-xs-8">
-                            <div id="reportrange1" class="pull-right">
+                            <div id="reportrange2" class="pull-right">
                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
                         <span></span> <b class="caret" style = "float:right;margin-top:5px;"></b>
-                      <<input type="hidden" class="form-control" id="dates2" name="dates" />
-                      <input type="hidden" id="academic_year" value="<?=$AYid?>">
-                      <input type="hidden" id="termNo" value="<?=$Term?>">
+                      <input type="hidden" class="form-control" id="dates" name="dates" />
+                      <input type="hidden" name="academic_year" value="<?php echo $AY; ?>">
+                      <input type="hidden" name="academic_year_id" value="<?php echo $AYid; ?>">
+                      <input type="hidden" name="termNo" value="<?php echo $Term; ?>" /> 
                     </div>
                            
                     </div>
                      </div>
                 <br>
                 <div class="text-center">
-                <button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:35px;" type="submit"><i class="glyphicon glyphicon-plus"></i> ADD TERM</button> <button class="cancel btn btn-danger col-xs-3" data-toggle = "modal" data-dismiss="modal" type="button" data-target = "#newaytermoptionmodal"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
+                <button class="submit btn btn-success col-xs-3" style="margin-left:85px; margin-right:35px;" type="submit"><i class="glyphicon glyphicon-plus"></i> ADD TERM</button> <button class="cancel btn btn-danger col-xs-3" data-toggle = "modal" data-dismiss="modal" type="button" data-target = "#ayModal"><i class="glyphicon glyphicon-remove"></i> CANCEL</button>
               </div>
             </fieldset>
           </form>
         </div>
       </div>
-    </div>    
+    </div>        
 
-    <!--After Navbar -->
-
-    
+    <!--After Navbar -->    
     <div class="container">
       <br><br>
       <div class="im-centered">
