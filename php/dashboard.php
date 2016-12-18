@@ -9,7 +9,7 @@
     $currentDate = date("Y-m-d");
   
     $sql = "SELECT name, term_no, year_id, start, end
-    FROM term NATURAL JOIN academicyear
+     FROM term INNER JOIN academicyear on term.year_id = academicyear.id
     Where '" . $currentDate . "' >=start AND '" . $currentDate . "' <=end;";
       $stmt = $conn->prepare($sql);
         $stmt->execute();
