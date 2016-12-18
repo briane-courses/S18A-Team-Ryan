@@ -396,7 +396,7 @@
 						</div>
 						<div class = "col-md-6">
 							<div style = "float:right">
-								<a href = "../dashboard.php" data-toggle="modal" class="navbar-btn btn-success btn" style="margin-right:-13px">
+								<a href = "dashboard.php" data-toggle="modal" class="navbar-btn btn-success btn" style="margin-right:-13px">
 			      					<span class="glyphicon glyphicon-chevron-left"></span> BACK </a> &nbsp;
 							    <br>
 						    </div>

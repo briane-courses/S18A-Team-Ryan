@@ -687,7 +687,7 @@
 		<div class = "container">
 			<p style = "float:right">
 
-					<a href = "../dashboard.php" data-toggle="modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
+					<a href = "dashboard.php" data-toggle="modal" class="navbar-btn btn-success btn" style = "margin-top:-5px;">
 			      	<span class="glyphicon glyphicon-chevron-left"></span> BACK </a> &nbsp;
 
 					<a href="print.php" data-toggle="modal" data-target = "#print-modal" target= "_blank"class="navbar-btn btn-success btn" style = "margin-top:-5px;">
@@ -812,7 +812,7 @@
 		 		else
 		 			echo "<script>
 					      alert('No Records Found.');
-					      window.location.replace('../dashboard.php');
+					      window.location.replace('dashboard.php');
 					      </script>";
 										 		
 			}

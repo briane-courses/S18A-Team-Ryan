@@ -87,7 +87,7 @@
         {
             echo "<script>
             alert('No Such Term for that Academic Year.');
-            window.location.replace('../dashboard.php');
+            window.location.replace('dashboard.php');
             </script>";
         }
 
@@ -137,7 +137,7 @@
             {
                 echo "<script>
                 alert('Faculty member not found.');
-                window.location.replace('../dashboard.php');
+                window.location.replace('dashboard.php');
                 </script>";
             }
 
@@ -243,7 +243,7 @@
         {
             echo "<script>
             alert('Record not found.');
-            window.location.replace('../dashboard.php');
+            window.location.replace('dashboard.php');
             </script>";
         }
         else

@@ -110,7 +110,7 @@ else
                         {
                             echo "<script>
                             alert('Faculty member not found.');
-                            window.location.replace('../dashboard.php');
+                            window.location.replace('dashboard.php');
                             </script>";
                         }
                         $filter = $filter."last_name ='".$rows['last_name']."' AND  first_name ='".$rows['first_name']."' AND middle_name ='".$rows['middle_name']."'";         
@@ -150,7 +150,7 @@ else
     } else {
       echo "<script>
                alert('No Records Found.');
-               window.location.replace('../dashboard.php');
+               window.location.replace('dashboard.php');
              </script>";
    }   
 }

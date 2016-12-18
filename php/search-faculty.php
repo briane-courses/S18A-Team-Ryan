@@ -21,7 +21,7 @@
       } else {
           echo "<script>
               alert('Missing search details.');
-              window.location.replace('../dashboard.php');
+              window.location.replace('dashboard.php');
           </script>";
       }
 
@@ -36,7 +36,7 @@
       } else {
           echo "<script>
                   alert('Faculty member not found.');
-                  window.location.replace('../dashboard.php');
+                  window.location.replace('dashboard.php');
               </script>";
       }
     } else {
