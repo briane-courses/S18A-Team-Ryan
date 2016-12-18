@@ -6,7 +6,6 @@
    
     $startY = substr($_POST["academic_year"], 4, 5);
     $endY = substr($_POST["academic_year"], 10, 13);
-     echo $endY;
     if($termNum == 3){
     	(int) $startY+=1;
     	(int) $endY+=1;
@@ -24,15 +23,14 @@
 	$dates = isset($_POST["dates"]) ? $_POST["dates"] : false;
     $dates = explode(".", $dates);
    	$sql = "SELECT * FROM facultyattendancetracker.term	WHERE '".$dates[0]."' < end;";
-	echo $sql;
 	$stmt = $conn->prepare($sql);
 	$stmt->execute(); 
 	$result = $stmt->execute();
 	
 	$_POST["termNo"] +=1;
 
-	$isExistingYear = $stmt->rowCount() > 0;
-	if(!$isExistingYear)
+	$isConflictingTerm = $stmt->rowCount() > 0;
+	if(!$isConflictingTerm)
 	{
 		$sql = "INSERT INTO Term(start, end, term_no, year_id)
                 VALUES ('".$dates[0]."', '".$dates[1]."', ".$_POST["termNo"].", ".$_POST["academic_year_id"].")";
@@ -43,17 +41,16 @@
 		} catch (PDOException $e) {
 			echo $e->getMessage();
 		}
-	}else if($isExistingYear){
 		echo "<script>
-            window.alert('Change the date!');
-
-        </script>";
-	}else{
-	
-	echo "<script>
             window.alert('Successfully added a term!');
             window.location.replace('dashboard.php');
 
         </script>";
-   }
+	}else if($isConflictingTerm){
+		echo "<script>
+            window.alert('Change the date! It has a conflict with a previous term');
+            window.location.replace('dashboard.php');
+
+        </script>";
+	}
 ?>
